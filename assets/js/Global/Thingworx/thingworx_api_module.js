@@ -60,8 +60,20 @@ function service_02_getLinesGeneralInfo(entityName){
 	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
 }
 
-
-
+/*
+	service_90_sidebar
+	l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa)
+	recupera i dati generali di tutte le macchine installate dal cliente.
+	i dati recuperati sono:
+		- centityName
+*/
+function service_90_sidebar(entityName){
+	// Definisce l'url da richiamare per la REST API
+	settings.url  = baseUrl + bootstrapThing + 'service_90_sidebar'
+	settings.data = JSON.stringify({"entityName":entityName})
+	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+}
 
 
 
@@ -787,6 +799,7 @@ function getLineHistoryProduction(idTable, entityName, timeStart, timeEnd, chart
 export{
 	service_01_getDryersGeneralInfo,
 	service_02_getLinesGeneralInfo,
+	service_90_sidebar,
 	getPropertyName,
 	getCustomersList,
 	influxQuery,

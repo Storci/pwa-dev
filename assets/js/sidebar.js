@@ -1,8 +1,9 @@
 // Carica le funzioni globali
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
-
+/*
 try{
   let entityName = localStorage.getItem('global_entityName')
+
 
   // Recupera i dati generali delle linee installate dal cliente
   tw.service_02_getLinesGeneralInfo(entityName)
@@ -37,102 +38,102 @@ try{
           $(idnav).addClass('active')
           $(idnav).attr('href', '#')
 
-          /*
+
           accordionButtonClass = 'accordion-button'
           aria_expanded = "true"
           panelCollapse = 'accordion-collapse collapse show'
-          */
+
         }
-
-
-        /*
-        let navclass = 'nav-link '
-        let href = '04_Line.html?entityName=' + item.entityName
-        let accordionButtonClass = 'accordion-button collapsed'
-        let aria_expanded = "false"
-        let panelCollapse = 'accordion-collapse collapse'
-
-
-        let nomeLinea = item.nome_linea
-
-        let idCollapse = 'collapse' + i
-        let numCollapse = 'collapsePanel' + i
-        let accordiom_item = ''
-        accordiom_item += '<div class="accordion-item" data-pg-collapsed> '
-        accordiom_item +=    '<h2 class="accordion-header" id="' + idCollapse + '" data-pg-collapsed> <button class="' + accordionButtonClass + '" type="button" data-bs-toggle="collapse" data-bs-target="#' + numCollapse + '" aria-expanded="' + aria_expanded + '" aria-controls="' + numCollapse + '">' + nomeLinea + '</button> </h2> '
-        accordiom_item +=    '<div id="' + numCollapse + '" class="' + panelCollapse + '" aria-labelledby="collapse2" data-bs-parent="#panels1" data-pg-collapsed></div>'
-        accordiom_item += '</div>'
-
-        let idaccordion = '#panels1'
-        $(idaccordion).append(accordiom_item)
-
-
-        let navitem = ''
-        navitem += '<li class="nav-item">'
-        navitem +=   '<a class="' + navclass + '" href="' + href + '">'
-        navitem +=      '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">'
-        navitem +=          '<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>'
-        navitem +=          '<polyline points="13 2 13 9 20 9"></polyline>'
-        navitem +=      '</svg>'
-        navitem +=      '<span class="ms-1">Dashboard</span>'
-        navitem +=   '</a>'
-        navitem += '</li>'
-
-        let idnav = '#' + numCollapse
-        $(idnav).append(navitem)
-        */
       })
     }
   })
+}catch(e){}
+*/
+
+
+  let entityName = localStorage.getItem('global_entityName')
+  // Recupera l'url della pagina visualizzata
+  // Effettua uno split dell'url recuperato dividendo la stringa tramite lo /
+  // recupera il nome della pagina
+  let pageURL = window.location.href
+  pageURL = pageURL.split('\/')
+  let pageName = pageURL[pageURL.length-1]
 
   // Recupera i dati generali delle celle installate dal cliente
-  tw.service_01_getDryersGeneralInfo(entityName)
+  tw.service_90_sidebar(entityName)
   .then(res => {
-    if(JSON.stringify(res) !== '{}'){
-      let pageURL = window.location.href
-      pageURL = pageURL.split('\/')
+    try{
+      // Controlla se sono presenti delle celle
+      if(JSON.stringify(res.dryers) !== '[]'){
+        // Recupera l'id dell'elemento accordion delle celle.
+        // L'accordion è gia presente nella sidebar, è nascosto tramite la classe d-none
+        // Se un cliente ha una cella, il codice sottostante elimina la classe d-none
+        let idAccordion = '#id-accordion-dryers'
 
-      let idnav = '#accordionDryers100'
-      $(idnav).removeClass('d-none')
-      /*
-      let navclass = 'nav-link '
-      let href = '03_Dryers.html'
-      let accordionButtonClass = 'accordion-button collapsed'
-      let aria_expanded = "false"
-      let panelCollapse = 'accordion-collapse collapse'
-      if(pageURL[pageURL.length-1] == href){
-        navclass += ' active'
-        href = '#'
-        accordionButtonClass = 'accordion-button'
-        aria_expanded = "true"
-        panelCollapse = 'accordion-collapse collapse show'
+        // Visualizza il menu delle celle
+        $(idAccordion).removeClass('d-none')
+
+        // Visualizza le celle presenti dal cliente.
+        // Nella sidebar sono presenti 16 celle, nascoste tramite la classe d-nome
+        // Modifica l'href da richiamare quando si preme il pulsante del menu
+        // ref deve passare alla pagina 30_Dryer_Dashboard.html l'entityName della cella
+        // In questo modo la pagina riesce a recuperare i dati dalla cella corretta
+        for(let i=1; i<=res.dryers.length; i++){
+          let href = '32_dryer_dashboard.html?entityName=' + res.dryers[i-1].entityName
+          let id_nav_dryer = '#id-nav-dryer-' + i
+          let nav_link = id_nav_dryer + ' a'
+
+          $(id_nav_dryer).removeClass('d-none')
+          $(nav_link).attr('href', href)
+
+          if(pageName == href){ $(nav_link).addClass('active') }
+        }
       }
+    }catch(e){
+      console.error(e)
+    }
 
-      let idCollapse = 'collapse' + 100
-      let numCollapse = 'collapsePanel' + 100
-      let accordiom_item = ''
-      accordiom_item += '<div class="accordion-item" data-pg-collapsed> '
-      accordiom_item +=    '<h2 class="accordion-header" id="' + idCollapse + '" data-pg-collapsed> <button class="' + accordionButtonClass + '" type="button" data-bs-toggle="collapse" data-bs-target="#' + numCollapse + '" aria-expanded="' + aria_expanded + '" aria-controls="' + numCollapse + '">Celle</button> </h2> '
-      accordiom_item +=    '<div id="' + numCollapse + '" class="' + panelCollapse + '" aria-labelledby="collapse2" data-bs-parent="#panels1" data-pg-collapsed></div>'
-      accordiom_item += '</div>'
+    try{
+      // Controlla se sono presenti delle celle
+      if(JSON.stringify(res.lines) !== '[]'){
+        // Visualizza le celle presenti dal cliente.
+        // Nella sidebar sono presenti 16 celle, nascoste tramite la classe d-nome
+        // Modifica l'href da richiamare quando si preme il pulsante del menu
+        // ref deve passare alla pagina 30_Dryer_Dashboard.html l'entityName della cella
+        // In questo modo la pagina riesce a recuperare i dati dalla cella corretta
+        for(let i=1; i<=res.lines.length; i++){
+          // Recupera l'id dell'elemento accordion delle celle.
+          // L'accordion è gia presente nella sidebar, è nascosto tramite la classe d-none
+          // Se un cliente ha una cella, il codice sottostante elimina la classe d-none
+          let idAccordion = '#id-accordion-line-' + i
 
-      let idaccordion = '#panels1'
-      $(idaccordion).append(accordiom_item)
+          // Visualizza il menu delle celle
+          $(idAccordion).removeClass('d-none')
 
-      let navitem = ''
-      navitem += '<li class="nav-item">'
-      navitem +=   '<a id="IDNavItemDryers" class="' + navclass + '" href="' + href + '">'
-      navitem +=      '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">'
-      navitem +=          '<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>'
-      navitem +=          '<polyline points="13 2 13 9 20 9"></polyline>'
-      navitem +=      '</svg>'
-      navitem +=      '<span class="ms-1">Dashboard</span>'
-      navitem +=   '</a>'
-      navitem += '</li>'
+          let href_dashboard = '40_line_dashboard.html?entityName=' + res.lines[i-1].entityName
+          let href_history = '41_line_history.html?entityName=' + res.lines[i-1].entityName
 
-      let idnav = '#' + numCollapse
-      $(idnav).append(navitem)
-      */
+          let id_nav_dashboard_line = '#id-nav-dashboard-line-' + i
+          let id_nav_history_line   = '#id-nav-history-line-' + i
+          let nav_dashboard_link    = id_nav_dashboard_line + ' a'
+          let nav_history_link      = id_nav_history_line + ' a'
+          let idBtnAccordion        = '#id-btn-accordion-line-' + i
+
+          $(nav_dashboard_link).attr('href', href_dashboard)
+          $(nav_history_link).attr('href', href_history)
+
+          if(pageName == href_dashboard){
+            $(idBtnAccordion).trigger('click')
+            $(nav_dashboard_link).addClass('active')
+          }
+
+          if(pageName == href_history){
+            $(idBtnAccordion).trigger('click')
+            $(nav_history_link).addClass('active')
+          }
+        }
+      }
+    }catch(e){
+      console.error(e)
     }
   })
-}catch(e){}
