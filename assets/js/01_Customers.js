@@ -48,7 +48,7 @@ function createCard(customerList){
 		// es. EntityName: Storci.Thing.Antiche_Tradizioni_Di_Gragnano
 		let customerName = el.name.split('.')[2]
 		// Recupera l'immagine del cliente
-		let image = baseURL + "/assets/img/Loghi/" + customerName + "." + "svg"
+		let image = "./assets/img/Loghi/" + customerName + "." + "svg"
 		// Carica un'immagine base nel caso l'immagine del cliente non venga trovata
 		let onerror = "javascript:this.src='./assets/img/insert_photo_black_48dp.svg'"
 		// Genera l'html della card

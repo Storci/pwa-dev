@@ -1,6 +1,5 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
-import Cookies from './Global/Cookie/api.js'
 
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
@@ -9,12 +8,12 @@ import Cookies from './Global/Cookie/api.js'
 let baseURL = window.location.protocol + "//" + window.location.host
 */
 // Nasconde il messaggio di errore.
-$("#IDErrorMessage").hide()
+$("#IDErrorMessage").addClass('d-none')
 
 // Esegue la funzione alla pressione del pulsante.
 $("#IDButtonLogin").click(async function(){
 	//  Nasconde il messaggio di errore.
-	$("#IDErrorMessage").hide()
+	$("#IDErrorMessage").addClass('d-none')
 	// Recupera il valore inserito nel campo email.
 	let email = $("#IDEmail").val()
 	// Recupera il valore inserito nel campo password.
@@ -27,6 +26,7 @@ $("#IDButtonLogin").click(async function(){
 	await fb.signInWithEmailPassword(email, password)
 		.then(result => user = result)
 		.catch(error => showError(error))
+
 	// Definisce il record della tabella
 	let tableCustomer;
 	// Recupera il record dell'utente dalla tabella di tw
@@ -40,15 +40,16 @@ $("#IDButtonLogin").click(async function(){
 	// salvo il customer selezionato
 	localStorage.setItem('global_selected_customer', customer)
 	// Recupera la localstorage che contiene il percorso della pagina precedente
-	let pageURL = localStorage.getItem('urlPage')
+	//let pageURL = localStorage.getItem('urlPage')
 	// Se presente, dopo il login, riporta l'utente alla pagina precedente.
 	// Se non presente, controlla nel caso l'utente faccia parte della Storci.
 	// Se è un utente storci viene reindirizzato alla pagina /Storci/selectCustomer.html.
 	// Se non è un utente storci viene reindirizzato alla pagina /Customer/Customer_Info.html.
-	if(pageURL){
+	//if(pageURL){
 		// Carica la pagina.
-		window.location.href = pageURL
-	}else if(customer.includes("Storci")){
+	//	window.location.href = pageURL
+	//}else
+	if(customer.includes("Storci")){
 		// Carica la pagina.
 		window.location.href = "./01_Customers.html"
 	}else{
@@ -65,7 +66,7 @@ function showError(error){
 	// Imposta il testo.
 	$("#IDErrorMessage").text(error)
 	// Mostra il testo dell'errore.
-	$("#IDErrorMessage").show()
+	$("#IDErrorMessage").removeClass('d-none')
 }
 
 

@@ -1,5 +1,5 @@
-import assign from './assign.mjs'
-import defaultConverter from './converter.mjs'
+import assign from './assign.js'
+import defaultConverter from './converter.js'
 
 function init (converter, defaultAttributes) {
   function set (key, value, attributes) {

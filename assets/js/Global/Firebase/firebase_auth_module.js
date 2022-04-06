@@ -7,11 +7,9 @@
 // Effettua il login di utente già registrato
 async function signInWithEmailPassword(email, password) {
 	return new Promise(function(resolve, reject){
-
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.then(user   => resolve(user))
-		.catch(error => reject(error));
-
+		.catch(error => reject(error))
 	})
 }
 
@@ -80,15 +78,15 @@ async function onAuthStateChanged(){
 }
 
 
-function onAuthStateChanged_2(baseURL, pageURL){
+function onAuthStateChanged_2(){
 	firebase.auth().onAuthStateChanged((user) => {
   	if(!user){
+			let pageURL = window.location.href
 			localStorage.setItem('urlPage', pageURL)
-			console.log(baseURL)
-			window.location.href = baseURL + "/login.html"
+			window.location.href = './90_login.html'
 		}
 		localStorage.setItem('user', user)
-	});
+	})
 }
 
 function setPersistenceSession() {

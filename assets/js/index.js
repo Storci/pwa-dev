@@ -14,9 +14,9 @@ if(window.location.protocol == 'https:'){
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
-//fb.onAuthStateChanged_2(baseURL, pageURL)
+fb.onAuthStateChanged_2()
 
-let user = {'email': 'simone.zardi@storci.com'}
+//let user = {'email': 'simone.zardi@storci.com'}
 
 let global_customer
 
