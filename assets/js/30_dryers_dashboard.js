@@ -48,7 +48,7 @@ function createCellCard(cellsGroup){
 		let id = "IDCardCellGroup" + i;
 		// Definisce il codice html
 		//style="border-color: rgba(0,0,0,0);"
-		let card = '<div class="col col-customer" style="margin: 0px;">'
+		let card = '<div class="col col-customer" style="margin: 0px; margin-top: 1rem !important">'
 		card    += 	   '<div id="' + id + '" class="card h-100 card_cells card-border">'
 		card    += 	   		'<div class="card-body card-hover ' + id + 'Body" style="padding: 0px;border-radius: 4px;border-width: 1px;border-color: rgba(33,37,41,0);">'
 		card    += 	   			'<div class="row" style="margin: 0px;padding-top: 10px;padding-bottom: 5px;">'
@@ -89,14 +89,6 @@ function createCellCard(cellsGroup){
 		card    += '</div>'
 		// Aggiunge la card alla row
 		$("#IDRow").append(card)
-		// Abilita onclick sulla card
-		document.getElementById(id).onclick = function(){
-			// salvo la cella selezionata
-			localStorage.setItem('global_selected_cell', "Cella." + (i + 1) )
-			localStorage.setItem('global_selected_cell_entityName', el.entityName)
-			// Carica la pagina.
-			window.location.href = baseURL + "/Customers/CustomerInfo/Dryers/Details/DryersDetails.html"
-		}
 	})
 }
 // Funzione che recupera i dati del cliente da TW

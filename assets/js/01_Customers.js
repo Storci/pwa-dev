@@ -5,6 +5,9 @@ import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 // baseURL verrà utilizzato come base per il cambio pagina.
 let baseURL = window.location.protocol + "//" + window.location.host;
 let pageURL = window.location.href
+if(window.location.protocol == 'https:'){
+  baseURL += '/pwa'
+}
 // Dichiara la varibile come JSON
 //let customerList = {}
 // Prova a recuperare l'elenco dei clienti dalla localstorage
@@ -45,7 +48,7 @@ function createCard(customerList){
 		// Recupera l'immagine del cliente
 		let image = baseURL + "/assets/img/Loghi/" + customerName + "." + "svg"
 		// Carica un'immagine base nel caso l'immagine del cliente non venga trovata
-		let onerror = "javascript:this.src='/assets/img/insert_photo_black_48dp.svg'"
+		let onerror = "javascript:this.src='./assets/img/insert_photo_black_48dp.svg'"
 		// Genera l'html della card
 		let card =	'	<div id="' + id + 'Column" class="col col-customer">'
 		card  +=	'	  <div id="' + id + '" class="card card-hover ripple h-100 card-border">'
@@ -207,5 +210,3 @@ function getConnectionStatus(customerList){
 		.catch(error => console.error(error))
 	})
 }
-
-export {createCard, getCustomerInfo, getConnectionStatus} 
