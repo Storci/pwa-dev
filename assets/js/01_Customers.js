@@ -3,11 +3,13 @@ import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
+/*
 let baseURL = window.location.protocol + "//" + window.location.host;
 let pageURL = window.location.href
 if(window.location.protocol == 'https:'){
   baseURL += '/pwa'
 }
+*/
 // Dichiara la varibile come JSON
 //let customerList = {}
 // Prova a recuperare l'elenco dei clienti dalla localstorage

@@ -22,7 +22,6 @@ if(window.location.protocol == 'https:'){
 let selectedCustomer = localStorage.getItem("global_selected_customer")
 let selectedLine 		 = localStorage.getItem("global_selected_line")
 let entityName			 = localStorage.getItem('global_entityName')
-console.log(entityName)
 // Toglie gli underscore dal nome e li visualizza nel campo
 $('#IDCustomerName').text(selectedCustomer.replace(/_/g, " "))
 // Imposta il nome del cliente nella breadcrumb

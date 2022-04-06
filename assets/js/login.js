@@ -5,7 +5,9 @@ import Cookies from './Global/Cookie/api.js'
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
+/*
 let baseURL = window.location.protocol + "//" + window.location.host
+*/
 // Nasconde il messaggio di errore.
 $("#IDErrorMessage").hide()
 
@@ -48,10 +50,10 @@ $("#IDButtonLogin").click(async function(){
 		window.location.href = pageURL
 	}else if(customer.includes("Storci")){
 		// Carica la pagina.
-		window.location.href = baseURL + "/Customers/List.html"
+		window.location.href = "./01_Customers.html"
 	}else{
 		// Carica la pagina.
-		window.location.href = baseURL + "/Customers/CustomerInfo/Info.html"
+		window.location.href = "./02_Dashboard.html"
 	}
 })
 
@@ -69,10 +71,10 @@ function showError(error){
 
 //funzione per mostrare la password dell' utente
 $(document).ready(function(){
-    
+
     $("#showPassword").on('click', function(){
             var password = $('#IDPassword')
-            
+
             if(password.attr('type') === "password"){
                 password.attr('type', 'text')
                 console.log(password)
@@ -80,4 +82,4 @@ $(document).ready(function(){
                  password.attr('type','password')
             }
         })
- })   
+ })

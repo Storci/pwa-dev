@@ -9,8 +9,9 @@ const urlParams = new URLSearchParams(queryString)
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
+/*
 let baseURL = window.location.protocol + "//" + window.location.host;
-
+*/
 /*
 $('#IDDiv1').css("display", "none")
 $('#IDRow1').css("display", "none")
