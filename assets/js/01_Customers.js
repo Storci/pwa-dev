@@ -114,7 +114,7 @@ function createCard(customerList){
 			localStorage.setItem('global_selected_customer', customerName)
 			localStorage.setItem('global_entityName', el.name)
 			// Carica la pagina.
-			window.location.href = baseURL + "/02_Dashboard.html"
+			window.location.href = "./02_Dashboard.html"
 		}
 	})
 }
