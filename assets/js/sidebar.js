@@ -6,7 +6,12 @@ import * as fb from "./Global/Firebase/firebase_auth_module.js"
 // il nome dell'entity permette di recuperare le macchine presenti
 // per un determinato cliente e visualizzarle nella sidebar.
 let entityName = localStorage.getItem('global_entityName')
-
+let customer = localStorage.getItem('global_selected_customer')
+customer = customer.replace(/_/g, ' ')
+$('#id-customer-name').text(customer)
+if(localStorage.getItem('global_customer').includes("Storci")){
+  $('#id-nav-customers-list').removeClass('d-none')
+}
 // Recupera l'url della pagina visualizzata
 // Effettua uno split dell'url recuperato dividendo la stringa tramite lo /
 // recupera il nome della pagina
@@ -27,7 +32,6 @@ fb.onAuthStateChanged()
 // alla pressione del tasto, l'utente viene reindirizzato alla pagina di login
 $('#id-user-logout').click(() => { fb.signOut() })
 
-
 // Recupera i nomi delle macchine installate dal cliente.
 // vengono recuperate sia le celle che le linee.
 tw.service_90_sidebar(entityName)
@@ -43,8 +47,8 @@ tw.service_90_sidebar(entityName)
       let idBtnAccordion         = '#id-btn-accordion-dryers'
       let idCollapsePanel        = '#id-collapse-panel-dryers'
       // link
-      let nav_dashboard_link     = '#id-nav-dashboard-dryer div a'
-      let nav_history_link       = '#id-nav-history-dryer div a'
+      let nav_dashboard_link     = '#id-nav-dashboard-dryer a'
+      let nav_history_link       = '#id-nav-history-dryer a'
 
       // Visualizza il menu delle celle
       $(idAccordion).removeClass('d-none')
