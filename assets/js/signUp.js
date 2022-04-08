@@ -65,6 +65,6 @@ $('#IDButtonSignUp').click(function(){
         };
 
         // Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-        
+
             // Esegue la chiamata REST API.
             $.ajax(settings).then(response => console.log(response));
