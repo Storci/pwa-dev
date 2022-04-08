@@ -40,24 +40,35 @@
         firebase.analytics();
         </script>         
     </head>     
-    <body class="text-center" style="background-image: url('assets/img/Background%20(1).svg'); background-size: contain; background-repeat: repeat-y; background-position: right top;"> 
-        <div class="container" style="background: #fff; opacity: 0.8;"> 
+    <body class="text-center" style="background-image: url('assets/img/Background%20(1).svg'); background-size: contain; background-position: right top; background-repeat: no-repeat;"> 
+        <div class="container" style="
+/* background: #fff */
+opacity: 0.8;"> 
             <div class="row d-flex" style="justify-content: center;"> 
-                <div class="card col-md-6 shadow-lg p-3 mb-5 bg-white rounded"> 
+                <div class="bg-white col-md-6 card mb-5 p-3 rounded shadow-lg"> 
                     <div class="card-body"> 
-                        <h4 class="card-title">STORCI IOT MONITORING SYSTEM <h5>Password Recovery</h5> </h4> 
+                        <h4 class="card-title">STORCI IOT MONITORING SYSTEM <h5>User Sign In</h5> </h4> 
                     </div>                     
                     <form role="form"> 
                         <div class="mb-3"> 
                             <label for="exampleInputEmail1">Email address</label>                             
                             <input type="email" class="form-control" id="IDEmail" placeholder="Enter email" aria-describedby="emailHelp"/> 
+                        </div>
+                        <div class="mb-3"> 
+                            <label for="exampleInputEmail1">Password</label>                             
+                            <input type="password" class="form-control" id="IDPassword" placeholder="Enter Password" aria-describedby="emailHelp"/> 
+                        </div>
+                        <div class="mb-3 form-check"> 
+                            <input type="checkbox" class="form-check-input" id="formInput6"/> 
+                            <label class="form-check-label" for="formInput6">Check me out</label>                             
                         </div>                         
                     </form>
-                    <button id="IDButtonResetPassword" class="btn btn-primary">Reset Password</button>                     
+                    <a href="91_passwordRecovery.html">forgot Password</a><a href="92_signUp.html">Not registered? Create an account</a>
+                    <button id="IDButtonLogin" class="btn btn-primary">Reset Password</button>                     
                 </div>                 
             </div>             
         </div>         
-        <script src="assets/js/passwordRecovery.js" type="module"></script>         
+        <script src="assets/js/90_login.js" type="module"></script>         
         <script src="assets/js/popper.min.js"></script>         
         <script src="bootstrap/js/bootstrap.min.js"></script>         
     </body>     
