@@ -4219,8 +4219,6 @@ progress {
     .accordion-item:first-of-type .accordion-button {
       border-top-left-radius: calc(0.25rem - 1px);
       border-top-right-radius: calc(0.25rem - 1px); }
-  .accordion-item:not(:first-of-type) {
-    border-top: 0; }
   .accordion-item:last-of-type {
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem; }
