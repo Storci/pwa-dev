@@ -41,7 +41,7 @@ $('#IDButtonSignUp').click(function(){
 })
 
 //document.addEventListener('DOMContentLoaded', () =>{
-//$(document).ready(function () { 
+//$(document).ready(function () {
     var url = "https://restcountries.com/v2/all"
     console.log(url)
 
@@ -57,7 +57,11 @@ $('#IDButtonSignUp').click(function(){
     // Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
 
     // Esegue la chiamata REST API.
-    $.ajax(settings).then(response => console.log(response))
+    $.ajax(settings)
+      .then(response => {
+        console.log(response)
+        
+      })
 /*
             "success": function(country){
                 let results = '<option value="-1">Please Select a Country or State</option>'
@@ -72,7 +76,7 @@ $('#IDButtonSignUp').click(function(){
         };
 
         // Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-        
+
             // Esegue la chiamata REST API.
             $.ajax(settings).then(response => console.log(response));
 //})
