@@ -106,7 +106,7 @@ tw.service_90_sidebar(entityName)
         // link
         let nav_dashboard_link    = id_nav_dashboard_line + ' a'
         let nav_history_link      = id_nav_history_line + ' a'
-        let span_status           = id_nav_dashboard_line + ' a :last-child'
+        let span_status           = id_nav_dashboard_line + 'div a :last-child'
         // Visualizza il menu delle celle
         $(idAccordion).removeClass('d-none')
         // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
@@ -132,7 +132,7 @@ tw.service_90_sidebar(entityName)
 })
   .catch(err => console.error(err))
 
-
+refreshStatus(entityName)
 // imposta il servizio refreshStatus in loop
 setInterval(refreshStatus, 10000, entityName)
 // il servizio recupera gli stati delle macchine installate.
@@ -144,14 +144,14 @@ function refreshStatus(entityName){
     // Controlla se sono presenti delle celle
     if(JSON.stringify(res.dryers) !== '[]'){
       for(let i=1; i<=res.dryers.length; i++){
-        let span_status = '#id-nav-dryer-' + i + ' div a :last-child'
+        let span_status = '#id-nav-dryer-' + i + ' a > span:last-child'
         $(span_status).text(res.dryers[i-1].status)
       }
     }
 
     if(JSON.stringify(res.lines) !== '[]'){
       for(let i=1; i<=res.lines.length; i++){
-        let span_status = '#id-nav-dashboard-line-' + i + ' a :last-child'
+        let span_status = '#id-nav-dashboard-line-' + i + ' a > span:last-child'
         $(span_status).text(res.lines[i-1].status)
       }
     }

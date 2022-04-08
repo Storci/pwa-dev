@@ -31,7 +31,7 @@ $("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
 // ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
 // i testi caricati dalle funzioni.
 lang.getLanguage()
-
+$('#id-nav-dashboard').addClass('active')
 
 // Recupera i dati generali delle celle installate dal cliente
 tw.service_01_getDryersGeneralInfo(entityName)

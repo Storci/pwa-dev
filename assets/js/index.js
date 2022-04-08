@@ -14,29 +14,27 @@ if(window.location.protocol == 'https:'){
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
-fb.onAuthStateChanged_2()
+fb.onAuthStateChanged()
+	.then(user => {
+		let global_customer
+		tw.getUser(user.email)
+		.then(customerRow => {
+			global_customer = customerRow.rows[0].Customer
+			// Definizione globale del customer a cui l'utente è associato.
+			localStorage.setItem('global_customer', global_customer)
+			// salvo il customer selezionato
+			localStorage.setItem('global_selected_customer', global_customer)
 
-//let user = {'email': 'simone.zardi@storci.com'}
-
-let global_customer
-
-tw.getUser(user.email)
-.then(customerRow => {
-	global_customer = customerRow.rows[0].Customer
-	// Definizione globale del customer a cui l'utente è associato.
-	localStorage.setItem('global_customer', global_customer)
-	// salvo il customer selezionato
-	localStorage.setItem('global_selected_customer', global_customer)
-
-  // Controllo nel caso l'utente faccia parte della Storci.
-  // Se è un utente storci viene reindirizzato alla pagina /Storci/selectCustomer.html.
-  // Se non è un utente storci viene reindirizzato alla pagina /Customer/Customer_Info.html.
-  if(global_customer.includes("Storci")){
-  	// Carica la pagina.
-		window.location.href = './01_Customers.html'
-  }else{
-  	// Carica la pagina.
-  	window.location.href = './02_Dashboard.html'
-  }
-})
-.catch(error => console.error(error))
+		  // Controllo nel caso l'utente faccia parte della Storci.
+		  // Se è un utente storci viene reindirizzato alla pagina /Storci/selectCustomer.html.
+		  // Se non è un utente storci viene reindirizzato alla pagina /Customer/Customer_Info.html.
+		  if(global_customer.includes("Storci")){
+		  	// Carica la pagina.
+				window.location.href = './01_Customers.html'
+		  }else{
+		  	// Carica la pagina.
+		  	window.location.href = './02_Dashboard.html'
+		  }
+		})
+		.catch(error => console.error(error))
+	})

@@ -14,6 +14,7 @@
         <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/> 
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <!-- Custom styles for this template -->         
+        <!-- <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
         <link href="assets/css/dashboard.css" rel="stylesheet"/> 
         <link href="assets/css/storci-styles.css" rel="stylesheet"/> 
         <!-- AM4CORE CHART -->         
@@ -44,6 +45,7 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
         </script>         
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap"/>
     </head>     
     <body> 
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"> <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">STORCI</a> 
@@ -78,7 +80,7 @@
                 </nav>                 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"> 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Lista Clienti Connessi</h1> 
+                        <h2>Lista Clienti Connessi</h2> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
@@ -86,7 +88,7 @@
                     </div>                     
                     <div class="gy-3  pg-empty-placeholder row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-1" id="IDRowConnected" data-pg-name="row-customer-connected" title="Clienti Connessi"></div>                     
                     <div class="align-items-center border-bottom d-flex flex-md-nowrap flex-wrap justify-content-between mb-3 mt-5 pb-2 pt-3"> 
-                        <h1 class="h2">Lista Clienti Disconnessi</h1> 
+                        <h2>Lista Clienti Disconnessi</h2> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             

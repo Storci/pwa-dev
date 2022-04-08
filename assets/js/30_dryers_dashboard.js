@@ -37,6 +37,7 @@ tw.getCustomerCells(selectedCustomer)
 	getCellInfo(cellsGroup, selectedCustomer)
 	// Esegue la funzione ogni 30 sec
 	setInterval(getCellInfo, 30000, cellsGroup, selectedCustomer);
+
 })
 .catch(error => console.error(error))
 
