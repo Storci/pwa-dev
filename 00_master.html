@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-white" data-pgc-master="00_master.html">
-    <head data-pgc-field="head">
+<html lang="en" data-pgc-set-master class="bg-white">
+    <head data-pgc-edit="head">
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -26,7 +26,6 @@
         <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>         
         <!-- CUSTOM SCRIPT -->
         <script src="./assets/js/sidebar.js" type="module"></script>         
-        <script defer src="./assets/js/40_line_dashboard.js" type="module"></script>         
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
@@ -225,112 +224,8 @@
                         </ul>
                     </div>
                 </nav>                 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="id-column-master" data-pgc-field="id-column-master">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Dashboard Linea</h1> 
-                        <div class="btn-toolbar mb-2 mb-md-0"> 
-                            <div class="btn-group me-2"> 
-</div>                             
-                        </div>                         
-                    </div>
-                    <div class="row"> 
-                        <div class="col-md"> 
-                            <div class="row row-cols-1 row-cols-lg-2"> 
-                                <div class="col-md-4 mt-3"> 
-                                    <div class="card"> 
-                                        <div class="card-body"> 
-                                            <h6 class="card-title text-muted">Ricetta</h6> 
-                                            <h4 class="card-subtitle mb-2" propertyname="Impasto_Ricetta_Nome_Ricetta">Card subtitle</h4> 
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                                <div class="col-md-4 mt-3"> 
-                                    <div class="card"> 
-                                        <div class="card-body"> 
-                                            <h6 class="card-title text-muted">Produzione Attuale</h6> 
-                                            <h4 class="card-subtitle mb-2" propertyname="Impasto_PV_Impasto_Totale">Card subtitle</h4> 
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                                <div class="col-md-4 mt-3"> 
-                                    <div class="card"> 
-                                        <div class="card-body"> 
-                                            <h6 class="card-title text-muted">Card title</h6> 
-                                            <h4 class="card-subtitle mb-2" propertyname="1">Card subtitle</h4> 
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                                <div class="col-md-4 mt-3"> 
-                                    <div class="card"> 
-                                        <div class="card-body"> 
-                                            <h6 class="card-title text-muted">Quantità Sfarinati</h6> 
-                                            <h4 class="card-subtitle mb-2" propertyname="Portata_Sfarinati">Card subtitle</h4> 
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                                <div class="col-md-4 mt-3"> 
-                                    <div class="card"> 
-                                        <div class="card-body"> 
-                                            <h6 class="card-title text-muted">Quantità Liquidi</h6> 
-                                            <h4 class="card-subtitle mb-2" propertyname="Percentuale_Liquidi">Card subtitle</h4> 
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                                <div class="col-md-4 mt-3"> 
-                                    <div class="card"> 
-                                        <div class="card-body"> 
-                                            <h6 class="card-title text-muted">Pressione Attuale</h6> 
-                                            <h4 class="card-subtitle mb-2" propertyname="Pressa_Motori_Estrusore_PV_Pressione">Card subtitle</h4> 
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                                <div class="col-md-4 mt-3"> 
-                                    <div class="card"> 
-                                        <div class="card-body"> 
-                                            <h6 class="card-title text-muted">Quantità Prodotta</h6> 
-                                            <h4 class="card-subtitle mb-2" propertyname="Produzione_Completata">Card subtitle</h4> 
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md mt-3"> 
-                            <div class="card"> 
-                                <div class="card-body" style="flex-direction: column; display: flex;"> 
-                                    <div> 
-                                        <h6 class="text-muted">Produzione Giornaliera</h6> 
-                                    </div>                                     
-                                    <div class="pg-empty-placeholder" id="IDLegendProductQuantity"></div>                                     
-                                    <div class="pg-empty-placeholder" id="IDtrendProductQuantity" style="flex-grow: 1; flex-shrink: 1;"></div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                    </div>
-                    <div class="mb-5 mt-5 row"> 
-                        <div class="col-md-8"> 
-                            <div class="card"> 
-                                <div class="card-body"> 
-                                    <div> 
-                                        <h6 class="text-muted">Produzione Attuale</h6> 
-                                    </div>                                     
-                                    <div class="pg-empty-placeholder" id="IDLegendProduction"></div>                                     
-                                    <div class="pg-empty-placeholder" id="IDtrendProduction" style="min-height: 450px;"></div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md-4"> 
-                            <div class="card"> 
-                                <div class="card-body"> 
-                                    <div> 
-                                        <h6 class="text-muted">Allarmi</h6> 
-                                    </div>                                     
-                                    <ul class="list-group" id="IDListAlertsActive"> 
-</ul>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                    </div>
-                </main>
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="id-column-master" data-pgc-edit="id-column-master[id]">
+</main>
             </div>
         </div>
     </body>

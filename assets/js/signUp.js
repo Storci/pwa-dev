@@ -14,7 +14,7 @@ $('.form-control').on('input', function(){
 // Funzione scatenata dalla pressione del pulsante di sign up
 $('#IDButtonSignUp').click(function(){
 
-  
+
 
   let email = $('#IDEmail').val()
   // Controlla che l'email non sia già stata usata
@@ -45,21 +45,26 @@ $('#IDButtonSignUp').click(function(){
     var url = "https://restcountries.com/v2/all"
     console.log(url)
 
+    // Imposta i settings da utilizzare nelle REST API.
+    // Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
+    let settings = {
+        "url"     : url,
+        "method"  : "GET",
+        "timeout" : 0,
+        "headers" : {},
+        "data": ""
+    }
+    // Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
 
-        // Imposta i settings da utilizzare nelle REST API.
-        // Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-        let settings = {
-            "url"     : url,
-            "method"  : "GET",
-            "timeout" : 0,
-            "headers" : {},
-            "data": "",
+    // Esegue la chiamata REST API.
+    $.ajax(settings).then(response => console.log(response))
+/*
             "success": function(country){
                 let results = '<option value="-1">Please Select a Country or State</option>'
                 for(let i = 0; i < country.length; i++){
-                    
+
                     results += '<option>'+ country[i].name +'</option>'
-                    
+
                 }
                 console.log("hello")
                 $("#IDCountries").html(results)
@@ -83,7 +88,7 @@ $('#IDButtonSignUp').click(function(){
     console.log(data)
     let results = '';
     data.forEach(country => {
-      results += `<option>${country.name}</option>`; 
+      results += `<option>${country.name}</option>`;
         console.log(results)
     });
     selectDropdown.innerHTML = results;

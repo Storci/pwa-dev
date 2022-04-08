@@ -63,6 +63,7 @@ function signOut(){
 	firebase.auth().signOut().then(() => {
 		// Sign-out successful.
 		console.info("Utente disconnesso");
+			window.location.href = './90_login.html'
 	}).catch((error) => {
 		// An error happened.
 		console.error(error);

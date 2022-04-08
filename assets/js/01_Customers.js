@@ -1,25 +1,10 @@
 // Carica le funzioni globali
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
-// definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
-// il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
-// baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host;
-let pageURL = window.location.href
-if(window.location.protocol == 'https:'){
-  baseURL += '/pwa'
-}
-*/
-// Dichiara la varibile come JSON
-//let customerList = {}
-// Prova a recuperare l'elenco dei clienti dalla localstorage
-// La local storage potrebbe essere vuota
-//try{ customerList = JSON.parse(localStorage.getItem('customerList')) }catch(e){ console.warn(e) }
-// Genera la lista dei clienti presenti
-// Viene generata una card per ciascun cliente.
-// Se cliccata, la card, porta nella pagina del cliente
-// Controlla se la lista era salvata in locale, altrimenti bisogna richiederla da tw
-//if(customerList == null){
+import * as fb from "./Global/Firebase/firebase_auth_module.js"
+
+// Recupera il nome dell'utente da firebase, controlla che sia loggato.
+// Nel caso non fosse loggato richiama la pagina di login
+fb.onAuthStateChanged_2()
 // Recupera la lista dei clienti presenti da tw
 tw.getCustomersList()
 .then(customerList => {
