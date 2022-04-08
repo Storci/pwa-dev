@@ -9,22 +9,22 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>         
         <!-- Bootstrap core -->         
         <link defer href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/> 
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>         
         <!-- Custom styles for this template -->         
         <link href="sign-in.css" rel="stylesheet"/> 
         <link href="assets/css/storci-styles.css" rel="stylesheet"/> 
-        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet"/> 
         <!-- AM4CORE CHART -->         
         <script defer src="https://cdn.amcharts.com/lib/4/core.js"></script>         
         <script defer src="https://cdn.amcharts.com/lib/4/charts.js"></script>         
         <script defer src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>         
         <script defer src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>         
         <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>         
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->         
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>         
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>         
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>         
         <script> 
         var firebaseConfig = {
             apiKey: "AIzaSyB6L_2pDhDz1RXHA5ZA8g9hsU9e4EOHGvU",
@@ -38,15 +38,17 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
-        </script>
+        </script>         
     </head>     
     <body class="text-center" style="background-image: url('assets/img/Background%20(1).svg'); background-repeat: repeat-y; background-position: right top;"> 
-        <div class="container" style="background: #fff; opacity: 0.8;"> 
+        <div class="container" style="
+/* background: #ffffff */
+opacity: 0.8;"> 
             <div class="row d-flex" style="justify-content: center;"> 
                 <div class="card col-md-6 shadow-lg p-3 mb-5 bg-white rounded"> 
                     <div class="card-body"> 
                         <h4 class="card-title">STORCI IOT MONITORING SYSTEM</h4> 
-                        <h5>Create New User</h5>
+                        <h5>Create New User</h5> 
                     </div>                     
                     <form role="form"> 
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
@@ -72,11 +74,7 @@
                                 <label for="exampleInputPassword1">Country / State</label>                                 
                                 <div class="mb-3"> 
                                     <select id="IDCountries" class="form-select" aria-label="Default select example"> 
-                                        <option selected>Select Country</option>                                         
-                                        <option value="1">One</option>                                         
-                                        <option value="2">Two</option>                                         
-                                        <option value="3">Three</option>                                         
-                                    </select>                                     
+</select>                                     
                                 </div>                                 
                             </div>                             
                             <div> 
@@ -116,11 +114,7 @@
                             <div class="mb-3"> 
                                 <label for="formInput4">Unique Customer Code</label>                                 
                                 <select id="IDCustomerCode" class="form-select" aria-label="Default select example"> 
-                                    <option selected>Open this select menu</option>                                     
-                                    <option value="1">One</option>                                     
-                                    <option value="2">Two</option>                                     
-                                    <option value="3">Three</option>                                     
-                                </select>                                 
+</select>                                 
                             </div>                             
                         </div>                         
                     </form>                     
