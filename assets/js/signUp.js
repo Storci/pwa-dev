@@ -1,6 +1,6 @@
 // Carica le funzioni globali
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
-import * as fb from "./Global/Firebase/firebase_auth_module.ms"
+import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
 
@@ -40,9 +40,10 @@ $('#IDButtonSignUp').click(function(){
 		.catch(error => console.error(error))
 })
 
-document.addEventListener('DOMContentLoaded', () =>{
+//document.addEventListener('DOMContentLoaded', () =>{
 //$(document).ready(function () { 
     var url = "https://restcountries.com/v2/all"
+    console.log(url)
 
 
         // Imposta i settings da utilizzare nelle REST API.
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     results += '<option>'+ country[i].name +'</option>'
                     
                 }
+                console.log("hello")
                 $("#IDCountries").html(results)
             }
         };
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         
             // Esegue la chiamata REST API.
             $.ajax(settings).then(response => console.log(response));
-})
+//})
 
 // Opzione per generare attraverso un APi tutte le nazione nel mondo
 /*document.addEventListener('DOMContentLoaded', () =>{
