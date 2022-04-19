@@ -19,7 +19,7 @@ let colorChart = [
 	[
 		am4core.color("#3289be"),
 		am4core.color("#004071"),
-		am4core.color("#7e57c2"),
+		am4core.color("#6f42c1"),
 		am4core.color("#ffa726"),
 	  am4core.color("#ef5350"),
 		am4core.color("#c62828"),
@@ -60,6 +60,7 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	chart.colors.list = colorChart[typeColor]
 	// Abilita il cursore nel grafico
 	chart.cursor = new am4charts.XYCursor()
+	chart.cursor.behavior = "panX";
 	// Abilita scrollbar
 	//chart.scrollbarX = new am4core.Scrollbar()
 	// Abilita la legenda nel grafico
@@ -131,6 +132,19 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	return chart
 }
 
+function createPieChart(IDdivChart){
+	// Themes begin
+	am4core.useTheme(am4themes_animated)
+	// Themes end
+
+	// Create chart instance
+	let chart = am4core.create(IDdivChart, am4charts.PieChart)
+
+	chart.hiddenState.properties.radius = am4core.percent(0)
+
+	return chart
+}
+
 function refreshLegendSize(chart, IDdivLegend){
 	let id = '#' + IDdivLegend
 	$(id).height(chart.legend.contentHeight)
@@ -141,9 +155,14 @@ function createXYChartNoLegend(IDdivChart, typeColor){
 	let chart = am4core.create(IDdivChart, am4charts.XYChart);
 
 	chart.colors.list = colorChart[typeColor]
-
 	// AMCHART - Cursor
 	chart.cursor = new am4charts.XYCursor();
+	chart.cursor.behavior = "none";
+
+	chart.paddingTop = 0;
+	chart.paddingRight = 0;
+	chart.paddingBottom = 0;
+	chart.paddingLeft = 0;
 
 	// AMCHART - Legend
 	chart.legend = new am4charts.Legend();
@@ -156,6 +175,7 @@ function createXYChartNoLegend(IDdivChart, typeColor){
 	let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
 	dateAxis.renderer.labels.template.disabled = true;
 	dateAxis.renderer.grid.template.disabled = true;
+
 	// AMCHART - Configure axis tooltip
 	let dateAxisTooltip = dateAxis.tooltip;
 	dateAxisTooltip.background.fill = am4core.color("#698ca7");
@@ -237,6 +257,36 @@ function createLineSeries(chart, seriesName, labelX, labelY, UM, yAxis=0, Enable
 	return series;
 }
 
+function createPieSeries(chart, seriesName, categoryName, unitName, totalUnit){
+	// Add and configure Series
+	var pieSeries = chart.series.push(new am4charts.PieSeries());
+	pieSeries.dataFields.value = seriesName;
+	pieSeries.dataFields.category = categoryName;
+	pieSeries.dataFields.unit = unitName;
+	pieSeries.innerRadius = am4core.percent(90);
+	pieSeries.slices.template.stroke = am4core.color("#fff");
+	pieSeries.slices.template.strokeOpacity = 1;
+	pieSeries.slices.template.propertyFields.fill = "color";
+
+	pieSeries.labels.template.text = "{category}: {value.value} {unit}";
+
+	// This creates initial animation
+	pieSeries.hiddenState.properties.opacity = 1
+	pieSeries.hiddenState.properties.endAngle = -90
+	pieSeries.hiddenState.properties.startAngle = -90
+
+	let label = chart.seriesContainer.createChild(am4core.Label);
+	label.horizontalCenter = "middle";
+	label.verticalCenter = "middle";
+
+	label.adapter.add("text", function(text, target){
+		let value = pieSeries.dataItem.values.value.sum
+		try{
+			value = pieSeries.dataItem.values.value.sum.toFixed(2)
+		}catch(e){}
+		return "[font-size:18px]total[/]:\n[bold font-size:30px]" + value + " " + totalUnit + "[/]";
+	})
+}
 // Inserisce i dati nel grafico
 // I dati vengono recuperati tramite un servizio di thingworx che effettua query ad influxdb
 function setChartData(chart, query, ringclass) {
@@ -284,4 +334,4 @@ function getExport(chart){
 }
 
 
-export {createXYChart, refreshLegendSize, createXYChartNoLegend, createColumnSeries, createLineSeries, setChartData, getExport}
+export {createXYChart, createPieChart, refreshLegendSize, createXYChartNoLegend, createColumnSeries, createLineSeries, createPieSeries, setChartData, getExport}
