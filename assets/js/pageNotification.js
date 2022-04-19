@@ -24,7 +24,7 @@ const pushBtn = document.getElementById('btn-notify')
 
 // Initialize Firebase Cloud Messaging and get a reference to the service
 
-pushBtn.addEventListener('click', () =>{
+//pushBtn.addEventListener('click', () =>{
   messaging.requestPermission().then(function() {
     console.log("permission granted")
     return messaging.getToken();
@@ -43,7 +43,7 @@ pushBtn.addEventListener('click', () =>{
     console.log('onMessage: ', payload)
   })
 
-})
+//})
 
 
 
