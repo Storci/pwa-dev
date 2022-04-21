@@ -17,15 +17,21 @@ async function signInWithEmailPassword(email, password) {
 function signUpWithEmailPassword(email, password, baseURL) {
 	// [START auth_signup_password]
 	firebase.auth().createUserWithEmailAndPassword(email, password)
-	.then((userCredential) => {
-		let user = userCredential.user
-		window.location.href = baseURL + '/signUpConfirmed.html'
-	})
+	.then((userCredential)  => {
+            let db = firebase.firestore();
+            db.collection('users').doc(userCredential.user.email).set({
+            firstName : signUpForm['IDName'].value,
+            lastName : signUpForm['IDLastName'].value,
+            phoneNumber : signUpForm['IDPhoneNumber'].value,
+            Countries : signUpForm['IDCountries'].value
+        });
+	}).then(() =>{
+        let user = userCredential.user
+		window.location.href = baseURL + 'signUpConfirmed.html'
+    })
 	.catch((error) => {
 		let errorCode = error.code
 		let errorMessage = error.message
-
-		console.error('code: ' + errorCode + ' - ' + errorMessage)
 
 		$('#IDErrorMessage').css("display", "block")
 		$('#IDErrorMessage').text('code: ' + errorCode + ' - ' + errorMessage)
