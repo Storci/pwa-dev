@@ -142,7 +142,7 @@ function historyLineProduction(chart, query, entityName){
 	// Recupera la lista delle produzioni con il time range impostato di default
 	// Da data Attuale a data attuale - 14 giorni.
 	// Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-	tw.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+	tw_chart.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
 	// Listener sul cambio di valore della data di inizio produzione
 	// Al cambio di valore viene eseguita la funzione seguente.
 	// Viene recuperata di nuovo la lista delle produzioni con il range time aggiornato
@@ -154,7 +154,7 @@ function historyLineProduction(chart, query, entityName){
 		let timeEndHistory   = new Date($('#IDTimeEnd').val())
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-		tw.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+		tw_chart.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
 	});
 	// Listener sul cambio di valore della data di fine produzione
 	// Al cambio di valore viene eseguita la funzione seguente.
@@ -167,7 +167,7 @@ function historyLineProduction(chart, query, entityName){
 		let timeEndHistory   = new Date($(this).val())
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-		tw.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+		tw_chart.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
 	});
 }
 // La funzione recupera i dati da thingworx e li visualizza sul grafico
