@@ -171,16 +171,3 @@ function refreshStatus(entityName){
   })
   .catch(err => console.error(err))
 }
-
-if(localStorage.getItem('pageName')){
-  $('#iframe_id').attr('src', localStorage.getItem('pageName'))
-}
-
-$('a').on('click', function() {
-  console.log(this.href)
-  $('#iframe_id').attr('src', this.href)
-  localStorage.setItem('pageName', this.href)
-  $('a').removeClass('active')
-  $(this).addClass('active')
-  return false
-})
