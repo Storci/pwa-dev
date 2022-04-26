@@ -39,6 +39,6 @@ fb.onAuthStateChanged()
 		})
 	})
 		.catch(error => {
-			console.error(error)
-			window.location.href = './90.signIn.html'
+			console.warn(error)
+			window.location.href = './90_signIn.html'
 	})
