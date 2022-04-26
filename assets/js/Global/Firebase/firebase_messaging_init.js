@@ -1,5 +1,5 @@
-import * as tw from "./Global/Thingworx/thingworx_api_module.js"
-import * as fb from "./Global/Firebase/firebase_auth_module.js"
+import * as tw from "../Thingworx/thingworx_api_module.js"
+import * as fb from "./firebase_auth_module.js"
 
 const messaging = firebase.messaging()
 
