@@ -5,63 +5,291 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta name="description" content=""/>
+        <link rel="icon" href="./assets/img/icon_round_storci.svg" type="image/x-icon"/>
         <meta name="author" content=""/>
         <!-- JQUERY -->         
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <title>Blank Template for Bootstrap</title>
+        <title>Account Settings</title>
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <!-- GOOGLE ICON -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
         <!-- Custom styles for this template -->
         <link href="style.css" rel="stylesheet"/>
-        <link href="assets/css/userAccountSettings" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/storci-styles.css" rel="stylesheet"/> 
+        <link href="assets/css/userAccountSettings.css" rel="stylesheet" type="text/css"/>
+        <!-- Custom scripts for this template -->
+        <script src="./assets/js/sidebar.js" type="module"></script>
+        <script defer src="./assets/js/01_Customers.js" type="module"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js" type="module"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>
     </head>
     <body>
-        <div class="container rounded bg-white mt-5 mb-5">
-            <div class="row">
-                <div class="col-md-3 border-right">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
-                </div>
-                <div class="col-md-5 border-right">
-                    <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Profile Settings</h4>
+        <div class="container light-style flex-grow-1 container-p-y">
+            <ul class="nav nav-tabs" role="tablist"> 
+                <li class="nav-item"> <a class="nav-link active" href="#" data-bs-toggle="tab" role="tab" aria-controls="" aria-expanded="true">Home</a> 
+                </li>                 
+
+                <li class="nav-item"> <a class="nav-link" href="#" data-bs-toggle="tab" role="tab" aria-controls="" aria-expanded="true">Profile</a> 
+                </li>                 
+
+                <li class="nav-item"> <a class="nav-link" href="#" data-bs-toggle="tab" role="tab" aria-controls="" aria-expanded="true">Messages</a> 
+                </li>                 
+
+                <li class="nav-item"> <a class="nav-link" href="#" data-bs-toggle="tab" role="tab" aria-controls="" aria-expanded="true">Settings</a> 
+                </li>                 
+            </ul>
+            <div class="bg-white card">
+                <div class="card-body">
+                    <h4 class="font-weight-bold py-3 mb-4">
+                Account settings </h4>
+                    <div class="d-flex align-items-start">
+                        <div class="nav flex-column nav-pills me-3" id="account-settings" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active" id="account-general-tab" data-bs-toggle="pill" data-bs-target="#account-general" type="button" role="tab" aria-controls="account-general" aria-selected="true">Profile Info</button>
+                            <button class="nav-link" id="account-change-password-tab" data-bs-toggle="pill" data-bs-target="#account-change-password" type="button" role="tab" aria-controls="account-change-password" aria-selected="false">Change Password</button>
+                            <button class="nav-link" id="themes-settings-tab" data-bs-toggle="pill" data-bs-target="#themes-settings" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Theme Settings</button>
+                            <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Language Settings</button>
+                            <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Notifications Settings</button>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                            <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                        <div class="tab-content" id="account-tabContent">
+                            <div class="tab-pane fade show active" id="account-general" role="tabpanel" aria-labelledby="account-general-tab">
+                                <div class="card-body media align-items-center">
+                                    <img src="https://www.storci.com/images/site_images/Storci_Logo_191x73.png" alt="" class="d-block ui-w-80"/>
+                                    <div class="media-body ml-4">
+                                        <label class="btn btn-outline-primary">
+                                            Upload new photo
+                                            <input type="file" class="account-settings-fileinput"/>
+                                        </label>                                                                                 &nbsp;
+                                        <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+                                        <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                    </div>
+                                </div>
+                                <hr class="border-light m-0"/>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control mb-1"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Surname</label>
+                                        <input type="text" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="account-change-password" role="tabpanel" aria-labelledby="account-change-password-tab">hntqnrqnqnrnqyhnqeqnrnhnqen</div>
+                                <div class="tab-pane fade" id="themes-settings" role="tabpanel" aria-labelledby="themes-settings-tab">...</div>
+                                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="themes-settings-tab">...</div>
+                            </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                            <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                            <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                            <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                            <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                            <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                            <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                            <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                            <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                        </div>
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                        <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                        <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
-                    </div>
+                <div class="text-right mt-3">
+                    <button type="button" class="btn btn-primary">Save changes</button>                     
+                    <button type="button" class="btn btn-default">Cancel</button>
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-        <!-- Bootstrap core JavaScript
-    ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
         <script src="assets/js/popper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="./assets/js/userAccountSettings.js" type="module"></script>
     </body>
 </html>
+<!-- <div class="d-flex align-items-start">
+                <div class="nav flex-column nav-pills me-3" role="tablist" aria-orientation="vertical">
+                  <div class="list-group list-group-flush account-settings-links">
+                    <button class="nav-link active" data-toggle="pill" data-bs-target="#account-general" role="tab">Account Info</button>
+                    <button class="nav-link " data-toggle="pill" data-bs-target="#account-change-password"role="tab">Change Password</button>
+                    <button class="nav-link " data-toggle="pill" data-bs-target="#account-general" role="tab">Select Theme</button>
+                    <button class="nav-link " data-toggle="pill" data-bs-target="#account-theme" role="tab">Select Language</button>
+                    <button class="nav-link " data-toggle="pill" data-bs-target="#account-notifications" role="tab">Manage notifications</button>
+
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-general">
+        
+                      <div class="card-body media align-items-center">
+                        <img src="https://www.storci.com/images/site_images/Storci_Logo_191x73.png" alt="" class="d-block ui-w-80">
+                        <div class="media-body ml-4">
+                          <label class="btn btn-outline-primary">
+                            Upload new photo
+                            <input type="file" class="account-settings-fileinput">
+                          </label> &nbsp;
+                          <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+        
+                          <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                        </div>
+                      </div>
+                      <hr class="border-light m-0">
+        
+                      <div class="card-body">
+                        <div class="form-group">
+                          <label class="form-label">Name</label>
+                          <input type="text" class="form-control mb-1">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">Surname</label>
+                          <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Country</label>
+                            <select type="text" class="form-control">
+                                <option value="...">hello</option>
+                                <option value="...">hello</option>
+                            </select>
+                          </div>
+                        <div class="form-group">
+                          <label class="form-label">E-mail</label>
+                          <input type="text" class="form-control mb-1" value="nmaxwell@mail.com">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">Company</label>
+                          <input type="text" class="form-control" value="Company Ltd.">
+                        </div>
+                      </div>
+        
+                    </div>
+                    <div class="tab-pane fade" id="account-change-password">
+                      <div class="card-body pb-2">
+        
+                        <div class="form-group">
+                          <label class="form-label">Current password</label>
+                          <input type="password" class="form-control">
+                        </div>
+        
+                        <div class="form-group">
+                          <label class="form-label">New password</label>
+                          <input type="password" class="form-control">
+                        </div>
+        
+                        <div class="form-group">
+                          <label class="form-label">Repeat new password</label>
+                          <input type="password" class="form-control">
+                        </div>
+        
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="account-theme">
+                      <div class="card-body pb-2">
+        
+                        <div class="form-group">
+                          <label class="form-label">Bio</label>
+                          <textarea class="form-control" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">Birthday</label>
+                          <input type="text" class="form-control" value="May 3, 1995">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">Country</label>
+                          <select class="custom-select">
+                            <option>USA</option>
+                            <option selected="">Canada</option>
+                            <option>UK</option>
+                            <option>Germany</option>
+                            <option>France</option>
+                          </select>
+                        </div>
+        
+        
+                      </div>
+                      <hr class="border-light m-0">
+                      <div class="card-body pb-2">
+        
+                        <h6 class="mb-4">Contacts</h6>
+                        <div class="form-group">
+                          <label class="form-label">Phone</label>
+                          <input type="text" class="form-control" value="+0 (123) 456 7891">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-label">Website</label>
+                          <input type="text" class="form-control" value="">
+                        </div>
+        
+                      </div>
+              
+                    </div>
+                   
+                    
+                    <div class="tab-pane fade" id="account-notifications">
+                      <div class="card-body pb-2">
+        
+                        <h6 class="mb-4">Activity</h6>
+        
+                        <div class="form-group">
+                          <label class="switcher">
+                            <input type="checkbox" class="switcher-input" checked="">
+                            <span class="switcher-indicator">
+                              <span class="switcher-yes"></span>
+                              <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">Email me when someone comments on my article</span>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="switcher">
+                            <input type="checkbox" class="switcher-input" checked="">
+                            <span class="switcher-indicator">
+                              <span class="switcher-yes"></span>
+                              <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">Email me when someone answers on my forum thread</span>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="switcher">
+                            <input type="checkbox" class="switcher-input">
+                            <span class="switcher-indicator">
+                              <span class="switcher-yes"></span>
+                              <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">Email me when someone follows me</span>
+                          </label>
+                        </div>
+                      </div>
+                      <hr class="border-light m-0">
+                      <div class="card-body pb-2">
+        
+                        <h6 class="mb-4">Application</h6>
+        
+                        <div class="form-group">
+                          <label class="switcher">
+                            <input type="checkbox" class="switcher-input" checked="">
+                            <span class="switcher-indicator">
+                              <span class="switcher-yes"></span>
+                              <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">News and announcements</span>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="switcher">
+                            <input type="checkbox" class="switcher-input">
+                            <span class="switcher-indicator">
+                              <span class="switcher-yes"></span>
+                              <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">Weekly product updates</span>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="switcher">
+                            <input type="checkbox" class="switcher-input" checked="">
+                            <span class="switcher-indicator">
+                              <span class="switcher-yes"></span>
+                              <span class="switcher-no"></span>
+                            </span>
+                            <span class="switcher-label">Weekly blog digest</span>
+                          </label>
+                        </div>
+        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>-->
