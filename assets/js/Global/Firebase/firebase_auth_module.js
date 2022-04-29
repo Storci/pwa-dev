@@ -136,5 +136,22 @@ function setPersistenceNone() {
   // [END auth_set_persistence_none]
 }
 
+function userUpdatePassword(){
+	firebase.auth().updatePassword(user, newPassword).then(() => {
+		// Update successful.
+	  }).catch((error) => {
+		// An error ocurred
+		// ...
+	  });
+}
 
-export {signInWithEmailPassword, signUpWithEmailPassword, sendEmailVerification, sendPasswordReset, signOut, onAuthStateChanged, setPersistenceSession, setPersistenceNone, onAuthStateChanged_2};
+function userReauthentification(){
+	firebase.auth().reauthenticateWithCredential(user, credential).then(() => {
+		// User re-authenticated.
+	  }).catch((error) => {
+		// An error ocurred
+		// ...
+	  });
+}
+
+export {signInWithEmailPassword, signUpWithEmailPassword, sendEmailVerification, sendPasswordReset, signOut, onAuthStateChanged, setPersistenceSession, setPersistenceNone, onAuthStateChanged_2, userUpdatePassword, userReauthentification};

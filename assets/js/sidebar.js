@@ -30,7 +30,7 @@ fb.onAuthStateChanged()
   .then(user => {
     $('#id-username').text(user.email)
     $('#id-user-login').addClass('d-none')
-    $('#id-user-profile').show()
+   // $('#id-user-profile').show()
   })
   .catch(error => {})
 // controlla quando viene premuto il tasto di logout
