@@ -50,15 +50,15 @@ opacity: 0.8;">
                         <h4 class="card-title">STORCI IOT MONITORING SYSTEM</h4> 
                         <h5>Create New User</h5> 
                     </div>                     
-                    <form role="form"> 
+                    <form id="signUpForm" role="form"> 
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="exampleInputEmail1">Name</label>                                 
-                                <input type="email" class="form-control" id="IDName" placeholder="Enter email" aria-describedby="emailHelp"/> 
+                                <input type="text" class="form-control" id="IDName" placeholder="Enter First Name" aria-describedby="emailHelp"/> 
                             </div>                             
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Last Name</label>                                 
-                                <input type="password" class="form-control" id="IDLastName" placeholder="Password"/> 
+                                <input type="text" class="form-control" id="IDLastName" placeholder=" Enter Last Name"/> 
                             </div>                             
                             <div> 
 </div>                             
@@ -68,7 +68,7 @@ opacity: 0.8;">
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="exampleInputEmail1">Telephone Number</label>                                 
-                                <input type="email" class="form-control" id="IDPhoneNumber" placeholder="Enter email" aria-describedby="emailHelp"/> 
+                                <input type="number" class="form-control" id="IDPhoneNumber" placeholder="Enter Telephone" aria-describedby="emailHelp"/> 
                             </div>                             
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Country / State</label>                                 
@@ -89,7 +89,7 @@ opacity: 0.8;">
                             </div>                             
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Confirm E-mail</label>                                 
-                                <input type="password" class="form-control" id="IDEmail_repeat" placeholder="Password"/> 
+                                <input type="email" class="form-control" id="IDEmail_repeat" placeholder="Password"/> 
                             </div>                             
                             <div> 
 </div>                             
@@ -99,11 +99,11 @@ opacity: 0.8;">
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="exampleInputEmail1">Password</label>                                 
-                                <input type="email" class="form-control" id="IDPassword" placeholder="Password" aria-describedby="emailHelp"/> 
+                                <input type="password" class="form-control" id="IDPassword" placeholder="Password" aria-describedby="emailHelp"/> 
                             </div>                             
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Confirm Password</label>                                 
-                                <input type="password" class="form-control" id="IDPassword_repeat" placeholder="Password"/> 
+                                <input type="password" class="form-control" id="IDPassword_repeat" placeholder=" Repeat Password"/> 
                             </div>                             
                             <div> 
 </div>                             
@@ -115,8 +115,13 @@ opacity: 0.8;">
                                 <label for="formInput4">Unique Customer Code</label>                                 
                                 <select id="IDCustomerCode" class="form-select" aria-label="Default select example"> 
 </select>                                 
-                            </div>                             
-                        </div>                         
+                            </div>    
+                                                     
+                        </div> 
+                        <p style="color: var(--bs-red); font-weight: bold; font-size: 14px;
+
+                        /* background: #3b3838 */
+                        padding: 5px; display: block;" id="IDErrorMessageSignUp"></p>                      
                     </form>                     
                     <button id="IDButtonSignUp" class="btn btn-contrast btn-primary">Submit</button>                     
                 </div>                 

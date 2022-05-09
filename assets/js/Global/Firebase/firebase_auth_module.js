@@ -2,7 +2,6 @@
 // done in HTML however using modules here is more convenient for
 // ensuring sample correctness offline.
 //import firebase from "firebase/app";
-//import "firebase/auth";
 
 // Effettua il login di utente già registrato
 async function signInWithEmailPassword(email, password) {
@@ -87,6 +86,7 @@ async function onAuthStateChanged(){
 
 function onAuthStateChanged_2(){
 	firebase.auth().onAuthStateChanged((user) => {
+		//console.log(user)
   	if(!user){
 			let pageURL = window.location.href
 			localStorage.setItem('urlPage', pageURL)
@@ -136,22 +136,44 @@ function setPersistenceNone() {
   // [END auth_set_persistence_none]
 }
 
-function userUpdatePassword(){
-	firebase.auth().updatePassword(user, newPassword).then(() => {
+
+/*function userUpdatePassword(user, newPassword){
+	user.updatePassword(newPassword).then(() => 
+	{
+		console.log("ok")
 		// Update successful.
 	  }).catch((error) => {
-		// An error ocurred
+		console.warn(error)
 		// ...
 	  });
-}
+}*/
 
-function userReauthentification(){
-	firebase.auth().reauthenticateWithCredential(user, credential).then(() => {
+function changePassword(user, credential, newPassword){
+	user.reauthenticateWithCredential(credential).then(() => {
 		// User re-authenticated.
+		console.log(newPassword)
+		user.updatePassword(newPassword).then(() => 
+	{
+		console.log("ok")
+		// Update successful.
+	  
+	  });
 	  }).catch((error) => {
 		// An error ocurred
 		// ...
 	  });
 }
 
-export {signInWithEmailPassword, signUpWithEmailPassword, sendEmailVerification, sendPasswordReset, signOut, onAuthStateChanged, setPersistenceSession, setPersistenceNone, onAuthStateChanged_2, userUpdatePassword, userReauthentification};
+export {
+	signInWithEmailPassword,
+	signUpWithEmailPassword,
+	sendEmailVerification,
+	sendPasswordReset,
+	signOut, 
+	onAuthStateChanged, 
+	setPersistenceSession, 
+	setPersistenceNone, 
+	onAuthStateChanged_2, 
+	//userUpdatePassword, 
+	changePassword
+};
