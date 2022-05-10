@@ -25,29 +25,19 @@
         <script defer src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
         <script defer src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
         <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>
-        <!-- CUSTOM SCRIPT -->
-        <script src="./assets/js/sidebar.js" type="module"></script>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js" type="module"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js" type="module"></script>
-        <script>
-            var firebaseConfig = {
-                apiKey: "AIzaSyB6L_2pDhDz1RXHA5ZA8g9hsU9e4EOHGvU",
-                authDomain: "storci-thingworx-ui.firebaseapp.com",
-                projectId: "storci-thingworx-ui",
-                storageBucket: "storci-thingworx-ui.appspot.com",
-                messagingSenderId: "1040048598489",
-                appId: "1:1040048598489:web:81d20e1907671b25aabdc8",
-                measurementId: "G-8KW275718B"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-            firebase.analytics();
-        </script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->         
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>         
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>         
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js" type="module"></script>         
+        <!-- <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>  -->         
+        <script defer src="./assets/js/Global/Firebase/firebase_config.js"></script>         
+        <!-- CUSTOM SCRIPT -->         
+        <script src="./assets/js/sidebar.js" type="module"></script>         
+        <script defer src="./assets/js/01_Customers.js" type="module"></script>         
+        <script src="./firebase-messaging-sw.js" type="module"></script>         
+        <script defer src="./assets/js/Global/Firebase/firebase_messaging_init.js" type="module"></script>
     </head>
     <body>
         <script> $('body').addClass('d-none')</script>
@@ -179,9 +169,9 @@
                             <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id="
                             "> <span class="material-icons-outlined">settings</span> <span class="ms-3">Profile Settings</span> </a>
                             </li>
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_login.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a>
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_signIn.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a>
                             </li>
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_login.html" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a>
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_signIn.html" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a>
                             </li>
                         </ul>
                     </div>

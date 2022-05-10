@@ -164,11 +164,11 @@
                         </ul>                         
                         <h6 class="align-items-center d-flex justify-content-between mb-1 mt-4 px-3 sidebar-heading text-secondary"> <span id="id-username">Utente</span><span class="material-icons-outlined md-24">&#xe7fd</span> </h6> 
                         <ul class="flex-column mb-2 nav"> 
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="93_userAccountSettings.html" id="id-user-profile"> <span class="material-icons-outlined">settings</span> <span class="ms-3">Profile Settings</span> </a> 
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id="id-user-profile"> <span class="material-icons-outlined">settings</span> <span class="ms-3">Profile Settings</span> </a> 
                             </li>                             
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_login.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a> 
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_signIn.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a> 
                             </li>                             
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a> 
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_signIn.html" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a> 
                             </li>                             
                         </ul>                         
                     </div>                     
@@ -229,17 +229,13 @@
                             <div class="tab-pane fade" id="v-pills-update-password" role="tabpanel" aria-labelledby="v-pills-update-password-tab"> 
                                 <h4 class="col-md-6" style="background-color: #F8F9FA;">Update Password</h4> 
                                 <div class="form-group mx-sm-2 mb-2"> 
-                                    <label class="form-label">Enter Current Password</label>                                     
+                                    <label class="form-label">Enter old Password</label>                                     
                                     <input type="password" class="form-control form-control-md" id="oldPassword"/> 
                                 </div>                                 
                                 <div class="form-group mx-sm-2 mb-2"> 
                                     <label class="form-label">Enter New Password</label>                                     
                                     <input type="password" class="form-control form-control-md" id="newPassword"/> 
-                                </div>                                 
-                                <div class="form-group mx-sm-2 mb-2"> 
-                                    <label class="form-label">Confirm New Password</label>                                     
-                                    <input type="password" class="form-control form-control-md" id="confirmPassword"/> 
-                                </div>                                 
+                                </div>                                                                
                                 <button type="button" id="passwordUpdate" class="btn btn-outline-primary">Update Password</button>                                 
                             </div>                             
                             <div class="tab-pane fade" id="v-pills-general-settings" role="tabpanel" aria-labelledby="v-pills-general-settings-tab"> 
@@ -261,8 +257,13 @@
                                                 <nav class="navbar navbar-light navbar-expand-md" style="background: #004071;border-bottom-width: 2px;border-bottom-color: #333; border-radius: 5px;"> 
                                                     <div class="d-md-flex justify-content-md-end" id="navcol-2"> 
                                                         <ul class="navbar-nav"> 
-                                                            <li class="collapse navbar-collapse nav-item dropdown show language_menu" id="IDdropdown" onchange="dropDown" style="position: relative; text-align: center;"> <a class="dropdown-toggle nav-link lang" aria-expanded="false" data-bs-toggle="dropdown" id="IDDefault" style="color: var(--bs-primary-color-label-header-medium-emphasis); text-align: center;">Select Language</a> 
-                                                                <div class="dropdown-menu dropdown-menu-dark"> <a class="dropdown-item translate" id="eng" value="English"><img style="width: 20px;height: 15px;" src="./assets/img/EN_flag.png"/>English</a> <a class="dropdown-item translate" id="it" value="Italiano"><img style="width: 20px;height: 15px;" src="./assets/img/IT_flag.png"/>Italiano</a> <a class="dropdown-item translate" id="es" value="Español"><img style="width: 20px;height: 15px;padding: 0px;margin: 0px;" src="./assets/img/ES_flag.png"/>Espanol</a> <a class="dropdown-item translate" id="fr" value="Français"><img style="width: 20px;height: 15px;" src="./assets/img/FR_flag.png"/>Français</a> 
+                                                            <li class="collapse navbar-collapse nav-item dropdown show language_menu" id="IDdropdown" onchange="dropDown" style="position: relative; text-align: center;">
+                                                                <a class="dropdown-toggle nav-link lang" aria-expanded="false" data-bs-toggle="dropdown" id="IDDefault" style="color: var(--bs-primary-color-label-header-medium-emphasis); text-align: center;">Select Language</a> 
+                                                                <div class="dropdown-menu dropdown-menu-dark">
+                                                                    <a class="dropdown-item translate" id="eng" value="English"><img style="width: 20px;height: 15px;" src="./assets/img/EN_flag.png"/>English</a>
+                                                                    <a class="dropdown-item translate" id="it" value="Italiano"><img style="width: 20px;height: 15px;" src="./assets/img/IT_flag.png"/>Italiano</a>
+                                                                    <a class="dropdown-item translate" id="es" value="Español"><img style="width: 20px;height: 15px;padding: 0px;margin: 0px;" src="./assets/img/ES_flag.png"/>Espanol</a>
+                                                                    <a class="dropdown-item translate" id="fr" value="Français"><img style="width: 20px;height: 15px;" src="./assets/img/FR_flag.png"/>Français</a> 
                                                                 </div>                                                                 
                                                             </li>                                                             
                                                         </ul>                                                         
@@ -272,12 +273,12 @@
                                         </div>                                         
                                     </div>                                     
                                     <div class="row"> 
-                                        <h3 class="text-center">Manage Background Theme</h3> 
-                                        <div class="col-md-6"> 
-                                            <div class="mb-3 form-check"> 
-                                                <input type="checkbox" class="form-check-input" id="formInput12"/> 
-                                                <label class="form-check-label" for="formInput12">Check me out</label>                                                 
-                                            </div>                                             
+                                        <h3 class="text-center">Manage Background Theme</h3>
+                                        <div class="col-md-6">   
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                                            </div>
                                         </div>                                         
                                     </div>                                     
                                 </div>                                 
