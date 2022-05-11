@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en" data-pgc-set-master class="bg-white">
     <head data-pgc-edit="head">
         <meta charset="utf-8"/>
@@ -25,30 +25,49 @@
         <script defer src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
         <script defer src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
         <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->         
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>         
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>         
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js" type="module"></script>         
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js" type="module"></script>
         <!-- <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>  -->         
-        <script defer src="./assets/js/Global/Firebase/firebase_config.js"></script>         
-        <!-- CUSTOM SCRIPT -->         
-        <script src="./assets/js/sidebar.js" type="module"></script>         
-        <script defer src="./assets/js/01_Customers.js" type="module"></script>         
-        <script src="./firebase-messaging-sw.js" type="module"></script>         
-        <script defer src="./assets/js/Global/Firebase/firebase_messaging_init.js" type="module"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>  -->
+        <script defer src="./assets/js/Global/Firebase/firebase_config.js"></script>
+        <!-- CUSTOM SCRIPT -->
+        <script src="./assets/js/sidebar.js" type="module"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js" type="module"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js" type="module"></script>
+        <script src="./assets/js/pageNotification.js"></script>
+        <script>
+            var firebaseConfig = {
+                apiKey: "AIzaSyB6L_2pDhDz1RXHA5ZA8g9hsU9e4EOHGvU",
+                authDomain: "storci-thingworx-ui.firebaseapp.com",
+                projectId: "storci-thingworx-ui",
+                storageBucket: "storci-thingworx-ui.appspot.com",
+                messagingSenderId: "1040048598489",
+                appId: "1:1040048598489:web:81d20e1907671b25aabdc8",
+                measurementId: "G-8KW275718B"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+        </script>
     </head>
-    <body>
+    <body class="sidebar-scroll-hidden">
         <script> $('body').addClass('d-none')</script>
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"> <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><span id="id-customer-name">Storci</span></a> <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"></a>
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"> <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><span id="id-customer-name">Storci</span></a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
             </button>
         </header>
         <div class="container-fluid">
             <div class="row">
-                <nav id="sidebarMenu" class="bg-light col-lg-2 col-md-3 collapse d-md-block sidebar">
-                    <div class="position-sticky pt-3">
+                <nav id="sidebarMenu" class="bg-light col-lg-2 col-md-3 collapse d-md-block sidebar sidebar-scroll sidebar-scroll-hidden">
+                    <div class="h-100 pt-3">
                         <ul class="nav flex-column" id="IDNavPrimary">
                             <li class="d-none nav-item" id="id-nav-customers-list"> <a class="align-items-center d-flex nav-link" aria-current="page" href="01_Customers.html"> <span class="material-icons-outlined">group</span><span class="ms-3">Lista Clienti</span> </a>
                             </li>
@@ -164,21 +183,19 @@
                             <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#"> <span class="material-icons-outlined">history</span> <span class="ms-3">Storico Allarmi</span> </a>
                             </li>
                         </ul>
-                        <h6 class="align-items-center d-flex justify-content-between mb-1 mt-4 px-3 sidebar-heading text-secondary"> <span id="id-username">Utente</span><span class="material-icons-outlined md-24">&#xe7fd</span> </h6>
+                        <h6 class="align-items-center d-flex justify-content-between mb-1 mt-4 px-3 sidebar-heading text-secondary"> <span id="id-username">Utente</span><span class="material-icons-outlined md-24">person</span> </h6>
                         <ul class="flex-column mb-2 nav">
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id="
-                            "> <span class="material-icons-outlined">settings</span> <span class="ms-3">Profile Settings</span> </a>
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id=""> <span class="material-icons-outlined">settings</span> <span class="ms-3">Profile Settings</span> </a>
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_login.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a>
                             </li>
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_signIn.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a>
-                            </li>
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_signIn.html" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a>
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a>
                             </li>
                         </ul>
+                        <span style="font-size: 10px;" class="p-1">Version</span>
                     </div>
                 </nav>
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="id-column-master" data-pgc-edit="id-column-master[id]">
+                <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4" id="id-column-master" data-pgc-edit="id-column-master[id]">
 </main>
-<script src="./assets/js/Global/Common/Translation.js" type="module"></script>
             </div>
         </div>
     </body>

@@ -63,6 +63,16 @@ body {
     text-transform: uppercase;
 }
 
+.sidebar-scroll {
+    max-height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.sidebar-scroll-hidden::-webkit-scrollbar {
+    display: none;
+}
+
 /* * Navbar */
 .navbar-brand {
     padding-top: .75rem;
