@@ -9,18 +9,23 @@ lang.getLanguage()
 $('#passwordUpdate').click(function(){
     var newPassword = $('#newPassword').val();
     var user = firebase.auth().currentUser;
+    //var password = $('#oldPassword').val();
     console.log(user)
     
-  const createCredential = user => {
-    const password = prompt('Password:');
-    const credential = firebase.auth.EmailAuthProvider.credential(
+    const createCredential = user => {
+        const password = $('#oldPassword').val();
+        const credential = firebase.auth.EmailAuthProvider.credential(
+            user.email,
+            password
+        );
+        return credential;
+    }
+
+    const credential = createCredential(user)
+    /*const credential = firebase.auth.EmailAuthProvider.credential(
         user.email,
         password
-    );
-    return credential;
-}
-
-const credential = createCredential(user)
+    );*/
     console.log(credential)
     fb.changePassword(user, credential, newPassword);
 });

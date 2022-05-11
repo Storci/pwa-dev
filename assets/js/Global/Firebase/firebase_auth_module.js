@@ -154,8 +154,7 @@ function changePassword(user, credential, newPassword){
 		console.log(newPassword)
 		user.updatePassword(newPassword).then(() => 
 	{
-		console.log("ok")
-		// Update successful.
+		alert("Password Successfully updated")
 	  
 	  });
 	  }).catch((error) => {
