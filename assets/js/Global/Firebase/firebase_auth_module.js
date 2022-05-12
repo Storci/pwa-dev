@@ -174,5 +174,5 @@ export {
 	setPersistenceNone, 
 	onAuthStateChanged_2, 
 	//userUpdatePassword, 
-	changePassword
+	//changePassword
 };
