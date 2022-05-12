@@ -25,6 +25,7 @@ $("#IDDivSpinning").css("display", "block")
 $("body").ready(async function(){
 	// Definisce la variabile
 	let user;
+	console.log(user)
 	// Recupera il nome dell'utente da firebase
 	//await fb.onAuthStateChanged().then(result => user = result).catch(error => console.error(error))
 	// Se l'utente non è loggato viene reindirizzato alla pagina di login

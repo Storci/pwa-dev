@@ -1,7 +1,7 @@
 // Carica le funzioni globali
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
-import * as lang from "./Global/Common/Translation.js"
+
 import * as common from "./Global/Common/commonFunctions.js"
 
 let baseURL = window.location.protocol + "//" + window.location.host
@@ -22,8 +22,8 @@ $('#IDButtonSignUp').click(function(){
 	tw.getUser(email)
 		.then(tableRow => {
       if(tableRow.rows.length > 0){
-        $('#IDErrorMessage').css("display", "block")
-        $('#IDErrorMessage').text('Error, the email is already use')
+        $('#IDErrorMessageSignUp').css("display", "block")
+        $('#IDErrorMessageSignUp').text('Error, the email is already use')
       }else{
         // controlla che le 2 password coincidano
         let pass1 = $('#IDPassword').val()

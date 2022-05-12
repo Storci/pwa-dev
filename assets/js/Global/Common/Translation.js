@@ -183,6 +183,11 @@ const array_translate_id = {
   'motor_speed'         : { 'eng':'Motor Speed',         'it':'Velocità Motore'           },
   'trend_tray_feeder'   : { 'eng':'Trend Tray-Feeder',   'it':'Grafico Avanzamento Telai' },
   'trend_tray_feeder'   : { 'eng':'Trend Tray-Feeder',   'it':'Grafico Avanzamento Telai' },
+  // SideBar menu
+  'machines'  : {'eng':'Machines', 'it':'Macchine' },
+  'alarms'  : {'eng':'Alarms', 'it':'Allarmi' },
+  'alarms_history'  : {'eng':'Alarm History', 'it':'Storico Alarmi' },
+  'profile_settings'  : {'eng':'Profile Settings', 'it':'Impostazione del Profilo' }
 }
 
 export{getLanguage}

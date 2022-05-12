@@ -1,6 +1,7 @@
 // Carica le funzioni globali
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
+import * as lang from "./Global/Common/Translation.js"
 
 // recupera il nome dell'entity (selezionata, se utente storci)
 // il nome dell'entity permette di recuperare le macchine presenti
@@ -30,6 +31,7 @@ fb.onAuthStateChanged()
   .then(user => {
     $('#id-username').text(user.email)
     $('#id-user-login').addClass('d-none')
+   // $('#id-user-profile').show()
   })
   .catch(error => {})
 // controlla quando viene premuto il tasto di logout

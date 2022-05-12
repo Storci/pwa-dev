@@ -12,8 +12,8 @@ function checkDefaultTheme(){
 		$('#mycheck').prop('checked', true);
 	
 		// Cambia le icone light/dark da black a white
-		$('#IDDarkModeIcon').css("background-image", "url(" + baseURL + "/assets/img/Icone/Light/dark_mode_white_24dp.svg)");  
-		$('#IDLightModeIcon').css("background-image", "url(" + baseURL + "/assets/img/Icone/Light/light_mode_white_24dp.svg)");  
+		$('#IDDarkModeIcon').css("background-image", "url("  + "./assets/img/loghi/dark/dark_mode_black_24dp.svg)");  
+		$('#IDLightModeIcon').css("background-image", "url(" + "./assets/img/loghi/dark/light_mode_black_24dp.svg)");  
 		
 		$("html").addClass("dark")
 		
@@ -22,8 +22,8 @@ function checkDefaultTheme(){
 		$('#mycheck').prop('checked', false);
 	
 		// Cambia le icone light/dark da black a white
-		$('#IDDarkModeIcon').css("background-image", "url(" + baseURL + "/assets/img/Icone/Dark/dark_mode_black_24dp.svg)");  
-		$('#IDLightModeIcon').css("background-image", "url(" + baseURL + "/assets/img/Icone/Dark/light_mode_black_24dp.svg)");  
+		$('#IDDarkModeIcon').css("background-image", "url("  + "./assets/img/loghi/Light/dark_mode_white_24dp.svg)");  
+		$('#IDLightModeIcon').css("background-image", "url(" + "./assets/img/loghi/Light/dark_mode_white_24dp.svg)");  
 		
 		$("html").removeClass("dark")
 	}	

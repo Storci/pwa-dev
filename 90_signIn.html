@@ -44,16 +44,20 @@
                     <form role="form"> 
                         <div class="mb-3"> 
                             <label for="exampleInputEmail1">Email address</label>                             
-                            <input type="email" class="form-control" id="IDEmail" placeholder="Enter email" aria-describedby="emailHelp"/> 
+                            <input type="email" class="form-control" id="IDEmail" placeholder="Enter email" aria-describedby="emailHelp" required/> 
                         </div>                         
                         <div class="mb-3"> 
                             <label for="exampleInputEmail1">Password</label>                             
-                            <input type="password" class="form-control" id="IDPassword" placeholder="Enter Password" aria-describedby="emailHelp"/> 
+                            <input type="password" class="form-control" id="IDPassword" placeholder="Enter Password" aria-describedby="emailHelp" required/> 
                         </div>                         
+                        <p style="color: var(--bs-red); font-weight: bold; font-size: 14px;
+
+/* background: #3b3838 */
+padding: 5px; display: block;" id="IDErrorMessage">Errore Message</p> 
                         <div class="mb-3 form-check" style="display: inline-block;"> 
                             <input type="checkbox" class="form-check-input" id="showPassword"/> 
                             <label class="form-check-label" for="formInput6">Check me out</label>                             
-                        </div><span style="display: block;" id="IDErrorMessage" class="text-danger">This is a span.</span> 
+                        </div>                         
                     </form>                     <a href="91_passwordRecovery.html" class="p-2 text-contrast">forgot Password</a> <a href="92_signUp.html" class="p-2 text-contrast">Not registered? Create an account</a> 
                     <button id="IDButtonLogin" class="btn btn-contrast btn-primary mb-2 mt-2">Sign In</button>                     
                 </div>                 
