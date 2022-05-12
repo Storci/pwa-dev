@@ -33,18 +33,16 @@ $('#passwordUpdate').click(function(){
 
 function changePassword(user, credential, newPassword){
 	user.reauthenticateWithCredential(credential).then(() => {
-		// User re-authenticated.
-		console.log(newPassword)
-		user.updatePassword(newPassword).then(() => 
-	{
-        console.log("ok")
-       
-            $("#successAlert").fadeIn(3000);
-        
-       
-	  
-	  });
-	  }).catch((error) => {
-		$("#errorAlert").fadeIn(3000);
+            // User re-authenticated.
+            console.log(newPassword)
+            user.updatePassword(newPassword).then(() => {
+                console.log("ok")
+            
+                    $("#successAlert").fadeIn(3000);
+                
+            
+            });
+	}).catch((error) => {
+		    $("#errorAlert").fadeIn(3000);
 	  });
 }

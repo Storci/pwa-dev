@@ -259,13 +259,18 @@
                                             <h3 class="text-center">Manage Language Preference</h3> 
                                             <div class="col-md-2"> 
                                                 <div class="mb-3"> 
-                                                    <nav class="navbar navbar-light navbar-expand-md" style="background: #004071;border-bottom-width: 2px;border-bottom-color: #333; border-radius: 5px;"> 
+                                                    <nav class="navbar navbar-light navbar-expand-md"> 
                                                         <div class="d-md-flex justify-content-md-end" id="navcol-2"> 
                                                             <ul class="navbar-nav"> 
-                                                                <li class="collapse navbar-collapse nav-item dropdown show language_menu" id="IDdropdown" onchange="dropDown" style="position: relative; text-align: center;"> <a class="dropdown-toggle nav-link lang" aria-expanded="false" data-bs-toggle="dropdown" id="IDDefault" style="color: var(--bs-primary-color-label-header-medium-emphasis); text-align: center;">Select Language</a> 
-                                                                    <div class="dropdown-menu dropdown-menu-dark"> <a class="dropdown-item translate" id="eng" value="English"><img style="width: 20px;height: 15px;" src="./assets/img/EN_flag.png"/>English</a> <a class="dropdown-item translate" id="it" value="Italiano"><img style="width: 20px;height: 15px;" src="./assets/img/IT_flag.png"/>Italiano</a> <a class="dropdown-item translate" id="es" value="Español"><img style="width: 20px;height: 15px;padding: 0px;margin: 0px;" src="./assets/img/ES_flag.png"/>Espanol</a> <a class="dropdown-item translate" id="fr" value="Français"><img style="width: 20px;height: 15px;" src="./assets/img/FR_flag.png"/>Français</a> 
+                                                                <button class="collapse navbar-collapse nav-item dropdown show language_menu btn btn-contrast" id="IDdropdown" onchange="dropDown" style="position: relative; text-align: center;">
+                                                                    <a class="dropdown-toggle nav-link lang" aria-expanded="false" data-bs-toggle="dropdown" id="IDDefault" style="color: #F8F9FA; text-align: center;">Select Language</a> 
+                                                                    <div class="dropdown-menu dropdown-menu-dark"> 
+                                                                        <a class="dropdown-item translate" id="eng" value="English"><img style="width: 20px;height: 15px;" src="./assets/img/EN_flag.png"/>English</a>
+                                                                        <a class="dropdown-item translate" id="it" value="Italiano"><img style="width: 20px;height: 15px;" src="./assets/img/IT_flag.png"/>Italiano</a>
+                                                                        <a class="dropdown-item translate" id="es" value="Español"><img style="width: 20px;height: 15px;padding: 0px;margin: 0px;" src="./assets/img/ES_flag.png"/>Espanol</a>
+                                                                        <a class="dropdown-item translate" id="fr" value="Français"><img style="width: 20px;height: 15px;" src="./assets/img/FR_flag.png"/>Français</a> 
                                                                     </div>                                                                     
-                                                                </li>                                                                 
+                                                                </button>                                                                 
                                                             </ul>                                                             
                                                         </div>                                                         
                                                     </nav>                                                     
@@ -294,10 +299,10 @@
                                 </div>                                 
                             </div>                             
                         </div>                         
-                        <div class="border-2 border-bottom mt-3 text-right"> 
+                        <!--<div class="border-2 border-bottom mt-3 text-right"> 
                             <button type="button" class="btn btn-contrast btn-primary">Save changes</button>                             
                             <button type="button" class="btn btn-default">Cancel</button>                             
-                        </div>
+                        </div>-->
                     </div>
                 </main>                 
             </div>             

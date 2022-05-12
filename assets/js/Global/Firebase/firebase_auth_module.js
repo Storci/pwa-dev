@@ -148,7 +148,7 @@ function setPersistenceNone() {
 	  });
 }*/
 
-function changePassword(user, credential, newPassword){
+/*function changePassword(user, credential, newPassword){
 	user.reauthenticateWithCredential(credential).then(() => {
 		// User re-authenticated.
 		console.log(newPassword)
@@ -161,7 +161,7 @@ function changePassword(user, credential, newPassword){
 		// An error ocurred
 		// ...
 	  });
-}
+}*/
 
 export {
 	signInWithEmailPassword,
