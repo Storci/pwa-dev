@@ -51,6 +51,7 @@ tw.service_90_sidebar(entityName)
         // pagine
         let href_dashboard         = '30_dryers_general_dashboard.html'
         let href_history           = '31_dryers_history.html'
+        let href_customer_list     = '01_Customers.html'
         // id
         let idAccordion            = '#id-accordion-dryers'
         let idBtnAccordion         = '#id-btn-accordion-dryers'
@@ -58,6 +59,8 @@ tw.service_90_sidebar(entityName)
         // link
         let nav_dashboard_link     = '#id-nav-dashboard-dryer a'
         let nav_history_link       = '#id-nav-history-dryer a'
+        let nav_customer_link      = '#id-nav-customers-list a'
+        
 
         // Visualizza il menu delle celle
         $(idAccordion).removeClass('d-none')
@@ -74,6 +77,7 @@ tw.service_90_sidebar(entityName)
         // se la pagina della dashboard o dello storico
         if(pageName == href_dashboard){ $(nav_dashboard_link).addClass('active') }
         if(pageName == href_history)  { $(nav_history_link).addClass('active') }
+        if(pageName == href_customer_list) { $(nav_customer_link).addClass('active')}
 
 
         // Visualizza le celle presenti dal cliente.
