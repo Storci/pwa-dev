@@ -31,10 +31,10 @@ $("#IDErrorMessage").hide()
     
 })*/
 
-let mailField = document.querySelector("#IDEmail");
+/*let mailField = document.querySelector("#IDEmail");
 let resetButton = document.querySelector("#IDButtonResetPassword");
 
-let auth = firebase.auth()
+
 
 const resetPasswordFunction = () =>{
     let email = mailField.value
@@ -51,6 +51,34 @@ const resetPasswordFunction = () =>{
     }
     
 }
-resetButton.addEventListener('click', resetPasswordFunction)
+resetButton.addEventListener('click', resetPasswordFunction)*/
+let auth = firebase.auth()
+
+$('#IDButtonResetPassword').click(function(e){
+    let mailField = $('#IDEmail').val()
+    let email = mailField
+
+    if(email != ""){
+        auth.sendPasswordResetEmail(email)
+        .then(() =>{
+            e.preventDefault();
+            $("#successAlert").css('display', 'block')
+            setTimeout(function(){
+                $("#successAlert").css('display', 'none')
+            },3000)
+               
+            window.location.href = './90_signIn.html'
+        })
+        .catch(error =>{
+            console.error(error)
+            $("#errorAlert2").fadeIn(3000);
+        })
+    }
+    else{
+        $("#errorAlert").fadeIn(3000);
+    }
+
+})
+
 
 
