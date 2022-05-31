@@ -54,7 +54,7 @@ body {
 }
 
 .sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
+.sidebar .nav-link.active .feather {
     color: inherit;
 }
 
@@ -103,3 +103,20 @@ body {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+@media screen 
+and (min-width: 768px) 
+and (max-width: 1024px){
+    #div_alarmi {
+        width: 100% !important;
+    }
+
+    #graph_production {
+        width: 100% !important;
+    }
+}
+
+
+
+
+
