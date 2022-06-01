@@ -54,6 +54,7 @@ body {
 }
 
 .sidebar .nav-link:hover .feather,
+
 .sidebar .nav-link.active .feather {
     color: inherit;
 }
@@ -103,3 +104,32 @@ body {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+@media screen 
+and (min-width: 768px) 
+and (max-width: 1024px){
+    #div_alarmi {
+        width: 100% !important;
+    }
+
+    #graph_production {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 768px){
+    .div_minimum {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 33.33333%;
+        height: 120px;
+    }
+    
+}
+
+
+
+
+
+
