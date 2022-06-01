@@ -54,7 +54,8 @@ body {
 }
 
 .sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
+
+.sidebar .nav-link.active .feather {
     color: inherit;
 }
 
@@ -115,6 +116,18 @@ and (max-width: 1024px){
         width: 100% !important;
     }
 }
+
+@media (min-width: 768px){
+    .div_minimum {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 33.33333%;
+        height: 120px;
+    }
+    
+}
+
 
 
 
