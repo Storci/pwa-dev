@@ -36,7 +36,6 @@
         <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>  -->         
         <script defer src="./assets/js/Global/Firebase/firebase_config.js"></script>         
         <script defer src="./assets/js/userAccountSettings.js" type="module"></script>         
-        <script src="./assets/js/Global/Common/Theme.js" type="module"></script>
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -174,8 +173,8 @@
                     </div>                     
                 </nav>                 
                 <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4" id="id-column-master" data-pgc-field="id-column-master"> 
-                    <div class="card"> 
-                        <div class="bg-white shadow rounded-lg d-block d-sm-flex"> 
+                    <div class="card profile_container "> 
+                        <div class="bg-white shadow rounded-lg d-block d-sm-flex vertical_center"> 
                             <div class="profile-tab-nav border-right"> 
                                 <div class="profile-tab-nav border-right"> 
                                     <div class="p-4"> 
@@ -274,9 +273,9 @@
                                             <h3 class="text-center">Manage Background Theme</h3> 
                                             <div class="col-md-6"> 
                                                 <!--<div class="form-check form-switch"> 
-                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/> 
-                                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>                                                 
-                                                </div>-->                                                 
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/> 
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>                                                 
+                                                    </div>-->                                                 
                                                 <div class="d-flex justify-content-end align-items-center"> 
                                                     <label class="form-label" id="IDLightModeIcon" style="width: 24px; background: url(./assets/img/loghi/dark/light_mode_black_24dp.svg); height: 24px; margin: 0px;"> 
 </label>                                                     
@@ -293,10 +292,18 @@
                             </div>                             
                         </div>                         
                         <!--<div class="border-2 border-bottom mt-3 text-right"> 
-                            <button type="button" class="btn btn-contrast btn-primary">Save changes</button>                             
-                            <button type="button" class="btn btn-default">Cancel</button>                             
-                        </div>-->                         
-                    </div>
+                                <button type="button" class="btn btn-contrast btn-primary">Save changes</button>                             
+                                <button type="button" class="btn btn-default">Cancel</button>                             
+                            </div>-->                         
+                    </div>                     
+            </div>             
+        </main>         
+    </div>     
+</div>  
+on>                             
+                            </div>-->                         
+                        </div>
+                    </div>                     
                 </main>                 
             </div>             
         </div>         
