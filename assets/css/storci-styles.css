@@ -332,17 +332,24 @@ a {
   }
 
   /*.profile_container{
-      position: relative;
-      height: 100%;
-      width: 75%;
-      margin: auto;
-  }
-  .vertical_center{
-      margin: 0;
-      position: absolute;
-      top:50%;
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-      height:500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }*/
+
+  /*.vertical_center{
+    width: 100% !important;
+    
+  }*/
+
+  .customized-body{
+      height: 500px !important;
+  }
+  @media (max-width :768px ) {
+    .customized-body{
+        height: 900px !important;
+    }
+   
+  }
+  
  
