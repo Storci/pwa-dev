@@ -337,19 +337,28 @@ a {
       justify-content: center;
   }*/
 
-  /*.vertical_center{
-    width: 100% !important;
+  .vertical_center{
+    width: 80% !important;
+    margin:auto;
     
-  }*/
+  }
 
   .customized-body{
       height: 500px !important;
+      
   }
-  @media (max-width :768px ) {
+  @media (max-width :585px ) {
     .customized-body{
         height: 900px !important;
     }
    
+  }
+
+  @media (max-width :992px) {
+      .vertical_center{
+          width: 100% !important;
+          
+      }
   }
   
  
