@@ -344,12 +344,12 @@ a {
   }
 
   .customized-body{
-      height: 500px !important;
+      height: 700px !important;
       
   }
   @media (max-width :585px ) {
     .customized-body{
-        height: 900px !important;
+        height: 1200px !important;
     }
    
   }
@@ -360,5 +360,6 @@ a {
           
       }
   }
+
   
  
