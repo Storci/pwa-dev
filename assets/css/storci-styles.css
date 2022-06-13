@@ -347,9 +347,9 @@ a {
       height: 700px !important;
       
   }
-  @media (max-width :585px ) {
+  @media (max-width :767px ) {
     .customized-body{
-        height: 1200px !important;
+        height: 1150px !important;
     }
    
   }

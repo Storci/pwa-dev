@@ -3,7 +3,6 @@ import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 
 fb.onAuthStateChanged_2()
-
 lang.getLanguage()
 
 $('#passwordUpdate').click(function(){
@@ -45,4 +44,50 @@ function changePassword(user, credential, newPassword){
 	}).catch((error) => {
 		    $("#errorAlert").fadeIn(3000);
 	  });
+}
+
+// funzione per mostrare i dettagli dell'utente nei vari campi di input
+
+
+
+
+/*function recoverUserDetail(){
+    firebase.auth().onAuthStateChanged((user) => {
+        //console.log(user)
+
+        //display the displayName and photoURL of the user on the page
+        if(user !== null)
+            firstname.innerText = user.firstname;
+        if(user.displayLastname)
+            lastname.innerText = user.lastname;
+
+        if(user.displayEmail)
+        email.innerText = user.email;
+
+        if(user.displayCompany)
+            company.innerText = user.company;
+
+        if(user.displayTelephone)
+            telephone.innerText = user.telephone;
+
+        if(user.displayCountry)
+            country.innerText = user.country;    
+    })
+
+}
+*/
+let db = firebase.firestore().ref('users');
+
+function retrieveInfo(){
+    const firstname = document.getElementById('display_name').value
+    const lastname = document.getElementById('display_lastname').value
+    const email = document.getElementById('display_email').value
+    const company = document.getElementById('display_company').value
+    const telephone = document.getElementById('display_telephone').value
+    const country = document.getElementById('display_country').value
+    
+    db.push({
+        
+    })
+
 }
