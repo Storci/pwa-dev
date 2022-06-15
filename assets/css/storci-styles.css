@@ -367,4 +367,8 @@ a {
   .customized-card{
     padding: 0rem 0rem !important;
   }
+  .tab_content{
+    width: 90%;
+    margin: auto;
+  }
  

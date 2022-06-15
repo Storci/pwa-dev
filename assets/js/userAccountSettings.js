@@ -77,6 +77,53 @@ function changePassword(user, credential, newPassword){
 }
 */
 //fb.getUserData()
+//console.log(fb.getUserData())
+/*function getdata(){
+    const mail = document.getElementById('display_email')
 
-const auth = firebase.auth()
-console.log(auth)
+    firebase.auth().onAuthStateChanged((user) => {
+    if (user !== null) {
+
+        let dbUser = firebase.firestore();
+        dbUser.collection('users').get().then((snapshot) =>{
+            snapshot.docs.forEach(doc =>{
+                console.log(doc.data())
+            })
+         })
+         
+
+        // The user object has basic properties such as display name, email, etc.
+        const firstName = user.firstName;
+        mail.innerHTML = user.email;
+        console.log(mail)
+        const photoURL = user.photoURL;
+        const emailVerified = user.emailVerified;
+
+        // The user's ID, unique to the Firebase project. Do NOT use
+        // this value to authenticate with your backend server, if
+        // you have one. Use User.getIdToken() instead.
+        const uid = user.uid;
+    }
+})
+
+}*/
+
+//getdata();
+
+function getData(){
+    var db = firebase.firestore()
+    var docRef = db.collection("users").doc(user);
+
+docRef.get().then((doc) => {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+}
+
+getData()

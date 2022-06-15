@@ -167,9 +167,9 @@ function setPersistenceNone() {
 	  });
 }*/
 
-/*function getUserData() {
+/*function getUserData(email) {
 	let dbUser = firebase.firestore();
-	dbUser.collection('users').get().then((snapshot) =>{
+	dbUser.collection('users').get(email).then((snapshot) =>{
 		snapshot.docs.forEach(doc =>{
 			console.log(doc.data())
 		})
@@ -193,7 +193,18 @@ function setPersistenceNone() {
 */
 
 /*function getUserData(){
-
+	firebase.auth().onAuthStateChanged((user) => {
+		if (user) {
+		  // User is signed in, see docs for a list of available properties
+		  // https://firebase.google.com/docs/reference/js/firebase.User
+		  var firstName = user.firstName;
+		  
+		  // ...
+		} else {
+		  // User is signed out
+		  // ...
+		}
+	  });
 }*/
 
 export {
