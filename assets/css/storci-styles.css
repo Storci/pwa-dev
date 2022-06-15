@@ -351,6 +351,9 @@ a {
     .customized-body{
         height: 1150px !important;
     }
+    .tab_content{
+        
+    }
    
   }
 
@@ -361,5 +364,7 @@ a {
       }
   }
 
-  
+  .customized-card{
+    padding: 0rem 0rem !important;
+  }
  

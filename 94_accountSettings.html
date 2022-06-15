@@ -32,10 +32,10 @@
         <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
         <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>         
         <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js" type="module"></script>         
-        <!-- <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>  -->         
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>         
         <script defer src="./assets/js/Global/Firebase/firebase_config.js"></script>         
-        <script defer src="./assets/js/userAccountSettings.js" type="module"></script>
+        <script defer src="./assets/js/userAccountSettings.js" type="module"></script>         
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -177,54 +177,50 @@
                         <div class="card mt-2 vertical_center"> 
                             <div class="card-body bg-white shadow rounded-lg d-block d-sm-flex customized-body"> 
                                 <div class="profile-tab-nav border-right profile_tab"> 
-                                    <div class="profile-tab-nav border-right"> 
-                                        <div class="p-4"> 
-                                            <div class="img-circle text-center mb-3"> 
-</div>                                             
-                                        </div>                                         
-                                    </div>                                     
-                                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical"> 
+                                    <div class="flex-column me-3 nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical"> 
                                         <button class="active nav-link border-bottom" id="v-pills-account-info-tab" data-bs-toggle="pill" data-bs-target="#v-pills-account-info" type="button" role="tab" aria-controls="v-pills-account-info" aria-selected="true">Account Info </button>                                         
                                         <button class="nav-link border-bottom" id="v-pills-update-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-update-password" type="button" role="tab" aria-controls="v-pills-update-password" aria-selected="false">Manage Password</button>                                         
                                         <!-- <button class="nav-link border-bottom" id="v-pills-general-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-general-settings" type="button" role="tab" aria-controls="v-pills-general-settings" aria-selected="false">General Settings</button>-->                                         
                                     </div>                                     
                                     <!--<div class="tab-content" id="v-pills-tabContent"> </div>   -->                                     
                                 </div>                                 
-                                <div class="border-2 border-start col-md-8 mt-2 ps-3 tab-content" id="v-pills-tabContent"> 
+                                <div class="border-2 border-start col-md-8 mt-2 ps-3 tab-content tab_content" id="v-pills-tabContent"> 
                                     <div class="tab-pane fade show active" id="v-pills-account-info" role="tabpanel" aria-labelledby="v-pills-account-info-tab"> 
-                                        <div class="card-body me-n4 ms-5 pe-4 ps-4"> 
+                                        <div class="card-body m-auto pb-auto pe-auto ps-auto customized-card"> 
                                             <div class="row"> 
                                                 <h3>My Profile Settings </h3> 
-                                                <div class="row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 row-cols-xl-2 row-cols-xxl-2"> 
-                                                    <div class="form-group col-md-6"> 
-                                                        <label class="form-label">Name</label>                                                         
-                                                        <input type="text" class="form-control mb-1" id="display_name"/> 
-                                                    </div>                                                     
-                                                    <div class="form-group col-md-6"> 
-                                                        <label class="form-label">Surname</label>                                                         
-                                                        <input type="text" class="form-control" id="display_lastname"/> 
-                                                    </div>                                                     
-                                                </div>                                                 
-                                                <div class="row"> 
-                                                    <div class="form-group col-md-6"> 
-                                                        <label class="form-label">E-mail</label>                                                         
-                                                        <input type="text" class="form-control mb-1" id="display_email"/> 
-                                                    </div>                                                     
-                                                    <div class="form-group col-md-6"> 
-                                                        <label class="form-label">Company</label>                                                         
-                                                        <input type="text" class="form-control" id="display_country"/> 
-                                                    </div>                                                     
-                                                </div>                                                 
-                                                <div class="row"> 
-                                                    <div class="form-group col-md-6"> 
-                                                        <label class="form-label">Telephone number</label>                                                         
-                                                        <input type="text" class="form-control mb-1" id="display_telephone"/> 
-                                                    </div>                                                     
-                                                    <div class="form-group col-md-6"> 
-                                                        <label class="form-label">State / Country</label>                                                         
-                                                        <input type="text" class="form-control"/> 
-                                                    </div>                                                     
-                                                </div>                                                 
+                                                <form id="signUpForm">
+                                                    <div class="row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 row-cols-xl-2 row-cols-xxl-2"> 
+                                                        <div class="form-group col-md-6"> 
+                                                            <label class="form-label">Name</label>                                                         
+                                                            <input type="text" class="form-control mb-1" id="display_name"/> 
+                                                        </div>                                                     
+                                                        <div class="form-group col-md-6"> 
+                                                            <label class="form-label">Surname</label>                                                         
+                                                            <input type="text" class="form-control" id="display_lastname"/> 
+                                                        </div>                                                     
+                                                    </div>                                                 
+                                                    <div class="row"> 
+                                                        <div class="form-group col-md-6"> 
+                                                            <label class="form-label">E-mail</label>                                                         
+                                                            <input type="text" class="form-control mb-1" id="display_email"/> 
+                                                        </div>                                                     
+                                                        <div class="form-group col-md-6"> 
+                                                            <label class="form-label">Company</label>                                                         
+                                                            <input type="text" class="form-control" id="display_country"/> 
+                                                        </div>                                                     
+                                                    </div>                                                 
+                                                    <div class="row"> 
+                                                        <div class="form-group col-md-6"> 
+                                                            <label class="form-label">Telephone number</label>                                                         
+                                                            <input type="text" class="form-control mb-1" id="display_telephone"/> 
+                                                        </div>                                                     
+                                                        <div class="form-group col-md-6"> 
+                                                            <label class="form-label">State / Country</label>                                                         
+                                                            <input type="text" class="form-control" id="display_country"/> 
+                                                        </div>                                                     
+                                                    </div> 
+                                                </form>                                                   
                                             </div>                                             
                                             <div class="row"> 
                                                 <h4 class="col mt-3">Change Password</h4> 
@@ -239,13 +235,11 @@
                                                     </div>                                                     
                                                 </div>                                                 
                                                 <div class="row"> 
-                                                    <div class="col-md-12 alert alert-success alert-dismissible fade show" role="alert" id="successAlert" style="display: none;">
-                                                        <strong>Password Updated Successfully</strong> 
+                                                    <div class="col-md-12 alert alert-success alert-dismissible fade show" role="alert" id="successAlert" style="display: none;"> <strong>Password Updated Successfully</strong> 
                                                     </div>                                                     
                                                 </div>                                                 
                                                 <div class="row"> 
-                                                    <div class="col-md-12  alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert" style="display: none;">
-                                                        <strong>Password update failed, Please try again</strong> 
+                                                    <div class="col-md-12  alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert" style="display: none;"> <strong>Password update failed, Please try again</strong> 
                                                     </div>                                                     
                                                 </div>                                                 
                                                 <div class="d-flex flex-column justify-content-md-between row"> 
@@ -275,19 +269,15 @@
                                                         </div>                                                         
                                                     </div>                                                     
                                                 </div>                                                 
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4"> 
+                                            </div>                                             
+                                            <div class="row"> 
+                                                <div class="col-md-12"> 
                                                     <h6>Language</h6> 
                                                     <nav class="navbar navbar-light navbar-expand-md"> 
                                                         <div class="d-md-flex justify-content-start" id="navcol-2"> 
                                                             <ul class="navbar-nav"> 
                                                                 <button class="collapse navbar-collapse nav-item dropup show language_menu btn btn-light" id="IDdropdown" onchange="dropDown" style="position: relative; text-align: center;"> <a class="dropdown-toggle nav-link lang" aria-expanded="false" data-bs-toggle="dropdown" id="IDDefault" style="color: #0d0d0e; text-align: center;">Select</a> 
-                                                                    <div class="dropdown-menu dropdown-menu-light">
-                                                                        <a class="dropdown-item translate" id="eng" value="English"><img style="width: 20px;height: 15px;" src="./assets/img/EN_flag.png"/>English</a>
-                                                                        <a class="dropdown-item translate" id="it" value="Italiano"><img style="width: 20px;height: 15px;" src="./assets/img/IT_flag.png"/>Italiano</a>
-                                                                        <a class="dropdown-item translate" id="es" value="Español"><img style="width: 20px;height: 15px;padding: 0px;margin: 0px;" src="./assets/img/ES_flag.png"/>Espanol</a>
-                                                                        <a class="dropdown-item translate" id="fr" value="Français"><img style="width: 20px;height: 15px;" src="./assets/img/FR_flag.png"/>Français</a> 
+                                                                    <div class="dropdown-menu dropdown-menu-light"> <a class="dropdown-item translate" id="eng" value="English"><img style="width: 20px;height: 15px;" src="./assets/img/EN_flag.png"/>English</a> <a class="dropdown-item translate" id="it" value="Italiano"><img style="width: 20px;height: 15px;" src="./assets/img/IT_flag.png"/>Italiano</a> <a class="dropdown-item translate" id="es" value="Español"><img style="width: 20px;height: 15px;padding: 0px;margin: 0px;" src="./assets/img/ES_flag.png"/>Espanol</a> <a class="dropdown-item translate" id="fr" value="Français"><img style="width: 20px;height: 15px;" src="./assets/img/FR_flag.png"/>Français</a> 
                                                                     </div>                                                                     
                                                                 </button>                                                                 
                                                             </ul>                                                             
@@ -356,7 +346,7 @@
                                     </div>                                     
                                 </div>                                 
                             </div>                             
-                    </section>
+                    </section>                     
                 </main>                 
             </div>             
         </div>         

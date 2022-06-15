@@ -76,18 +76,7 @@ function changePassword(user, credential, newPassword){
 
 }
 */
-let db = firebase.firestore().ref('users');
+//fb.getUserData()
 
-function retrieveInfo(){
-    const firstname = document.getElementById('display_name').value
-    const lastname = document.getElementById('display_lastname').value
-    const email = document.getElementById('display_email').value
-    const company = document.getElementById('display_company').value
-    const telephone = document.getElementById('display_telephone').value
-    const country = document.getElementById('display_country').value
-    
-    db.push({
-        
-    })
-
-}
+const auth = firebase.auth()
+console.log(auth)
