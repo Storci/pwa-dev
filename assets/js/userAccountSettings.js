@@ -111,19 +111,21 @@ function changePassword(user, credential, newPassword){
 //getdata();
 
 function getData(){
+  //  var user = firebase.auth()
     var db = firebase.firestore()
-    var docRef = db.collection("users").doc(user);
+    var docRef = db.collection("users").doc('richard.sarpong@storci.com');
 
-docRef.get().then((doc) => {
-    if (doc.exists) {
-        console.log("Document data:", doc.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-    }
-}).catch((error) => {
-    console.log("Error getting document:", error);
-});
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    })
+    .catch((error) => {
+        console.log("Error getting document:", error);
+    });
 }
 
 getData()
