@@ -110,7 +110,7 @@ function changePassword(user, credential, newPassword){
 
 //getdata();
 
-function getData(){
+/*function getData(){
   //  var user = firebase.auth()
     var db = firebase.firestore()
     var docRef = db.collection("users").doc('richard.sarpong@storci.com');
@@ -126,6 +126,66 @@ function getData(){
     .catch((error) => {
         console.log("Error getting document:", error);
     });
-}
+}*/
 
-getData()
+//getData()
+/*function getData(email, password){
+   
+    
+          firebase.auth().createUserWithEmailAndPassword(email,password)
+          .then((userCredential)=>{
+            const db =  firebase.firestore()
+          
+            db.collection('users').doc()
+            .set({
+              fullName: userData.get('fullName'),
+              pictures: userData.get('pictures'),
+              phoneNumber: userData.get('phoneNumber')
+            });
+          })
+         
+      };*/
+
+//getData('richard.sarpong@storci.com', 'password')
+
+// funzione per recuperare i dati dell'utente da firestore quando si logga
+let firstname = document.getElementById('display_name')
+let lastname = document.getElementById('display_lastname')
+let email = document.getElementById('display_email')
+let company = document.getElementById('display_company')
+let telephone = document.getElementById('display_telephone')
+let country  = document.getElementById('display_company')
+
+
+ function getData(){
+
+
+   
+    firebase.auth().onAuthStateChanged(function (user) {
+    
+        // Lay connection with the database.
+        //var firestore = firebase.firestore();
+        var db = firebase.firestore()
+
+        var docRef = db.collection('users').doc(user.email);
+    
+        // Get the user data from the database.
+        docRef.get()
+        .then(function (doc) {
+            // Catch error if exists. 
+                console.log(doc.get('firstName'))
+
+           firstname.innerText = doc.get('firstName')
+           console.log(firstname)
+           lastname.value = doc.get('lastName').innerText
+           email.innerText = doc.get('mail')
+           company.innerText = doc.get('companyName')
+           telephone.innerText = doc.get('phoneNumber')
+           country.innerText = doc.get('Countries')
+           console.log(company)
+           
+        });
+    });
+ }
+
+ getData()
