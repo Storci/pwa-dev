@@ -189,7 +189,7 @@
                                         <div class="card-body customized-card m-auto pb-auto pe-auto ps-auto"> 
                                             <div class="row"> 
                                                 <h3>My Profile Settings </h3> 
-                                                <form id="signUpForm"> 
+                                                <form id="editProfile"> 
                                                     <div class="row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 row-cols-xl-2 row-cols-xxl-2"> 
                                                         <div class="form-group col-md-6"> 
                                                             <label class="form-label">Name</label>                                                             
@@ -219,6 +219,9 @@
                                                             <label class="form-label">State / Country</label>                                                             
                                                             <input type="text" class="form-control" id="display_country"/> 
                                                         </div>                                                         
+                                                    </div>
+                                                    <div class="col d-flex d-lg-flex d-md-flex d-sm-flex d-xl-flex d-xxl-flex flex-column flex-lg-column flex-md-column flex-sm-column flex-xl-column flex-xxl-column justify-content-end justify-content-lg-end justify-content-md-end justify-content-sm-end justify-content-xl-end justify-content-xxl-end"> 
+                                                        <button type="button" id="profile_Update" class="btn btn-primary mt-2 d-block">Update profile Info</button>                                                         
                                                     </div>                                                     
                                                 </form>                                                 
                                             </div>                                             
@@ -227,11 +230,11 @@
                                                 <div class="row row-cols-1 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 row-cols-xl-2 row-cols-xxl-2"> 
                                                     <div class="form-group col-md-6 "> 
                                                         <label class="form-label">Old Password</label>                                                         
-                                                        <input type="password" class="form-control form-control-md" id="oldPassword" required/> 
+                                                        <input type="password" class="form-control form-control-md" id="oldPassword" required placeholder="****"/> 
                                                     </div>                                                     
                                                     <div class="form-group col-md-6"> 
                                                         <label class="form-label">&nbsp;New Password</label>                                                         
-                                                        <input type="password" class="form-control form-control-md" id="newPassword" required/> 
+                                                        <input type="password" class="form-control form-control-md" id="newPassword" required placeholder="****"/> 
                                                     </div>                                                     
                                                 </div>                                                 
                                                 <div class="row"> 

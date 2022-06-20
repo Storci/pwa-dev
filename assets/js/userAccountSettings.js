@@ -147,20 +147,16 @@ function changePassword(user, credential, newPassword){
       };*/
 
 //getData('richard.sarpong@storci.com', 'password')
-
-// funzione per recuperare i dati dell'utente da firestore quando si logga
+// dichiarazione dei variabile per i campi di input
 let firstname = document.getElementById('display_name')
 let lastname = document.getElementById('display_lastname')
 let email = document.getElementById('display_email')
 let company = document.getElementById('display_company')
 let telephone = document.getElementById('display_telephone')
-let country  = document.getElementById('display_company')
+let country  = document.getElementById('display_country')
 
-
+// funzione per recuperare i dati dell'utente da firestore quando si logga
  function getData(){
-
-
-   
     firebase.auth().onAuthStateChanged(function (user) {
     
         // Lay connection with the database.
@@ -173,15 +169,15 @@ let country  = document.getElementById('display_company')
         docRef.get()
         .then(function (doc) {
             // Catch error if exists. 
-                console.log(doc.get('firstName'))
+                //console.log(doc.data(user.email.Countries))
 
-           firstname.innerText = doc.get('firstName')
+           firstname.value = doc.get('firstName')
            console.log(firstname)
-           lastname.value = doc.get('lastName').innerText
-           email.innerText = doc.get('mail')
-           company.innerText = doc.get('companyName')
-           telephone.innerText = doc.get('phoneNumber')
-           country.innerText = doc.get('Countries')
+           lastname.value = doc.get('lastName')
+           email.value = doc.get('mail')
+           company.value = doc.get('companyName')
+           telephone.value = doc.get('phoneNumber')
+           country.value = doc.get('Countries')
            console.log(company)
            
         });
@@ -189,3 +185,48 @@ let country  = document.getElementById('display_company')
  }
 
  getData()
+
+
+
+ 
+ // funzionw per aggiornare l'informazione dell'utente
+ /*function updateUserInfo(){
+    firebase.auth().onAuthStateChanged(function(user){
+        var db = firebase.firestore()
+        var passwordDb= db.collection('users').doc(user)
+    })
+    .then((doc) =>{
+     passwordDb.collection('users').doc(userData)
+        .update({
+            firstname : doc['display_name'].value,
+            lastname : doc['display_lastname'].value,
+            email : doc['mail'].value,
+            company : doc['display_company'].value,
+            telephone : doc['display_telephone'].value,
+            country : doc['display_country'].value,
+            
+        })
+    })
+	
+    }*/
+
+    function updateUserInfo(){
+        const userDocRef =  firebase.firestore()
+    .collection('users')
+    .doc(firebase.auth().onAuthStateChanged.email)
+
+
+    userDocRef.update({
+        firstName:editProfile["display_name"].value,
+        lastName:editProfile["display_lastname"].value,
+        mail:editProfile["display_email"].value,
+        companyName:editProfile["display_company"].value,
+        phoneNumber:editProfile["display_telephone"].value,
+        Countries:editProfile["display_country"].value
+
+    })
+    }
+
+let btnUpdate = document.getElementById('profile_Update')
+
+btnUpdate.addEventListener('click', updateUserInfo)
