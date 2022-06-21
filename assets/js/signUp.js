@@ -27,6 +27,8 @@ $('#IDButtonSignUp').click(function(){
         $('#IDErrorMessageSignUp').text('Error, the email is already use')
       }else{*/
         // controlla che le 2 password coincidano
+
+        
         let pass1 = $('#IDPassword').val()
         let pass2 = $('#IDPassword_repeat').val()
 
