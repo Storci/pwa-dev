@@ -105,3 +105,9 @@ function updateUserInfo(){
 //
 let btnUpdate = document.getElementById('profile_Update')
 btnUpdate.addEventListener('click', updateUserInfo)
+
+window.onclick = function(event){
+    if(event.target == $('#updateSuccessAlert')){
+        $('#updateSuccessAlert').css('display', 'none')
+    }
+}

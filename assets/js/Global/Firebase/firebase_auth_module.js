@@ -28,6 +28,7 @@ function signUpWithEmailPassword(email, password, baseURL) {
 
         });
 	}).then(() =>{
+		$("#signUpSuccess").fadeIn(3000);
 		window.location.href = './90_signIn.html'
     })
 	.catch((error) => {
