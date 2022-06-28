@@ -58,13 +58,12 @@ let country  = document.getElementById('display_country')
  function getData(){
     firebase.auth().onAuthStateChanged(function (user) {
     
-        // Lay connection with the database.
-        //var firestore = firebase.firestore();
+        // stabilisce il collegamento con il firestore
         var db = firebase.firestore()
 
         var docRef = db.collection('users').doc(user.email);
     
-        // Get the user data from the database.
+        // una funzione di firestore per recuperare i dati dell'utente 
         docRef.get()
         .then(function (doc) {
             // Catch error if exists. 
@@ -83,13 +82,15 @@ let country  = document.getElementById('display_country')
     });
  }
 
+ // richiamodella funzione
  getData()
 
+ // funzione per aaggiornare i dati dell'utnete loggato
 function updateUserInfo(){
-
+        // questa variabile eredita la funzione di firestore e in base all'utente recupera i dati utilizzando la mial
         const userDocRef =  firebase.firestore().collection('users').doc(firebase.auth().currentUser.email)
 
-
+    // la funzione di firestore per aggiornare effetivamente i dati dell'utente
         userDocRef.update({
             firstName:editProfile["display_name"].value,
             lastName:editProfile["display_lastname"].value,
@@ -98,11 +99,11 @@ function updateUserInfo(){
             phoneNumber:editProfile["display_telephone"].value,
             Countries:editProfile["display_country"].value
         })
-        
+        // se tutto procede bene mostra un alert di successo
             $("#updateSuccessAlert").fadeIn(3000);
         
 }
-//
+// il bottone per invocare la funzione
 let btnUpdate = document.getElementById('profile_Update')
 btnUpdate.addEventListener('click', updateUserInfo)
 
