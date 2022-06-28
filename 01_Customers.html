@@ -46,7 +46,8 @@
         <script src="./assets/js/sidebar.js" type="module"></script>         
         <script defer src="./assets/js/01_Customers.js" type="module"></script>         
         <script src="./firebase-messaging-sw.js" type="module"></script>         
-        <script defer src="./assets/js/Global/Firebase/firebase_messaging_init.js" type="module"></script>
+        <script defer src="./assets/js/Global/Firebase/firebase_messaging_init.js" type="module"></script>         
+        <script src="./assets/js/Global/Common/Translation.js" type="module"></script>
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -59,7 +60,7 @@
                 <nav id="sidebarMenu" class="bg-light col-lg-2 col-md-3 collapse d-md-block sidebar sidebar-scroll sidebar-scroll-hidden"> 
                     <div class="h-100 pt-3"> 
                         <ul class="nav flex-column" id="IDNavPrimary"> 
-                            <li class="d-none nav-item" id="id-nav-customers-list"> <a class="align-items-center d-flex nav-link" aria-current="page" href="01_Customers.html" id="id-nav-customers-list"> <span class="material-icons-outlined">group</span><span class="ms-3">Lista Clienti</span> </a> 
+                            <li class="d-none nav-item" id="id-nav-customers-list"> <a class="align-items-center d-flex nav-link" aria-current="page" href="01_Customers.html" id="id-nav-customers-list"> <span class="material-icons-outlined">group</span><span class="ms-3" translate_id="clients_list">List of Clients</span> </a> 
                             </li>                             
                             <li class="nav-item"> <a class="align-items-center d-flex nav-link" aria-current="page" href="02_Dashboard.html" id="id-nav-dashboard"><span class="material-icons-outlined">insert_chart</span><span class="ms-3">Dashboard</span>&nbsp;</a> 
                             </li>                             
@@ -136,7 +137,7 @@
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="extruder" id="id-nav-extruder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="extruder">Extruder</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="tray-feeder">Tray Feeder/span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="tray-feeder">Tray Feeder</span>&nbsp;</a> 
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="destacker" id="id-nav-destacker-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="destacker-robot">Destacker Robot</span>&nbsp;</a> 
                                         </li>                                         
@@ -144,7 +145,7 @@
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="lasagna_nest">Lasagne Nest</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="">Pasta Instant</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pasta_instant">Pasta Instant</span>&nbsp;</a> 
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="predryer" id="id-nav-predryer-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pre-dryer">Pre-Dryer</span>&nbsp;</a> 
                                         </li>                                         
@@ -185,7 +186,7 @@
                 </nav>                 
                 <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4" id="id-column-master" data-pgc-field="id-column-master"> 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h2>Lista Clienti Connessi</h2> 
+                        <h2 translate_id="list_clients_connected">List of Clients Connected</h2> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
@@ -193,7 +194,7 @@
                     </div>                     
                     <div class="gy-3  pg-empty-placeholder row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-1" id="IDRowConnected" data-pg-name="row-customer-connected" title="Clienti Connessi"></div>                     
                     <div class="align-items-center border-bottom d-flex flex-md-nowrap flex-wrap justify-content-between mb-3 mt-5 pb-2 pt-3"> 
-                        <h2>Lista Clienti Disconnessi</h2> 
+                        <h2 translate_id="list_clients_disconnected">List of Clients Disconnected</h2> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             

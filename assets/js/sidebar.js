@@ -23,7 +23,8 @@ if(localStorage.getItem('global_customer').includes("Storci")){
 let pageURL = window.location.href
     pageURL = pageURL.split('\/')
 let pageName = pageURL[pageURL.length-1]
-
+// funzione per la traduzione
+lang.getLanguage()
 // recupera il nome dell'utente loggato.
 // il nome viene visualizzato nella sidebar.
 // se l'utente è loggato, viene nascosto il tasto di login
@@ -211,3 +212,4 @@ function getListMachine(entityName){
   })
 	.catch(error => console.error(error))
 }
+ 

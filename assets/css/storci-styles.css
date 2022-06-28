@@ -371,4 +371,11 @@ a {
     width: 90%;
     margin: auto;
   }
- 
+ /*@media(max-width :999px){
+    .history_table{
+        width: 100% !important;
+    }
+    .history_graph{
+        width: 100% !important;
+    }
+ }*/
