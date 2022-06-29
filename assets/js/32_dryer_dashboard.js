@@ -27,10 +27,16 @@ let entityName = urlParams.get('entityName')
 // Imposta il nome del cliente nella breadcrumb
 // Vengono sostituiti tutti gli underscore presenti nel nome
 //$("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
+
+// Recupera il nome dell'utente da firebase, controlla che sia loggato.
+// Nel caso non fosse loggato richiama la pagina di login
+fb.onAuthStateChanged_2()
 // Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
 // ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
 // i testi caricati dalle funzioni.
+// funzione per la traduzione 
 lang.getLanguage()
+
 
 // Istanzia i grafici dell'attuale e dello storico
 // I grafici devono essere istanziati una volta solamente

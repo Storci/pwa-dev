@@ -31,6 +31,10 @@ $("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
 // ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
 // i testi caricati dalle funzioni.
 lang.getLanguage()
+// Recupera il nome dell'utente da firebase, controlla che sia loggato.
+// Nel caso non fosse loggato richiama la pagina di login
+fb.onAuthStateChanged_2()
+
 $('#id-nav-dashboard').addClass('active')
 
 // Recupera i dati generali delle celle installate dal cliente

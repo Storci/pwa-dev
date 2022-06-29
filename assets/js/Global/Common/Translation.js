@@ -90,8 +90,8 @@ const array_translate_id = {
   'dryer_graph'                 : { 'eng':'DRYER GRAPH',                 'it':'GRAFICO CELLA'              },
   'drying_graphic'              : { 'eng':'Drying graphic',              'it':'Grafico Essiccazione'       },
   'dryer_history_graph'         : { 'eng':'DRYER HISTORY GRAPH',         'it':'GRAFICO STORICO CELLA'      },
-  'start_drying'                : { 'eng':'BEGINNING OF DESICCATION',                'it':'Inizio Essiccazione'        },
-  'end_drying'                  : { 'eng':'END OF  DESICCATION',                  'it':'Fine Essiccazione'          },
+  'start_drying'                : { 'eng':'BEGINNING OF DESICCATION',    'it':'Inizio Essiccazione'        },
+  'end_drying'                  : { 'eng':'END OF  DESICCATION',          'it':'Fine Essiccazione'         },
   'drying_graph'                : { 'eng':'Drying Graph',                'it':'Grafico Essiccazione'       },
   'total_calories'              : { 'eng':'Total Calories Consumed',     'it':'Calorie Totali Consumate'   },
   'average_ambient_temperature' : { 'eng':'Average Ambient Temperature', 'it':'Temperatura Ambiente Media' },
@@ -106,9 +106,15 @@ const array_translate_id = {
   'fans_pause_time'             : { 'eng':'Fans Pause Time',             'it':'Tempo Pausa Ventole'        },
   'current_recipe'              : { 'eng':'Current Recipe',              'it':'Ricetta in uso'             },
   'actual_prodcution'           : { 'eng':'Actual Production',           'it':'Produzione Attuale'         },
-  'recipe_name'                 : { 'eng':'Recipe Name',                 'it':'Nome Ricetta'         },
-  'duration'                    : { 'eng':'Duration', 'it':'Durata'},
-  'dryer_history'               : { 'eng': 'Dryer History', 'it': 'Storico Cella'},
+  'recipe_name'                 : { 'eng':'Recipe Name',                 'it':'Nome Ricetta'               },
+  'duration'                    : { 'eng':'Duration',                    'it':'Durata'                     },
+  'dryer_history'               : { 'eng': 'Dryer History',              'it': 'Storico Cella'             },
+  'actual_pressure'             : { 'eng': 'Actual Pressure',            'it': 'Pressione Attuale'         },
+  'liquid_quantity'             : { 'eng': 'SP Liquid Quantity',         'it': 'SP Quantità Liquida'       },
+  'quantity_of_flour'           : { 'eng': 'Amount of Flour',            'it': 'Quantità Sfarinati'        },
+  'average_production'          : { 'eng':'Actual Average Production Last Hour', 'it': 'Produzione Media Effettiva Ultima Ora'},
+  'SP_production'               : { 'eng': 'SP Production', 'it': 'SP Produzione'                          },
+  'quantity_produced'           : { 'eng': 'Amount Produced', 'it':'Quantità Prodotta'                     },
 
   // Pagina LinesInfo
   'hourly_quantity_flours_set'  : { 'eng':'Hourly quantity Flours Set',  'it':'Portata Sfarinati Impostata' },
@@ -129,21 +135,35 @@ const array_translate_id = {
   'extruder'                    : { 'eng':'Extruder',                    'it':'Pressa'                      },
   'tray-stacker'                : { 'eng':'Tray Stacker',                'it':'Impilatore'                  },
   'pre-dryer'                   : { 'eng':'Pre Dryer',                   'it':'Trabatto'                    },
+  'omnidryer_history'           : { 'eng':'Omnidryer History',           'it':'Storico Omnidryer'           },
 
   // Pagina dough
-  'dough_info'           : { 'eng':'Dough Info',           'it':'Dati Impasto'         },
-  'total_dough'          : { 'eng':'Total Dough',          'it':'Impasto Totale'       },
-  'flour_dousing_1'      : { 'eng':'Flour Dosing 1',       'it':'Dosaggio Sfarinato 1' },
-  'water_dosing'         : { 'eng':'Water Dosing',         'it':'Dosaggio Acqua'       },
-  'liquid_dosing_1'      : { 'eng':'Liquid Dosing 1',      'it':'Dosaggio Liquido 1'   },
-  'water_temperature'    : { 'eng':'Water Temperature',    'it':'Temperatura Acqua'    },
-  'tank_vacuum'          : { 'eng':'Tank Vacuum',          'it':'Vuoto Vasca'          },
-  'level_tank'           : { 'eng':'Level_Tank',           'it':'Livello Vasca'        },
-  'trend_dough'          : { 'eng':'Trend Dough',          'it':'Grafico Impasto'      },
-
+  'dough_info'           : { 'eng':'Dough Info',              'it':'Dati Impasto'                    },
+  'total_dough'          : { 'eng':'Total Dough',             'it':'Impasto Totale'                  },
+  'flour_dousing_1'      : { 'eng':'Flour Dosing 1',          'it':'Dosaggio Sfarinato 1'            },
+  'water_dosing'         : { 'eng':'Water Dosing',            'it':'Dosaggio Acqua'                  },
+  'liquid_dosing_1'      : { 'eng':'Liquid Dosing 1',         'it':'Dosaggio Liquido 1'              },
+  'water_temperature'    : { 'eng':'Water Temperature',       'it':'Temperatura Acqua'               },
+  'tank_vacuum'          : { 'eng':'Tank Vacuum',             'it':'Vuoto Vasca'                     },
+  'level_tank'           : { 'eng':'Level_Tank',              'it':'Livello Vasca'                   },
+  'trend_dough'          : { 'eng':'Trend Dough',             'it':'Grafico Impasto'                 },
+  'dough_data'           : { 'eng':'Instant Dough Data',      'it':'Dati Impasto Istantanei'         },
+  'dough_set_point'      : { 'eng':'Dough Set Point',         'it':'Set Point Impasto'               },
+  'liquid'               : { 'eng':'Liquid',                  'it':'Liquidi'                         },
+  'Uovo'                 : { 'eng':'Egg or Liquid Dye',       'it':'Uovo (o Liquido Colorante)'      },
+  'group_dashboard'      : { 'eng':'Dough Group Dashboard',   'it': 'Dashboard Gruppo Impasto'       },
+  'history_group'        : { 'eng':'Dough Group History',     'it':'Storico Gruppo Impasto'          },
+  'production_list'      : { 'eng':'List of Historical Productions', 'it':'Lista Produzioni Storiche'},
+  'start_production'     : { 'eng':'Production Start',        'it':'Inizio Produzione'               },
+  'end_production'       : { 'eng':'Production End',          'it':'Fine Produzione'                 },
+  'history_chart'        : { 'eng':'History Chart',           'it':'Grafico Storico'                 },
   // Pagina Extruder
-  'extruder_info'  : { 'eng':'Extruder Info',  'it':'Dettagli Pressa' },
-  'trend_extruder' : { 'eng':'Trend Extruder', 'it':'Grafico Pressa'  },
+  'extruder_info'         : { 'eng':'Extruder Info',          'it':'Dettagli Pressa'},
+  'trend_extruder'        : { 'eng':'Trend Extruder',         'it':'Grafico Pressa' },
+  'flour'                 : { 'eng':'Flour',                  'it':'Sfarinati'      },
+  'dough_details'         : { 'eng':'Dough Details',          'it':'Dettaglio Impasto'},
+  'dashboard_extruder'    : { 'eng':'Dashboard Extruder',     'it':'Dashboard Estrusore' },
+  'extruder_history'      : { 'eng':'Extruder History',       'it':'Storico Estrusore'},
 
   // Pagina Omnidryer
   'omnidryer_details'   : { 'eng':'Omnidryer Details',   'it':'Dati Omnidryer'      },
@@ -165,13 +185,14 @@ const array_translate_id = {
   'room_temperature'      : { 'eng':'Room Temperature',      'it':'Temperatura Camera'    },
   'steam_flow'            : { 'eng':'Steam Flow',            'it':'Flusso Vapore'         },
   'trend_pasta_instant'   : { 'eng':'Trend Pasta Instant',   'it':'Grafico Pasta Instant' },
-  'pasta_instant'         : { 'eng': 'Pasta Instant', 'it':'Pasta Instant'},
+  'pasta_instant'         : { 'eng': 'Pasta Instant', 'it':'Pasta Instant'                },
 
   // Pagina Pre-DRYER
   'pre_dryer_details'     : { 'eng':'Pre-Dryer Details', 'it':'Dati Trabatto'        },
   'pre_dryer_info'        : { 'eng':'Pre-Dryer Info',    'it':'Dati Trabatto'        },
   'pre_dryer_temperature' : { 'eng':'Pre-Dryer Info',    'it':'Temperatura Trabatto' },
   'trend_pre_dryer'       : { 'eng':'Trend Pre-Dryer',   'it':'Grafico Trabatto'     },
+  'pre_dryer_history'     : { 'eng':'Pre-Dryer History', 'it':'Storico Predryer'     },
 
   // Pagina Spreader
   'spreader_details'  : { 'eng':'Spreader Details',  'it':'Dati Stenditrice'    },
@@ -179,8 +200,9 @@ const array_translate_id = {
   'stick_weight'      : { 'eng':'Stick Weight',      'it':'Peso Canna'          },
   'time_stick'        : { 'eng':'Time Stick',        'it':'Tempo Canna'         },
   'sticks_for_minute' : { 'eng':'Sticks For Minute', 'it':'Canne per Minuto'    },
-  'producted_sticks'  : { 'eng':'Producted Sticks',  'it':'Canne Prodotte'      },
+  'produced_sticks'   : { 'eng':'Produced Sticks',   'it':'Canne Prodotte'      },
   'trend_spreader'    : { 'eng':'Trend Spreader',    'it':'Grafico Stenditrice' },
+  'spreader_history'  : { 'eng':'Spreader History',  'it':'Storico Stenditrice' },
 
   // Pagina Trail feeder
   'tray_feeder_details' : { 'eng':'Tray-Feeder Details', 'it':'Dati Avanzamento Telai'    },
@@ -189,20 +211,19 @@ const array_translate_id = {
   'motor_speed'         : { 'eng':'Motor Speed',         'it':'Velocità Motore'           },
   'trend_tray_feeder'   : { 'eng':'Trend Tray-Feeder',   'it':'Grafico Avanzamento Telai' },
   'trend_tray_feeder'   : { 'eng':'Trend Tray-Feeder',   'it':'Grafico Avanzamento Telai' },
+  'tray_feeder_history' : { 'eng':'Tray Feeder History', 'it':'Storico Avanzamento Telai' },
   // SideBar menu
-  'machines'  : {'eng':'Machines', 'it':'Macchine' },
-  'alarms'  : {'eng':'Alarms', 'it':'Allarmi' },
-  'alarms_history'  : {'eng':'Alarm History', 'it':'Storico Alarmi' },
-  'profile_settings'  : {'eng':'Profile Settings', 'it':'Impostazione del Profilo' },
-  'clients_list' : {'eng' : 'List of Clients', 'it':'Lista CLienti'},
+  'machines'                  : {'eng':'Machines',       'it':'Macchine'                  },
+  'alarms'                    : {'eng':'Alarms',         'it':'Allarmi'                   },
+  'alarms_history'            : {'eng':'Alarm History',  'it':'Storico Alarmi'            },
+  'profile_settings'          : {'eng':'Profile Settings','it':'Impostazione del Profilo' },
+  'clients_list'              : {'eng' : 'List of Clients','it':'Lista CLienti'           },
   // Pagina Customer
-  'list_clients_connected': {'eng': 'List of Clients Connected', 'it' : 'Lista Clienti Connessi' },
-  'list_clients_disconnected' : {'eng': 'List of Clients Disconnected', 'it': 'Lista Clienti Disconnessi'},
-  'connection_status' : {'eng' : 'Connection Status', 'it':'Stato Connessione'},
-  'dryers' : {'eng' : 'Dryers', 'it':'Celle'},
-  'line' : {'eng' : 'Line', 'it':'Linea'},
-  '' : {'eng' : '', 'it':''}
-
+  'list_clients_connected'    : {'eng': 'List of Clients Connected',    'it' : 'Lista Clienti Connessi'   },
+  'list_clients_disconnected' : {'eng': 'List of Clients Disconnected', 'it': 'Lista Clienti Disconnessi' },
+  'connection_status'         : {'eng' : 'Connection Status',           'it':'Stato Connessione'          },
+  'dryers'                    : {'eng' : 'Dryers',                      'it':'Celle'                      },
+  'line'                      : {'eng' : 'Line',                        'it':'Linea'                      },
 }
 
 export{getLanguage}
