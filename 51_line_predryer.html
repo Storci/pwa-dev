@@ -62,7 +62,7 @@
                 <nav id="sidebarMenu" class="bg-light col-lg-2 col-md-3 collapse d-md-block sidebar sidebar-scroll sidebar-scroll-hidden"> 
                     <div class="h-100 pt-3"> 
                         <ul class="nav flex-column" id="IDNavPrimary"> 
-                            <li class="d-none nav-item" id="id-nav-customers-list"> <a class="align-items-center d-flex nav-link" aria-current="page" href="01_Customers.html" id="id-nav-customers-list"> <span class="material-icons-outlined">group</span><span class="ms-3">Lista Clienti</span> </a> 
+                            <li class="d-none nav-item" id="id-nav-customers-list"> <a class="align-items-center d-flex nav-link" aria-current="page" href="01_Customers.html" id="id-nav-customers-list"> <span class="material-icons-outlined">group</span><span class="ms-3" translate_id="clients_list">List of Clients</span> </a> 
                             </li>                             
                             <li class="nav-item"> <a class="align-items-center d-flex nav-link" aria-current="page" href="02_Dashboard.html" id="id-nav-dashboard"><span class="material-icons-outlined">insert_chart</span><span class="ms-3">Dashboard</span>&nbsp;</a> 
                             </li>                             
@@ -139,7 +139,7 @@
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="extruder" id="id-nav-extruder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="extruder">Extruder</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="tray-feeder">Tray Feeder/span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="tray-feeder">Tray Feeder</span>&nbsp;</a> 
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="destacker" id="id-nav-destacker-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="destacker-robot">Destacker Robot</span>&nbsp;</a> 
                                         </li>                                         
@@ -147,7 +147,7 @@
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="lasagna_nest">Lasagne Nest</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="">Pasta Instant</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pasta_instant">Pasta Instant</span>&nbsp;</a> 
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="predryer" id="id-nav-predryer-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pre-dryer">Pre-Dryer</span>&nbsp;</a> 
                                         </li>                                         
@@ -198,7 +198,7 @@
                         <div class="col-md-4"> 
                             <div class="card"> 
                                 <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Ricetta in uso</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="recipe_in_use">Ricetta in uso</h6> 
                                     <div class="align-items-end mb-0 row row-cols-2"> 
                                         <div class="align-items-end col-md-auto d-flex h-25"> 
                                             <h4 class="mb-0"><span propertyname="Impasto_Ricetta_Numero_Ricetta" decimals="0">0</span><span class="ms-2" propertyname="Impasto_Ricetta_Nome_Ricetta">Ricetta</span></h4> 
@@ -210,7 +210,7 @@
                         <div class="col-md-4"> 
                             <div class="card"> 
                                 <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Temperatura trabatto</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="pre_dryer_temperature">Temperatura trabatto</h6> 
                                     <div class="align-items-end mb-0 row row-cols-2"> 
                                         <div class="align-items-end col-md-auto d-flex h-25"> 
                                             <h4 class="mb-0"><span propertyname="Trabatto_PV_Temperatura_Trabatto" decimals="2">0.00</span><span class="ms-2">°C</span></h4> 
@@ -227,7 +227,7 @@
                         <div class="col-md h-100"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Produzione Attuale</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="actual_production">Produzione Attuale</h6> 
                                     <div class="pg-empty-placeholder" id="IDLegendActualProduzione"></div>                                     
                                     <div class="pg-empty-placeholder" id="IDTrendActualProduction" style="height: 50vh;"></div>                                     
                                 </div>                                 
@@ -235,17 +235,17 @@
                         </div>                         
                     </div>                     
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Storico Trabatto</h1> 
+                        <h1 class="h2" translate_id="pre_dryer_history">Storico Trabatto</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
                         </div>                         
                     </div>                     
                     <div class="mb-5 row"> 
-                        <div class="col-lg-4"> 
+                        <div class="col-lg-5"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Produzione Attuale</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="production_list">Lista Produzioni Storiche</h6>
                                     <div class="pb-3 pt-3 text-muted" data-pg-name="date"> 
                                         <input type="date" placeholder="gg/mm/aaaa" class="bg-gradient bg-transparent border-0 border-2 border-bottom text-muted w-100" id="IDTimeStart"/> 
                                     </div>                                     
@@ -254,24 +254,24 @@
                                     </div>                                     
                                     <div> 
                                         <table id="IDHistoryTable" class="table table-hover table-responsive"> 
-                                            <thead> 
-                                                <tr> 
-                                                    <th class="fw-light text-muted">Inizio Produzione</th> 
-                                                    <th class="fw-light text-muted">Fine Produzione</th> 
-                                                    <th class="fw-light text-muted">Nome Ricetta</th> 
-                                                    <th class="fw-light text-muted">Durata</th> 
-                                                </tr>                                                 
-                                            </thead>                                             
-                                            <tbody class="h-50 pg-empty-placeholder" id="IDHistoryTableBody"></tbody>                                             
+                                                <thead> 
+                                                    <tr> 
+                                                        <th class="fw-light text-muted" translate_id="start_production">Inizio Produzione</th> 
+                                                        <th class="fw-light text-muted" translate_id="end_production">Fine Produzione</th> 
+                                                        <th class="fw-light text-muted" translate_id="recipe_name">Nome Ricetta</th> 
+                                                        <th class="fw-light text-muted" translate_id="duration">Durata</th> 
+                                                    </tr>                                                     
+                                                </thead>                                                 
+                                                <tbody class="h-50 pg-empty-placeholder" id="IDHistoryTableBody"></tbody>                                                 
                                         </table>                                         
                                     </div>                                     
                                 </div>                                 
                             </div>                             
                         </div>                         
-                        <div class="col-md h-100"> 
+                        <div class="col-lg-7 h-100"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Produzione Attuale</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="history_chart">Produzione Attuale</h6> 
                                     <div class="pg-empty-placeholder" id="IDLegendHistoryProduction"></div>                                     
                                     <div class="pg-empty-placeholder" id="IDTrendHistoryProduction" style="height: 50vh;"></div>                                     
                                 </div>                                 

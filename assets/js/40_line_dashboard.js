@@ -20,6 +20,9 @@ $('#IDRow3').css("display", "none")
 $('#IDNavbar').css("display", "none")
 $("#IDDivSpinning").css("display", "block")
 */
+// Recupera il nome dell'utente da firebase, controlla che sia loggato.
+// Nel caso non fosse loggato richiama la pagina di login
+fb.onAuthStateChanged_2()
 
 // Esegue il codice principale al caricamento della pagina
 $("body").ready(async function(){

@@ -1,10 +1,13 @@
 // Carica le funzioni globali
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
+import * as lang from "./Global/Common/Translation.js"
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
+//funzione per la traduzione
+lang.getLanguage()
 // Recupera la lista dei clienti presenti da tw
 tw.getCustomersList()
 .then(customerList => {
@@ -50,34 +53,34 @@ function createCard(customerList){
 		card 	+=	'				<div class="w-100" style="padding: 6px;"></div>'
 		card 	+=	'				<div class="col-7 align-self-center">'
 		// RIGA STATO CONNESSIONE
-		card 	+=	'					<h6 class="card-subtitle card-label-' + i + '" style="margin: 0px;color: var(--bs-heading-medium-emphasis);font-size: 14px;min-height: 20px;">Stato Connessione</h6>'
+		card 	+=	'					<h6 class="card-subtitle card-label-' + i + '" style="margin: 0px;color: var(--bs-heading-medium-emphasis);font-size: 14px;min-height: 20px;" translate_id="connection_status">Stato Connessione</h6>'
 		card 	+=	'				</div>'
 		card 	+=	'				<div class="col-5 align-self-center">'
-		card 	+=	'					<h6 id="' + id + 'ConnectionState" class="card-value-' + i + '" style="margin: 0px;font-size: 14px;min-height: 20px;color: var(--bs-heading-high-emphasis);">Non Connesso</h6>'
+		card 	+=	'					<h6 id="' + id + 'ConnectionState" class="card-value-' + i + '" style="margin: 0px;font-size: 14px;min-height: 20px;color: var(--bs-heading-high-emphasis);" translate_id="">Non Connesso</h6>'
 		card 	+=	'				</div>'
 		card 	+=	'				<div class="w-100" style="padding: 6px;"></div>'
 		// RIGA LINEA
 		card 	+=	'				<div class="col-7 align-self-center line_' + id + '">'
-		card 	+=	'					<h6 class="card-subtitle card-label-' + i + '" style="margin: 0px;color: var(--bs-heading-medium-emphasis);font-size: 14px;min-height: 20px;">Linea</h6>'
+		card 	+=	'					<h6 class="card-subtitle card-label-' + i + '" style="margin: 0px;color: var(--bs-heading-medium-emphasis);font-size: 14px;min-height: 20px;" translate_id="line">Linea</h6>'
 		card 	+=	'				</div>'
 		card 	+=	'				<div class="col-5 align-self-center line_' + id + '"">'
-		card 	+=	'					<h6 id="' + id + 'StatusLine" class="card-value-' + i + '" style="margin: 0px;font-size: 14px;min-height: 20px;color: var(--bs-heading-high-emphasis);">undefined</h6>'
+		card 	+=	'					<h6 id="' + id + 'StatusLine" class="card-value-' + i + '" style="margin: 0px;font-size: 14px;min-height: 20px;color: var(--bs-heading-high-emphasis);" translate_id="">undefined</h6>'
 		card 	+=	'				</div>'
 		card 	+=	'				<div class="w-100 line_' + id + '" style="padding: 6px;"></div>'
 		// RIGA CELLA
 		card 	+=	'				<div class="col-7 align-self-center dryer_' + id + '">'
-		card 	+=	'					<h6 class="card-subtitle card-label-' + i + '" style="margin: 0px;color: var(--bs-heading-medium-emphasis);font-size: 14px;min-height: 20px;">Celle</h6>'
+		card 	+=	'					<h6 class="card-subtitle card-label-' + i + '" style="margin: 0px;color: var(--bs-heading-medium-emphasis);font-size: 14px;min-height: 20px;" translate_id="dryers">Celle</h6>'
 		card 	+=	'				</div>'
 		card 	+=	'				<div class="col-5 align-self-center dryer_' + id + '">'
-		card 	+=	'					<h6 id="' + id + 'StatusCella" class="card-value-' + i + '" style="margin: 0px;font-size: 14px;min-height: 20px;color: var(--bs-heading-high-emphasis);">undefined<br /></h6>'
+		card 	+=	'					<h6 id="' + id + 'StatusCella" class="card-value-' + i + '" style="margin: 0px;font-size: 14px;min-height: 20px;color: var(--bs-heading-high-emphasis);" translate_id="">undefined<br /></h6>'
 		card 	+=	'				</div>'
 		card 	+=	'				<div class="w-100 dryer_' + id + '" style="padding: 6px;"></div>'
 		// RIGA ALLARMI
 		card 	+=	'				<div class="col-7 align-self-center">'
-		card 	+=	'					<h6 class="card-subtitle card-label-' + i + '" style="margin: 0px;color: var(--bs-heading-medium-emphasis);font-size: 14px;min-height: 20px;">Allarmi</h6>'
+		card 	+=	'					<h6 class="card-subtitle card-label-' + i + '" style="margin: 0px;color: var(--bs-heading-medium-emphasis);font-size: 14px;min-height: 20px;" translate_id="alarms">Allarmi</h6>'
 		card 	+=	'				</div>'
 		card 	+=	'				<div class="col-5 align-self-center">'
-		card 	+=	'					<h6 id="' + id + 'Allarmi" class="card-value-' + i + '" style="margin: 0px;font-size: 14px;min-height: 20px;color: var(--bs-heading-high-emphasis);">undefined<br /></h6>'
+		card 	+=	'					<h6 id="' + id + 'Allarmi" class="card-value-' + i + '" style="margin: 0px;font-size: 14px;min-height: 20px;color: var(--bs-heading-high-emphasis);" translate_id="">undefined<br /></h6>'
 		card 	+=	'				</div>'
 		card 	+=	'				<div class="w-100" style="padding: 6px;"></div>'
 		card 	+=	'			</div>'

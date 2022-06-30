@@ -22,6 +22,9 @@ let pageURL = window.location.href
 //fb.onAuthStateChanged_2(baseURL, pageURL)
 // Recupera dei dati dalle local storage
 
+// Recupera il nome dell'utente da firebase, controlla che sia loggato.
+// Nel caso non fosse loggato richiama la pagina di login
+fb.onAuthStateChanged_2()
 // Imposta il nome del cliente nella breadcrumb
 // Vengono sostituiti tutti gli underscore presenti nel nome
 //$("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
