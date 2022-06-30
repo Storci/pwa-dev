@@ -164,6 +164,8 @@ const array_translate_id = {
   'dough_details'         : { 'eng':'Dough Details',          'it':'Dettaglio Impasto'},
   'dashboard_extruder'    : { 'eng':'Dashboard Extruder',     'it':'Dashboard Estrusore' },
   'extruder_history'      : { 'eng':'Extruder History',       'it':'Storico Estrusore'},
+  'dati_vite'             : { 'eng':'Instant Screw Data',     'it':'Dati vite Instantanei'},
+  
 
   // Pagina Omnidryer
   'omnidryer_details'   : { 'eng':'Omnidryer Details',   'it':'Dati Omnidryer'      },
@@ -185,7 +187,8 @@ const array_translate_id = {
   'room_temperature'      : { 'eng':'Room Temperature',      'it':'Temperatura Camera'    },
   'steam_flow'            : { 'eng':'Steam Flow',            'it':'Flusso Vapore'         },
   'trend_pasta_instant'   : { 'eng':'Trend Pasta Instant',   'it':'Grafico Pasta Instant' },
-  'pasta_instant'         : { 'eng': 'Pasta Instant', 'it':'Pasta Instant'                },
+  'pasta_instant'         : { 'eng': 'Pasta Instant',        'it':'Pasta Instant'         },
+  'steam_flow'            : { 'eng': 'Steam Flow',           'it':'Fusso Vapore'          },
 
   // Pagina Pre-DRYER
   'pre_dryer_details'     : { 'eng':'Pre-Dryer Details', 'it':'Dati Trabatto'        },
@@ -224,6 +227,31 @@ const array_translate_id = {
   'connection_status'         : {'eng' : 'Connection Status',           'it':'Stato Connessione'          },
   'dryers'                    : {'eng' : 'Dryers',                      'it':'Celle'                      },
   'line'                      : {'eng' : 'Line',                        'it':'Linea'                      },
+  //pagine profilo
+  'name'                      : {'eng':'Name',                                        'it':'Nome'                             },
+  'lastname'                  : {'eng': 'Surname',                                    'it':'Cognome'                          },
+  'email'                     : {'eng': 'Email',                                      'it':'indirizzo Mail'                   },
+  'company'                   : {'eng': 'Company Name',                               'it':'Nome Azienda'                     },
+  'tel'                       : {'eng': 'Phone Number',                               'it':'Numero Cellulare'                 },
+  'state'                     : {'eng': 'State/Country',                              'it':'Stato / Paese'                    },
+  'profile_settings'          : {'eng': 'Profile Settings',                           'it':'Impostazione Profilo'             },
+  'update_btn'                : {'eng': 'Update profile Info',                        'it':'Aggiorna informazione profilo'    },
+  'change_password'           : {'eng': 'Change Password',                            'it':'Cambio Password'                  },
+  'old'                       : {'eng': 'Old Password',                               'it':'Vecchia Password'                 },
+  'new'                       : {'eng': 'New Password ',                              'it':'Nuova Password'                   },
+  'update_heading'            : {'eng': 'Update Password',                            'it':'Aggiorna Password'                },
+  'update_btn'                : {'eng': 'Update Password',                            'it':'Aggiorna Password'                },
+  'notification'              : {'eng': 'Allow Notification',                         'it':'Consentire Notifiche'             },
+  'theme'                     : {'eng': 'Change Theme',                               'it':'Cambia Tema'                      },
+  'no'                        : {'eng': 'No',                                         'it':'No'                               },
+  'yes'                       : {'eng': 'Yes',                                        'it':'Si'                               },
+  'alert_profile_update'      : {'eng': 'Profile updated Successfully',               'it':'Profilo aggiornato con successo'  },
+  'alert_password_update'     : {'eng': 'Password Update Successfully',               'it':'Password aggiornato con Successo' },
+  'alert_profile_update_error': {'eng': 'Password update failed, Please try again',   'it':'aggiornamento password fallito'   },
+
+
+
 }
+
 
 export{getLanguage}

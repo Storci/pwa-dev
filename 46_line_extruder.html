@@ -198,12 +198,12 @@
                         <div class="col-md-4"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Dati Vite Instantanei</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="dati_vite">Dati Vite Instantanei</h6> 
                                     <div class="gy-4 mt-1 row row-cols-1"> 
                                         <div> 
                                             <div class="d-inline-flex"> <span class="align-self-center material-icons-outlined md-48" style="color: #6f42c1;">group_work</span> 
                                                 <div class="d-flex flex-column"> 
-                                                    <h4 class="mb-0 ms-3"> <span propertyname="Pressa_Motori_Estrusore_PV_Pressione">0</span> <span class="ms-2">Bar</span> </h4> <span class="ms-3 text-secondary">Pressione Estrusore</span> 
+                                                    <h4 class="mb-0 ms-3"> <span propertyname="Pressa_Motori_Estrusore_PV_Pressione">0</span> <span class="ms-2">Bar</span> </h4> <span class="ms-3 text-secondary" translate_id="extruder_pressure">Pressione Estrusore</span> 
                                                 </div>                                                 
                                             </div>                                             
                                             <div class="progress"> 
@@ -213,7 +213,7 @@
                                         <div> 
                                             <div class="d-inline-flex"> <span class="align-self-center material-icons-outlined md-48 text-danger">device_thermostat</span> 
                                                 <div class="d-flex flex-column"> 
-                                                    <h4 class="mb-0 ms-3"> <span propertyname="Pressa_Termostatazione_Cilindro_PV_Temperatura">0</span> <span class="ms-2">°C</span></h4> <span class="ms-3 text-secondary">Temperatura Cilindro</span> 
+                                                    <h4 class="mb-0 ms-3"> <span propertyname="Pressa_Termostatazione_Cilindro_PV_Temperatura">0</span> <span class="ms-2">°C</span></h4> <span class="ms-3 text-secondary" trnaslate_id="cylinder_temperature">Temperatura Cilindro</span> 
                                                 </div>                                                 
                                             </div>                                             
                                             <div class="progress progress-height"> 
@@ -223,7 +223,7 @@
                                         <div> 
                                             <div class="d-inline-flex"> <span class="align-self-center material-icons-outlined md-48 text-danger">device_thermostat</span> 
                                                 <div class="d-flex flex-column"> 
-                                                    <h4 class="mb-0 ms-3"><span propertyname="Pressa_Termostatazione_Testata_PV_Temperatura">0</span><span class="ms-2">°C</span></h4> <span class="ms-3 text-secondary">Temperatura Testata</span> 
+                                                    <h4 class="mb-0 ms-3"><span propertyname="Pressa_Termostatazione_Testata_PV_Temperatura">0</span><span class="ms-2">°C</span></h4> <span class="ms-3 text-secondary" translate_id="head_temperature">Temperatura Testata</span> 
                                                 </div>                                                 
                                             </div>                                             
                                             <div class="progress progress-height"> 
@@ -264,7 +264,7 @@
                         <div class="col-lg-5"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="history_list">Lista Produzioni Storiche</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="production_list">Lista Produzioni Storiche</h6> 
                                     <div class="pb-3 pt-3 text-muted" data-pg-name="date"> 
                                         <input type="date" placeholder="gg/mm/aaaa" class="bg-gradient bg-transparent border-0 border-2 border-bottom text-muted w-100" id="IDTimeStart"/> 
                                     </div>                                     
@@ -275,10 +275,10 @@
                                         <table id="IDHistoryTable" class="table table-hover table-responsive"> 
                                             <thead> 
                                                 <tr> 
-                                                    <th class="fw-light text-muted" trnaslate_id="start_production">Inizio Produzione</th> 
+                                                    <th class="fw-light text-muted" translate_id="start_production">Inizio Produzione</th> 
                                                     <th class="fw-light text-muted" translate_id="end_production">Fine Produzione</th> 
                                                     <th class="fw-light text-muted" translate_id="recipe_name">Nome Ricetta</th> 
-                                                    <th class="fw-light text-muted" trnaslate_id="duration">Durata</th> 
+                                                    <th class="fw-light text-muted" translate_id="duration">Durata</th> 
                                                 </tr>                                                 
                                             </thead>                                             
                                             <tbody class="h-50 pg-empty-placeholder" id="IDHistoryTableBody"></tbody>                                             
@@ -290,7 +290,7 @@
                         <div class="col-lg-7 h-100"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="history_chart">Grafico Storico</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="chart_history">Grafico Storico</h6> 
                                     <div class="pg-empty-placeholder" id="IDLegendHistoryProduction"></div>                                     
                                     <div class="pg-empty-placeholder" id="IDTrendHistoryProduction" style="height: 50vh;"></div>                                     
                                 </div>                                 
