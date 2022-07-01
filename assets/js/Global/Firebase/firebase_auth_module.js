@@ -34,9 +34,17 @@ function signUpWithEmailPassword(email, password, baseURL) {
 	.catch((error) => {
 		let errorCode = error.code
 		let errorMessage = error.message
+		let errorMail = error.code
+		let errorMailMessage = error.message
 
 		$('#IDErrorMessage').css("display", "block")
 		$('#IDErrorMessage').text('code: ' + errorCode + ' - ' + errorMessage)
+
+		// effettuare un controllo se la mail esiste gia in firebase
+		if(errorMail == "auth/email-already-in-use"){
+			$("#signUpfailed").fadeIn(3000);
+			console.log(errorMail)
+		}
 	})
 }
 

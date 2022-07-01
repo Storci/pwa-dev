@@ -31,7 +31,6 @@ $('#IDButtonSignUp').click(function(){
         
         let pass1 = $('#IDPassword').val()
         let pass2 = $('#IDPassword_repeat').val()
-
         if(pass1 == pass2){
           fb.signUpWithEmailPassword(email, pass1, baseURL)
           tw.service_97_addNewUser(email, customerCode)
