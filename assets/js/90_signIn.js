@@ -32,7 +32,7 @@ $("#IDButtonLogin").click(function(){
 					}else{
 						// Carica la pagina.
 						//window.location.href = "./02_Dashboard.html?entityName=" + customer.rows[0].entityName
-						window.location.href = "./00_main_page.html?entityName=" + customer.rows[0].entityName
+						window.location.href = "./02_Dashboard.html?entityName=" + customer.rows[0].entityName
 					}
 				})
 				.catch(error => console.error(error))
