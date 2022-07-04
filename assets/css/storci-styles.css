@@ -379,3 +379,7 @@ a {
         width: 100% !important;
     }
  }*/
+ .card-result{
+    color:var(--bs-heading-high-emphasis);
+ }
+

@@ -248,6 +248,7 @@ const array_translate_id = {
   'alert_profile_update'      : {'eng': 'Profile updated Successfully',               'it':'Profilo aggiornato con successo'  },
   'alert_password_update'     : {'eng': 'Password Update Successfully',               'it':'Password aggiornato con Successo' },
   'alert_profile_update_error': {'eng': 'Password update failed, Please try again',   'it':'aggiornamento password fallito'   },
+  'language'                  : {'eng': 'Langauge Preference',                        'it':'Preferenza per la Lingua'          },
 
 
 

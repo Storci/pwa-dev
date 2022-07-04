@@ -45,8 +45,8 @@ $('#mycheck').change(function() {
 		localStorage.setItem('global_theme', "Dark");
 		
 		// Cambia le icone light/dark da black a white
-		$('#IDDarkModeIcon').css("background-image", "url(" + baseURL + "/assets/img/Icone/Light/dark_mode_white_24dp.svg)");  
-		$('#IDLightModeIcon').css("background-image", "url(" + baseURL + "/assets/img/Icone/Light/light_mode_white_24dp.svg)");  
+		$('#IDDarkModeIcon').css("background-image", "url("  + "/assets/img/Icone/Light/dark_mode_white_24dp.svg)");  
+		$('#IDLightModeIcon').css("background-image", "url("  + "/assets/img/Icone/Light/light_mode_white_24dp.svg)");  
 
 		$("html").addClass("dark")
 		
@@ -57,8 +57,8 @@ $('#mycheck').change(function() {
 		localStorage.setItem('global_theme', "Light");
 		
 		// Cambia le icone light/dark da white a black
-		$('#IDDarkModeIcon').css("background-image", "url(" + baseURL + "/assets/img/Icone/Dark/dark_mode_black_24dp.svg)");  
-		$('#IDLightModeIcon').css("background-image", "url(" + baseURL + "/assets/img/Icone/Dark/light_mode_black_24dp.svg)");  
+		$('#IDDarkModeIcon').css("background-image", "url("  + "/assets/img/Icone/Dark/dark_mode_black_24dp.svg)");  
+		$('#IDLightModeIcon').css("background-image", "url("  + "/assets/img/Icone/Dark/light_mode_black_24dp.svg)");  
 		
 		$("html").removeClass("dark")
 	}
