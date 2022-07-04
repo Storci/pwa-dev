@@ -30,8 +30,9 @@ $("#IDButtonLogin").click(function(){
 						// Carica la pagina.
 						window.location.href = "./01_Customers.html"
 					}else{
+						// salvo il customer selezionato
+						localStorage.setItem('global_entityName', customer.rows[0].entityName)
 						// Carica la pagina.
-						//window.location.href = "./02_Dashboard.html?entityName=" + customer.rows[0].entityName
 						window.location.href = "./02_Dashboard.html?entityName=" + customer.rows[0].entityName
 					}
 				})
