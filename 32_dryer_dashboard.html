@@ -49,7 +49,7 @@
         <!-- CUSTOM SCRIPT -->         
         <script src="./assets/js/sidebar.js" type="module"></script>         
         <script defer src="./assets/js/32_dryer_dashboard.js" type="module"></script>         
-        <!--<script src="./assets/js/Global/Common/Theme.js" type="module"></script>-->
+        <script src="./assets/js/Global/Common/Theme.js" type="module"></script>
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -186,9 +186,9 @@
                         </ul>                         <span style="font-size: 10px;" class="p-1">Version</span> 
                     </div>                     
                 </nav>                 
-                <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4" id="id-column-master" data-pgc-field="id-column-master"> 
+                <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4 bg-white-customized" id="id-column-master" data-pgc-field="id-column-master"> 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Dati Cella</h1> 
+                        <h1 class="h2 card-result">Dati Cella</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
@@ -198,54 +198,54 @@
                         <div class="div_minimum"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-title text-muted" translate_id="dryer_number">Numero Cella</h6> 
-                                    <h4 class="card-subtitle mb-2" id="cell_number">Card subtitle</h4> 
+                                    <h6 class="card-title text-muted card_heading_label" translate_id="dryer_number">Numero Cella</h6> 
+                                    <h4 class="card-subtitle mb-2 card-result" id="cell_number">Card subtitle</h4> 
                                 </div>                                 
                             </div>                             
                         </div>                         
                         <div class="div_minimum"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-title text-muted" translate_id="number_of_trolley">Numero Carrelli</h6> 
-                                    <h4 class="card-subtitle mb-2" id="number_trolleys">Card subtitle</h4> 
+                                    <h6 class="card-title text-muted card_heading_label" translate_id="number_of_trolley">Numero Carrelli</h6> 
+                                    <h4 class="card-subtitle mb-2 card-result" id="number_trolleys">Card subtitle</h4> 
                                 </div>                                 
                             </div>                             
                         </div>                         
                         <div class="div_minimum"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-title text-muted" translate_id="dryer_status">Stato Cella</h6> 
-                                    <h4 class="card-subtitle mb-2" id="cell_status">Card subtitle</h4> 
+                                    <h6 class="card-title text-muted card_heading_label" translate_id="dryer_status">Stato Cella</h6> 
+                                    <h4 class="card-subtitle mb-2 card-result" id="cell_status">Card subtitle</h4> 
                                 </div>                                 
                             </div>                             
                         </div>                         
                         <div class="div_minimum"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-title text-muted" translate_id="current_recipe">Ricetta in uso</h6> 
-                                    <h4 class="card-subtitle mb-2" id="recipe">Card subtitle</h4> 
+                                    <h6 class="card-title text-muted card_heading_label" translate_id="current_recipe">Ricetta in uso</h6> 
+                                    <h4 class="card-subtitle mb-2 card-result" id="recipe">Card subtitle</h4> 
                                 </div>                                 
                             </div>                             
                         </div>                         
                         <div class="div_minimum"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-title text-muted" translate_id="total_drying_time">Tempo Essiccazione</h6> 
-                                    <h4 class="card-subtitle mb-2" id="total_time_recipe">Card subtitle</h4> 
+                                    <h6 class="card-title text-muted card_heading_label" translate_id="total_drying_time">Tempo Essiccazione</h6> 
+                                    <h4 class="card-subtitle mb-2 card-result" id="total_time_recipe">Card subtitle</h4> 
                                 </div>                                 
                             </div>                             
                         </div>                         
                         <div class="div_minimum"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-title text-muted" translate_id="current_phase_time">Tempo Fase attuale</h6> 
-                                    <h4 class="card-subtitle mb-2" id="phase_time_recipe">Card subtitle</h4> 
+                                    <h6 class="card-title text-muted card_heading_label" translate_id="current_phase_time">Tempo Fase attuale</h6> 
+                                    <h4 class="card-subtitle mb-2 card-result" id="phase_time_recipe">Card subtitle</h4> 
                                 </div>                                 
                             </div>                             
                         </div>                         
                     </div>                     
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2" translate_id="dryer_graph">Grafico Cella</h1> 
+                        <h1 class="h2 card-result" translate_id="dryer_graph">Grafico Cella</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
@@ -254,7 +254,7 @@
                     <div class="card h-50 mb-5"> 
                         <div class="card-body d-flex flex-column"> 
                             <div data-pg-name="Title"> 
-                                <h6 class="text-muted" translate_id="">Trend Essicazione</h6> 
+                                <h6 class="text-muted card_heading_label" translate_id="">Trend Essicazione</h6> 
                             </div>                             
                             <div class="pg-empty-placeholder" data-pg-name="legend" id="IDLegendActualProduzione"></div>                             
                             <div class="flex-grow-1 flex-shrink-1 pg-empty-placeholder" data-pg-name="chart" id="IDTrendActualProduction"></div>                             
@@ -262,7 +262,7 @@
                         </div>                         
                     </div>                     
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2" translate_id="dryer_history">Storico Cella</h1> 
+                        <h1 class="h2 card-result" translate_id="dryer_history">Storico Cella</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
@@ -272,7 +272,7 @@
                         <div class="col-lg-6 history_table"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="actual_production">Produzione Attuale</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted card_heading_label" translate_id="actual_production">Produzione Attuale</h6> 
                                     <div class="pb-3 pt-3 text-muted" data-pg-name="date"> 
                                         <input type="date" placeholder="gg/mm/aaaa" class="bg-transparent border-0 border-2 border-bottom text-muted w-100" id="IDTimeStart"/> 
                                     </div>                                     
@@ -283,10 +283,10 @@
                                         <table id="IDHistoryTable" class="table table-hover table-responsive"> 
                                             <thead> 
                                                 <tr> 
-                                                    <th translate_id="start_drying">Inizio Essiccazione</th> 
-                                                    <th translate_id="end_drying">Fine Essiccazione</th> 
-                                                    <th translate_id="recipe_name">Nome Ricetta</th> 
-                                                    <th translate_id="duration">Durata</th> 
+                                                    <th translate_id="start_drying" class="card_heading_label">Inizio Essiccazione</th> 
+                                                    <th translate_id="end_drying" class="card_heading_label">Fine Essiccazione</th> 
+                                                    <th translate_id="recipe_name" class="card_heading_label">Nome Ricetta</th> 
+                                                    <th translate_id="duration" class="card_heading_label">Durata</th> 
                                                 </tr>                                                 
                                             </thead>                                             
                                             <tbody class="h-50 pg-empty-placeholder" id="IDHistoryTableBody"></tbody>                                             
@@ -299,7 +299,7 @@
                             <div class="card"> 
                                 <div class="card-body d-flex flex-column"> 
                                     <div data-pg-name="Title"> 
-                                        <h6 class="text-muted" translate_id="dryer_history_graph">Trend Storico Essiccazione</h6> 
+                                        <h6 class="text-muted card_heading_label" translate_id="dryer_history_graph">Trend Storico Essiccazione</h6> 
                                     </div>                                     
                                     <div class="pg-empty-placeholder" data-pg-name="legend" id="IDLegendHistoryProduction"></div>                                     
                                     <div class="flex-grow-1 flex-shrink-1 pg-empty-placeholder" data-pg-name="chart" id="IDTrendHistoryProduction"></div>                                     

@@ -186,9 +186,9 @@
                         </ul>                         <span style="font-size: 10px;" class="p-1">Version</span> 
                     </div>                     
                 </nav>                 
-                <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4" id="id-column-master" data-pgc-field="id-column-master"> 
+                <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4 bg-white-customized" id="id-column-master" data-pgc-field="id-column-master"> 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2" tanslate_id="group_dashboard">Dashboard Gruppo Impasto</h1> 
+                        <h1 class="h2 card-result" tanslate_id="group_dashboard">Dashboard Gruppo Impasto</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
@@ -198,12 +198,12 @@
                         <div class="col-md-4"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="dough_data">Dati Impasto Instantanei</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted card_heading_label" translate_id="dough_data">Dati Impasto Instantanei</h6> 
                                     <div class="gy-4 mt-1 row row-cols-1"> 
                                         <div> 
                                             <div class="d-inline-flex"> <span class="align-self-center material-icons-outlined md-48 text-contrast text-secondary">grain</span> 
                                                 <div class="d-flex flex-column"> 
-                                                    <h4 class="mb-0 ms-3" propertyname="Impasto_PV_Impasto_Totale">0 kg/h</h4> <span class="ms-3 text-secondary" translate_id="actual_production">Produzione Attuale</span> 
+                                                    <h4 class="mb-0 ms-3" propertyname="Impasto_PV_Impasto_Totale">0 kg/h</h4> <span class="ms-3 text-secondary card_heading_label" translate_id="actual_production">Produzione Attuale</span> 
                                                 </div>                                                 
                                             </div>                                             
                                             <div class="progress"> 
@@ -236,7 +236,7 @@
                                         <div> 
                                             <div class="d-inline-flex"> <span class="align-self-center material-icons-outlined md-48 text-secondary">invert_colors</span> 
                                                 <div class="d-flex flex-column"> 
-                                                    <h4 class="mb-0 ms-3" propertyname="Impasto_PV_Dosatore_Liquido_1">0 l/h</h4> <span class="ms-3 text-secondary" translate_id="Uovo">Uovo (o Liquido Colorante)</span> 
+                                                    <h4 class="mb-0 ms-3" propertyname="Impasto_PV_Dosatore_Liquido_1">0 l/h</h4> <span class="ms-3 text-secondary card_heading_label" translate_id="Uovo">Uovo (o Liquido Colorante)</span> 
                                                 </div>                                                 
                                             </div>                                             
                                             <div class="progress progress-height"> 
@@ -250,7 +250,7 @@
                         <div class="col-md"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="dough_set_point">Set Point Impasto</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted card_heading_label" translate_id="dough_set_point">Set Point Impasto</h6> 
                                     <div class="h-100 mh-100 pg-empty-placeholder" id="id-div-pie-chart"></div>                                     
                                 </div>                                 
                             </div>                             
@@ -259,7 +259,7 @@
                         <div class="col-md h-100"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="actual_production">Produzione Attuale</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted card_heading_label" translate_id="actual_production">Produzione Attuale</h6> 
                                     <div class="pg-empty-placeholder" id="IDLegendActualProduzione"></div>                                     
                                     <div class="pg-empty-placeholder" id="IDTrendActualProduction" style="height: 50vh;"></div>                                     
                                 </div>                                 
@@ -267,7 +267,7 @@
                         </div>                         
                     </div>                     
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Storico Gruppo Impasto</h1> 
+                        <h1 class="h2 card-result">Storico Gruppo Impasto</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
@@ -288,13 +288,13 @@
                                         <table id="IDHistoryTable" class="table table-hover table-responsive"> 
                                             <thead> 
                                                 <tr> 
-                                                    <th class="fw-light text-muted" translate_id="start_production">Inizio Produzione</th> 
-                                                    <th class="fw-light text-muted" translate_id="end_production">Fine Produzione</th> 
-                                                    <th class="fw-light text-muted" translate_id="recipe_name">Nome Ricetta</th> 
-                                                    <th class="fw-light text-muted" translate_id="duration">Durata</th> 
+                                                    <th class="fw-light text-muted card_heading_label" translate_id="start_production">Inizio Produzione</th> 
+                                                    <th class="fw-light text-muted card_heading_label" translate_id="end_production">Fine Produzione</th> 
+                                                    <th class="fw-light text-muted card_heading_label" translate_id="recipe_name">Nome Ricetta</th> 
+                                                    <th class="fw-light text-muted card_heading_label" translate_id="duration">Durata</th> 
                                                 </tr>                                                 
                                             </thead>                                             
-                                            <tbody class="h-50 pg-empty-placeholder" id="IDHistoryTableBody"></tbody>                                             
+                                            <tbody class="h-50 pg-empty-placeholder card-result" id="IDHistoryTableBody"></tbody>                                             
                                         </table>                                         
                                     </div>                                     
                                 </div>                                 
@@ -303,7 +303,7 @@
                         <div class="col-lg-7 h-100"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="history_chart">Grafico Storico</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted card_heading_label" translate_id="history_chart">Grafico Storico</h6> 
                                     <div class="pg-empty-placeholder" id="IDLegendHistoryProduction"></div>                                     
                                     <div class="pg-empty-placeholder" id="IDTrendHistoryProduction" style="height: 50vh;"></div>                                     
                                 </div>                                 

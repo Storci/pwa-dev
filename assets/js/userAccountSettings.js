@@ -2,6 +2,7 @@ import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 
+
 fb.onAuthStateChanged_2()
 lang.getLanguage()
 
@@ -70,19 +71,16 @@ let country  = document.getElementById('display_country')
                 //console.log(doc.data(user.email.Countries))
 
            firstname.value = doc.get('firstName')
-           console.log(firstname)
            lastname.value = doc.get('lastName')
            email.value = doc.get('mail')
            company.value = doc.get('companyName')
            telephone.value = doc.get('phoneNumber')
            country.value = doc.get('Countries')
-           console.log(company)
-           
         });
     });
  }
 
- // richiamodella funzione
+ // richiamo della funzione
  getData()
 
  // funzione per aaggiornare i dati dell'utnete loggato

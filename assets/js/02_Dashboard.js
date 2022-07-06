@@ -225,7 +225,7 @@ function createDivLine(IDdiv, entityName){
   let html = ''
 
   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
-  html += '<h1 class="h2" ' + keyProperty + '="nome_linea">Linea</h1>'
+  html += '<h1 class="h2 card-result" ' + keyProperty + '="nome_linea">Linea</h1>'
   html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
   html +=       '<div class="btn-group me-2"></div>'
   html +=   '</div>'
@@ -315,7 +315,7 @@ function createDivDryers(IDdiv, entityName){
   let html = ''
 
   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
-  html += '<h1 class="h2">Celle</h1>'
+  html += '<h1 class="h2 card-result">Celle</h1>'
   html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
   html +=       '<div class="btn-group me-2"></div>'
   html +=   '</div>'
