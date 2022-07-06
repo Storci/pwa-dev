@@ -235,7 +235,7 @@ const array_translate_id = {
   'tel'                       : {'eng': 'Phone Number',                               'it':'Numero Cellulare'                 },
   'state'                     : {'eng': 'State/Country',                              'it':'Stato / Paese'                    },
   'profile_settings'          : {'eng': 'Profile Settings',                           'it':'Impostazione Profilo'             },
-  'update_btn'                : {'eng': 'Update profile Info',                        'it':'Aggiorna informazione profilo'    },
+  'update_btn_profile'        : {'eng': 'Update Profile Info',                        'it':'Aggiorna informazione profilo'    },
   'change_password'           : {'eng': 'Change Password',                            'it':'Cambio Password'                  },
   'old'                       : {'eng': 'Old Password',                               'it':'Vecchia Password'                 },
   'new'                       : {'eng': 'New Password ',                              'it':'Nuova Password'                   },
