@@ -25,11 +25,10 @@ function signUpWithEmailPassword(email, password, baseURL) {
             phoneNumber : signUpForm['IDPhoneNumber'].value,
             Countries : signUpForm['IDCountries'].value,
 			companyName: signUpForm['IDCompanyName'].value
-
         });
 	}).then(() =>{
 		$("#signUpSuccess").fadeIn(3000);
-		window.location.href = './90_signIn.html'
+		//window.location.href = './90_signIn.html'
     })
 	.catch((error) => {
 		let errorCode = error.code
