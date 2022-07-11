@@ -249,7 +249,7 @@ const array_translate_id = {
   'alert_password_update'     : {'eng': 'Password Update Successfully',               'it':'Password aggiornato con Successo' },
   'alert_profile_update_error': {'eng': 'Password update failed, Please try again',   'it':'aggiornamento password fallito'   },
   'language'                  : {'eng': 'Langauge Preference',                        'it':'Preferenza per la Lingua'          },
-
+  'issues'                    : {'eng': 'Report an Issue',                            'it':'Segnalare un Problema'}
 
 
 }
