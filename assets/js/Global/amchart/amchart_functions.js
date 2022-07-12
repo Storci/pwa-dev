@@ -17,12 +17,13 @@ am4core.options.minPolylineStep = 5
 // Set di colori per le series dei grafici
 let colorChart = [
 	[
+		// colori grafici per le celle 
 		am4core.color("#3289be"),
-		am4core.color("#004071"),
-		am4core.color("#6f42c1"),
-		am4core.color("#ffa726"),
-	  am4core.color("#ef5350"),
-		am4core.color("#c62828"),
+		am4core.color("#e06b59"),// color light red for temperature PV
+		am4core.color("#c62828"),// color red for temperature
+		am4core.color("#ffa726"),// 
+	  	am4core.color("#5e73e0"),// color light blue for humidity PV
+		am4core.color("#1031ed"),// color blue for humidity set point
 		am4core.color("#66bb6a"),
 		am4core.color("#2e7d32")
 	],
@@ -31,7 +32,7 @@ let colorChart = [
 		am4core.color("#00477D"),
 		am4core.color("#006BBD"),
 		am4core.color("#9db2c2"),
-		am4core.color("#004071"),
+		am4core.color("#004071"),// color
 		am4core.color("#698ca7"),
 		am4core.color("#C54B2A")
 	],
