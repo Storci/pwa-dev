@@ -51,10 +51,10 @@ tw.service_01_getDryersGeneralInfo(entityName)
     let idLegend = id + 'Legend'
     let idTrend = id + 'Trend'
 
-    let chart = am.createXYChart(idTrend, idLegend, 0, 2, arrayUM)
+    let chart = am.createXYChart(idTrend, idLegend, 1, 2, arrayUM)
 
-    am.createColumnSeries(chart, "Celle attive", "time", "dryers_actived", '', 1)
-    am.createLineSeries(chart, "Consumo Giornaliero", "time", "kcal", "kcal", 0, true, false, false, 0.77)
+    am.createColumnSeries(chart, "Active Dryers", "time", "dryers_actived", '', 1)
+    am.createLineSeries(chart, "Daily Consumption", "time", "kcal", "kcal", 0, true, false, false, 0.77)
 
     setInterval(am.refreshLegendSize, 1000, chart, idLegend)
 
@@ -104,10 +104,9 @@ tw.service_02_getLinesGeneralInfo(entityName)
       let id = 'ID' + item.entityName.replace(/\./g, '')
       let idLegend = id + 'Legend'
       let idTrend = id + 'Trend'
-      let chart = am.createXYChart(idTrend, idLegend, 0, 1, arrayUM)
+      let chart = am.createXYChart(idTrend, idLegend, 1, 2, arrayUM)
 
-      am.createColumnSeries(chart, "Produzione Giornaliera", "time", "daily_production", "kg")
-
+      am.createColumnSeries(chart, "Daily Production", "time", "daily_production", "kg")
       setInterval(am.refreshLegendSize, 1000, chart, idLegend)
 
       // Definisce la query da inviare a influxdb

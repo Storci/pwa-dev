@@ -18,33 +18,98 @@ am4core.options.minPolylineStep = 5
 let colorChart = [
 	[
 		// colori grafici per le celle 
-		am4core.color("#3289be"),
+		am4core.color("#b70b0b"),// color for room temperature
 		am4core.color("#e06b59"),// color light red for temperature PV
-		am4core.color("#c62828"),// color red for temperature
-		am4core.color("#ffa726"),// 
+		am4core.color("#f70202"),// color red for temperature Sp
+		am4core.color("#0056ed"),// color blue for room humidity
 	  	am4core.color("#5e73e0"),// color light blue for humidity PV
 		am4core.color("#1031ed"),// color blue for humidity set point
-		am4core.color("#66bb6a"),
-		am4core.color("#2e7d32")
+		am4core.color("#EEA700"),// colore per la calorie arancione
+	// 	am4core.color("#2e7d32") 
 	],
+	//colori per Dashbord cliente e dashboard linea 
 	[
-		am4core.color("#003157"),
-		am4core.color("#00477D"),
-		am4core.color("#006BBD"),
-		am4core.color("#9db2c2"),
-		am4core.color("#004071"),// color
-		am4core.color("#698ca7"),
-		am4core.color("#C54B2A")
+		am4core.color("#2BC962"),// verde chiaro PV Impasto
+		am4core.color("#02BB53"),// verde scuro SP Impasto
+		am4core.color("#8105E1"),//  viola chiaro per pressione
 	],
+	// colori per il Impasto
 	[
-		am4core.color("#004071"),
-		am4core.color("#385D7A"),
-		am4core.color("#698CA7"),
-		am4core.color("#9DB2C2"),
-		am4core.color("#D1D7DC"),
-		am4core.color("#707A83"),
-		am4core.color("#C54B2A")
+		am4core.color("#2BC962"),// verde chiaro PV Impasto
+		am4core.color("#02BB53"),// verde scuro SP Impasto
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+		am4core.color("#d3f3fc"),// colore per portata acqua PV
+		am4core.color("#cde9f4"),// colore per portata acqua SP
+		am4core.color("#e06b59"),// colore per temperatura acqua PV
+		am4core.color("#f70202"),// colore per temperatura acqua SP
+		am4core.color("#EEA700"),// colore per la calorie arancione
+		
+	],
+	// colori per la pressa
+	[
+		am4core.color("#2BC962"),// verde chiaro PV Impasto
+		am4core.color("#02BB53"),// verde scuro SP Impasto
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+		am4core.color("#e06b59"),// colore per temperatura cilindro PV
+		am4core.color("#f70202"),// colore per temperatura cilindro SP
+		am4core.color("#8C2F39"),// colore per temperatura testata PV
+		am4core.color("#BD2C3D"),// colore per temperatura testata SP
+		am4core.color("#EEA700"),// colore per la calorie arancione
+	], 
+	// colori per la Avanzamento telai 
+	[
+		am4core.color("#2BC962"),// verde chiaro PV Impasto
+		am4core.color("#02BB53"),// verde scuro SP Impasto
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+	],
+	// colori per la Pasta Instant
+	[
+		am4core.color("#2BC962"),// verde chiaro PV Impasto
+		am4core.color("#02BB53"),// verde scuro SP Impasto
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+		am4core.color("#8C2F39"),// colore per temperatura testata PV
+		am4core.color("#BD2C3D"),// colore per temperatura testata SP
+	],
+	// colori per Omnidryer
+	[
+		am4core.color("#2BC962"),// verde chiaro PV Impasto
+		am4core.color("#02BB53"),// verde scuro SP Impasto
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+		am4core.color("#e06b59"),// colore per temperatura 1 PV
+		am4core.color("#e06b59"),// colore per temperatura 2 PV
+		am4core.color("#e06b59"),// colore per temperatura 3 PV
+		am4core.color("#9B1321"),// colore per temperatura 1 SP
+		am4core.color("#9B1321"),// colore per temperatura 2 SP
+		am4core.color("#9B1321"),// colore per temperatura 3 SP
+		am4core.color("#0056ed"),// colore per umidità 1 PV
+		am4core.color("#0056ed"),// colore per umidità 2 PV
+		am4core.color("#0056ed"),// colore per umidità 3 PV
+		am4core.color("#5e73e0"),// colore per umidità	1 SP
+		am4core.color("#5e73e0"),// colore per umidità	2 SP
+		am4core.color("#5e73e0"),// colore per umidità	3 SP
+	],
+	//	colori per Trabatto
+	[
+		am4core.color("#2BC962"),// verde chiaro PV Impasto
+		am4core.color("#02BB53"),// verde scuro SP Impasto
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+		am4core.color("#e06b59"),// colore per temperatura 1 PV
+		am4core.color("#9B1321"),// colore per temperatura 2 SP
+		
+	],
+	// colori per avanzamento telai
+	[
+		am4core.color("#2BC962"),// verde chiaro PV Impasto
+		am4core.color("#02BB53"),// verde scuro SP Impasto
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+		am4core.color("#C25012"),//  viola chiaro per pressione
+		am4core.color("#9B3802"),//  viola chiaro per pressione
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+		am4core.color("#8105E1"),//  viola chiaro per pressione
+
 	]
+
+
 ]
 
 // Funzione per la creazione di un grafico
