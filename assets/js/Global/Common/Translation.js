@@ -126,6 +126,9 @@ const array_translate_id = {
   'actual_production'           : { 'eng':'Actual Production',           'it':'Produzione Attuale'          },
   'actual_alarms'               : { 'eng':'Actual Alarms',               'it':'Allarmi Attuale'             },
   'machine_list'                : { 'eng':'Machine List',                'it':'Lista Macchine'              },
+  'machine_status'              : { 'eng':'Machine Status',              'it':'Stato Macchina'              },
+  'number_of_alarms'            : { 'eng':'Numbers of Alarms Present',   'it':'Numeri Allarmi Presenti'     }, 
+  'Recipe_set'                  : { 'eng':'Recipe Set',                  'it':'Ricetta Impostata'           },
   'dough'                       : { 'eng':'Dough',                       'it':'Impasto'                     },
   'spreader'                    : { 'eng':'Spreader',                    'it':'Stenditrice'                 },
   'pasta-instant'               : { 'eng':'Pasta Instant',               'it':'Pasta Instant'               },
@@ -248,11 +251,7 @@ const array_translate_id = {
   'alert_profile_update'      : {'eng': 'Profile updated Successfully',               'it':'Profilo aggiornato con successo'  },
   'alert_password_update'     : {'eng': 'Password Update Successfully',               'it':'Password aggiornato con Successo' },
   'alert_profile_update_error': {'eng': 'Password update failed, Please try again',   'it':'aggiornamento password fallito'   },
-  'language'                  : {'eng': 'Langauge Preference',                        'it':'Preferenza per la Lingua'          },
-  'issues'                    : {'eng': 'Report an Issue',                            'it':'Segnalare un Problema'}
-
-
+  'language'                  : {'eng': 'Langauge Preference',                        'it':'Preferenza per la Lingua'         },
+  'issues'                    : {'eng': 'Report an Issue',                            'it':'Segnalare un Problema'            }
 }
-
-
 export{getLanguage}
