@@ -51,10 +51,10 @@ tw.service_01_getDryersGeneralInfo(entityName)
     let idLegend = id + 'Legend'
     let idTrend = id + 'Trend'
 
-    let chart = am.createXYChart(idTrend, idLegend, 0, 2, arrayUM)
+    let chart = am.createXYChart(idTrend, idLegend, 1, 2, arrayUM)
 
-    am.createColumnSeries(chart, "Celle attive", "time", "dryers_actived", '', 1)
-    am.createLineSeries(chart, "Consumo Giornaliero", "time", "kcal", "kcal", 0, true, false, false, 0.77)
+    am.createColumnSeries(chart, "Active Dryers", "time", "dryers_actived", '', 1)
+    am.createLineSeries(chart, "Daily Consumption", "time", "kcal", "kcal", 0, true, false, false, 0.77)
 
     setInterval(am.refreshLegendSize, 1000, chart, idLegend)
 
@@ -104,10 +104,9 @@ tw.service_02_getLinesGeneralInfo(entityName)
       let id = 'ID' + item.entityName.replace(/\./g, '')
       let idLegend = id + 'Legend'
       let idTrend = id + 'Trend'
-      let chart = am.createXYChart(idTrend, idLegend, 0, 1, arrayUM)
+      let chart = am.createXYChart(idTrend, idLegend, 1, 2, arrayUM)
 
-      am.createColumnSeries(chart, "Produzione Giornaliera", "time", "daily_production", "kg")
-
+      am.createColumnSeries(chart, "Daily Production", "time", "daily_production", "kg")
       setInterval(am.refreshLegendSize, 1000, chart, idLegend)
 
       // Definisce la query da inviare a influxdb
@@ -239,7 +238,7 @@ function createDivLine(IDdiv, entityName){
   html +=     '<div class="col col-customer" style="padding-right: 12px;">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Stato Macchina</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="machine_status">Machine Status</h6>'
   html +=                 '<h4 class="card-title" ' + keyProperty + '="stato_linea" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -247,7 +246,7 @@ function createDivLine(IDdiv, entityName){
   html +=     '<div class="col col-customer" style="padding-right: 12px;">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Ricetta Impostata</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="Recipe_set">Recipe Set</h6>'
   html +=                 '<h4 class="card-title" ' + keyProperty + '="nome_ricetta" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -255,7 +254,7 @@ function createDivLine(IDdiv, entityName){
   html +=     '<div class="col col-customer" style="padding: 0px;">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Numero Allarmi Presenti</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number Of Alarms Present</h6>'
   html +=                 '<h4 class="card-title" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;" ' + keyProperty + '="numero_allarmi">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -315,7 +314,7 @@ function createDivDryers(IDdiv, entityName){
   let html = ''
 
   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
-  html += '<h1 class="h2 card-result">Celle</h1>'
+  html += '<h1 class="h2 card-result">Dryers</h1>'
   html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
   html +=       '<div class="btn-group me-2"></div>'
   html +=   '</div>'
@@ -329,7 +328,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer" style="padding-right: 12px;">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Celle attive</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Active Dryers</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="celle_attive" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -337,7 +336,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer" style="padding-right: 12px;">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Temperatura Ambiente</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Room Temperature</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="temperatura_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -345,7 +344,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer" style="padding-right: 12px;">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Umidità Ambiente</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Room Humidity</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="umidita_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -353,7 +352,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer" style="padding: 0px;">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Numero Allarmi Presenti</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Number of Alarms Present</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="allarmi_attivi" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
