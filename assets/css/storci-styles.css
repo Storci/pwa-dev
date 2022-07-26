@@ -337,16 +337,18 @@ a {
       justify-content: center;
   }*/
 
+  /* div per centrare la il contenuto*/
   .vertical_center{
     width: 80% !important;
     margin:auto;
-    
   }
 
+  /*una altezza fissa per gestire questo quando la risoluzione di default*/
   .customized-body{
       height: 700px !important;
       
   }
+  /* media query per gestire l'altezza del div quando la risoluzione ha un massimo di 767 pixel*/
   @media (max-width :767px ) {
     .customized-body{
         height: 1150px !important;
@@ -356,7 +358,7 @@ a {
     }
    
   }
-
+/* */
   @media (max-width :992px) {
       .vertical_center{
           width: 100% !important;
@@ -371,15 +373,21 @@ a {
     width: 90%;
     margin: auto;
   }
- /*@media(max-width :999px){
-    .history_table{
-        width: 100% !important;
-    }
-    .history_graph{
-        width: 100% !important;
-    }
- }*/
+/* colore per i testi per i label */
  .card-result{
     color:var(--bs-heading-high-emphasis);
  }
 
+/**/
+thead{
+    position: sticky;
+    top: 0px;
+    background-color: floralwhite;
+}
+.tableDiv{
+    
+    height: 500px;
+    max-width: 700%;
+    overflow: scroll;
+
+}
