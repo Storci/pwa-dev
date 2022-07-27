@@ -391,3 +391,13 @@ thead{
     overflow: scroll;
 
 }
+/* regola per gestire lo scroll sulla tabella senza allargare l'altezza*/
+.tableDiv::-webkit-scrollbar{
+    display: none;
+}
+.actual_graph{
+    height: 30%;
+}
+.history_graph{
+    height: -webkit-fill-available;
+}
