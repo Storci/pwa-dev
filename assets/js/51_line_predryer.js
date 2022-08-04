@@ -59,6 +59,11 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(1m) fill(previous)'
 $('#IDButtonExportTrendActualProduction').click(el => { am.getExport(chartActualProduction) })
 $('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHistoryProduction) })
 
+$('#fullscreen').click(function(){
+	let url ='./machineGraph/76_preDryerGraph.html?'+'entityName='+ entityName 
+	window.open(url, '_blank')
+})
+
 // Grafico Card Telai Al Minuto
 common.cardLineTrend('IDDivChart1', entityName, 'Trabatto_PV_Temperatura_Trabatto', '', '°C')
 
