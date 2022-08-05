@@ -51,6 +51,11 @@ function historyDryerProduction(chart, query, entityName){
 	// Definisce le variabili come date
 	let timeStartHistory = new Date()
 	let timeEndHistory   = new Date()
+	let timeStartZoom = new Date()
+	let timeEndZoom = new Date()
+
+
+
 	// Imposta X giorni prima della data odierna
 	timeStartHistory.setDate(timeStartHistory.getDate() - 14)
 	// Imposta i 2 data picker con le date calcolate prima
@@ -62,6 +67,8 @@ function historyDryerProduction(chart, query, entityName){
 	// Da data Attuale a data attuale - 14 giorni.
 	// Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
 	tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+	timeStartZoom = timeStartHistory
+	timeEndZoom = timeEndHistory
 	// Listener sul cambio di valore della data di inizio produzione
 	// Al cambio di valore viene eseguita la funzione seguente.
 	// Viene recuperata di nuovo la lista delle produzioni con il range time aggiornato
@@ -74,6 +81,8 @@ function historyDryerProduction(chart, query, entityName){
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
 		tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+		timeStartZoom = timeStartHistory
+		timeEndZoom = timeEndHistory
 	});
 	// Listener sul cambio di valore della data di fine produzione
 	// Al cambio di valore viene eseguita la funzione seguente.
@@ -86,7 +95,9 @@ function historyDryerProduction(chart, query, entityName){
 		let timeEndHistory   = new Date($(this).val())
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-		tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+		tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query, )
+		timeStartZoom = timeStartHistory
+		timeEndZoom = timeEndHistory
 	});
 
 	// Abilita onclick sulla card
@@ -100,8 +111,15 @@ function historyDryerProduction(chart, query, entityName){
 		am.setChartData(chart, subquery, '.lds-dual-ring.history-production-trend')
 		// Nasconde l'icona del caricamento alla fine delle funzione + 1s dopo
 		setTimeout(function() {	$('.lds-dual-ring.history-production-trend').hide() }, 1000)
+		timeStartZoom = timestampStart
+		timeEndZoom = timestampEnd
 	})
 
+	// pulsante per aprire il grafico storico delle celle in un'altro tab
+	$('#fullscreenHistory').click(function(){
+		let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		window.open(url, '_blank')
+	})
 }
 
 
@@ -132,6 +150,8 @@ function historyLineProduction(chart, query, entityName){
 	// Definisce le variabili come date
 	let timeStartHistory = new Date()
 	let timeEndHistory   = new Date()
+	let timeStartZoom 	 = new Date()
+	let timeEndZoom 	 = new Date()
 	// Imposta X giorni prima della data odierna
 	timeStartHistory.setDate(timeStartHistory.getDate() - 14)
 	// Imposta i 2 data picker con le date calcolate prima
@@ -143,6 +163,8 @@ function historyLineProduction(chart, query, entityName){
 	// Da data Attuale a data attuale - 14 giorni.
 	// Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
 	tw_chart.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+	timeStartZoom = timeStartHistory
+	timeEndZoom = timeEndHistory
 	// Listener sul cambio di valore della data di inizio produzione
 	// Al cambio di valore viene eseguita la funzione seguente.
 	// Viene recuperata di nuovo la lista delle produzioni con il range time aggiornato
@@ -155,6 +177,8 @@ function historyLineProduction(chart, query, entityName){
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
 		tw_chart.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+		timeStartZoom = timeStartHistory
+		timeEndZoom = timeEndHistory
 	});
 	// Listener sul cambio di valore della data di fine produzione
 	// Al cambio di valore viene eseguita la funzione seguente.
@@ -163,12 +187,71 @@ function historyLineProduction(chart, query, entityName){
 	  // Visualizza lo spinner per indicare il caricamento in corso
 		$('.lds-dual-ring.history-production-list').show()
 		// Recupera i valori di inizio e fine produzione
-	  let timeStartHistory = new Date($('#IDTimeStart').val())
+	  	let timeStartHistory = new Date($('#IDTimeStart').val())
 		let timeEndHistory   = new Date($(this).val())
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
 		tw_chart.getLineHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+		timeStartZoom = timeStartHistory
+		timeEndZoom = timeEndHistory
 	});
+
+	// Abilita onclick sulla card
+	$('tr').click(() => {
+		console.log('click')
+		// Aggiunge la classe table-primary alla riga seleziona e la rimuove dalle altre righe
+		$(this).addClass('table-primary').siblings().removeClass('table-primary')
+		// Definisce la query da inviare a influxdb
+		let subquery = query.replaceAll('{1}', timestampStart).replaceAll('{2}', timestampEnd)
+		// Recupera i dati da influxdb e li visualizza sul grafico
+		am.setChartData(chart, subquery, '.lds-dual-ring.history-production-trend')
+		// Nasconde l'icona del caricamento alla fine delle funzione + 1s dopo
+		setTimeout(function() {	$('.lds-dual-ring.history-production-trend').hide() }, 1000)
+		timeStartZoom = timestampStart
+		timeEndZoom = timestampEnd
+	})
+
+	// pulsante per aprire il grafico storico dell' impasto 
+	$('#fullscreenHistoryDough').click(function(){
+		let url ='./machineHistoryGraph/80_doughHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		window.open(url, '_blank')
+	})
+
+	// pulsante per aprire il grafico storico dell' estusore
+	$('#fullscreenHistoryExtruder').click(function(){
+		let url ='./machineHistoryGraph/81_extruderGraphHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		window.open(url, '_blank')
+	})
+
+	// pulsante per aprire il grafico storico dell' avanzamento telai
+	$('#fullscreenHistoryTrayFeeder').click(function(){
+		let url ='./machineHistoryGraph/82_trayFeederHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		window.open(url, '_blank')
+	})
+
+	// pulsante per aprire il grafico storico della stenditrice 
+	$('#fullscreenHistorySpreader').click(function(){
+		let url ='./machineHistoryGraph/84_spreaderHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		window.open(url, '_blank')
+	})
+
+	// pulsante per aprire il grafico storico del trabatto 
+	$('#fullscreenHistoryPreDryer').click(function(){
+		let url ='./machineHistoryGraph/86_preDryerHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		window.open(url, '_blank')
+	})
+
+	// pulsante per aprire il grafico storico dell' Omnidryer 
+	$('#fullscreenHistoryOmnidryer').click(function(){
+		let url ='./machineHistoryGraph/87_omnidryerHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		window.open(url, '_blank')
+	})
+
+	// pulsante per aprire il grafico storico della pasta instant 
+	$('#fullscreenHistoryPastaInstant').click(function(){
+		let url ='./machineHistoryGraph/88_pastaInstantHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		window.open(url, '_blank')
+	})
 }
 // La funzione recupera i dati da thingworx e li visualizza sul grafico
 // della relativa card.

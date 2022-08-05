@@ -68,6 +68,11 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(1m) fill(previous)'
 $('#IDButtonExportTrendActualProduction').click(el => { am.getExport(chartActualProduction) })
 $('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHistoryProduction) })
 
+$('#fullscreen').click(function(){
+	let url ='./machineGraph/71_extruderGraph.html?'+'entityName='+ entityName 
+	window.open(url, '_blank')
+})
+
 // ******************** GRAFICO PRODUZIONE ATTUALE ********************
 common.actualLineProduction(chartActualProduction, query, entityName)
 
