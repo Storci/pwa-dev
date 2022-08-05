@@ -187,7 +187,7 @@ function historyLineProduction(chart, query, entityName){
 	  // Visualizza lo spinner per indicare il caricamento in corso
 		$('.lds-dual-ring.history-production-list').show()
 		// Recupera i valori di inizio e fine produzione
-	  let timeStartHistory = new Date($('#IDTimeStart').val())
+	  	let timeStartHistory = new Date($('#IDTimeStart').val())
 		let timeEndHistory   = new Date($(this).val())
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
@@ -195,6 +195,22 @@ function historyLineProduction(chart, query, entityName){
 		timeStartZoom = timeStartHistory
 		timeEndZoom = timeEndHistory
 	});
+
+	// Abilita onclick sulla card
+	$('tr').click(() => {
+		console.log('click')
+		// Aggiunge la classe table-primary alla riga seleziona e la rimuove dalle altre righe
+		$(this).addClass('table-primary').siblings().removeClass('table-primary')
+		// Definisce la query da inviare a influxdb
+		let subquery = query.replaceAll('{1}', timestampStart).replaceAll('{2}', timestampEnd)
+		// Recupera i dati da influxdb e li visualizza sul grafico
+		am.setChartData(chart, subquery, '.lds-dual-ring.history-production-trend')
+		// Nasconde l'icona del caricamento alla fine delle funzione + 1s dopo
+		setTimeout(function() {	$('.lds-dual-ring.history-production-trend').hide() }, 1000)
+		timeStartZoom = timestampStart
+		timeEndZoom = timestampEnd
+	})
+
 	// pulsante per aprire il grafico storico dell' impasto 
 	$('#fullscreenHistoryDough').click(function(){
 		let url ='./machineHistoryGraph/80_doughHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
@@ -209,7 +225,7 @@ function historyLineProduction(chart, query, entityName){
 
 	// pulsante per aprire il grafico storico dell' avanzamento telai
 	$('#fullscreenHistoryTrayFeeder').click(function(){
-		let url ='./machineHistoryGraph/trayFeederHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+		let url ='./machineHistoryGraph/82_trayFeederHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
 		window.open(url, '_blank')
 	})
 

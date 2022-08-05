@@ -100,6 +100,11 @@ setInterval(setHistoryInfo, 1000, chartHistoryProduction)
 $('#IDButtonExportTrendActualProduction').click(el => { am.getExport(chartActualProduction) })
 $('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHistoryProduction) })
 
+$('#fullscreen').click(function(){
+	let url ='61_actualCellGraph.html?'+'entityName='+ entityName 
+	window.open(url, '_blank')
+})
+
 // ******************** FUNCTION ********************
 // Funzione che imposta i dati della cella nei rispettivi campi
 function setCellinfo(entityName){
