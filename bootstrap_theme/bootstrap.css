@@ -9283,3 +9283,8 @@ progress {
     display: none !important; } }
 
 /* Custom CSS rules come here */
+
+
+.cursor-pointer{
+  cursor: pointer;
+}
