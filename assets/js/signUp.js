@@ -11,6 +11,55 @@ $('.form-control').on('input', function(){
   $('#IDErrorMessage').css("display", "none")
 })
 
+$("#IDEmail").keyup(function(){
+  let email = $(this).val()
+  // Criteri di controllo per il campo new password
+  // Criteri di controllo per il campo old password
+  switch(true){
+    case email == "": $("#IDEmail").addClass("is-invalid").removeClass("is-valid"); break;
+    case !email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/): $("#IDEmail").addClass("is-invalid").removeClass("is-valid"); break;
+    default: $("#IDEmail").addClass("is-valid").removeClass("is-invalid"); break;
+  }
+})
+$("#IDEmail_repeat").keyup(function(){
+  let email_confirm = $(this).val()
+  let email = $("#IDEmail").val()
+  // Criteri di controllo per il campo new password
+  // Criteri di controllo per il campo old password
+  switch(true){
+    case email_confirm == "": $("#IDEmail_repeat").addClass("is-invalid").removeClass("is-valid"); break;
+    case email_confirm != email : $("#IDEmail_repeat").addClass("is-invalid").removeClass("is-valid"); break;
+    default: $("#IDEmail_repeat").addClass("is-valid").removeClass("is-invalid"); break;
+  }
+})
+$("#IDPassword").keyup(function(){
+  let newPassword = $(this).val()
+  // Criteri di controllo per il campo new password
+  switch(true){
+    case newPassword == "": $("#invalid-mess-11").text("Please, insert your new password."); $("#IDPassword").addClass("is-invalid").removeClass("is-valid"); break;
+    case newPassword.length < 8: $("#invalid-mess-11").text("Attention, password must be long of 8 characters"); $("#IDPassword").addClass("is-invalid").removeClass("is-valid"); break;
+    case newPassword.length > 20: $("#invalid-mess-11").text("Attention, password must be short of 20 characters"); $("#IDPassword").addClass("is-invalid").removeClass("is-valid"); break;
+    case !newPassword.match(/[a-z]+/): $("#invalid-mess-11").text("Attention, password must be contain at least a low character"); $("#IDPassword").addClass("is-invalid").removeClass("is-valid"); break;
+    case !newPassword.match(/[0-9]+/): $("#invalid-mess-11").text("Attention, password must be contain at least a number"); $("#IDPassword").addClass("is-invalid").removeClass("is-valid"); break;
+    case !newPassword.match(/[A-Z]+/): $("#invalid-mess-11").text("Attention, password must be contain at least a up character"); $("#IDPassword").addClass("is-invalid").removeClass("is-valid"); break;
+    default: $("#IDPassword").addClass("is-valid").removeClass("is-invalid"); status_new_Password = true; break;
+  }
+})
+$("#IDPassword_repeat").keyup(function(){
+  let newPassword = $("#IDPassword").val()
+  let confirmPassword = $(this).val()
+  // Criteri di controllo per il campo new password
+  // Criteri di controllo per il campo confirm password
+  switch(true){
+    case confirmPassword == "": $("#invalid-mess-12").text("Please, confirm your new password."); $("#IDPassword_repeat").addClass("is-invalid").removeClass("is-valid"); break;
+    case confirmPassword !== newPassword: $("#invalid-mess-12").text("Attention, the passwords not match"); $("#IDPassword_repeat").addClass("is-invalid").removeClass("is-valid"); break;
+    default: $("#IDPassword_repeat").addClass("is-valid").removeClass("is-invalid"); status_confirm_Password = true; break;
+  }
+})
+
+
+
+
 // Funzione scatenata dalla pressione del pulsante di sign up
 $('#IDButtonSignUp').click(function(){
   let email = $('#IDEmail').val()
@@ -42,7 +91,10 @@ $('#IDButtonSignUp').click(function(){
             mobile:   $("#IDPhoneNumber").val(),
           })
           .then(() => {
-              $("#user-successAlert").fadeIn(1500);
+              $("#signUpSuccess").fadeIn(1500)
+              setTimeout(() => {
+                window.location.href = "./90_signIn.html"
+              }, 3000);
           })
           .catch((error) => {
             console.log(error)

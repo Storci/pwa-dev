@@ -16,9 +16,7 @@ async function signInWithEmailPassword(email, password) {
 function signUpWithEmailPassword(email, password, baseURL) {
 	// [START auth_signup_password]
 	firebase.auth().createUserWithEmailAndPassword(email, password)
-	.then(() =>{
-		$("#signUpSuccess").fadeIn(1500)
-  })
+	.then(() =>{})
 	.catch((error) => {
 		let errorCode = error.code
 		let errorMessage = error.message
