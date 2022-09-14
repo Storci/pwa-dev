@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
-<html lang="en" class="bg-white" data-pgc-master="00_master.html"> 
-    <head data-pgc-field="head"> 
+<html lang="en" data-pgc-set-master class="bg-white"> 
+    <head data-pgc-edit="head"> 
         <meta charset="utf-8"/> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/> 
@@ -37,7 +37,7 @@
         <script src="./assets/js/sidebar.js" type="module"></script>         
         <script defer src="./assets/js/userAccountSettings.js" type="module"></script>         
         <script src="./assets/js/Global/Common/Theme.js" type="module"></script>         
-        <script src="./assets/js/Global/Common/Translation.js" type="module"></script>
+        <script src="./assets/js/Global/Common/Translation.js" type="module"></script>         
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -176,10 +176,36 @@
                         </ul>                         <span style="font-size: 10px;" class="p-1">Version</span> 
                     </div>                     
                 </nav>                 
-                <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4 bg-white-customized" id="id-column-master" data-pgc-field="id-column-master">
+                <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4 bg-white-customized" id="id-column-master" data-pgc-edit="id-column-master[id]"> 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h2 class="card-result" translate_id="profile_settings">Actual Alarms List</h2> 
+                        <h2 class="card-result" translate_id="list_clients_connected">List of Current Alarms</h2> 
+                        <div class="btn-toolbar mb-2 mb-md-0"> 
+                            <div class="btn-group me-2"> 
+                            </div>                             
+                        </div>                         
                     </div>
+                    <div class="container">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Alarm Name</th>
+                                    <th scope="col">Machine</th>
+                                    <th scope="col">Start </th>
+                                    <th scope="col">Level of Danger</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>   
                 </main>                 
             </div>             
         </div>         
