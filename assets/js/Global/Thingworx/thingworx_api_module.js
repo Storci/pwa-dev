@@ -635,6 +635,31 @@ function getLineAlertsActive(entityName){
 	})
 }
 
+// Recupera gli allarmi attivi della linea
+function getListAlert(startDate , endDate , filter,getHistory){
+	// Definisce l'url da richiamare per la REST API
+	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/service_10_getAlerts";
+
+	// Imposta i settings da utilizzare nelle REST API.
+	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
+	let settings = {
+		"url"     : url,
+		"method"  : "POST",
+		"timeout" : 0,
+		"headers" : {
+			"appKey"	  : appKey,
+			"Accept"	  : "application/json",
+			"Content-Type": "application/json"
+		},
+		"data": JSON.stringify({"datetime":startDate, "datetime":endDate, "filter":filter, "getHistory":getHistory})
+	};
+	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+	return new Promise(function(resolve){
+		// Esegue la chiamata REST API.
+		$.ajax(settings).done(response => resolve(response));
+	})
+}
+
 // COMMON FUNCTIONS
 
 // Viene effettuata una query verso thingworx per recuperare
@@ -744,5 +769,6 @@ export{
 	getLineDoughHistoryProduction,
 	getLineAlertsActive,
 	getDryerTimeRange,
-	getLineTimeRange
+	getLineTimeRange,
+	getListAlert
 }
