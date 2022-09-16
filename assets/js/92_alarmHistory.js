@@ -27,17 +27,13 @@ function getAlarmsNotifications(startDate, endDate, filter, getHistory){
         console.log(list)
     $("#IDAlertHistoryBody")
 
-        list.fieldDefinitions.forEach(el =>{
-            let row = '<tr class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.CustomerName  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_fase    + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.delta_T + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.temperatura  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.umidita  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.hz_inverter  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_ventilazione  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_pausa  + '</td>'
-				row    += '</tr>'
+        list.rows.forEach(el =>{
+          let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + timeStart  + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + timeEnd    + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + el.ricetta + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + el.durata  + '</td>'
+          row    += '</tr>'
 				// Aggiunge la riga alla tabella
 				$('#IDAlertHistoryBody').append(row);
         })
@@ -49,7 +45,15 @@ function getAlarmsNotifications(startDate, endDate, filter, getHistory){
         console.log('promise rejected', err)
     })
 }
-const alarmi = getAlarmsNotifications(2, "*", true);
+
+let inputStart = document.getElementById("IDtimeStart")
+let inputEnd = document.getElementById("IDtimeStart")
+
+ function filterAlert(){
+  const alarmi = getAlarmsNotifications(inputStart,inputEnd,"*", false);
+ }
+
+const alarmi = getAlarmsNotifications(inputStart,inputEnd,"*", false);
 
 
 var $table = $('#fresh-table')
