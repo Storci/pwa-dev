@@ -25,7 +25,7 @@ function getAlarmsNotifications(startDate, endDate, filter, getHistory){
     tw.getListAlert(startDate, endDate, filter, getHistory)
     .then((list)=>{
         console.log(list)
-    $("#IDAlerActualBody")
+    $("#IDAlertActualBody")
 
         list.rows.forEach(el =>{
             let timeStart = new Date(el.TimeStart).toLocaleString();

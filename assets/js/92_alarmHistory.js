@@ -28,11 +28,15 @@ function getAlarmsNotifications(startDate, endDate, filter, getHistory){
     $("#IDAlertHistoryBody")
 
         list.rows.forEach(el =>{
-          let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
-          row    += '    <td style="font-size: 12px;border-style: none;">' + timeStart  + '</td>'
-          row    += '    <td style="font-size: 12px;border-style: none;">' + timeEnd    + '</td>'
-          row    += '    <td style="font-size: 12px;border-style: none;">' + el.ricetta + '</td>'
-          row    += '    <td style="font-size: 12px;border-style: none;">' + el.durata  + '</td>'
+          let timeStart = new Date(el.TimeStart).toLocaleString();
+          let timeEnd = new Date(el.TimeStart).toLocaleString();
+          let row = '<tr id=' + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + el.CustomerName  + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + el.MachineName    + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' +  el.Gravity + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + timeStart + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + timeEnd + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' +el.Message  + '</td>'
           row    += '</tr>'
 				// Aggiunge la riga alla tabella
 				$('#IDAlertHistoryBody').append(row);
@@ -46,17 +50,22 @@ function getAlarmsNotifications(startDate, endDate, filter, getHistory){
     })
 }
 
-let inputStart = document.getElementById("IDtimeStart")
-let inputEnd = document.getElementById("IDtimeStart")
-
- function filterAlert(){
-  const alarmi = getAlarmsNotifications(inputStart,inputEnd,"*", false);
- }
-
-const alarmi = getAlarmsNotifications(inputStart,inputEnd,"*", false);
 
 
-var $table = $('#fresh-table')
+var inputStart = "15/09/2022";
+var inputEnd   = "18/09/2022";
+
+
+  const alarmi = getAlarmsNotifications(new Date (inputStart),new Date (inputEnd),"*", true);
+
+
+
+
+
+
+
+
+/*var $table = $('#fresh-table')
 var $alertBtn = $('#alertBtn')
 
 window.operateEvents = {
@@ -116,4 +125,4 @@ $(function () {
   $alertBtn.click(function () {
     alert('You pressed on Alert')
   })
-})
+})*/
