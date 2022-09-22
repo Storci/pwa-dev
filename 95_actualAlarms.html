@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html lang="en" data-pgc-set-master class="bg-white"> 
+<html lang="en" class="bg-white" data-pgc-master="00_master.html> 
     <head data-pgc-edit="head"> 
         <meta charset="utf-8"/> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
@@ -7,7 +7,14 @@
         <meta name="description" content=""/> 
         <meta name="author" content=""/> 
         <link rel="icon" href="./assets/img/icon_round_storci.svg" type="image/x-icon"/> 
-        <title>Current Alarm List</title>         
+        <title>Current Alarm List</title>       
+        <!-- MANIFEST -->         
+        <link rel="manifest" href="./manifest.webmanifest"/> 
+        <!-- carica l'immagine da usare nell'icona dell'iphone -->         
+        <link rel="apple-touch-icon" href="./assets/img/Storci_Logo_1024_1024.png"/> 
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="white"/> 
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black"/> 
+          
         <!-- GOOGLE ICON -->         
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/> 
         <!--<link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">-->
@@ -193,10 +200,6 @@
                             </div>                             
                         </div>                         
                     </div>
-               
-                       <!--<div class="container">
-                            <div class="row">
-                                <div class="col-md-12">--> 
                                     <div class="table-responsive">
                                         <table class="table">
                                           <thead class="thead-dark">
@@ -213,11 +216,9 @@
                                           
                                           </tbody>
                                         </table>
-                                  <!--</div>
-                                </div>
-                            </div>-->  
                         </div>
                 </main>
-                 
+            </div>    
+        </div>
     </body>     
 </html>

@@ -31,18 +31,30 @@ function getDate(date){
   // Ritorna la stringa
 	return year + '-' + month + '-' + day
 }
-
+ let inputFIlter = document.getElementById('filter')
+ let i
+ 
 //funzione per recuperare i dati da tw per mettere nella tabella
 function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory){
     tw.getListAlert(startDate, endDate, filter, getHistory)
-    .then((list)=>{
-        console.log(list)
-    $(idTable).empty()
 
-        list.rows.forEach((el,i) =>{
+    /**nuova codice da implementare per recuperare la tabella  */
+    .then((list)=>{
+        //console.log(list)
+        list.rows.forEach(info => {
+          console.log(info.CustomerName)
+          const table = ""
+        });
+          
+      
+    //$(idTable).empty()
+    /**** vecchio codice funzionante ***/
+        /*list.rows.forEach((el,i) =>{
           let timeStart = new Date(el.TimeStart).toLocaleString();
-          let timeEnd = new Date(el.TimeStart).toLocaleString();
+          let timeEnd = new Date(el.TimeStart).toLocaleString();*/
+
           // Definisci l' id della riga della tabella
+         /* let tableValue
           let id = "IDHistoryTableRow" + i;
           let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
           row    += '    <td style="font-size: 12px;border-style: none;">' + el.CustomerName  + '</td>'
@@ -51,24 +63,34 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory)
           row    += '    <td style="font-size: 12px;border-style: none;">' + timeStart + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' + timeEnd + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' +el.Message  + '</td>'
-          row    += '</tr>'  
+          row    += '</tr>'  */
+
+
+         /* function searchTable(){
+            for(let i = 0; i < row.length; i++){
+              el = row[i]
+              if(el){
+                tableValue = el.textContent || el.innerText
+                if(tableValue.toUpperCase().indexOf(btnFIlter)> -1){
+                  row[i].style.display = "";
+                }
+                else{
+                  row[i].style.display ="none";
+                }
+
+              }
+            }
+          }
+          searchTable();
 				// Aggiunge la riga alla tabella
 				$(idTable).append(row);
-        })
+       
+        })*/
     })
     .catch((err)=>{
         console.log('promise rejected', err)
     })
-    /*function searchTable(value, data){
-      var filterData = list
-      console.log(filterData)
-      for (var i = 0; i < data.length;i++){
-
-      }
-
-    }
-    searchTable();*/
-}
+  }
 
 function alertHistory(){
   let alertStartHistory = new Date()
@@ -102,15 +124,6 @@ $("#IDtimeEnd").change(function(){
     // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
      getAlarmsNotifications('#IDAlertHistoryBody',alertStartHistory,alertEndHistory,"*", true);
   })
+
 }
 alertHistory();
-  
-$("#IDsearch").on('keyup', function(){
-  let inputSearch = $(this).val()
-  console.log(inputSearch)
-})
-
-/*function searchTable(value, data){
-
-
-}*/
