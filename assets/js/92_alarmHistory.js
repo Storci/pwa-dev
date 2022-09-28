@@ -45,47 +45,29 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory)
           console.log(info.CustomerName)
           const table = ""
         });
-          
+        
       
     //$(idTable).empty()
     /**** vecchio codice funzionante ***/
-        /*list.rows.forEach((el,i) =>{
+        list.rows.forEach((el,i) =>{
           let timeStart = new Date(el.TimeStart).toLocaleString();
-          let timeEnd = new Date(el.TimeStart).toLocaleString();*/
-
+          let timeEnd = new Date(el.TimeStart).toLocaleString();
+          
           // Definisci l' id della riga della tabella
-         /* let tableValue
+          
           let id = "IDHistoryTableRow" + i;
-          let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
+          let row = '<tr id=' + id + ' class="hover_tr card-body" style="border-style: none;background: var(--bs-table-bg);">'
           row    += '    <td style="font-size: 12px;border-style: none;">' + el.CustomerName  + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' + el.MachineName    + '</td>'
-          row    += '    <td style="font-size: 12px;border-style: none;">' +  el.Gravity + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + el.Gravity + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' + timeStart + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' + timeEnd + '</td>'
-          row    += '    <td style="font-size: 12px;border-style: none;">' +el.Message  + '</td>'
-          row    += '</tr>'  */
-
-
-         /* function searchTable(){
-            for(let i = 0; i < row.length; i++){
-              el = row[i]
-              if(el){
-                tableValue = el.textContent || el.innerText
-                if(tableValue.toUpperCase().indexOf(btnFIlter)> -1){
-                  row[i].style.display = "";
-                }
-                else{
-                  row[i].style.display ="none";
-                }
-
-              }
-            }
-          }
-          searchTable();
+          row    += '    <td style="font-size: 12px;border-style: none;">' + el.Message  + '</td>'
+          row    += '</tr>'  
 				// Aggiunge la riga alla tabella
 				$(idTable).append(row);
        
-        })*/
+        })
     })
     .catch((err)=>{
         console.log('promise rejected', err)
@@ -127,3 +109,45 @@ $("#IDtimeEnd").change(function(){
 
 }
 alertHistory();
+
+// funzione per impostare il range delle date 
+$('#dateFilter').daterangepicker({
+  "locale": {
+      "format": "MM/DD/YYYY",
+      "separator": " - ",
+      "applyLabel": "Apply",
+      "cancelLabel": "Cancel",
+      "fromLabel": "From",
+      "toLabel": "To",
+      "customRangeLabel": "Custom",
+      "weekLabel": "W",
+      "daysOfWeek": [
+          "Su",
+          "Mo",
+          "Tu",
+          "We",
+          "Th",
+          "Fr",
+          "Sa"
+      ],
+      "monthNames": [ 
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+      ],
+      "firstDay": 1
+  },
+  "startDate": "09/20/2022",
+  "endDate": "09/26/2022"
+}, function(start, end, label) {
+console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+});

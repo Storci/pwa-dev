@@ -14,7 +14,6 @@
         <link rel="apple-touch-icon" href="./assets/img/Storci_Logo_1024_1024.png"/> 
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="white"/> 
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black"/> 
-          
         <!-- GOOGLE ICON -->         
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/> 
         <!--<link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">-->
@@ -32,6 +31,8 @@
         <link href="./assets/css/dashboard.css" rel="stylesheet"/> 
         <link href="./assets/css/storci-styles.css" rel="stylesheet"/> 
         <link href="./assets/css/table-style.css" rel="stylesheet" />
+        <!-- Datatable CSS -->  
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
         
         <!-- <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->         
         <!-- AM4CORE CHART -->         
@@ -47,7 +48,10 @@
         <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js" type="module"></script>         
         <!-- <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
         <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>  -->         
-        <script defer src="./assets/js/Global/Firebase/firebase_config.js"></script>         
+        <script defer src="./assets/js/Global/Firebase/firebase_config.js"></script>   
+        <!-- DataTable -->    
+        <script defer src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> 
+        <script defer src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
         <!-- CUSTOM SCRIPT -->         
         <script src="./assets/js/sidebar.js" type="module"></script>         
         <script  src="./assets/js/91_actualAlarm.js" type="module"></script>         
@@ -201,7 +205,7 @@
                         </div>                         
                     </div>
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" id="alertTable">
                                           <thead class="thead-dark">
                                             <tr>
                                                 <th>Customer</th>
@@ -209,8 +213,7 @@
                                                 <th>Gravity</th>
                                                 <th>Time Start</th>
                                                 <th>Alarm Message</th>
-                                              
-                                              </tr>
+                                            </tr>
                                           </thead>
                                           <tbody id="IDAlertActualBody">
                                           

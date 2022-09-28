@@ -20,6 +20,33 @@ fb.onAuthStateChanged_2()
 // funzione per la traduzione 
 lang.getLanguage()
 
+/* Sorting table*/
+/*$(document).ready(function () {
+   // $('#alertTable').DataTable();
+  // var data = alarmi
+    
+    var columns = []
+
+    var rowdata = data
+
+    Object.keys( data ).forEach( function (key, index) {
+        columns.push( {data: key, title: key} ); 
+    
+
+        var table = $('#alertTable').DataTable({
+            data: data,
+            columns: columns
+          });
+        });
+});*/
+$(document).ready(function(){
+    $('#alertTable').DataTable();
+})
+
+
+
+
+
 //funzione per recuperare i dati da tw per mettere nella tabella
 function getAlarmsNotifications(startDate, endDate, filter, getHistory){
     tw.getListAlert(startDate, endDate, filter, getHistory)
