@@ -2,6 +2,7 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import { Octokit, App } from "https://cdn.skypack.dev/octokit";
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
@@ -22,6 +23,39 @@ tw.getCustomersList()
     localStorage.setItem('customerList', JSON.stringify(customerList))
 })
 .catch(e => console.error(e))
+
+
+/* RECUPERA LE INFORMAZIONI DA GITHUB */
+let baseURL = window.location.protocol + "//" + window.location.host
+let url = "https://api.github.com/repos/Storci/pwa-dev/releases/tags/Latest"
+if(baseURL.includes("pwa-prod")){ url = "https://api.github.com/repos/Storci/pwa-prod/releases/tags/Latest" }
+let release = localStorage.getItem("GITHUB_hide_release_news")
+let release_name = localStorage.getItem("GITHUB_last_release_name")
+
+tw.service_80_githubAPI(url)
+.then((resp) => {
+  if(release == "false" && resp.name != release_name){
+    let url = 'https://github.com/Storci/pwa-dev/commits/' + resp.name
+    let url_html = '<a href="' + url + '">' + url + '</a>'
+    let s = resp.body.replace(/\r\n/g,"<br />").replace('**:',":</strong>").replace('**',"<strong>").replace(url, url_html).replace(/\- /g, "\u2022\t")
+    $('#modal1').modal("show")
+    $("#modalTitle").html("NEW VERSION RELEASE - " + resp.name)
+    $("#modalSpan").html(s)
+    if(resp.prerelease){
+      $("#pre-release-tag").removeClass("d-none");
+    }
+    $("#modalCheckShow").click(function(){
+      if(this.checked){
+        localStorage.setItem('GITHUB_hide_release_news', "true")
+        localStorage.setItem('GITHUB_last_release_name', resp.name)
+      }else{
+        localStorage.setItem('GITHUB_hide_release_news', "false")
+        localStorage.setItem('GITHUB_last_release_name', "")
+      }
+    })
+  }
+})
+
 
 // ******************** FUNCTION ********************
 // La funzione crea il codice html per aggiungere una card alla row.
