@@ -30,8 +30,8 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
         <!-- Custom styles for this template -->         
         <link href="./assets/css/dashboard.css" rel="stylesheet"/> 
-        <link href="./assets/css/storci-styles.css" rel="stylesheet"/> 
         <link href="./assets/css/table-style.css" rel="stylesheet"/>
+        <link href="./assets/css/storci-styles.css" rel="stylesheet"/> 
         <!-- <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->         
         <!-- AM4CORE CHART -->         
         <script defer src="https://cdn.amcharts.com/lib/4/core.js"></script>         
@@ -187,8 +187,7 @@
                         </ul>                         
                         <h6 class="align-items-center d-flex justify-content-between mb-1 mt-4 px-3 sidebar-heading text-secondary"> <span id="id-username">Utente</span><span class="material-icons-outlined md-24">person</span> </h6> 
                         <ul class="flex-column mb-2 nav"> 
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id=""> <span class="material-icons-outlined">settings</span> <span class="ms-3" translate_id="profile_settings">Profile Settings</span> </a> 
-                                <!-- <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_login.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a>--->                                 
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id=""> <span class="material-icons-outlined">settings</span> <span class="ms-3" translate_id="profile_settings">Profile Settings</span> </a>                              
                             </li>                             
                             <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a> 
                             </li>                             
@@ -203,22 +202,7 @@
 </div>                             
                         </div>                         
                     </div>
-                    <div class="container">
-                        <!--<div class="row g-2">
-                            <div class="form-group col-sm-4">
-                                <label for="inputPassword2" class="sr-only">Password</label>
-                                <input type="date" class="form-control" id="IDtimeStart" placeholder="Password">
-                              </div>
-                            <div class="form-group col-sm-4">
-                                <label for="inputPassword2" class="sr-only">Password</label>
-                                <input type="date" class="form-control" id="IDtimeEnd" placeholder="Password">
-                            </div>
-                            <div class="form-group col-sm-4">
-                                <label for="inputPassword2" class="sr-only">Search</label>
-                                <input type="text" class="form-control" id="IDsearch" placeholder="Search">
-                               <input type="text" class="form-control" id="IDsearch" placeholder="Search" onkeyup="searchTable()">
-                            </div>
-                        </div>-->
+                    
                         <div class="row g-2">
                             <div class="input-group mb-3">
                                 <span class="material-icons-outlined input-group-text">
@@ -227,27 +211,50 @@
                                 <input type="text" id="dateFilter" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                               </div>
                         </div>
-                        <!--<div class="row">-->
-                           <!--<div class="col-md-12">-->
-                                <div class="table-wrap">
+                                <div class="table-responsive">
                                     <table class="table">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Customer</th>
-                                                <th>Machine Name</th>
-                                                <th>Gravity</th>
-                                                <th>Time Start</th>
-                                                <th>Time End</th>
-                                                <th>Alarm Message</th>
+                                                <th class="align-items-center  fw-light text-muted" id="firstColumn" style="color:#fff"> 
+                                                    <div class="align-items-center d-flex">
+                                                        <span translate_id="start_production">Timestart</span>
+                                                        <span class="icon-table d-none material-icons-outlined" id="iconTable1" style="color: #fff">expand_more</span> 
+                                                    </div>                                                         
+                                                </th>
+                                                <th class="align-items-center  fw-light text-muted" style="color:#fff"> 
+                                                    <div class="align-items-center d-flex">
+                                                        <span translate_id="start_production">TimeEnd</span>
+                                                        <span class="icon-table d-none material-icons-outlined" id="iconTable1" style="color: #fff">expand_more</span> 
+                                                    </div>                                                         
+                                                </th>                                                       
+                                                <th class="align-items-center  fw-light text-muted" style="color: #fff"> 
+                                                    <div class="align-items-center d-flex">
+                                                        <span translate_id="end_production">Machine Name</span>
+                                                        <span class="icon-table d-none material-icons-outlined" id="iconTable2" style="color: #fff">expand_more</span> 
+                                                    </div>                                                         
+                                                </th>                                                     
+                                                <th class="fw-light text-muted " style="color: #fff"> 
+                                                    <div class="align-items-center d-flex">
+                                                        <span translate_id="recipe_name">Gravity</span>
+                                                        <span class="icon-table d-none material-icons-outlined" id="iconTable3" style="color: #fff">expand_more</span> 
+                                                    </div>                                                         
+                                                </th>                                                     
+                                                <th class="fw-light text-muted" style="color: #fff"> 
+                                                    <div class="align-items-center d-flex">
+                                                        <span translate_id="duration">Customer</span>
+                                                        <span class="icon-table d-none material-icons-outlined" id="iconTable4" style="color: #fff">expand_more</span> 
+                                                    </div>                                                         
+                                                </th>                                                     
+                                                <th class="fw-light text-muted" style="color: #fff"> 
+                                                    <div class="align-items-center d-flex"> <span translate_id="dryer">Message</span> <span class="icon-table d-none material-icons-outlined" id="iconTable5" style="color: #fff;">expand_more</span> 
+                                                    </div>                                                         
+                                                </th>   
                                             </tr>
                                         </thead>
                                         <tbody id="IDAlertHistoryBody">                                     
                                         </tbody>
                                     </table>
                                 </div>
-                            <!--</div>-->
-                       <!-- </div>-->
-                    </div>
                  </main>
             </div>
         </div>

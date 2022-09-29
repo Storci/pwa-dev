@@ -35,19 +35,87 @@ function getDate(date){
 let customerName = localStorage.getItem('global_customer')
 console.log(customerName)
 
+// Cancella tutte le righe della tabella
+$("#IDAlertHistoryBody").empty()
+
+let direction = true
+$("th").click(function() {
+	let icon = "#" + $(this)[0].children[0].children[1].id
+	$(".icon-table").addClass("d-none")
+  $(icon).removeClass("d-none")
+
+	if(direction){
+		$(icon).text("expand_more")
+	}else{
+		$(icon).text("expand_less")
+	}
+
+
+	let column = $(this).index()
+	let table = $("#IDAlertHistoryBody")
+
+	//let start = new Date().getTime()
+	insertionSort(table[0], column, direction)
+	//let stop  = new Date().getTime()
+	//console.log(stop-start + " ms")
+
+	direction = !direction
+})
+
+function convertDate(s){
+	let sdate = s
+	sdate = sdate.split(", ")
+	let date = sdate[0]
+	date = date.split("/")
+	let time = sdate[1]
+
+	let day = date[0]
+	let month = date[1]
+	let year = date[2]
+
+	return Date.parse(year + "/" + month + "/" + day + " " + time)
+}
+
+function insertionSort(table, column, dir){
+	let rows = 	table.children
+	let parent = table
+
+	for(let i=1; i<rows.length; i++){
+		for(let j=i-1; j>-1; j--){
+			let value1 = rows[j].getElementsByTagName("TD")[column].innerHTML
+			let value2 = rows[j+1].getElementsByTagName("TD")[column].innerHTML
+
+			if(column == 0 || column == 1){
+				value1 = convertDate(value1)
+				value2 = convertDate(value2)
+			}
+
+			if(dir){
+				if(value2 < value1){
+					parent.insertBefore(rows[j+1], rows[j])
+				}
+			}else{
+				if(value2 > value1){
+					parent.insertBefore(rows[j+1], rows[j])
+				}
+			}
+		}
+	}
+}
+
+
 //funzione per recuperare i dati da tw per mettere nella tabella
 function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory, customerName){
+  console.log(startDate)
+  console.log(endDate)
     tw.getListAlert(startDate, endDate, filter, getHistory,customerName)
 
     /**nuova codice da implementare per recuperare la tabella  */
     .then((list)=>{
       console.log(list)
-       /* list.rows.forEach(info => {
-          console.log()
-        });*/
       
       
-    //$(idTable).empty()
+    $(idTable).empty()
     /**** vecchio codice funzionante ***/
         list.rows.forEach((el,i) =>{
           let timeStart = new Date(el.TimeStart).toLocaleString();
@@ -57,11 +125,11 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
           
           let id = "IDHistoryTableRow" + i;
           let row = '<tr id=' + id + ' class="hover_tr card-body" style="border-style: none;background: var(--bs-table-bg);">'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + timeStart + '</td>'
+          row    += '    <td style="font-size: 12px;border-style: none;">' + timeEnd + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' + el.CustomerName  + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' + el.MachineName    + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' + el.Gravity + '</td>'
-          row    += '    <td style="font-size: 12px;border-style: none;">' + timeStart + '</td>'
-          row    += '    <td style="font-size: 12px;border-style: none;">' + timeEnd + '</td>'
           row    += '    <td style="font-size: 12px;border-style: none;">' + el.Message  + '</td>'
           row    += '</tr>'  
 				// Aggiunge la riga alla tabella
@@ -73,12 +141,6 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
         console.log('promise rejected', err)
     })
   }
-
-
-
- 
-
-
 
 // Definisce le variabili come date
 let timeStartHistory = new Date()
@@ -129,10 +191,5 @@ $('#dateFilter').daterangepicker({
     "startDate": disp_timeStart,
     "endDate": disp_timeEnd
 }, function(start, end, label) {
-	// Recupera tutte le celle installate dal cliente
-	/*tw.getCustomerCells(selectedCustomer)
-  
-	.then(dryers => {listHistoryProduction(dryers, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))})
-	.catch(error => console.error(error))*/
   getAlarmsNotifications('#IDAlertHistoryBody',start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD'),"*",true, customerName)
 });

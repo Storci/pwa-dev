@@ -677,7 +677,7 @@ function getListAlert(startDate, endDate, filter,getHistory,customerName){
 			"Accept"	  : "application/json",
 			"Content-Type": "application/json"
 		},
-		"data": JSON.stringify({"datetime":startDate, "datetime":endDate, "filter":filter, "getHistory":getHistory, "customerName":customerName})
+		"data": JSON.stringify({"startDate":startDate, "endDate":endDate, "filter":filter, "getHistory":getHistory, "customerName":customerName})
 	};
 	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
 	return new Promise(function(resolve){
