@@ -35,6 +35,7 @@ function createCard(customerList){
 		// Toglie le prime due stringhe 'Storci' e 'Thing'.
 		// es. EntityName: Storci.Thing.Antiche_Tradizioni_Di_Gragnano
 		let customerName = el.name.split('.')[2]
+		console.log(customerName)
 		// Recupera l'immagine del cliente
 		let image = "./assets/img/Loghi/" + customerName + "." + "svg"
 		// Carica un'immagine base nel caso l'immagine del cliente non venga trovata

@@ -31,21 +31,21 @@ function getDate(date){
   // Ritorna la stringa
 	return year + '-' + month + '-' + day
 }
- let inputFIlter = document.getElementById('filter')
- let i
- 
+// recupero il nome del cliente utilizzando il local storage
+let customerName = localStorage.getItem('global_customer')
+console.log(customerName)
+
 //funzione per recuperare i dati da tw per mettere nella tabella
-function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory){
-    tw.getListAlert(startDate, endDate, filter, getHistory)
+function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory, customerName){
+    tw.getListAlert(startDate, endDate, filter, getHistory,customerName)
 
     /**nuova codice da implementare per recuperare la tabella  */
     .then((list)=>{
-        //console.log(list)
-        list.rows.forEach(info => {
-          console.log(info.CustomerName)
-          const table = ""
-        });
-        
+      console.log(list)
+       /* list.rows.forEach(info => {
+          console.log()
+        });*/
+      
       
     //$(idTable).empty()
     /**** vecchio codice funzionante ***/
@@ -74,80 +74,65 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory)
     })
   }
 
-function alertHistory(){
-  let alertStartHistory = new Date()
-  let alertEndHistory   = new Date()
 
-  // imposta 30 giorni prima della data odierna
-  alertStartHistory.setDate(alertStartHistory.getDate()-9)
-  // Imposta i 2 data picker con le date calcolate prima
-	// La funzione getDate ritorna solamente l'anno, il mese e il giorno
-	// yyyy-MM-dd
-  $('#IDtimeStart').val(getDate(alertStartHistory))
-  $('#IDtimeEnd').val(getDate(alertEndHistory))
 
-  getAlarmsNotifications('#IDAlertHistoryBody',alertStartHistory,alertEndHistory,"*",true)
+ 
 
-  
-$("#IDtimeStart").change(function(){
-  // Recupera i valori di inizio e fine produzione
-  let alertStartHistory = new Date($(this).val())
-  let alertEndHistory   = new Date($('#IDtimeStart').val())
-  // Recupera la lista delle produzioni
-  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-   getAlarmsNotifications('#IDAlertHistoryBody',alertStartHistory,alertEndHistory,"*", true);
-  })
-  
-$("#IDtimeEnd").change(function(){
-    // Recupera i valori di inizio e fine produzione
-    let alertStartHistory = new Date($('#IDtimeEnd').val())
-    let alertEndHistory   = new Date($(this).val())
-    // Recupera la lista delle produzioni
-    // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-     getAlarmsNotifications('#IDAlertHistoryBody',alertStartHistory,alertEndHistory,"*", true);
-  })
 
-}
-alertHistory();
 
-// funzione per impostare il range delle date 
+// Definisce le variabili come date
+let timeStartHistory = new Date()
+let timeEndHistory   = new Date()
+// Imposta X giorni prima della data odierna
+timeStartHistory.setDate(timeStartHistory.getDate() - 2)
+// Imposta i 2 data picker con le date calcolate prima
+// La funzione getDate ritorna solamente l'anno, il mese e il giorno
+// yyyy-MM-dd
+let disp_timeStart = common.getDate(timeStartHistory)
+let disp_timeEnd = common.getDate(timeEndHistory)
+
 $('#dateFilter').daterangepicker({
-  "locale": {
-      "format": "MM/DD/YYYY",
-      "separator": " - ",
-      "applyLabel": "Apply",
-      "cancelLabel": "Cancel",
-      "fromLabel": "From",
-      "toLabel": "To",
-      "customRangeLabel": "Custom",
-      "weekLabel": "W",
-      "daysOfWeek": [
-          "Su",
-          "Mo",
-          "Tu",
-          "We",
-          "Th",
-          "Fr",
-          "Sa"
-      ],
-      "monthNames": [ 
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December"
-      ],
-      "firstDay": 1
-  },
-  "startDate": "09/20/2022",
-  "endDate": "09/26/2022"
+    "locale": {
+        "format": "YYYY/MM/DD",
+        "separator": " - ",
+        "applyLabel": "Apply",
+        "cancelLabel": "Cancel",
+        "fromLabel": "From",
+        "toLabel": "To",
+        "customRangeLabel": "Custom",
+        "weekLabel": "W",
+        "daysOfWeek": [
+            "Su",
+            "Mo",
+            "Tu",
+            "We",
+            "Th",
+            "Fr",
+            "Sa"
+        ],
+        "monthNames": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "firstDay": 1
+    },
+    "startDate": disp_timeStart,
+    "endDate": disp_timeEnd
 }, function(start, end, label) {
-console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+	// Recupera tutte le celle installate dal cliente
+	/*tw.getCustomerCells(selectedCustomer)
+  
+	.then(dryers => {listHistoryProduction(dryers, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))})
+	.catch(error => console.error(error))*/
+  getAlarmsNotifications('#IDAlertHistoryBody',start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD'),"*",true, customerName)
 });

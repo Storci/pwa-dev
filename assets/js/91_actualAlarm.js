@@ -7,53 +7,24 @@ import * as common from "./Global/Common/commonFunctions.js"
 
 
 
-/*async function getAlarmsNotifications(days, filter, getHistory){
-    let alarmResponse = await tw.getListAlert(days, filter, getHistory)
-    console.log(alarmResponse)
-}*/
-
-
-
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 // funzione per la traduzione 
 lang.getLanguage()
 
-/* Sorting table*/
-/*$(document).ready(function () {
-   // $('#alertTable').DataTable();
-  // var data = alarmi
-    
-    var columns = []
 
-    var rowdata = data
-
-    Object.keys( data ).forEach( function (key, index) {
-        columns.push( {data: key, title: key} ); 
-    
-
-        var table = $('#alertTable').DataTable({
-            data: data,
-            columns: columns
-          });
-        });
-});*/
-$(document).ready(function(){
-    $('#alertTable').DataTable();
-})
-
-
+let customerName = localStorage.getItem('global_customer')
+console.log(customerName)
 
 
 
 //funzione per recuperare i dati da tw per mettere nella tabella
-function getAlarmsNotifications(startDate, endDate, filter, getHistory){
-    tw.getListAlert(startDate, endDate, filter, getHistory)
+function getAlarmsNotifications(filter, getHistory,customerName){
+    tw.getListAlert(null,null,filter, getHistory,customerName)
     .then((list)=>{
         console.log(list)
-    $("#IDAlertActualBody")
-
+    $("#IDAlertActualBody").empty()
         list.rows.forEach(el =>{
             let timeStart = new Date(el.TimeStart).toLocaleString();
         let row = '<tr class="alert" role="alert">'
@@ -75,4 +46,4 @@ function getAlarmsNotifications(startDate, endDate, filter, getHistory){
         console.log('promise rejected', err)
     })
 }
-const alarmi = getAlarmsNotifications("*", false);
+const alarmi = getAlarmsNotifications("*", false,"*");

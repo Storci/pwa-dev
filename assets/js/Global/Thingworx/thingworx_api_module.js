@@ -662,7 +662,7 @@ function getLineAlertsActive(entityName){
 }
 
 // Recupera gli allarmi attivi della linea
-function getListAlert(startDate , endDate , filter,getHistory){
+function getListAlert(startDate, endDate, filter,getHistory,customerName){
 	// Definisce l'url da richiamare per la REST API
 	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/service_10_getAlerts";
 
@@ -677,7 +677,7 @@ function getListAlert(startDate , endDate , filter,getHistory){
 			"Accept"	  : "application/json",
 			"Content-Type": "application/json"
 		},
-		"data": JSON.stringify({"datetime":startDate, "datetime":endDate, "filter":filter, "getHistory":getHistory})
+		"data": JSON.stringify({"datetime":startDate, "datetime":endDate, "filter":filter, "getHistory":getHistory, "customerName":customerName})
 	};
 	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
 	return new Promise(function(resolve){

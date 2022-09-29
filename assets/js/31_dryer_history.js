@@ -197,8 +197,10 @@ function insertionSort(table, column, dir){
 function listHistoryProduction(dryers, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
 	dryers.array.forEach((dryer, d) =>{
+		console.log(dryer)
 		let dryer_name = dryer.entityName.split(".")
 		dryer_name = dryer_name[4] + " " + dryer_name[5]
+		console.log(dryer_name)
 		// Recupera lo storico delle lavorazioni effettuate dalla cella
 		tw.service_03_getDryerHistoryProductions(dryer.entityName, timeStart, timeEnd)
 		.then(productions => {
