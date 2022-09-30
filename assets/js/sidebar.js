@@ -17,6 +17,10 @@ if(localStorage.getItem('global_customer').includes("Storci")){
   $('#id-nav-customers-list').removeClass('d-none')
 }
 
+let url = "https://api.github.com/repos/Storci/pwa/releases/latest"
+tw.service_80_githubAPI(url)
+.then((resp) => {$("#github-version").text(resp.name)})
+
 // Recupera l'url della pagina visualizzata
 // Effettua uno split dell'url recuperato dividendo la stringa tramite lo /
 // recupera il nome della pagina

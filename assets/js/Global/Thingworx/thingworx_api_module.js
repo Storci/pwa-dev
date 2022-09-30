@@ -74,6 +74,19 @@ function service_03_getDryerHistoryProductions(entityName, startTime, endTime){
 }
 
 /*
+	service_04_getLineHistoryProductions
+	l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa)
+	recupera la lista di produzione di una linea.
+*/
+function service_04_getLineHistoryProductions(entityName, startTime, endTime){
+	// Definisce l'url da richiamare per la REST API
+	settings.url  = baseUrl + bootstrapThing + 'service_04_getLineHistoryProductions'
+	settings.data = JSON.stringify({"entityName":entityName, "startTime":startTime, "endTime":endTime})
+	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+}
+
+/*
 	service_05_getDryerStartEnd
 	l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa)
 	recupera i timestamp di inizio e fine essiccazione.
@@ -82,6 +95,20 @@ function service_05_getDryerStartEnd(entityName, startTime, endTime){
 	// Definisce l'url da richiamare per la REST API
 	settings.url  = baseUrl + bootstrapThing + 'service_05_getDryerStartEnd'
 	settings.data = JSON.stringify({"entityName":entityName, "startTime":startTime, "endTime":endTime})
+	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+}
+
+/*
+	service_80_githubAPI
+	Il servizio effettua le chiamate rest api verso github.
+	Si è preferito utilizzare thingworx come intermediario perchè github revoca il personal access token
+	se lo trova nel codice nel repository. Quindi è impossibile usare un qualsiasi codice dentro a questa applicazione.
+*/
+function service_80_githubAPI(url){
+	// Definisce l'url da richiamare per la REST API
+	settings.url  = baseUrl + bootstrapThing + 'service_80_githubAPI'
+	settings.data = JSON.stringify({"url":url})
 	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
 	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
 }
@@ -771,7 +798,9 @@ export{
 	service_01_getDryersGeneralInfo,
 	service_02_getLinesGeneralInfo,
 	service_03_getDryerHistoryProductions,
+	service_04_getLineHistoryProductions,
 	service_05_getDryerStartEnd,
+	service_80_githubAPI,
 	service_90_sidebar,
 	service_97_addNewUser,
 	service_98_setFirebaseToken,
