@@ -206,7 +206,8 @@ a {
 }
 
 .card_cells,
-.card-hover {
+
+.card-hover {
     cursor: pointer;
 }
 
