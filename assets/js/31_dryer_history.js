@@ -152,6 +152,21 @@ $("th").click(function() {
 	direction = !direction
 })
 
+// Funzione di ricerca nella tabella
+$("#filter").on("keyup", function(){
+  let value = $(this).val()
+  $("#IDHistoryTableBody tr").filter(function(){
+    $(this).toggle($(this).text().indexOf(value) > -1)
+  })
+})
+
+
+
+
+// ************************************
+// ************ FUNCTIONS *************
+// ************************************
+
 function convertDate(s){
 	let sdate = s
 	sdate = sdate.split(", ")

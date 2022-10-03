@@ -44,6 +44,14 @@ $('#modal1').modal("show")
 // richiamo della funzione
 getAlarmsNotifications("*", false,customerName);
 
+// Funzione di ricerca nella tabella
+$("#filter").on("keyup", function(){
+  let value = $(this).val()
+  $("#IDAlertActualBody tr").filter(function(){
+    $(this).toggle($(this).text().indexOf(value) > -1)
+  })
+})
+
 
 // *******************************************
 // ************** FUNZIONI *******************

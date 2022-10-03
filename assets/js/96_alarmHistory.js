@@ -92,6 +92,14 @@ $("th").click(function() {
 })
 
 
+// Funzione di ricerca nella tabella
+$("#filter").on("keyup", function(){
+  let value = $(this).val()
+  $("#IDAlertHistoryBody tr").filter(function(){
+    $(this).toggle($(this).text().indexOf(value) > -1)
+  })
+})
+
 // *******************************************
 // ************** FUNZIONI *******************
 // *******************************************
