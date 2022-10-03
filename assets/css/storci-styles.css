@@ -422,3 +422,8 @@ thead {
     padding-left: 6px;
   }
 }
+
+.alarmthead{
+    position: sticky !important;
+    top: 0px !important;
+}
