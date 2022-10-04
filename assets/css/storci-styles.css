@@ -426,4 +426,8 @@ thead {
 .alarmthead{
     position: sticky !important;
     top: 0px !important;
+    z-index: 999;
+}
+.tableAlert{
+    height: 80vh;
 }
