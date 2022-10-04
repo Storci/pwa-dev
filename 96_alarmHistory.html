@@ -183,8 +183,7 @@
                             </li>                             
                             <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a> 
                             </li>                             
-                        </ul>
-                        <span style="font-size: 10px;" id="github-version" class="p-2">Version</span> 
+                        </ul>                         <span style="font-size: 10px;" id="github-version" class="p-2">Version</span> 
                     </div>                     
                 </nav>                 
                 <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4 bg-white-customized" id="id-column-master" data-pgc-field="id-column-master"> 
@@ -195,50 +194,51 @@
 </div>                             
                         </div>                         
                     </div>                     
-                    <div style="height: 50px;">
+                    <div style="height: 50px;"> 
                         <div class="input-group mb-3"> <span class="material-icons-outlined input-group-text"> 
                                                     date_range </span> 
                             <input type="text" id="dateFilter" class="form-control" placeholder="datePicker" aria-label="datePicker" aria-describedby="basic-addon1"/> 
-                        </div>
-                    </div>
-                    <div style="height: 50px;">
-                        <div class="input-group mb-5 mt-3"> <span class="input-group-text material-icons-outlined">search</span>
-                            <input type="text" class="form-control" placeholder="filter" aria-label="date_range" aria-describedby="basic-addon1" id="filter"/>
-                        </div>
+                        </div>                         
                     </div>                     
-                    <div class="table-responsive"> 
+                    <div style="height: 50px;"> 
+                        <div class="input-group mb-5 mt-3"> <span class="input-group-text material-icons-outlined">search</span> 
+                            <input type="text" class="form-control" placeholder="filter" aria-label="date_range" aria-describedby="basic-addon1" id="filter"/> 
+                        </div>                         
+                    </div>                     
+                    <div class=" mb-10 mb-5 table-responsive tableAlert"> 
                         <table class="table table-hover table-responsive"> 
-                            <thead class="thead-dark"> 
-                                <tr class="bg-dark"> 
-                                    <th class="align-items-center  fw-light" id="firstColumn" style="color:#fff"> 
-                                        <div class="align-items-center d-flex"> <span>Timestart</span> <span class="icon-table d-none material-icons-outlined" id="iconTable1" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="align-items-center  fw-light" style="color:#fff"> 
-                                        <div class="align-items-center d-flex"> <span>TimeEnd</span> <span class="icon-table d-none material-icons-outlined" id="iconTable1" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="align-items-center  fw-light" style="color: #fff"> 
-                                        <div class="align-items-center d-flex"> <span>Machine Name</span> <span class="icon-table d-none material-icons-outlined" id="iconTable2" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="fw-light  " style="color: #fff"> 
-                                        <div class="align-items-center d-flex"> <span>Gravity</span> <span class="icon-table d-none material-icons-outlined" id="iconTable3" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="fw-light " style="color: #fff"> 
-                                        <div class="align-items-center d-flex"> <span>Customer</span> <span class="icon-table d-none material-icons-outlined" id="iconTable4" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="fw-light" style="color: #fff"> 
-                                        <div class="align-items-center d-flex"> <span>Message</span> <span class="icon-table d-none material-icons-outlined" id="iconTable5" style="color: #fff;">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                </tr>                                 
+                            <thead class="alarmthead"> 
+                                <th class="align-items-center bg-dark fw-light" id="firstColumn" style="color:#fff"> 
+                                    <div class="align-items-center d-flex"> <span>Timestart</span> <span class="icon-table d-none material-icons-outlined" id="iconTable1" style="color: #fff">expand_more</span> 
+                                    </div>                                     
+                                </th>                                 
+                                <th class="align-items-center bg-dark fw-light" style="color:#fff"> 
+                                    <div class="align-items-center d-flex"> <span>TimeEnd</span> <span class="icon-table d-none material-icons-outlined" id="iconTable1" style="color: #fff">expand_more</span> 
+                                    </div>                                     
+                                </th>                                 
+                                <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
+                                    <div class="align-items-center d-flex"> <span>Machine Name</span> <span class="icon-table d-none material-icons-outlined" id="iconTable2" style="color: #fff">expand_more</span> 
+                                    </div>                                     
+                                </th>                                 
+                                <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
+                                    <div class="align-items-center d-flex"> <span>Gravity</span> <span class="icon-table d-none material-icons-outlined" id="iconTable3" style="color: #fff">expand_more</span> 
+                                    </div>                                     
+                                </th>                                 
+                                <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
+                                    <div class="align-items-center d-flex"> <span>Customer</span> <span class="icon-table d-none material-icons-outlined" id="iconTable4" style="color: #fff">expand_more</span> 
+                                    </div>                                     
+                                </th>                                 
+                                <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
+                                    <div class="align-items-center d-flex"> <span>Message</span> <span class="icon-table d-none material-icons-outlined" id="iconTable5" style="color: #fff;">expand_more</span> 
+                                    </div>                                     
+                                </th>                                 
                             </thead>                             
                             <tbody id="IDAlertHistoryBody"> 
 </tbody>                             
                         </table>                         
+                    </div>                     
+                    <div class="col-md h-10"> 
+                        <div class="pg-empty-placeholder"></div>                         
                     </div>                     
                     <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
                         <div class="modal-dialog modal-dialog-centered modal-sm"> 
