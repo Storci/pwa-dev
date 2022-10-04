@@ -117,13 +117,13 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 
 		list.rows.forEach(el =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();
-			let row = '<tr class="alert" role="alert">'
+			/*let row = '<tr class="alert" role="alert">'
 			row    += '    <td >' + timeStart  + '</td>'
 			row    += '    <td >' + el.MachineName    + '</td>'
 			row    += '    <td >' + el.Gravity + '</td>'
 			row    += '    <td >' + el.CustomerName  + '</td>'
 			row    += '    <td >' + el.Message  + '</td>'
-			row    += '</tr>'
+			row    += '</tr>'*/
 			// Aggiunge la riga alla tabella
 			$('#IDAlertActualBody').append(row);
 		})
