@@ -431,3 +431,6 @@ thead {
 .tableAlert{
     height: 80vh;
 }
+.CurrentAlarmList{
+    list-style-type: none;
+}

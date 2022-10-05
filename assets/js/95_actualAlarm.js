@@ -47,7 +47,7 @@ getAlarmsNotifications("*", false,customerName);
 // Funzione di ricerca nella tabella
 $("#filter").on("keyup", function(){
   let value = $(this).val()
-  $("#IDAlertActualBody tr").filter(function(){
+  $(".CurrentAlarmList").filter(function(){
     $(this).toggle($(this).text().indexOf(value) > -1)
   })
 })
@@ -102,6 +102,7 @@ function insertionSort(table, column, dir){
 function getAlarmsNotifications(filter, getHistory,customerName){
 	tw.getListAlert("","",filter, getHistory,customerName)
 	.then((list)=>{
+		console.log(list)
 		$("#IDAlertActualBody").empty()
 		if(list.rows.length == 0){
 			let row = '<tr class="alert" role="alert">'
@@ -116,6 +117,7 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 		}
 
 		list.rows.forEach(el =>{
+			
 			let timeStart = new Date(el.TimeStart).toLocaleString();
 			/*let row = '<tr class="alert" role="alert">'
 			row    += '    <td >' + timeStart  + '</td>'
@@ -125,7 +127,31 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			row    += '    <td >' + el.Message  + '</td>'
 			row    += '</tr>'*/
 			// Aggiunge la riga alla tabella
-			$('#IDAlertActualBody').append(row);
+			let alarm_type = el.Type
+			let color
+			let icon_wrn = '<div class="col-md-2 d-inline-flex  justify-content-center"> <span class="material-icons-outlined">notifications</span></div>'
+			let icon_msg ='<div class="col-md-2 d-inline-flex  justify-content-center"> <span class="material-icons-outlined"> notifications</span></div>'
+			let icon_alm ='<div class="col-md-2 d-inline-flex  justify-content-center"> <span class="material-icons-outlined"> notifications</span> </div> '
+			if(el.Type== 'WRN'){
+				color = "#fb8c0066"
+				icon_wrn
+			}
+			else if(el.Type == "ALM"){
+				color = "#e5393566"
+				icon_alm
+			}
+
+
+			let lista = '<div class="row row-cols-4 row-cols-lg-4 row-cols-md-4 row-cols-sm-4 row-cols-xl-4 row-cols-xxl-4"'
+			lista += 'style=background:'+ color +';border-radius: 4px;margin-top: 8px;margin-bottom: 8px;">'
+			lista += '<li class="list  border border-0">'+ timeStart +'</li>'
+			lista += '<li class="list  border border-0">'+ el.MachineName +'</li>'
+			lista += '<li class="list  border border-0">'+ el.Gravity +'</li>'
+			lista += '<li class="list  border border-0">'+ el.CustomerName +'</li>'
+			lista += '<li class="list  border border-0">'+ el.Message +'</li>'
+			lista += '<li class="list  border border-0">'+ el.Type +'</li>'
+			lista += '</div>'
+			$('.CurrentAlarmList').append(lista);
 		})
 		$('#modal1').modal("hide")
 	})
