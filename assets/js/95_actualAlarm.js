@@ -47,7 +47,7 @@ getAlarmsNotifications("*", false,customerName);
 // Funzione di ricerca nella tabella
 $("#filter").on("keyup", function(){
   let value = $(this).val()
-  $(".CurrentAlarmList").filter(function(){
+  $("#alert_container li").filter(function(){
     $(this).toggle($(this).text().indexOf(value) > -1)
   })
 })
@@ -127,11 +127,13 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			row    += '    <td >' + el.Message  + '</td>'
 			row    += '</tr>'*/
 			// Aggiunge la riga alla tabella
-			let alarm_type = el.Type
-			let color
+			
+			/*let alarm_type = el.Type
 			let icon_wrn = '<div class="col-md-2 d-inline-flex  justify-content-center"> <span class="material-icons-outlined">notifications</span></div>'
 			let icon_msg ='<div class="col-md-2 d-inline-flex  justify-content-center"> <span class="material-icons-outlined"> notifications</span></div>'
-			let icon_alm ='<div class="col-md-2 d-inline-flex  justify-content-center"> <span class="material-icons-outlined"> notifications</span> </div> '
+			let icon_alm ='<div class="col-md-2 d-inline-flex  justify-content-center"> <span class="material-icons-outlined"> notifications</span> </div> '*/
+			
+			let color = 'rgba(255,255,255,0)'
 			if(el.Type== 'WRN'){
 				color = "#fb8c0066"
 				icon_wrn
@@ -140,18 +142,31 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 				color = "#e5393566"
 				icon_alm
 			}
+			else if(el.Type =="MSG"){
+				color = '#fdd83566'
+			}
 
 
-			let lista = '<div class="row row-cols-4 row-cols-lg-4 row-cols-md-4 row-cols-sm-4 row-cols-xl-4 row-cols-xxl-4"'
-			lista += 'style=background:'+ color +';border-radius: 4px;margin-top: 8px;margin-bottom: 8px;">'
-			lista += '<li class="list  border border-0">'+ timeStart +'</li>'
-			lista += '<li class="list  border border-0">'+ el.MachineName +'</li>'
-			lista += '<li class="list  border border-0">'+ el.Gravity +'</li>'
-			lista += '<li class="list  border border-0">'+ el.CustomerName +'</li>'
-			lista += '<li class="list  border border-0">'+ el.Message +'</li>'
-			lista += '<li class="list  border border-0">'+ el.Type +'</li>'
-			lista += '</div>'
-			$('.CurrentAlarmList').append(lista);
+
+			let lista = '<li class="alert_list list-group-item mb-2"'
+			lista +='style="background: ' + color + '">'
+			lista +='<div class="card"> '
+			lista +='<div class="alert_body card-body ">'
+			lista +='<div class="align-items-center d-flex me-5"> <span class="material-icons-outlined"> notifications</span>'
+			lista +='</div> '
+			lista +='<div class="row row-cols-4 w-100">'
+			lista +='<div>'+ timeStart+'</div>'
+			lista +='<div> '+ el.CustomerName+'</div>'
+			lista +='<div> '+ el.MachineName+'</div>'
+			lista +='<div> '+ el.Gravity+'</div>'
+			lista +='<div class="col-12"> '+ el.Message+'</div>'
+			lista +='</div>'
+			lista +='</div>'
+			lista +='</div>'
+			lista +='</li> '
+
+
+			$('#alert_container').append(lista);
 		})
 		$('#modal1').modal("hide")
 	})

@@ -193,24 +193,22 @@
                             <input type="text" class="form-control" placeholder="filter" aria-label="date_range" aria-describedby="basic-addon1" id="filter"/> 
                         </div>                         
                     </div>                     
-                    <div class="align-items-center d-flex justify-content-between mb-3 mt-3 rounded shadow-sm list_container"> 
-                        <div class="col-md-2 d-inline-flex  justify-content-center"> <span class="material-icons-outlined"> 
-                                    notifications
- </span> 
-                        </div>                         
-                        <div class="col-md-10"> 
-                            <ul class="CurrentAlarmList list-group"> 
-                                <!-- <div class="row row-cols-4 row-cols-lg-4 row-cols-md-4 row-cols-sm-4 row-cols-xl-4 row-cols-xxl-4"> 
-                                    <li class="border border-0">TimeStart</li>                                     
-                                    <li class="border border-0">Machine Name</li>                                     
-                                    <li class="border border-0">Gravity</li>                                     
-                                    <li class="bg-warning  border border-0">Customer</li>                                     
-                                    <li class="list-group-item bg-warning  border border-0">Alarm Message</li>                                     
-                                </div>   -->                                 
-                            </ul>                             
-                        </div>                         
-                    </div>                     
-                    <!--<div class="mb-10 mb-5 table-responsive tableAlert"> 
+                    <div id="alertList" class="bg-warning forum-item rounded rounded-3 mb-2 mb-lg-2 mb-md-2 mb-sm-2 mb-xl-2 mb-xxl-2 mt-2 mt-lg-2 mt-md-2 mt-sm-2 mt-xl-2 mt-xxl-2"> 
+                        <!--<div class="row row-cols-5 row-cols-lg-6 row-cols-md-6 row-cols-sm-5 row-cols-xl-6 row-cols-xxl-6">
+                            <div class="col-md-1">
+                                <div class="col-md-2 d-inline-flex  justify-content-center"><span class="material-icons-outlined"> notifications</span> 
+                                </div>                                 
+                            </div>
+                            <div class="col-md-2 forum-info">+ timesStart +</div>
+                            <div class="col-md-2 forum-info">el.MachineName</div>
+                            <div class="col-md-2 forum-info">el.Machine</div>
+                            <div class="col-md-2 forum-info">el.Gravity</div>
+                            <div class="col-md-2 forum-info">el.CustomerName</div>
+                            <div class="col-md-6 forum-info"> el.Message</div>
+                        </div>
+                    </div> 
+                                      
+                    <div class="mb-10 mb-5 table-responsive tableAlert"> 
                             <table class="table table-hover table-responsive" id="alertTable"> 
                                 <thead class="alarmthead"> 
                                 
@@ -238,13 +236,30 @@
                                 </thead>                             
                                 <tbody id="IDAlertActualBody"></tbody>                             
                             </table>                         
-                        </div>-->                     
+                        </div>-->                         
+                    </div>                     
+                    <ul id="alert_container" class="list-group"> 
+                        <!--<li class="alert_list g-2 list-group-item"> 
+                            <div class="card"> 
+                                <div class="alert_body card-body"> 
+                                    <div class="align-items-center d-flex me-5"> <span class="material-icons-outlined"> notifications</span> 
+                                    </div>                                     
+                                    <div class="row row-cols-4 w-100"> 
+                                        <div> timesStart</div>                                         
+                                        <div>Machine</div>                                         
+                                        <div>Gravity</div>                                         
+                                        <div>CustomerName</div>                                         
+                                        <div class="col-12">Message</div>                                         
+                                    </div>                                     
+                                </div>                                 
+                            </div>                             
+                        </li>     -->                     
+                    </ul>                    
+                    <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
+                        <div class="modal-dialog modal-dialog-centered modal-sm"> 
+                            <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_bU3Dr6.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>                             
+                        </div>                         
+                    </div>                     
+                </main>                 
             </div>             
-            <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
-                <div class="modal-dialog modal-dialog-centered modal-sm"> 
-                    <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_bU3Dr6.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>                     
-                </div>                 
-            </div>             
-        </main>         
-    </div>     
-</body>
+        </div>
