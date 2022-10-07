@@ -95,7 +95,7 @@ $("th").click(function() {
 // Funzione di ricerca nella tabella
 $("#filter").on("keyup", function(){
   let value = $(this).val()
-  $("#IDAlertHistoryBody tr").filter(function(){
+  $("#alert_container li").filter(function(){
     $(this).toggle($(this).text().indexOf(value) > -1)
   })
 })
@@ -155,25 +155,27 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 			let timeEnd = new Date(el.TimeStart).toLocaleString();
 
 			let color = 'rgba(255,255,255,0)'
+			let icon 
 			if(el.Type== 'WRN'){
 				color = "#fb8c0066"
-				//icon_wrn
+				icon = 'warning'
 			}
 			else if(el.Type == "ALM"){
 				color = "#e5393566"
-				//icon_alm
+				icon = 'notifications'
 			}
 			else if(el.Type =="MSG"){
 				color = '#fdd83566'
+				icon  = 'mail'
 			}
 
-
-
+			/****Lista generata */
 			let lista = '<li class="alert_list list-group-item mb-2"'
 			lista +='style="background: ' + color + '">'
 			lista +='<div class="card"> '
 			lista +='<div class="alert_body card-body ">'
-			lista +='<div class="align-items-center d-flex me-5"> <span class="material-icons-outlined"> notifications</span>'
+			lista +='<div class="align-items-center d-flex me-5">'
+			lista += '<span class="material-icons-outlined">'+icon+'</span>'
 			lista +='</div> '
 			lista +='<div class="row row-cols-5 w-100">'
 			lista +='<div>'+ timeStart+'</div>'
