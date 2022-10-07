@@ -173,12 +173,11 @@
                     <div class="align-content-end bg-light d-flex fixed-bottom flex-column position-absolute"> 
                         <h6 class="align-items-center d-flex justify-content-between mb-1 mt-4 px-3 sidebar-heading text-secondary"> <span id="id-username">Utente</span><span class="material-icons-outlined md-24">person</span> </h6> 
                         <ul class="flex-column mb-2 nav"> 
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id=""> <span class="material-icons-outlined">settings</span> <span class="ms-3" translate_id="profile_settings">Profile Settings</span> </a>                                  
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id=""> <span class="material-icons-outlined">settings</span> <span class="ms-3" translate_id="profile_settings">Profile Settings</span> </a> 
                             </li>                             
                             <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a> 
                             </li>                             
-                        </ul>
-                        <span style="font-size: 10px;" id="github-version" class="p-2">Version</span> 
+                        </ul>                         <span style="font-size: 10px;" id="github-version" class="p-2">Version</span> 
                     </div>                     
                 </nav>                 
                 <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4 bg-white-customized" id="id-column-master" data-pgc-field="id-column-master"> 
@@ -188,46 +187,74 @@
                             <div class="btn-group me-2"> 
 </div>                             
                         </div>                         
-                    </div>
-                    <div style="height: 50px;">
-                        <div class="input-group mb-5 mt-3"> <span class="input-group-text material-icons-outlined">search</span>
-                            <input type="text" class="form-control" placeholder="filter" aria-label="date_range" aria-describedby="basic-addon1" id="filter"/>
+                    </div>                     
+                    <div style="height: 50px;"> 
+                        <div class="input-group mb-5 mt-3"> <span class="input-group-text material-icons-outlined">search</span> 
+                            <input type="text" class="form-control" placeholder="filter" aria-label="date_range" aria-describedby="basic-addon1" id="filter"/> 
+                        </div>                         
+                    </div>                     
+                    <div id="alertList" class="bg-warning forum-item rounded rounded-3 mb-2 mb-lg-2 mb-md-2 mb-sm-2 mb-xl-2 mb-xxl-2 mt-2 mt-lg-2 mt-md-2 mt-sm-2 mt-xl-2 mt-xxl-2"> 
+                        <!--<div class="row row-cols-5 row-cols-lg-6 row-cols-md-6 row-cols-sm-5 row-cols-xl-6 row-cols-xxl-6">
+                            <div class="col-md-1">
+                                <div class="col-md-2 d-inline-flex  justify-content-center"><span class="material-icons-outlined"> notifications</span> 
+                                </div>                                 
+                            </div>
+                            <div class="col-md-2 forum-info">+ timesStart +</div>
+                            <div class="col-md-2 forum-info">el.MachineName</div>
+                            <div class="col-md-2 forum-info">el.Machine</div>
+                            <div class="col-md-2 forum-info">el.Gravity</div>
+                            <div class="col-md-2 forum-info">el.CustomerName</div>
+                            <div class="col-md-6 forum-info"> el.Message</div>
                         </div>
-                    </div>                     
-                    <div class="mb-10 mb-5 table-responsive tableAlert"> 
-                        <table class="table table-hover table-responsive" id="alertTable"> 
-                            <thead class="alarmthead"> 
-                               <!--<tr class="bg-dark"> --> 
-                                    <th class="align-items-center bg-dark fw-light" id="firstColumn" style="color:#fff"> 
-                                        <div class="align-items-center d-flex"> <span>Timestart</span> <span class="icon-table d-none material-icons-outlined" id="iconTable1" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
-                                        <div class="align-items-center d-flex"> <span>Machine Name</span> <span class="icon-table d-none material-icons-outlined" id="iconTable2" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
-                                        <div class="align-items-center d-flex"> <span>Gravity</span> <span class="icon-table d-none material-icons-outlined" id="iconTable3" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
-                                        <div class="align-items-center d-flex"> <span>Customer</span> <span class="icon-table d-none material-icons-outlined" id="iconTable4" style="color: #fff">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                    <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
-                                        <div class="align-items-center d-flex"> <span>Message</span> <span class="icon-table d-none material-icons-outlined" id="iconTable5" style="color: #fff;">expand_more</span> 
-                                        </div>                                         
-                                    </th>                                     
-                                <!--</tr>-->                                 
-                            </thead>                             
-                            <tbody id="IDAlertActualBody"></tbody>                             
-                        </table>                         
-                    </div>
-                    <div class="col-md h-25"> 
-                        <div class="pg-empty-placeholder"></div>                                             
                     </div> 
-
+                                      
+                    <div class="mb-10 mb-5 table-responsive tableAlert"> 
+                            <table class="table table-hover table-responsive" id="alertTable"> 
+                                <thead class="alarmthead"> 
+                                
+                                        <th class="align-items-center bg-dark fw-light" id="firstColumn" style="color:#fff"> 
+                                            <div class="align-items-center d-flex"> <span>Timestart</span> <span class="icon-table d-none material-icons-outlined" id="iconTable1" style="color: #fff">expand_more</span> 
+                                            </div>                                         
+                                        </th>                                     
+                                        <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
+                                            <div class="align-items-center d-flex"> <span>Machine Name</span> <span class="icon-table d-none material-icons-outlined" id="iconTable2" style="color: #fff">expand_more</span> 
+                                            </div>                                         
+                                        </th>                                     
+                                        <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
+                                            <div class="align-items-center d-flex"> <span>Gravity</span> <span class="icon-table d-none material-icons-outlined" id="iconTable3" style="color: #fff">expand_more</span> 
+                                            </div>                                         
+                                        </th>                                     
+                                        <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
+                                            <div class="align-items-center d-flex"> <span>Customer</span> <span class="icon-table d-none material-icons-outlined" id="iconTable4" style="color: #fff">expand_more</span> 
+                                            </div>                                         
+                                        </th>                                     
+                                        <th class="align-items-center bg-dark fw-light" style="color: #fff"> 
+                                            <div class="align-items-center d-flex"> <span>Message</span> <span class="icon-table d-none material-icons-outlined" id="iconTable5" style="color: #fff;">expand_more</span> 
+                                            </div>                                         
+                                        </th>                                     
+                                                            
+                                </thead>                             
+                                <tbody id="IDAlertActualBody"></tbody>                             
+                            </table>                         
+                        </div>-->                         
                     </div>                     
+                    <ul id="alert_container" class="list-group"> 
+                        <!--<li class="alert_list g-2 list-group-item"> 
+                            <div class="card"> 
+                                <div class="alert_body card-body"> 
+                                    <div class="align-items-center d-flex me-5"> <span class="material-icons-outlined"> notifications</span> 
+                                    </div>                                     
+                                    <div class="row row-cols-4 w-100"> 
+                                        <div> timesStart</div>                                         
+                                        <div>Machine</div>                                         
+                                        <div>Gravity</div>                                         
+                                        <div>CustomerName</div>                                         
+                                        <div class="col-12">Message</div>                                         
+                                    </div>                                     
+                                </div>                                 
+                            </div>                             
+                        </li>     -->                     
+                    </ul>                    
                     <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
                         <div class="modal-dialog modal-dialog-centered modal-sm"> 
                             <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_bU3Dr6.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>                             
@@ -235,6 +262,4 @@
                     </div>                     
                 </main>                 
             </div>             
-        </div>         
-    </body>     
-</html>
+        </div>

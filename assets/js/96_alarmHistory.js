@@ -95,7 +95,7 @@ $("th").click(function() {
 // Funzione di ricerca nella tabella
 $("#filter").on("keyup", function(){
   let value = $(this).val()
-  $("#IDAlertHistoryBody tr").filter(function(){
+  $("#alert_container li").filter(function(){
     $(this).toggle($(this).text().indexOf(value) > -1)
   })
 })
@@ -149,22 +149,48 @@ function insertionSort(table, column, dir){
 function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory, customerName){
 	tw.getListAlert(startDate, endDate, filter, getHistory,customerName)
 	.then((list)=>{
-		$(idTable).empty()
+		//$(idTable).empty()
 		list.rows.forEach((el,i) =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();
 			let timeEnd = new Date(el.TimeStart).toLocaleString();
 
-			let id = "IDHistoryTableRow" + i;
-			let row = '<tr id=' + id + ' class="hover_tr card-body" style="border-style: none;background: var(--bs-table-bg);">'
-			row    += '    <td style="font-size: 12px;border-style: none;">' + timeStart + '</td>'
-			row    += '    <td style="font-size: 12px;border-style: none;">' + timeEnd + '</td>'
-			row    += '    <td style="font-size: 12px;border-style: none;">' + el.CustomerName  + '</td>'
-			row    += '    <td style="font-size: 12px;border-style: none;">' + el.MachineName    + '</td>'
-			row    += '    <td style="font-size: 12px;border-style: none;">' + el.Gravity + '</td>'
-			row    += '    <td style="font-size: 12px;border-style: none;">' + el.Message  + '</td>'
-			row    += '</tr>'
-			// Aggiunge la riga alla tabella
-			$(idTable).append(row);
+			let color = 'rgba(255,255,255,0)'
+			let icon 
+			if(el.Type== 'WRN'){
+				color = "#fb8c0066"
+				icon = 'warning'
+			}
+			else if(el.Type == "ALM"){
+				color = "#e5393566"
+				icon = 'notifications'
+			}
+			else if(el.Type =="MSG"){
+				color = '#fdd83566'
+				icon  = 'mail'
+			}
+
+			/****Lista generata */
+			let lista = '<li class="alert_list list-group-item mb-2"'
+			lista +='style="background: ' + color + '">'
+			lista +='<div class="card"> '
+			lista +='<div class="alert_body card-body ">'
+			lista +='<div class="align-items-center d-flex me-5">'
+			lista += '<span class="material-icons-outlined">'+icon+'</span>'
+			lista +='</div> '
+			lista +='<div class="row row-cols-5 w-100">'
+			lista +='<div>'+ timeStart+'</div>'
+			lista +='<div>'+ timeEnd+'</div>'
+			lista +='<div> '+ el.CustomerName+'</div>'
+			lista +='<div> '+ el.MachineName+'</div>'
+			lista +='<div> '+ el.Gravity+'</div>'
+			lista +='<div class="col-12"> '+ el.Message+'</div>'
+			lista +='</div>'
+			lista +='</div>'
+			lista +='</div>'
+			lista +='</li> '
+
+
+			$('#alert_container').append(lista);
 		})
 		$('#modal1').modal("hide")
 	})

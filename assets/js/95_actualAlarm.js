@@ -47,7 +47,7 @@ getAlarmsNotifications("*", false,customerName);
 // Funzione di ricerca nella tabella
 $("#filter").on("keyup", function(){
   let value = $(this).val()
-  $("#IDAlertActualBody tr").filter(function(){
+  $("#alert_container li").filter(function(){
     $(this).toggle($(this).text().indexOf(value) > -1)
   })
 })
@@ -102,6 +102,7 @@ function insertionSort(table, column, dir){
 function getAlarmsNotifications(filter, getHistory,customerName){
 	tw.getListAlert("","",filter, getHistory,customerName)
 	.then((list)=>{
+		console.log(list)
 		$("#IDAlertActualBody").empty()
 		if(list.rows.length == 0){
 			let row = '<tr class="alert" role="alert">'
@@ -117,15 +118,40 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 
 		list.rows.forEach(el =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();
-			let row = '<tr class="alert" role="alert">'
-			row    += '    <td >' + timeStart  + '</td>'
-			row    += '    <td >' + el.MachineName    + '</td>'
-			row    += '    <td >' + el.Gravity + '</td>'
-			row    += '    <td >' + el.CustomerName  + '</td>'
-			row    += '    <td >' + el.Message  + '</td>'
-			row    += '</tr>'
-			// Aggiunge la riga alla tabella
-			$('#IDAlertActualBody').append(row);
+			let color = 'rgba(255,255,255,0)'
+			let icon 
+			if(el.Type== 'WRN'){
+				color = "#fb8c0066"
+				icon = 'warning'
+			}
+			else if(el.Type == "ALM"){
+				color = "#e5393566"
+				icon = 'notifications'
+			}
+			else if(el.Type =="MSG"){
+				color = '#fdd83566'
+				icon  = 'mail'
+			}
+
+			/****Lista generata */
+			let lista = '<li class="alert_list list-group-item mb-2"'
+			lista +='style="background: ' + color + '">'
+			lista +='<div class="card"> '
+			lista +='<div class="alert_body card-body ">'
+			lista +='<div class="align-items-center d-flex me-5">'
+			lista +=' <span class="material-icons-outlined"> '+ icon +'</span>'
+			lista +='</div> '
+			lista +='<div class="row row-cols-4 w-100">'
+			lista +='<div>'+ timeStart+'</div>'
+			lista +='<div> '+ el.CustomerName+'</div>'
+			lista +='<div> '+ el.MachineName+'</div>'
+			lista +='<div> '+ el.Gravity+'</div>'
+			lista +='<div class="col-12"> '+ el.Message+'</div>'
+			lista +='</div>'
+			lista +='</div>'
+			lista +='</div>'
+			lista +='</li> '
+			$('#alert_container').append(lista);
 		})
 		$('#modal1').modal("hide")
 	})
