@@ -144,7 +144,7 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			lista +='<div class="row row-cols-2 row-cols-lg-4 w-100">'
 			lista +='<div class="mb-2"> '+ el.CustomerName +'</div>'
 			lista +='<div class="mb-2"> '+ el.MachineName +'</div>'
-			lista +='<div class="col-12 mb-2">'+ timeStart +'</div>'
+			lista +='<div class="col-sm-12 mb-2">'+ timeStart +'</div>'
 			//lista +='<div class="mb-2">'+ timeEnd +'</div>'
 			//lista +='<div> '+ el.Gravity+'</div>'
 			lista +='<div class="col-12 mt-2"> '+ el.Message+'</div>'
