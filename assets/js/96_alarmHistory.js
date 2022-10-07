@@ -152,7 +152,7 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 		//$(idTable).empty()
 		list.rows.forEach((el,i) =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();
-			let timeEnd = new Date(el.TimeStart).toLocaleString();
+			let timeEnd = new Date(el.TimeEnd).toLocaleString();
 
 			let color = 'rgba(255,255,255,0)'
 			let icon 
