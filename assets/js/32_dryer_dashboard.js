@@ -404,12 +404,12 @@ function listHistoryProduction(dryers, timeStart, timeEnd){
 				})
 
 				// Recupera la prima riga della tabella
-				let elem = document.getElementById('firstColumn')
+				/*let elem = document.getElementById('firstColumn')
 		    // Definisce la variabile come click event
 				let clickEvent = new Event('click');
 		    // Esegue l'evento dell'elemento, in questo modo simula il click
 		    // sulla prima riga della tabella, e viene caricato il grafico
-				elem.dispatchEvent(clickEvent)
+				elem.dispatchEvent(clickEvent)*/
 
 			})
 		})
