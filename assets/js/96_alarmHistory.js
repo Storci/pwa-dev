@@ -159,16 +159,6 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 			let icon 
 			let filter_type ="All"
 
-			/**** Funzione per il filtro Rapido della lista attraverso la premuta dei bottone */
-			let btn_warning = document.getElementById('id_warning')
-			let btn_message = document.getElementById('id_message')
-			let btn_alarm = document.getElementById('id_alarm')
-
-			/*btn_warning.addEventListener('click',function(){
-				if(lista.color == "#e5393566" && lista.color =="#fdd83566" ){
-				}
-			})*/
-
 			
 			if(el.Type== 'WRN'){
 				color = "#fb8c0066"
@@ -207,37 +197,36 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 			lista +='</li> '
 			$('#alert_container').append(lista);
 
+			/**** Funzione per il filtro Rapido della lista attraverso la premuta dei bottone */
+
 			$(document).ready(function(){
 				$('.filter-btn').click(function(){
 
 					$(".filter-btn").removeClass('active');
 					$(this).addClass('active');
-					let value = $(this).attr('data-filter')
-					console.log(value)
-					if(value == "All")
+					let btn_value = $(this).attr('data-filter')
+					console.log(btn_value)
+					if(btn_value == "All")
 						{
 							$(filter_type).show('1000');
 						}
 					else{
-						$(".filter").not('.'+value).hide('3000');
-						$('.filter').filter('.'+value).show('3000');
+						$(".filter").not('.'+btn_value).hide('3000');
+						$('.filter').filter('.'+btn_value).show('3000');
 						
 					}
-					elseif(value =="Warning")
+					elseif(btn_value =="Warning")
 					{
 						$(filter_type).show('1000');
 					}
-					elseif(value =="Message")
+					elseif(btn_value =="Message")
 					{
 						$(filter_type).show('1000');
 					}
-					elseif(value =="Alarm")
+					elseif(btn_value =="Alarm")
 					{
 						$(filter_type).show('1000');
 					}
-
-
-
 				})
 			})
 	})
