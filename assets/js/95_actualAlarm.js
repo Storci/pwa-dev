@@ -120,21 +120,26 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			let timeStart = new Date(el.TimeStart).toLocaleString();
 			let color = 'rgba(255,255,255,0)'
 			let icon 
+			let filter_type = ''
+
 			if(el.Type== 'WRN'){
 				color = "#fb8c0066"
 				icon = 'warning'
+				filter_type = 'Warning'
 			}
 			else if(el.Type == "ALM"){
 				color = "#e5393566"
 				icon = 'notifications'
+				filter_type = 'Alarm'
 			}
 			else if(el.Type =="MSG"){
 				color = '#fdd83566'
 				icon  = 'mail'
+				filter_type = 'Message'
 			}
 
 			/****Lista generata */
-			let lista = '<li class="alert_list list-group-item mb-2"'
+			let lista = '<li class="alert_list list-group-item mb-2 filter ' + filter_type +'"'
 			lista +='style="background: ' + color + '">'
 			lista +='<div class="card"> '
 			lista +='<div class="alert_body card-body ">'
@@ -153,6 +158,41 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			lista +='</div>'
 			lista +='</li> '
 			$('#alert_container').append(lista);
+
+			
+			/**** Funzione per il filtro Rapido della lista attraverso la premuta dei bottone */
+
+			$(document).ready(function(){
+				$('.filter-btn').click(function(){
+
+					$(".filter-btn").removeClass('active');
+					$(this).addClass('active');
+					let btn_value = $(this).attr('data-filter')
+					console.log(btn_value)
+					if(btn_value == "All")
+						{
+							$(filter_type).show('1000');
+						}
+					else{
+						$(".filter").not('.'+btn_value).hide('3000');
+						$('.filter').filter('.'+btn_value).show('3000');
+						
+					}
+					elseif(btn_value =="Warning")
+					{
+						$(filter_type).show('1000');
+						//$(this).attr('data-filter').hide('3000')
+					}
+					elseif(btn_value =="Message")
+					{
+						$(filter_type).show('1000');
+					}
+					elseif(btn_value =="Alarm")
+					{
+						$(filter_type).show('1000');
+					}
+				})
+			})
 		})
 		$('#modal1').modal("hide")
 	})

@@ -205,6 +205,20 @@
                             <input type="text" class="form-control" placeholder="filter" aria-label="date_range" aria-describedby="basic-addon1" id="filter"/> 
                         </div>                         
                     </div>                     
+                    <!--<div class="mb-2 row row-cols-2 row-cols-sm-4"> 
+                        <div class="col-md-3"> 
+                            <button type="button" class="btn btn-light filter-btn" data-filter="All">All</button>                             
+                        </div>-->                     
+                        <div class="col-md-3"> 
+                            <button type="button" class="btn btn-light filter-btn active" style="background: #fb8c0066;" data-filter="Warning">Warning</button>                             
+                        </div>                         
+                        <div class="col-md-3 d-flex justify-content-start"> 
+                            <button type="button" class="btn btn-light filter-btn" style="background: #fdd83566;" data-filter="Message">Message</button>                             
+                        </div>                         
+                        <div class="col-md-3 d-flex justify-content-start"> 
+                            <button type="button" class="btn btn-light d-flex filter-btn float-none justify-content-start" style="background: #e5393566;" data-filter="Alarm">Alarms</button>                             
+                        </div>                         
+                    </div>                     
                     <ul id="alert_container" class="list-group"> 
                         <li class="alert_list d-none g-2 list-group-item"> 
                             <div class="card"> 
