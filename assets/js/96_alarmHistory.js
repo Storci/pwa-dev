@@ -146,6 +146,7 @@ function insertionSort(table, column, dir){
 }
 
 // Funzione per recuperare i dati da tw per mettere nella tabella
+
 function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory, customerName){
 	tw.getListAlert(startDate, endDate, filter, getHistory,customerName)
 	.then((list)=>{
@@ -156,21 +157,37 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 
 			let color = 'rgba(255,255,255,0)'
 			let icon 
+			let filter_type ="All"
+
+			/**** Funzione per il filtro Rapido della lista attraverso la premuta dei bottone */
+			let btn_warning = document.getElementById('id_warning')
+			let btn_message = document.getElementById('id_message')
+			let btn_alarm = document.getElementById('id_alarm')
+
+			/*btn_warning.addEventListener('click',function(){
+				if(lista.color == "#e5393566" && lista.color =="#fdd83566" ){
+				}
+			})*/
+
+			
 			if(el.Type== 'WRN'){
 				color = "#fb8c0066"
 				icon = 'warning'
+				filter_type = 'Warning'
 			}
 			else if(el.Type == "ALM"){
 				color = "#e5393566"
 				icon = 'notifications'
+				filter_type = 'Alarm'
 			}
 			else if(el.Type =="MSG"){
 				color = '#fdd83566'
 				icon  = 'mail'
+				filter_type = 'Message'
 			}
 
 			/****Lista generata */
-			let lista = '<li class="alert_list list-group-item mb-2"'
+			let lista = '<li class="alert_list list-group-item mb-2 filter ' + filter_type +'"'
 			lista +='style="background: ' + color + '">'
 			lista +='<div class="card"> '
 			lista +='<div class="alert_body card-body ">'
@@ -188,10 +205,42 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 			lista +='</div>'
 			lista +='</div>'
 			lista +='</li> '
-
-
 			$('#alert_container').append(lista);
-		})
+
+			$(document).ready(function(){
+				$('.filter-btn').click(function(){
+
+					$(".filter-btn").removeClass('active');
+					$(this).addClass('active');
+					let value = $(this).attr('data-filter')
+					console.log(value)
+					if(value == "All")
+						{
+							$(filter_type).show('1000');
+						}
+					else{
+						$(".filter").not('.'+value).hide('3000');
+						$('.filter').filter('.'+value).show('3000');
+						
+					}
+					elseif(value =="Warning")
+					{
+						$(filter_type).show('1000');
+					}
+					elseif(value =="Message")
+					{
+						$(filter_type).show('1000');
+					}
+					elseif(value =="Alarm")
+					{
+						$(filter_type).show('1000');
+					}
+
+
+
+				})
+			})
+	})
 		$('#modal1').modal("hide")
 	})
 	.catch((err)=>{
