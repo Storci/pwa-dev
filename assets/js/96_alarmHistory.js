@@ -214,7 +214,7 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 			}
 
 			/****Lista generata */
-			let lista = '<li class="alert_list list-group-item mb-2"'
+			let lista = '<li class="alert_list list-group-item mb-2 ' + filter_type + '"'
 			lista +='style="background: ' + color + '">'
 			lista +='<div class="card"> '
 			lista +='<div class="alert_body card-body ">'
