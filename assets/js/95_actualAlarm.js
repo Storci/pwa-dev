@@ -46,12 +46,49 @@ getAlarmsNotifications("*", false,customerName);
 
 // Funzione di ricerca nella tabella
 $("#filter").on("keyup", function(){
-  let value = $(this).val()
-  $("#alert_container li").filter(function(){
-    $(this).toggle($(this).text().indexOf(value) > -1)
-  })
+  let value = $(this).val().toLowerCase()
+	let btn_value = $('.filter-btn.active').attr('data-filter')
+
+	if(btn_value == "All"){
+		$("#alert_container li").filter(function(){
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		})
+	}else{
+		$("#alert_container li").filter(function(){
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1 && $(this).hasClass(btn_value))
+		})
+	}
 })
 
+
+/**** Funzione per il filtro Rapido della lista attraverso la pressione del pulsante */
+$('.filter-btn').click(function(){
+	let value = $('#filter').val().toLowerCase()
+	let btn_value = $(this).attr('data-filter')
+	let color = '#C2DAFF'
+
+	if(btn_value == 'Warning'){
+		color = "#fb8c0066"
+	}
+	else if(btn_value == "Alarm"){
+		color = "#e5393566"
+	}
+	else if(btn_value =="Message"){
+		color = '#fdd83566'
+	}
+
+	$(this).addClass('active').css("backgroundColor", color).siblings().removeClass('active').css("backgroundColor", '#F0F1F2')
+
+	if(btn_value == "All"){
+		$("#alert_container li").filter(function(){
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		})
+	}else{
+		$("#alert_container li").filter(function(){
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1 && $(this).hasClass(btn_value))
+		})
+	}
+})
 
 // *******************************************
 // ************** FUNZIONI *******************
@@ -119,27 +156,27 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 		list.rows.forEach(el =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();
 			let color = 'rgba(255,255,255,0)'
-			let icon 
+			let icon
 			let filter_type = ''
 
 			if(el.Type== 'WRN'){
 				color = "#fb8c0066"
-				icon = 'warning'
+				icon = 'warning_amber'
 				filter_type = 'Warning'
 			}
 			else if(el.Type == "ALM"){
 				color = "#e5393566"
-				icon = 'notifications'
+				icon = 'error_outline'
 				filter_type = 'Alarm'
 			}
 			else if(el.Type =="MSG"){
 				color = '#fdd83566'
-				icon  = 'mail'
+				icon  = 'info'
 				filter_type = 'Message'
 			}
 
 			/****Lista generata */
-			let lista = '<li class="alert_list list-group-item mb-2 filter ' + filter_type +'"'
+			let lista = '<li class="alert_list list-group-item mb-2"'
 			lista +='style="background: ' + color + '">'
 			lista +='<div class="card"> '
 			lista +='<div class="alert_body card-body ">'
@@ -147,7 +184,7 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			lista += '<span class="material-icons-outlined">'+icon+'</span>'
 			lista +='</div> '
 			lista +='<div class="row row-cols-2 row-cols-lg-3 w-100">'
-			lista +='<div class="mb-2"> '+ el.CustomerName +'</div>'
+			lista +='<div class="mb-2"> '+ el.CustomerName.replace(/_/g, ' ') +'</div>'
 			lista +='<div class="mb-2"> '+ el.MachineName +'</div>'
 			lista +='<div class="col-12 mb-2">'+ timeStart +'</div>'
 			//lista +='<div class="mb-2">'+ timeEnd +'</div>'
@@ -159,40 +196,6 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			lista +='</li> '
 			$('#alert_container').append(lista);
 
-			
-			/**** Funzione per il filtro Rapido della lista attraverso la premuta dei bottone */
-
-			$(document).ready(function(){
-				$('.filter-btn').click(function(){
-
-					$(".filter-btn").removeClass('active');
-					$(this).addClass('active');
-					let btn_value = $(this).attr('data-filter')
-					console.log(btn_value)
-					if(btn_value == "All")
-						{
-							$(filter_type).show('1000');
-						}
-					else{
-						$(".filter").not('.'+btn_value).hide('3000');
-						$('.filter').filter('.'+btn_value).show('3000');
-						
-					}
-					elseif(btn_value =="Warning")
-					{
-						$(filter_type).show('1000');
-						//$(this).attr('data-filter').hide('3000')
-					}
-					elseif(btn_value =="Message")
-					{
-						$(filter_type).show('1000');
-					}
-					elseif(btn_value =="Alarm")
-					{
-						$(filter_type).show('1000');
-					}
-				})
-			})
 		})
 		$('#modal1').modal("hide")
 	})
