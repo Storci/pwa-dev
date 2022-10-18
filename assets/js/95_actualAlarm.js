@@ -152,6 +152,7 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			// Aggiunge la riga alla tabella
 			$('#IDAlertActualBody').append(row);
 		}
+		setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 
 		list.rows.forEach(el =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();
@@ -197,7 +198,6 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			$('#alert_container').append(lista);
 
 		})
-		$('#modal1').modal("hide")
 	})
 	.catch((err)=>{
 		console.log('promise rejected', err)

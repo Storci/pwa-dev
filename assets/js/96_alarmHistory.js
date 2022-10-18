@@ -187,6 +187,7 @@ function insertionSort(table, column, dir){
 function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory, customerName){
 	tw.getListAlert(startDate, endDate, filter, getHistory,customerName)
 	.then((list)=>{
+    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 		//$(idTable).empty()
 		list.rows.forEach((el,i) =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();
