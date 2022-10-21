@@ -9,10 +9,11 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing
 let entityName = urlParams.get('entityName')
-let timeStartZoom = new Date(urlParams.get('timeStart'))
+let timeStartZoom = urlParams.get('timeStart')
 console.log(timeStartZoom)
-let timeEndZoom = new Date(urlParams.get ('timeEnd'))
+let timeEndZoom = urlParams.get ('timeEnd')
 console.log(timeEndZoom)
+// Istanzia i grafici dell'attuale e d
 
 let arrayUM = ['Produzione (kg/h)', 'Pressione Estrusore (Bar)']
 let chartHistoryProduction = am.createXYChart("IDTrendHistoryProduction", 'IDLegendHistoryProduction', 3, 4, arrayUM)
@@ -42,7 +43,7 @@ query += 'mean("Pressa_Termostatazione_Testata_PV_Temperatura") as "PV_Temp_Test
 query += 'mean("Pressa_Termostatazione_Testata_SP_Temperatura") as "SP_Temp_Testata", '
 query += 'mean("Pressa_Motori_Estrusore_PV_Calorie") as "PV_Consumi" '
 query += 'FROM "' + entityName + '" '
-query += 'WHERE time > '+ timeStartZoom.getTime() + 'ms and time < '+ timeEndZoom.getTime() + 'ms GROUP BY time(10s) fill(previous)'
+query += 'WHERE time > '+ timeStartZoom + 'ms and time < '+ timeEndZoom + 'ms GROUP BY time(10s) fill(previous)'
 
 
 // ******************** STORICO PRODUZIONI ********************

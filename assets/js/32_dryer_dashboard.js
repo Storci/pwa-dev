@@ -97,11 +97,7 @@ $('#dateTimePicker').daterangepicker({
 	timeEndZoom = timeEndHistory
 });
 
-// pulsante per aprire il grafico storico delle celle in un'altro tab
-$('#fullscreenHistory').click(function(){
-	let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
-	window.open(url, '_blank')
-})
+
 
 // Istanzia i grafici dell'attuale e dello storico
 // I grafici devono essere istanziati una volta solamente
@@ -370,7 +366,11 @@ function listHistoryProduction(dryers, timeStart, timeEnd){
 					am.setChartData(chartHistoryProduction, subquery, '')
 					timeStartZoom = timestampStart
 					timeEndZoom = timestampEnd
-
+					// pulsante per aprire il grafico storico delle celle in un'altro tab
+					$('#fullscreenHistory').click(function(){
+						let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+						window.open(url, '_blank')
+					})
 					tw.service_05_getDryerStartEnd(dryer.entityName, timestampStart, timestampEnd)
 					.then(result => {
 						//console.log(result)

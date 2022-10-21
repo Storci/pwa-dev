@@ -18,6 +18,8 @@ fb.onAuthStateChanged_2()
 // Definisce le variabili come date
 let timeStartHistory = new Date()
 let timeEndHistory   = new Date()
+let timeStartZoom = new Date()
+let timeEndZoom = new Date()
 // Imposta X giorni prima della data odierna
 timeStartHistory.setDate(timeStartHistory.getDate() - 14)
 // Imposta i 2 data picker con le date calcolate prima
@@ -65,6 +67,8 @@ $('#dateTimePicker').daterangepicker({
     "endDate": disp_timeEnd
 }, function(start, end, label) {
   listHistoryProduction(entityName, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
+  timeStartZoom = timeStartHistory
+  timeEndZoom = timeEndHistory
 });
 
 
@@ -241,6 +245,14 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 				// Recupera i dati da influxdb e li visualizza sul grafico
 				am.setChartData(chartHistoryProduction, subquery, '')
 				// Recupera la prima riga della tabella
+				timeStartZoom = timestampStart
+				timeEndZoom = timestampEnd
+				// pulsante per aprire il grafico storico delle celle in un'altro tab
+				$('#fullscreenHistorySpreader').click(function(){
+					let url ='./machineHistoryGraph/84_spreaderHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+					window.open(url, '_blank')
+					console.log('me')
+				})
 			})
 			/*let elem = document.getElementById('firstColumn')
 			// Definisce la variabile come click event
