@@ -252,7 +252,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 				timeEndZoom = timestampEnd
 				// pulsante per aprire il grafico storico delle celle in un'altro tab
 				$('#fullscreenHistoryExtruder').click(function(){
-					let url ='./machineHistoryGraph/81_extruderHistoryGraph.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+					let url ='./machineHistoryGraph/81_extruder_history_zoom.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
 					window.open(url, '_blank')
 					console.log('me')
 				})
@@ -263,7 +263,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 			// Esegue l'evento dell'elemento, in questo modo simula il click
 			// sulla prima riga della tabella, e viene caricato il grafico
 				elem.dispatchEvent(clickEvent)*/
-	
+
 			})
 		})
 	}
@@ -272,18 +272,9 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 $('#IDButtonExportTrendActualProduction').click(el => { am.getExport(chartActualProduction) })
 $('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHistoryProduction) })
 
-$('#fullscreen').click(function(){
-	let url ='./machineGraph/70_doughGraph.html?'+'entityName='+ entityName
-	window.open(url, '_blank')
-})
-
-
-// Pulsanti per l'esportazione del grafico in png
-$('#IDButtonExportTrendActualProduction').click(el => { am.getExport(chartActualProduction) })
-$('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHistoryProduction) })
 
 $('#fullscreen').click(function(){
-	let url ='./machineGraph/71_extruderGraph.html?'+'entityName='+ entityName
+	let url ='./machineGraph/71_extruder_actual_zoom.html?'+'entityName='+ entityName
 	window.open(url, '_blank')
 })
 

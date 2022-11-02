@@ -19,19 +19,17 @@ console.log(timeEndZoom)
 // Istanzia i grafici dell'attuale e d
 
 let arrayUM = ['Produzione (kg/h)', 'Pressione Estrusore (Bar)']
-//let chartActualProduction = am.createXYChart("IDTrendActualProduction", 'IDLegendActualProduzione', 7, 8, arrayUM)
-let chartHistoryProduction = am.createXYChart("IDTrendActualProduction", 'IDLegendActualProduzione', 7, 8, arrayUM)
+let chartHistoryProduction = am.createXYChart("IDTrendHistoryProduction", 'IDLegendHistoryProduction', 7, 2, arrayUM)
+
 // Crea le series da visualizzare sul grafico
-am.createLineSeries(chartHistoryProduction, "PV - Impasto", "time", "PV_Impasto", "kg/h", 7, false, true, true)
-am.createLineSeries(chartHistoryProduction, "SP - Impasto", "time", "SP_Impasto", "kg/h", 7, false, true)
-am.createLineSeries(chartHistoryProduction, "PV - Pressione", "time", "PV_Pressione", "Bar", 7, false, false)
-am.createLineSeries(chartHistoryProduction, "PV - Temperatura", "time", "PV_Temp_Trabatto", "°C", 7, false, false)
-am.createLineSeries(chartHistoryProduction, "SP - Temperatura", "time", "SP_Temp_Trabatto", "°C", 7, false, false)
+am.createLineSeries(chartHistoryProduction, "PV - Impasto", "time", "PV_Impasto", "kg/h", 0, false, true, true)
+am.createLineSeries(chartHistoryProduction, "SP - Impasto", "time", "SP_Impasto", "kg/h", 0, false, true)
+am.createLineSeries(chartHistoryProduction, "PV - Pressione", "time", "PV_Pressione", "Bar", 1, false, false)
+am.createLineSeries(chartHistoryProduction, "PV - Temperatura", "time", "PV_Temp_Trabatto", "°C", 1, false, false)
+am.createLineSeries(chartHistoryProduction, "SP - Temperatura", "time", "SP_Temp_Trabatto", "°C", 1, false, false)
 
 // Ricalcola la dimensione del div della legenda - viene eseguito ogni secondo
-setInterval(am.refreshLegendSize, 1000, chartHistoryProduction, 'IDLegendActualProduzione')
-//setInterval(am.refreshLegendSize, 1000, chartHistoryProduction, 'IDLegendHistoryProduction')
-
+setInterval(am.refreshLegendSize, 1000, chartHistoryProduction, 'IDLegendHistoryProduction')
 
 // Definisce la query da inviare a influxdb
 // I parametri da sostituire sono indicati da {1}, {2}, ecc...

@@ -16,16 +16,16 @@ console.log(timeEndZoom)
 // Istanzia i grafici dell'attuale e d
 
 let arrayUM = ['Produzione (kg/h)', 'Pressione Estrusore (Bar)']
-let chartHistoryProduction = am.createXYChart("IDTrendHistoryProduction", 'IDLegendHistoryProduction', 3, 4, arrayUM)
+let chartHistoryProduction = am.createXYChart("IDTrendHistoryProduction", 'IDLegendHistoryProduction', 3, 3, arrayUM)
 // Crea le series da visualizzare sul grafico
-am.createLineSeries(chartHistoryProduction, "PV - Impasto", "time", "PV_Impasto", "kg/h", 3, false, true)
-am.createLineSeries(chartHistoryProduction, "SP - Impasto", "time", "SP_Impasto", "kg/h", 3, false, true)
-am.createLineSeries(chartHistoryProduction, "PV - Pressione", "time", "PV_Pressione", "Bar", 3, false, false, true)
-am.createLineSeries(chartHistoryProduction, 'PV - Temperatura Cilindro', 'time', 'PV_Temp_Cilindro', '°C', 3, false, false)
-am.createLineSeries(chartHistoryProduction, 'SP - Temperatura Cilindro', 'time', 'SP_Temp_Cilindro', '°C', 3, false, false)
-am.createLineSeries(chartHistoryProduction, 'PV - Temperatura Testata', 'time', 'PV_Temp_Testata', '°C', 3, false, true)
-am.createLineSeries(chartHistoryProduction, 'PV - Temperatura Testata', 'time', 'SP_Temp_Testata', '°C', 3, false, true)
-am.createLineSeries(chartHistoryProduction, "PV - kcal/h", "time", "PV_Consumi", "kcal/h", 3, false, true)
+am.createLineSeries(chartHistoryProduction, "PV - Impasto", "time", "PV_Impasto", "kg/h", 0, false, true)
+am.createLineSeries(chartHistoryProduction, "SP - Impasto", "time", "SP_Impasto", "kg/h", 0, false, true)
+am.createLineSeries(chartHistoryProduction, "PV - Pressione", "time", "PV_Pressione", "Bar", 1, false, false, true)
+am.createLineSeries(chartHistoryProduction, 'PV - Temperatura Cilindro', 'time', 'PV_Temp_Cilindro', '°C', 1, false, false)
+am.createLineSeries(chartHistoryProduction, 'SP - Temperatura Cilindro', 'time', 'SP_Temp_Cilindro', '°C', 1, false, false)
+am.createLineSeries(chartHistoryProduction, 'PV - Temperatura Testata', 'time', 'PV_Temp_Testata', '°C', 1, false, true)
+am.createLineSeries(chartHistoryProduction, 'PV - Temperatura Testata', 'time', 'SP_Temp_Testata', '°C', 1, false, true)
+am.createLineSeries(chartHistoryProduction, "PV - kcal/h", "time", "PV_Consumi", "kcal/h", 2, false, true)
 
 // Ricalcola la dimensione del div della legenda - viene eseguito ogni secondo
 setInterval(am.refreshLegendSize, 1000, chartHistoryProduction, 'IDLegendHistoryProduction')

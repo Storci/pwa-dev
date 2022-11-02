@@ -26,11 +26,8 @@ let selectedLine 		 = localStorage.getItem("global_selected_cell")
 
 
 let entityName = urlParams.get('entityName')
-console.log(entityName)
 let timeStartZoom = urlParams.get('timeStart')
-console.log(timeStartZoom)
 let timeEndZoom = urlParams.get ('timeEnd')
-console.log(timeEndZoom)
 
 
 let arrayUM = ['Essicazione', 'Calorie']
