@@ -8,46 +8,37 @@
         <meta name="author" content=""/> 
         <link rel="icon" href="./assets/img/icon_round_storci.svg" type="image/x-icon"/> 
         <title>Dashboard Cella</title>         
-        <!-- MANIFEST -->         
-        <link rel="manifest" href="./manifest.webmanifest"/> 
-        <!-- carica l'immagine da usare nell'icona dell'iphone -->         
-        <link rel="apple-touch-icon" href="./assets/img/Storci_Logo_1024_1024.png"/> 
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="white"/> 
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black"/> 
-        <!-- PRELOAD -->         
-        <link rel="preload" as="script" href="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"/> 
-        <!-- GOOGLE STYLE -->         
+        <!-- GOOGLE ICON -->         
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/> 
         <!-- JQUERY -->         
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>         
         <!-- Bootstrap core -->         
         <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/> 
-        <!-- <link rel="stylesheet" href="bootstrap_theme/bootstrap.css" type="text/css" media="print" onload="this.media='all'"/> -->         
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>         
         <!-- Custom styles for this template -->         
-        <link rel="stylesheet" href="assets/css/dashboard.css" media="print" onload="this.media='all'"/> 
-        <link rel="stylesheet" href="assets/css/storci-styles.css" media="print" onload="this.media='all'"/> 
+        <link href="./assets/css/dashboard.css" rel="stylesheet"/> 
+        <link href="./assets/css/storci-styles.css" rel="stylesheet"/> 
+        <!-- <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->         
         <!-- AM4CORE CHART -->         
-        <!--
-        <script defer src="https://cdn.amcharts.com/lib/4/core.js"></script>
-        <script defer src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-        <script defer src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-        <script defer src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
-        <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>
-        -->         
+        <script defer src="https://cdn.amcharts.com/lib/4/core.js"></script>         
+        <script defer src="https://cdn.amcharts.com/lib/4/charts.js"></script>         
+        <script defer src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>         
+        <script defer src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>         
+        <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>         
         <!-- The core Firebase JS SDK is always required and must be listed first -->         
         <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>         
         <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
         <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>         
         <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js" type="module"></script>         
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>         
-        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>         
+        <!-- <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>  -->         
         <script defer src="./assets/js/Global/Firebase/firebase_config.js"></script>         
         <!-- CUSTOM SCRIPT -->         
         <script src="./assets/js/sidebar.js" type="module"></script>         
-        <script defer src="./assets/js/30_dryers_dashboard.js" type="module"></script>         
-        <!--<script defer src="./assets/js/userAccountSettings.js" type="module"></script> -->         
-        <script src="./assets/js/Global/Common/Theme.js" type="module"></script>
+        <script defer src="./assets/js/userAccountSettings.js" type="module"></script>         
+        <script src="./assets/js/Global/Common/Theme.js" type="module"></script>         
+        <script src="./assets/js/Global/Common/Translation.js" type="module"></script>         
+        <script src="./assets/js/97_reportAlarms.js" type="module"></script>
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -192,13 +183,49 @@
                     </div>                     
                 </nav>                 
                 <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4 bg-white-customized" id="id-column-master" data-pgc-field="id-column-master"> 
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2 card-result">Dryers List</h1> 
+                    <div class="align-items-center border-bottom d-flex flex-md-nowrap flex-wrap justify-content-between mb-5 pb-2 pt-3"> 
+                        <h2 class="card-result" translate_id="list_clients_connected">Report Alarms</h2> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
-                            <div class="btn-group me-2"></div>                             
+                            <div class="btn-group me-2"> 
+</div>                             
                         </div>                         
                     </div>                     
-                    <div class="mb-5 pg-empty-placeholder row row-cols-1 row-cols-lg-3 row-cols-sm-2" id="IDRow"></div>
+                    <div class="align-items-start d-flex gy-3 justify-content-center mb-5 row"> 
+                        <div class="col-12 col-lg-5 col-sm-5 col-xl-3">
+                            <div class="card"> 
+                                <div class="card-body"> 
+                                    <h4 class="card-title" id="totalCount">0</h4> 
+                                    <h6 class="card-subtitle mb-2 text-muted">Total Alarms</h6> 
+                                </div>                                 
+                            </div>                             
+                        </div>
+                        <div class="col-12 col-lg-5 col-sm-5 col-xl-3">
+                            <div class="card"> 
+                                <div class="card-body" style="background: #F2B8B5 !important;"> 
+                                    <h4 class="card-title" style="color: #601410;" id="alarmCount">0</h4> 
+                                    <h6 class="card-subtitle mb-2 text-muted">Alerts Summary</h6> 
+                                </div>                                 
+                            </div>                             
+                        </div>
+                        <div class="col-12 col-lg-5 col-sm-5 col-xl-3">
+                            <div class="card"> 
+                                <div class="card-body" style="background: #fb8c0066 !important;"> 
+                                    <h4 class="card-title" style="color: #4c2700;" id="warningCount">0</h4> 
+                                    <h6 class="card-subtitle mb-2 text-muted">Warning Summary</h6> 
+                                </div>                                 
+                            </div>                             
+                        </div>
+                        <div class="col-12 col-lg-5 col-sm-5 col-xl-3">
+                            <div class="card"> 
+                                <div class="card-body" style="background: #fdd83566 !important;"> 
+                                    <h4 class="card-title" style="color: #3a3000;" id="messaggesCount">0</h4> 
+                                    <h6 class="card-subtitle mb-2 text-muted">Messagges Summary</h6> 
+                                </div>                                 
+                            </div>                             
+                        </div>                         
+                    </div>
+                    <div class="accordion accordion-flush" id="accordion"> 
+</div>
                 </main>                 
             </div>             
         </div>         
