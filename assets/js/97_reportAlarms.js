@@ -35,7 +35,7 @@ if(customerName !== 'Storci'){
     let customerQuery = {
         "type":"EQ",
         "fieldName":"CustomerName",
-        "value": customerName
+        "value": customerName.replace(/_/g, ' ')
     }
     query.filters.filters.push(customerQuery)
 }
