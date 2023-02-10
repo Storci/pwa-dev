@@ -162,6 +162,27 @@ firebase.auth().onAuthStateChanged(user => {
           $("#field-email").val(doc.data().email)
           $("#field-company").val(doc.data().company)
           $("#field-state").val(doc.data().state)
+          // una chiamata rest per recuperare tutta la lista delle nazione
+          var url = "https://restcountries.com/v2/all"
+          // Imposta i settings da utilizzare nelle REST API.
+          // Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
+          let settings = {
+              "url"     : url,
+              "method"  : "GET",
+              "timeout" : 0,
+              "headers" : {},
+              "data": "",
+              "success": function(country){
+                  let results = '<option value="-1">Please Select a Country or State</option>'
+                  for(let i = 0; i < country.length; i++){
+                      results += '<option>'+ country[i].name +'</option>'
+                  }
+                  $("#field-state").html(results)
+              }
+          }
+          // Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+          // Esegue la chiamata REST API.
+          $.ajax(settings).then(response => console.log(response));
           $("#field-zip").val(doc.data().zip)
           $("#field-mobile").val(doc.data().mobile)
 
