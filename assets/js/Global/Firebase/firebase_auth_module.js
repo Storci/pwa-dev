@@ -13,10 +13,12 @@ async function signInWithEmailPassword(email, password) {
 }
 
 // Effettua la registrazione di un nuovo utente
-function signUpWithEmailPassword(email, password, baseURL) {
+function signUpWithEmailPassword(email, password) {
 	// [START auth_signup_password]
 	firebase.auth().createUserWithEmailAndPassword(email, password)
-	.then(() =>{})
+	.then((userCredential) =>{
+		var user = userCredential.user
+	})
 	.catch((error) => {
 		let errorCode = error.code
 		let errorMessage = error.message

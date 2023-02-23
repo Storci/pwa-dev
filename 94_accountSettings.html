@@ -37,7 +37,7 @@
         <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>         
         <script defer src="./assets/js/Global/Firebase/firebase_config.js" type="module"></script>         
         <script defer src="./assets/js/userAccountSettings.js" type="module"></script>         
-        <script src="./assets/js/Global/Common/Theme.js" type="module"></script>
+        <script src="./assets/js/Global/Common/Theme.js" type="module"></script>         
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -215,9 +215,19 @@
                                         <div class="input-group mb-3"> <span class="input-group-text align-items-center d-flex material-icons-outlined" style="position: relative;">business</span> 
                                             <input type="text" class="form-control user-info" placeholder="Company" aria-label="Username" aria-describedby="basic-addon1" name="company" invalid-messagge="" id="field-company"/> 
                                         </div>                                         
-                                        <div class="input-group mb-3"> <span class="input-group-text align-items-center d-flex material-icons-outlined" style="position: relative;">flag</span> 
-                                            <input type="text" class="form-control user-info" placeholder="State" aria-label="Username" aria-describedby="basic-addon1" name="state" invalid-messagge="" id="field-state"/> 
-                                        </div>                                         
+                                        <div class="input-group mb-3"> <span class="input-group-text align-items-center d-flex material-icons-outlined" style="position: relative;">flag</span>
+                                            <select id="field-state" class="form-select" aria-label="Default select example"> 
+                                                <option selected>Open this select menu</option>                                                 
+
+                                                <option value="1">One</option>                                                 
+
+                                                <option value="2">Two</option>                                                 
+
+                                                <option value="3">Three</option>                                                 
+                                            </select>                                                                                          
+                                        </div>
+                                        <div class="mb-3">                                                                                           
+</div>                                         
                                         <div class="input-group mb-3"> <span class="input-group-text align-items-center d-flex material-icons-outlined" style="position: relative;">local_post_office</span> 
                                             <input type="text" class="form-control user-info" placeholder="zip code" aria-label="Username" aria-describedby="basic-addon1" name="zip_code" invalid-messagge="" id="field-zip"/> 
                                         </div>                                         
@@ -296,7 +306,7 @@
                                 </div>                                 
                             </div>                             
                         </div>                         
-                    </div>
+                    </div>                     
                 </main>                 
             </div>             
         </div>         
