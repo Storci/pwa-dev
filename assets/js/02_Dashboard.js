@@ -43,63 +43,10 @@ fb.onAuthStateChanged_2()
 
 $('#id-nav-dashboard').addClass('active')
 
-// Recupera i dati generali delle celle installate dal cliente
-tw.service_01_getDryersGeneralInfo(entityName)
-.then(res => {
-  if(JSON.stringify(res) !== '{}'){
-    // Crea i div per visualizzare le celle
-    createDivDryers('#IDdivDryers', entityName)
-    setDryersCardsValue(entityName)
-    setInterval(setDryersCardsValue, 10000, entityName)
-
-    let arrayUM = ['Consumo Giornaliero (kcal)', 'Celle Attive']
-    let id = 'ID' + res.entityName.replace(/\./g, '')
-    let idLegend = id + 'Legend'
-    let idTrend = id + 'Trend'
-
-    let chart = am.createXYChart(idTrend, idLegend, 1, 2, arrayUM)
-
-    am.createColumnSeries(chart, "Active Dryers", "time", "dryers_actived", '', 1)
-    am.createLineSeries(chart, "Daily Consumption", "time", "kcal", "kcal", 0, true, false, false, 0.77)
-
-    setInterval(am.refreshLegendSize, 1000, chart, idLegend)
-
-    let dryersEntityName = '/' + entityName + '.*.Cella.*/'
-    // Definisce la query da inviare a influxdb
-    // I parametri da sostituire sono indicati da {1}, {2}, ecc...
-    // Invece l'entityName è sempre comune per tutte le query
-    let query = 'SELECT '
-    query += 'mean("Dati_Aggiuntivi_Kcal_H") as "kcal" '
-    query += 'FROM ' + dryersEntityName + ' '
-    query += 'WHERE time >= now() - 5d and time <= now() '
-    query += 'GROUP BY time(24h) fill(0)'
-
-    setDryersTrend(chart, query)
-
-    $('[chart="chartDryers"]').click(function() {
-      let days = $(this).attr('value')
-
-      $(this).addClass('active').siblings().removeClass('active')
-
-      let query = 'SELECT '
-      query += 'mean("Dati_Aggiuntivi_Kcal_H") as "kcal" '
-      query += 'FROM ' + dryersEntityName + ' '
-      query += 'WHERE time >= now() - ' + days + 'd and time <= now() '
-      query += 'GROUP BY time(24h) fill(0)'
-
-      setDryersTrend(chart, query)
-    })
-  }else{
-    $('#IDdivDryers').addClass('d-none')
-  }
-})
-.catch(e => {
-  $('#IDdivLinee').addClass('d-none')
-})
-
 // Recupera i dati generali delle linee installate dal cliente
 tw.service_02_getLinesGeneralInfo(entityName)
 .then(res => {
+  console.log(res)
   if(res.array.length > 0){
     res.array.forEach((item, i) => {
       createDivLine('#IDdivLinee', item.entityName)
@@ -149,6 +96,61 @@ tw.service_02_getLinesGeneralInfo(entityName)
 .catch(e => {
   console.warn(e)
   $('#IDdivLinee').addClass('d-none')
+})
+
+// Recupera i dati generali delle celle installate dal cliente
+tw.service_01_getDryersGeneralInfo(entityName)
+.then(res => {
+  console.log(res)
+  if(JSON.stringify(res) !== '{}'){
+    // Crea i div per visualizzare le celle
+    createDivDryers('#IDdivDryers', entityName)
+    setDryersCardsValue(entityName)
+    setInterval(setDryersCardsValue, 10000, entityName)
+
+    let arrayUM = ['Consumo Giornaliero (kcal)', 'Celle Attive']
+    let id = 'ID' + res.entityName.replace(/\./g, '')
+    let idLegend = id + 'Legend'
+    let idTrend = id + 'Trend'
+
+    let chart = am.createXYChart(idTrend, idLegend, 1, 2, arrayUM)
+
+    am.createColumnSeries(chart, "Active Dryers", "time", "dryers_actived", '', 1)
+    am.createLineSeries(chart, "Daily Consumption", "time", "kcal", "kcal", 0, true, false, false, 0.77)
+
+    setInterval(am.refreshLegendSize, 1000, chart, idLegend)
+
+    let dryersEntityName = '/' + entityName + '.*.Cella.*/'
+    // Definisce la query da inviare a influxdb
+    // I parametri da sostituire sono indicati da {1}, {2}, ecc...
+    // Invece l'entityName è sempre comune per tutte le query
+    let query = 'SELECT '
+    query += 'mean("Dati_Aggiuntivi_Kcal_H") as "kcal" '
+    query += 'FROM ' + dryersEntityName + ' '
+    query += 'WHERE time >= now() - 5d and time <= now() '
+    query += 'GROUP BY time(24h) fill(0)'
+
+    setDryersTrend(chart, query)
+
+    $('[chart="chartDryers"]').click(function() {
+      let days = $(this).attr('value')
+
+      $(this).addClass('active').siblings().removeClass('active')
+
+      let query = 'SELECT '
+      query += 'mean("Dati_Aggiuntivi_Kcal_H") as "kcal" '
+      query += 'FROM ' + dryersEntityName + ' '
+      query += 'WHERE time >= now() - ' + days + 'd and time <= now() '
+      query += 'GROUP BY time(24h) fill(0)'
+
+      setDryersTrend(chart, query)
+    })
+  }else{
+    $('#IDdivDryers').addClass('d-none')
+  }
+})
+.catch(e => {
+  $('#IDdivDryers').addClass('d-none')
 })
 
 // ******************** FUNCTION ********************
