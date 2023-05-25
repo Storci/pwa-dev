@@ -177,7 +177,7 @@ function setLineCardsValue(entityName){
 }
 
 
-function setDryersCardsValue(entityName){
+/*function setDryersCardsValue(entityName){
 	// Richiama il servizio di thingworx.
 	tw.service_01_getDryersGeneralInfo(entityName)
 		.then(result => {
@@ -190,6 +190,20 @@ function setDryersCardsValue(entityName){
         })
       })
 		.catch(error => console.error(error))
+}*/
+function setDryersCardsValue(entityName) {
+  tw.service_01_getDryersGeneralInfo(entityName)
+    .then(result => {
+      if (result.entityName) {
+        let keyProperty = result.entityName.replace(/\./g, '');
+        keyProperty = keyProperty.toLowerCase();
+        let key = '[' + keyProperty + ']';
+        $(key).each(function() {
+          $(this).text(result[$(this).attr(keyProperty)]);
+        });
+      }
+    })
+    .catch(error => console.error(error));
 }
 
 function setDryersTrend(chart, query){
