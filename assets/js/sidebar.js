@@ -142,7 +142,12 @@ if(customer != "Storci"){
               // Imposta l'elememento con il nuovo href
               $(elem).children('a').attr('href', href)
               // Aggiunge la classe active se ci troviamo in una pagina della linea
-              if(pageName == href){ $(elem).children('a').addClass('active') }
+              if(pageName == href){
+                $(elem).children('a').addClass('active')
+                $(idBtnAccordion).attr('aria-expanded', 'true')
+                $(idBtnAccordion).removeClass('collapsed')
+                $(idCollapsePanel).addClass('show')
+              }
             })
 
             // id link
@@ -150,17 +155,20 @@ if(customer != "Storci"){
             let span_status           = id_nav_dashboard_line + 'div a :last-child'
             $(span_status).text(res.lines[i-1].status)
 
-            getListMachine(res.lines[i-1].entityName)
+            getListMachine(res.lines[i-1].entityName, i)
 
             // Visualizza il menu delle celle
             $(idAccordion).removeClass('d-none')
+            /*
             // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
             // se la pagina corrisponde, allora viene aperto il menù delle celle.
             if(pageName.includes('line')){
+              console.log(entityName)
               $(idBtnAccordion).attr('aria-expanded', 'true')
               $(idBtnAccordion).removeClass('collapsed')
               $(idCollapsePanel).addClass('show')
             }
+            */
           }
         }
       }catch(e){ console.error(e) }
@@ -204,21 +212,21 @@ function refreshStatus(entityName){
 // Funzione che recupera le macchine presenti nella linea
 // Effettua una chiamata a tw per il recupero del nome delle macchine,
 // poi inserisce le macchine all'interno di una lista.
-function getListMachine(entityName){
+function getListMachine(entityName, id){
 	tw.getCustomerLineMachine(entityName)
 	.then(list => {
     list.rows.forEach((item, i) => {
   		switch(item.name){
-  			case 'Impasto'					 : $('#id-nav-dough-line-1').removeClass('d-none'); break
-  			case "Stenditrice"			 : $('#id-nav-spreader-line-1').removeClass('d-none'); break
-  			case "Pasta Instant"		 : $('#id-nav-pasta-instant-line-1').removeClass('d-none'); break
-  			case "Avanzamento Telai" : $('#id-nav-tray-feeder-line-1').removeClass('d-none'); break
-  			case "Robot Deimpilatore": $('#id-nav-destacker-line-1').removeClass('d-none'); break
-  			case "Omnidryer"				 : $('#id-nav-omnidryer-line-1').removeClass('d-none'); break
-  			case "Pressa"						 : $('#id-nav-extruder-line-1').removeClass('d-none'); break
-  			case "Impilatore"			   : $('#id-nav-stacker-line-1').removeClass('d-none'); break
-  			case "Trabatto"				   : $('#id-nav-predryer-line-1').removeClass('d-none'); break
-        case "Nidi_Lasagna" 	   : $('#id-nav-nests_lasagna-line-1').removeClass('d-none'); break
+  			case 'Impasto'					 : $('#id-nav-dough-line-' + id).removeClass('d-none'); break
+  			case "Stenditrice"			 : $('#id-nav-spreader-line-' + id).removeClass('d-none'); break
+  			case "Pasta Instant"		 : $('#id-nav-pasta-instant-line-' + id).removeClass('d-none'); break
+  			case "Avanzamento Telai" : $('#id-nav-tray-feeder-line-' + id).removeClass('d-none'); break
+  			case "Robot Deimpilatore": $('#id-nav-destacker-line-' + id).removeClass('d-none'); break
+  			case "Omnidryer"				 : $('#id-nav-omnidryer-line-' + id).removeClass('d-none'); break
+  			case "Pressa"						 : $('#id-nav-extruder-line-' + id).removeClass('d-none'); break
+  			case "Impilatore"			   : $('#id-nav-stacker-line-' + id).removeClass('d-none'); break
+  			case "Trabatto"				   : $('#id-nav-predryer-line-' + id).removeClass('d-none'); break
+        case "Nidi_Lasagna" 	   : $('#id-nav-nests_lasagna-line-' + id).removeClass('d-none'); break
   		}
   	})
   })
