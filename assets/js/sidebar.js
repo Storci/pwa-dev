@@ -159,16 +159,6 @@ if(customer != "Storci"){
 
             // Visualizza il menu delle celle
             $(idAccordion).removeClass('d-none')
-            /*
-            // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
-            // se la pagina corrisponde, allora viene aperto il menù delle celle.
-            if(pageName.includes('line')){
-              console.log(entityName)
-              $(idBtnAccordion).attr('aria-expanded', 'true')
-              $(idBtnAccordion).removeClass('collapsed')
-              $(idCollapsePanel).addClass('show')
-            }
-            */
           }
         }
       }catch(e){ console.error(e) }
