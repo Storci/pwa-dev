@@ -116,6 +116,7 @@ query += 'mean("Impasto_SP_Impasto_Totale") as "SP_Impasto", '
 query += 'mean("Pressa_Motori_Estrusore_PV_Pressione") as "PV_Pressione", '
 query += 'mean("Impasto_PV_Dosatore_Acqua") as "PV_Portata_Acqua", '
 query += 'mean("Impasto_SP_Dosatore_Acqua_Litri") as "SP_Portata_Acqua", '
+
 query += 'mean("Impasto_PV_Temperatura_Acqua") as "PV_Temp_Acqua", '
 query += 'mean("Impasto_SP_Temperatura_Acqua") as "SP_Temp_Acqua", '
 query += 'mean("Pressa_Motori_Estrusore_PV_Calorie") as "PV_Consumi" '
