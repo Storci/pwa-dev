@@ -133,6 +133,9 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	chart.legend = new am4charts.Legend();
 	// Se la variabile contiene l'id del div della legenda
 	// imposta il grafico con una legenda separa in un atro div
+	//Questa funzione abilita l'export o il download del grafico in tutti formati
+	chart.exporting.menu = new am4core.ExportMenu();
+
 	if(IDdivLegend !== ''){
 		let legendContainer = am4core.create(IDdivLegend, am4core.Container);
 		legendContainer.width = am4core.percent(100);
@@ -211,6 +214,8 @@ function createPieChart(IDdivChart){
 	let chart = am4core.create(IDdivChart, am4charts.PieChart)
 
 	chart.hiddenState.properties.radius = am4core.percent(0)
+	//chart.exporting.menu = new  am4Core.ExportMenu();
+
 
 	return chart
 }
