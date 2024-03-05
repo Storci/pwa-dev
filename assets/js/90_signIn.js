@@ -97,3 +97,60 @@ $("#showPassword").click(function(){
 		password.attr('type','password')
 	}
 })
+
+
+// Initialize i18next
+i18next.init({
+	lng: 'en', // default language
+	resources: {
+	  en: {
+		translation: {
+		  "actual_alarms": "Actual Alarms",
+		  "number_of_alarms": "Numbers of Alarms Present"
+		}
+	  },
+	  it: {
+		translation:{
+		"actual_alarms":"Allarmi Attuale",
+		"number_of_alarms":"Numeri Allarmi Presenti"
+		}
+	  }
+	}
+	
+  });
+  
+  function translatePage() {
+	let select_language = localStorage.getItem("select_language")
+	let select_language_complete = localStorage.getItem("select_language_complete")
+	$('#dropdown2').text(select_language_complete)
+	$('[data-i18n]').each(function() {
+	  var key = $(this).data('i18n');
+	  try{
+		$(this).text(i18next.t(key)[$(this).attr("data-i18n")][select_language]);
+	  }catch(e){}
+	  
+	});
+  }
+
+  $(".translate1").click(function() {
+	console.log($(this).attr('id'))
+	console.log($(this).attr('value'))
+	$("#dropdown1").text($(this).attr('value'))
+	let select_language = $(this).attr('id')
+  // Salva la selezione nella variabile localStorage.
+  // la local storage rimane salvata sul client.
+  localStorage.setItem('select_language', $(this).attr('id'));
+  localStorage.setItem('select_language_complete', $(this).attr('value'));
+  // Seleziona tutti gli elementi con l'attributo [translate_id]
+  // Effettua, poi, un ciclo per ogni elemento trovato
+  $('[data-i18n]').each(function(index, element) {
+	//$(this).text(i18next.t(key));
+	try{
+		$(this).text(i18next.t(key)[$(this).attr("data-i18n")][select_language]);
+	  }catch(e){}
+	})
+})
+  
+  translatePage();
+  
+  
