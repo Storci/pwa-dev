@@ -123,9 +123,11 @@ function createCard(customerList){
 		if(el.isConnected){
 			// Aggiunge la card alla lista
 			$("#IDRowConnected").append(card)
+			lang.getLanguage()
 		}else{
 			// Aggiunge la card alla lista
 			$("#IDRowDisconnected").append(card)
+			lang.getLanguage()
 		}
 
 		// Abilita onclick sulla card
@@ -137,6 +139,7 @@ function createCard(customerList){
 			window.location.href = "./02_Dashboard.html?entityName=" + el.name
 		}
 	})
+	
 }
 
 // La funzione recupera i dati di ogni cliente da thingworx.

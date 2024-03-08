@@ -1,46 +1,43 @@
-// Funzione che recupera la lingua scelta dall'utente
-// e sostituisce tutti i testi della pagina
-function getLanguage(){
-  // Recupera il valore di language salvato dal client
-  let select_language = localStorage.getItem("select_language")
-  let select_language_complete = localStorage.getItem("select_language_complete")
-  $("#dropdown1").text(select_language_complete)
-  // Seleziona tutti gli elementi con l'attributo [translate_id]
-  // Effettua, poi, un ciclo per ogni elemento trovato
+// Questa funzione assicura che la traduzione venga fatto dopo il caricamento di tutti gli elementi 
+$(document).ready(function() {
+  // Translate the page content
+  getLanguage();
+});
+// Function to translate the page content
+function getLanguage() {
+  // Retrieve the selected language from localStorage
+  let select_language = localStorage.getItem("select_language");
+  let select_language_complete = localStorage.getItem("select_language_complete");
+  $("#dropdown1").text(select_language_complete);
+
+  // Iterate through all elements with the [translate_id] attribute
   $('[translate_id]').each(function(index, element) {
-    // Sostituisce il testo dell'elemento utilizzando l'array_translate_id per recuperare
-    // la traduzione corretta.
-    // Il valore dell'attributo [translate_id] è la stessa chiave del json
-    try{
-      $(this).text(array_translate_id[$(this).attr("translate_id")][select_language]);
-    }catch(e){}
+      try {
+          // Replace the text of each element using the translation data
+          $(this).text(array_translate_id[$(this).attr("translate_id")][select_language]);
+      } catch (e) {}
   });
-};
+}
 
-// La funzione viene eseguita al cambio di lingua
+// Function to handle language selection
 $(".translate").click(function() {
-  console.log($(this).attr('id'))
-  console.log($(this).attr('value'))
-  $("#dropdown1").text($(this).attr('value'))
+  // Update language dropdown text
+  $("#dropdown1").text($(this).attr('value'));
 
-  // Recupera l'id della lingua selezionata.
-  // l'id ha il codice della lingua (es. en, it, es, fr).
-  let select_language = $(this).attr('id')
-  // Salva la selezione nella variabile localStorage.
-  // la local storage rimane salvata sul client.
+  // Retrieve the selected language and save it to localStorage
+  let select_language = $(this).attr('id');
   localStorage.setItem('select_language', $(this).attr('id'));
   localStorage.setItem('select_language_complete', $(this).attr('value'));
-  // Seleziona tutti gli elementi con l'attributo [translate_id]
-  // Effettua, poi, un ciclo per ogni elemento trovato
-  $('[translate_id]').each(function(index, element) {
-    // Sostituisce il testo dell'elemento utilizzando l'array_translate_id per recuperare
-    // la traduzione corretta.
-    // Il valore dell'attributo [translate_id] è la stessa chiave del json
-    try{
-      $(this).text(array_translate_id[$(this).attr("translate_id")][select_language]);
-    }catch(e){}
-  });
+
+  // Translate the page content
+  getLanguage();
 });
+
+
+
+
+
+
 
 
 const array_translate_id = {
@@ -242,12 +239,12 @@ const array_translate_id = {
   'alarms'                    : {'en':'Alarms',         'it':'Allarmi'                   },
   'alarms_history'            : {'en':'Alarm History',  'it':'Storico Alarmi'            },
   'profile_settings'          : {'en':'Profile Settings','it':'Impostazione del Profilo' },
-  'clients_list'              : {'en' : 'List of Clients','it':'Lista CLienti'           },
+  'clients_list'              : {'en' : 'List of Clients','it':'Lista Clienti'           },
   // Pagina Customer
   'list_clients_connected'    : {'en': 'List of Clients Connected',    'it' : 'Lista Clienti Connessi'   },
   'list_clients_disconnected' : {'en': 'List of Clients Disconnected', 'it': 'Lista Clienti Disconnessi' },
   'connection_status'         : {'en' : 'Connection Status',           'it':'Stato Connessione'          },
-  'dryers'                    : {'en' : 'Dryers',                      'it':'Celle'                      },
+  'dryer'                    : {'en' : 'Dryer',                      'it':'Cella'                      },
   'line'                      : {'en' : 'Line',                        'it':'Linea'                      },
   // Pagina Alarm Report
   'report_alarms'             : {'en': 'Report Alarms',                'it' : 'Report Allarmi'   },

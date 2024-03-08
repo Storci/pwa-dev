@@ -103,6 +103,7 @@ function createCellCard(cellsGroup){
 		document.getElementById(id).onclick = function(){
 			window.location.href = "./32_dryer_dashboard.html?entityName=" + el.entityName
 		}
+		lang.getLanguage()
 	})
 }
 // Funzione che recupera i dati del cliente da TW
