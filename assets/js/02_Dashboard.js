@@ -4,25 +4,10 @@ import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
-
-
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
 
-// definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
-// il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
-// baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-if(window.location.protocol == 'https:'){
-  baseURL += '/pwa'
-}
-*/
-// Recupera il nome dell'utente da firebase, controlla che sia loggato.
-// Nel caso non fosse loggato richiama la pagina di login
-//fb.onAuthStateChanged_2()
 // Recupera dei dati dalle local storage
 let selectedCustomer = localStorage.getItem("global_selected_customer")
 let selectedLine 		 = localStorage.getItem("global_selected_line")
@@ -34,12 +19,15 @@ $('#IDCustomerName').text(selectedCustomer.replace(/_/g, " "))
 // Vengono sostituiti tutti gli underscore presenti nel nome
 $("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
 // Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
-// ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
+// ATTENZIONE - Questa istruzione traduce sia i testi statici e dinamici
 // i testi caricati dalle funzioni.
-lang.getLanguage()
+  lang.getLanguage()
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
+
+
+
 
 $('#id-nav-dashboard').addClass('active')
 
@@ -246,16 +234,11 @@ function createDivLine(IDdiv, entityName){
   let html = ''
 
   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
-  html += '<h1 class="h2 card-result" ' + keyProperty + '="nome_linea">Linea</h1>'
+  html += '<h1 class="h2 card-result" translate_id ="line">Line</h1>'
   html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
   html +=       '<div class="btn-group me-2"></div>'
   html +=   '</div>'
   html += '</div>'
- /*
-  html += '<div class="divClientiConnessi" style="margin-top: 50px;">'
-  html +=     '<h5 style="margin: 0;padding-right: 12px;padding-left: 12px;color: var(--bs-heading-medium-emphasis);font-size: 1.2rem;" ' + keyProperty + '="nome_linea">LINEA</h5>'
-  html += '</div>'
-  */
   html += '<div id="IDdivLineData" class="row g-0 row-cols-1 row-cols-lg-3 gy-3" style="min-height: 300px;">'
   html +=     '<div class="col col-customer col-sx-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
@@ -305,6 +288,8 @@ function createDivLine(IDdiv, entityName){
 
   $(IDdiv).append(html)
 
+ // i18.translatePage()
+
 /*
   let navitem = ''
   navitem += '<li class="nav-item">'
@@ -327,6 +312,7 @@ function createDivLine(IDdiv, entityName){
     // Carica la pagina.
     window.location.href = baseURL + "/Customers/CustomerInfo/Lines/LinesInfo.html"
   })*/
+  lang.getLanguage()
 }
 
 
@@ -336,7 +322,7 @@ function createDivDryers(IDdiv, entityName){
   let html = ''
 
   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
-  html += '<h1 class="h2 card-result">Dryers</h1>'
+  html += '<h1 class="h2 card-result" translate_id ="dryer">Dryer</h1>'
   html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
   html +=       '<div class="btn-group me-2"></div>'
   html +=   '</div>'
@@ -358,7 +344,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer col-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Room Temperature</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="room_temperature">Room Temperature</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="temperatura_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -374,7 +360,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer col-dx-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Number of Alarms Present</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number of Alarms Present</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="allarmi_attivi" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -424,4 +410,6 @@ function createDivDryers(IDdiv, entityName){
     window.location.href = baseURL + "/Customers/CustomerInfo/Dryers/DryersInfo.html";
   })
   */
+  //i18.translatePage()
+  lang.getLanguage()
 }
