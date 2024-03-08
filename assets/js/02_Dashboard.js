@@ -4,25 +4,10 @@ import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
-
-
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
 
-// definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
-// il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
-// baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-if(window.location.protocol == 'https:'){
-  baseURL += '/pwa'
-}
-*/
-// Recupera il nome dell'utente da firebase, controlla che sia loggato.
-// Nel caso non fosse loggato richiama la pagina di login
-//fb.onAuthStateChanged_2()
 // Recupera dei dati dalle local storage
 let selectedCustomer = localStorage.getItem("global_selected_customer")
 let selectedLine 		 = localStorage.getItem("global_selected_line")
@@ -34,12 +19,15 @@ $('#IDCustomerName').text(selectedCustomer.replace(/_/g, " "))
 // Vengono sostituiti tutti gli underscore presenti nel nome
 $("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
 // Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
-// ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
+// ATTENZIONE - Questa istruzione traduce sia i testi statici e dinamici
 // i testi caricati dalle funzioni.
-//lang.getLanguage()
+  lang.getLanguage()
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
+
+
+
 
 $('#id-nav-dashboard').addClass('active')
 
@@ -246,16 +234,11 @@ function createDivLine(IDdiv, entityName){
   let html = ''
 
   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
-  html += '<h1 class="h2 card-result" ' + keyProperty + '="nome_linea">Linea</h1>'
+  html += '<h1 class="h2 card-result" translate_id ="line">Line</h1>'
   html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
   html +=       '<div class="btn-group me-2"></div>'
   html +=   '</div>'
   html += '</div>'
- /*
-  html += '<div class="divClientiConnessi" style="margin-top: 50px;">'
-  html +=     '<h5 style="margin: 0;padding-right: 12px;padding-left: 12px;color: var(--bs-heading-medium-emphasis);font-size: 1.2rem;" ' + keyProperty + '="nome_linea">LINEA</h5>'
-  html += '</div>'
-  */
   html += '<div id="IDdivLineData" class="row g-0 row-cols-1 row-cols-lg-3 gy-3" style="min-height: 300px;">'
   html +=     '<div class="col col-customer col-sx-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
@@ -291,11 +274,11 @@ function createDivLine(IDdiv, entityName){
   html +=                 '<div id="' + id + 'Trend" style="min-height: 300px;max-height: 100%;"></div>'
   html +=                 '<div class="d-flex justify-content-center" style="width: 100%;">'
   html +=                   '<button id="' + id + '5d" class="btn btn-outline-primary active" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="5" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span data-i18n="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                   'value="5" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
   html +=                   '<button id="' + id + '10d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="10" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span data-i18n="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                   'value="10" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
   html +=                   '<button id="' + id + '30d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="30" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span data-i18n="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                   'value="30" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
   html +=                 '</div>'
   html +=             '</div>'
   html +=         '</div>'
@@ -304,6 +287,8 @@ function createDivLine(IDdiv, entityName){
   //html += '<div style="padding-right: 20px;padding-left: 20px;margin-bottom: 80px;"><button id="IDLinkLine" entityname="' + entityName + '" class="btn btn-primary" type="button" style="min-width: 100%;">LINEA DASHBOARD</button></div>'
 
   $(IDdiv).append(html)
+
+ // i18.translatePage()
 
 /*
   let navitem = ''
@@ -327,6 +312,7 @@ function createDivLine(IDdiv, entityName){
     // Carica la pagina.
     window.location.href = baseURL + "/Customers/CustomerInfo/Lines/LinesInfo.html"
   })*/
+  lang.getLanguage()
 }
 
 
@@ -336,7 +322,7 @@ function createDivDryers(IDdiv, entityName){
   let html = ''
 
   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
-  html += '<h1 class="h2 card-result">Dryers</h1>'
+  html += '<h1 class="h2 card-result" translate_id ="dryer">Dryer</h1>'
   html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
   html +=       '<div class="btn-group me-2"></div>'
   html +=   '</div>'
@@ -350,7 +336,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer col-sx-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" data-i18n="actual_alarms">Active Dryers</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Active Dryers</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="celle_attive" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -358,7 +344,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer col-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" data-i18n="room_temperature">Room Temperature</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="room_temperature">Room Temperature</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="temperatura_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -366,7 +352,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer col-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" data-i18n="actual_alarms">Room Humidity</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Room Humidity</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="umidita_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -374,7 +360,7 @@ function createDivDryers(IDdiv, entityName){
   html +=     '<div class="col col-customer col-dx-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" data-i18n="number_of_alarms">Number of Alarms Present</h6>'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number of Alarms Present</h6>'
   html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="allarmi_attivi" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
   html +=             '</div>'
   html +=         '</div>'
@@ -383,17 +369,17 @@ function createDivDryers(IDdiv, entityName){
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
   html +=             '<div class="card-body" style="padding: 0px;padding-top: 16px;">'
   html +=                 '<div style="padding-right: 16px;padding-left: 16px;">'
-  html +=                     '<h6 class="text-muted mb-2" style="color: var(--bs-heading-medium-emphasis);margin: 0px;font-size: 1rem;" data-i18n="daily_production">Consumo Giornaliero</h6>'
+  html +=                     '<h6 class="text-muted mb-2" style="color: var(--bs-heading-medium-emphasis);margin: 0px;font-size: 1rem;" translate_id="daily_production">Consumo Giornaliero</h6>'
   html +=                 '</div>'
   html +=                 '<div id="' + id + 'Legend"></div>'
   html +=                 '<div id="' + id + 'Trend" style="min-height: 300px;max-height: 100%;"></div>'
   html +=                 '<div class="d-flex justify-content-center" style="width: 100%;">'
   html +=                    '<button id="' + id + '5d" class="btn btn-outline-primary active" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="5" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span data-i18n="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                   'value="5" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
   html +=                   '<button id="' + id + '10d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="10" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span data-i18n="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                   'value="10" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
   html +=                   '<button id="' + id + '30d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="30" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span data-i18n="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                   'value="30" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
   html +=                 '</div>'
   html +=             '</div>'
   html +=         '</div>'
@@ -424,62 +410,6 @@ function createDivDryers(IDdiv, entityName){
     window.location.href = baseURL + "/Customers/CustomerInfo/Dryers/DryersInfo.html";
   })
   */
+  //i18.translatePage()
+  lang.getLanguage()
 }
-
-
-// Initialize i18next
-i18next.init({
-	lng: 'en', // default language
-	resources: {
-	  en: {
-		translation: {
-		  "actual_alarms": "Actual Alarms",
-		  "number_of_alarms": "Numbers of Alarms Present",
-      "days":"Days"
-		}
-	  },
-	  it: {
-		translation:{
-		"actual_alarms":"Allarmi Attuale",
-		"number_of_alarms":"Numeri Allarmi Presenti",
-    "days":"Giorni"
-		}
-	  }
-	}
-	
-  });
-  
-  function translatePage() {
-	let select_language = localStorage.getItem("select_language")
-	let select_language_complete = localStorage.getItem("select_language_complete")
-	$('#dropdown2').text(select_language_complete)
-	$('[data-i18n]').each(function() {
-	  var key = $(this).data('i18n');
-	  try{
-		$(this).text(i18next.t(key)[$(this).attr("data-i18n")][select_language]);
-	  }catch(e){}
-	  
-	});
-  }
-
-  $(".translate1").click(function() {
-	console.log($(this).attr('id'))
-	console.log($(this).attr('value'))
-	$("#dropdown1").text($(this).attr('value'))
-	let select_language = $(this).attr('id')
-  // Salva la selezione nella variabile localStorage.
-  // la local storage rimane salvata sul client.
-  localStorage.setItem('select_language', $(this).attr('id'));
-  localStorage.setItem('select_language_complete', $(this).attr('value'));
-  // Seleziona tutti gli elementi con l'attributo [translate_id]
-  // Effettua, poi, un ciclo per ogni elemento trovato
-  $('[data-i18n]').each(function(index, element) {
-	//$(this).text(i18next.t(key));
-	try{
-		$(this).text(i18next.t(key)[$(this).attr("data-i18n")][select_language]);
-	  }catch(e){}
-	})
-})
-  
-  translatePage();
-  
