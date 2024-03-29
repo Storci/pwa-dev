@@ -50,6 +50,7 @@
         <script src="./assets/js/sidebar.js" type="module"></script>         
         <script src="./assets/js/48_line_destacker.js" type="module"></script>         
         <script src="./assets/js/Global/Common/Theme.js" type="module"></script>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -246,10 +247,14 @@
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
                         <h1 class="h2">Dashboard Deimpilatore</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
-                            <div class="btn-group me-2"> 
-</div>                             
+                            <div class="btn-group me-2"> </div>                             
                         </div>                         
                     </div>
+                    <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
+                        <div class="align-items-center d-flex justify-content-center modal-dialog modal-dialog-centered modal-sm"> 
+                            <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_bU3Dr6.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>                             
+                        </div>   
+                    </div>     
                 </main>                 
             </div>             
         </div>         

@@ -49,6 +49,7 @@
         <script src="./assets/js/Global/Common/Translation.js" type="module"></script>         
         <script src="./assets/js/Global/Common/Theme.js" type="module"></script>         
         <script defer src="./assets/js/01_Customers.js" type="module"></script>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     </head>     
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
         <script> $('body').addClass('d-none')</script>         
@@ -56,6 +57,9 @@
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> 
             </button>             
         </header>         
+       <!--<div class="loader">
+            <img src="./assets/img/Spinner.gif" alt="" srcset="">
+        </div>--> 
         <div class="container-fluid"> 
             <div class="row"> 
                 <nav id="sidebarMenu" class="bg-light col-lg-2 col-md-3 collapse d-md-block sidebar sidebar-scroll sidebar-scroll-hidden"> 
@@ -258,7 +262,7 @@
                         </div>                         
                     </div>                     
                     <div class="gy-3 mb-4 pg-empty-placeholder row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-1" id="IDRowDisconnected" data-pg-name="row-customer-disconnected" title="Clienti Disconnessi"></div>                     
-                    <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true"> 
+                   <!--<div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true"> 
                         <div class="modal-dialog modal-dialog-centered modal-lg"> 
                             <div class="modal-content"> 
                                 <div class="bg-dark modal-header"> 
@@ -275,6 +279,11 @@
                                 </div>                                 
                             </div>                             
                         </div>                         
+                    </div>--> 
+                    <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
+                        <div class="align-items-center d-flex justify-content-center modal-dialog modal-dialog-centered modal-sm"> 
+                            <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_bU3Dr6.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>                             
+                        </div>         
                     </div>
                 </main>                 
             </div>             

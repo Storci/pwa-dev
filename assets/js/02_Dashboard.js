@@ -4,10 +4,19 @@ import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
+
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
 
+/*var loader = document.querySelector(".loader")
+
+window.addEventListener("load", vanish);
+
+function vanish() {
+  loader.classList.add("disppear");
+}*/
+$('#modal1').modal("show")
 // Recupera dei dati dalle local storage
 let selectedCustomer = localStorage.getItem("global_selected_customer")
 let selectedLine 		 = localStorage.getItem("global_selected_line")
@@ -80,6 +89,7 @@ tw.service_02_getLinesGeneralInfo(entityName)
   }else{
     $('#IDdivLinee').addClass('d-none')
   }
+  setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 })
 .catch(e => {
   console.warn(e)
@@ -136,6 +146,7 @@ tw.service_01_getDryersGeneralInfo(entityName)
   }else{
     $('#IDdivDryers').addClass('d-none')
   }
+  setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 })
 .catch(e => {
   $('#IDdivDryers').addClass('d-none')
@@ -190,6 +201,7 @@ function setDryersCardsValue(entityName) {
           $(this).text(result[$(this).attr(keyProperty)]);
         });
       }
+      setTimeout(function() {	$('#modal1').modal("hide") }, 500);
     })
     .catch(error => console.error(error));
 }
@@ -225,6 +237,7 @@ function setDryersTrend(chart, query){
     })
     // Aggiorna il grafico con i dati recuperati
     chart.data = data;
+    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
   })
 }
 

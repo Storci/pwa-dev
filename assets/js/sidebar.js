@@ -7,6 +7,8 @@ import * as lang from "./Global/Common/Translation.js"
 // il nome dell'entity permette di recuperare le macchine presenti
 // per un determinato cliente e visualizzarle nella sidebar.
 
+
+
 let entityName = localStorage.getItem('global_entityName')
 let customer = localStorage.getItem('global_selected_customer')
 try{

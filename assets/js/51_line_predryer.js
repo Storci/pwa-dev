@@ -15,6 +15,13 @@ let entityName = urlParams.get('entityName')
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 
+var loader = document.querySelector(".loader")
+
+window.addEventListener("load", vanish);
+
+function vanish() {
+  loader.classList.add("disppear");
+}
 // Definisce le variabili come date
 let timeStartHistory = new Date()
 let timeEndHistory   = new Date()

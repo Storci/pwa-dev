@@ -24,6 +24,14 @@ $("#IDDivSpinning").css("display", "block")
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 
+var loader = document.querySelector(".loader")
+
+window.addEventListener("load", vanish);
+
+function vanish() {
+  loader.classList.add("disppear");
+}
+
 // Esegue il codice principale al caricamento della pagina
 $("body").ready(async function(){
 	// Definisce la variabile
