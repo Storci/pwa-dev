@@ -25,13 +25,13 @@ $('#modal1').modal("show")
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     // Check if the modal element exists
     var modal = document.getElementById('modal1');
     if (modal) {
         $('#modal1').modal("show");
     }
-});
+});*/
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login

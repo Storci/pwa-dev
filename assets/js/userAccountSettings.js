@@ -12,6 +12,10 @@ $(document).ready(function() {
   lang.getLanguage();
 });
 
+$("#modal1").css("display", "none");
+
+
+
 
 // *************************************
 // ********** CAMBIO PASSWORD **********
@@ -210,6 +214,7 @@ firebase.auth().onAuthStateChanged(user => {
     }else{
       $("#notification-toggle").prop('checked', false)
     }
+    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
   })
 })
 

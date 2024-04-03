@@ -12,7 +12,11 @@ function vanish() {
   loader.classList.add("disppear");
 }
 */
-$('#modal1').modal("show")
+
+$(window).on('load', function(){
+	$(".preloader").fadeOut(500);
+})
+
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)

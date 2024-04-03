@@ -11,6 +11,9 @@ fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
 
+$('#modal1').modal("show")
+
+
 // Definisce le variabili come date
 let timeStartHistory = new Date()
 let timeEndHistory   = new Date()
@@ -192,5 +195,6 @@ function getAlertsReport(query){
                 })
             }
         })
+        setTimeout(function() {	$('#modal1').modal("hide") }, 500);
     })
 }
