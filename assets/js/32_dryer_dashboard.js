@@ -201,6 +201,7 @@ function setCellinfo(entityName){
 		$("#phase_time_recipe").text(dryer.tempo_ricetta_trascorso);
 		//$("#IDNumeroCarrelli").text(dryer.numero_carrelli);
 		setTimeout(function() {	$('.lds-dual-ring.info-cell').hide() }, 1000);
+
 	})
 }
 
@@ -262,7 +263,10 @@ $("#IDHistoryTableBody").empty()
 
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
-.then(dryers => {listHistoryProduction(dryers, timeStartHistory, timeEndHistory)})
+.then(dryers => {
+	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
+	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+})
 .catch(error => console.error(error))
 
 let direction = true

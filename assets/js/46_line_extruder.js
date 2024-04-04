@@ -11,10 +11,7 @@ const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing
 let entityName = urlParams.get('entityName')
 
-window.addEventListener("load", function () {
-    const loader = document.querySelector(".loader");
-    loader.className += " hidden"; // class "loader hidden"
-});
+$('#modal1').modal("show")
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
@@ -333,6 +330,8 @@ async function setCardsValue(entityName){
 				// Assegna il valore di riempimento alla progress bar relativa
 		    $(this).attr('style', prgbar_value)
 			})
+			setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+
 		})
 		.catch(error => console.error(error))
 }

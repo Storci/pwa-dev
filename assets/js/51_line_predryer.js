@@ -125,6 +125,8 @@ $("#IDHistoryTableBody").empty()
 // Recupera tutte le celle installate dal cliente
 listHistoryProduction(entityName, timeStartHistory, timeEndHistory)
 
+$('#modal1').modal("show")
+
 
 let direction = true
 $("th").click(function() {
@@ -327,6 +329,7 @@ async function setCardsValue(entityName){
 				// Assegna il valore di riempimento alla progress bar relativa
 		    $(this).attr('style', prgbar_value)
 			})
+			setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 		})
 		.catch(error => console.error(error))
 }

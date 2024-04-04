@@ -24,13 +24,8 @@ $("#IDDivSpinning").css("display", "block")
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 
-var loader = document.querySelector(".loader")
+$('#modal1').modal("show")
 
-window.addEventListener("load", vanish);
-
-function vanish() {
-  loader.classList.add("disppear");
-}
 
 // Esegue il codice principale al caricamento della pagina
 $("body").ready(async function(){
@@ -160,7 +155,10 @@ async function setCardsValue(entityName){
 	let info
 	// Richiama il servizio di thingworx.
 	await tw.getLineInfo(entityName)
-		.then(result => info = result)
+		.then(result =>{ 
+			info = result
+			setTimeout(function() {	$('#modal1').modal("hide") }, 500)
+		})
 		.catch(error => console.error(error))
 	// Assegna alle varie label il valore corretto recuperato da thingworx
 	$('[propertyname]').each(function(){

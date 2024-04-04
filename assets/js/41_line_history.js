@@ -28,10 +28,12 @@ fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
 
-window.addEventListener("load", function () {
+/*window.addEventListener("load", function () {
     const loader = document.querySelector(".loader");
     loader.className += " hidden"; // class "loader hidden"
 });
+*/
+$('#modal1').modal("show")
 
 
 // Definisce le variabili come date
@@ -294,6 +296,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 			elem.dispatchEvent(clickEvent)
 
 		})
+		setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 	})
 }
 

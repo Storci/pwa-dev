@@ -4,20 +4,13 @@ import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 
 
-/*var loader = document.querySelector(".loader")
-
-window.addEventListener("load", vanish);
-
-function vanish() {
-  loader.classList.add("disppear");
-}
-*/
-
-$(window).on('load', function(){
-	$(".preloader").fadeOut(500);
-})
 
 
+/*$(window).on('load', function(){
+	$("#modal1").fadeOut(500);
+})*/
+
+$('#modal1').modal("show")
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing

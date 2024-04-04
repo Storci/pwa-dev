@@ -17,6 +17,7 @@ function vanish() {
   loader.classList.add("disppear");
 }*/
 $('#modal1').modal("show")
+
 // Recupera dei dati dalle local storage
 let selectedCustomer = localStorage.getItem("global_selected_customer")
 let selectedLine 		 = localStorage.getItem("global_selected_line")
