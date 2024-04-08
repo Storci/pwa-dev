@@ -12,6 +12,14 @@ import * as common from "./Global/Common/commonFunctions.js"
 let baseURL = window.location.protocol + "//" + window.location.host
 let pageURL = window.location.href
 */
+
+/*window.addEventListener("load", function () {
+    const loader = document.querySelector(".loader");
+    loader.className += " hidden"; // class "loader hidden"
+});*/
+$('#modal1').modal("show")
+
+
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
@@ -125,7 +133,10 @@ $("#IDHistoryTableBody").empty()
 
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
-.then(dryers => {listHistoryProduction(dryers, timeStartHistory, timeEndHistory)})
+.then(dryers =>{
+	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
+	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+})
 .catch(error => console.error(error))
 
 let direction = true
@@ -294,6 +305,7 @@ function listHistoryProduction(dryers, timeStart, timeEnd){
 				elem.dispatchEvent(clickEvent)
 
 			})
+			setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 		})
 	})
 }

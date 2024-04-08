@@ -708,6 +708,32 @@ function getLineInfo(entityName){
 		$.ajax(settings).done(response => resolve(response));
 	})
 }
+
+// Recupera le informazioni della linea
+function getLineNidiLasagnaInfo(entityName){
+	// Definisce l'url da richiamare per la REST API
+	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineNidiLasagnaInfo";
+
+	// Imposta i settings da utilizzare nelle REST API.
+	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
+	let settings = {
+		"url"     : url,
+		"method"  : "POST",
+		"timeout" : 0,
+		"headers" : {
+			"appKey"	  : appKey,
+			"Accept"	  : "application/json",
+			"Content-Type": "application/json"
+		},
+		"data": JSON.stringify({"entityName":entityName})
+	};
+
+	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+	return new Promise(function(resolve){
+		// Esegue la chiamata REST API.
+		$.ajax(settings).done(response => resolve(response));
+	})
+}
 // La funzione restituisce la lista dello storico produzioni dell'impasto
 function getLineDoughHistoryProduction(filter, entityName, startTime, endTime){
 	// Definisce l'url da richiamare per la REST API
@@ -871,6 +897,7 @@ export{
 	getLineOmnidryerInfo,
 	getLineStenditriceInfo,
 	getLineTrabattoInfo,
+	getLineNidiLasagnaInfo,
 	getLineInfo,
 	getLineDoughHistoryProduction,
 	getLineAlertsActive,

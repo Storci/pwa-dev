@@ -15,6 +15,8 @@ let entityName = urlParams.get('entityName')
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 
+$('#modal1').modal("show")
+
 // Definisce le variabili come date
 let timeStartHistory = new Date()
 let timeEndHistory   = new Date()
@@ -354,6 +356,7 @@ async function setCardsValue(entityName){
 				// Assegna il valore di riempimento alla progress bar relativa
 		    $(this).attr('style', prgbar_value)
 			})
+			setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 		})
 		.catch(error => console.error(error))
 }

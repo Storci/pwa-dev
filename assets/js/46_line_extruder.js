@@ -11,6 +11,8 @@ const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing
 let entityName = urlParams.get('entityName')
 
+$('#modal1').modal("show")
+
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
@@ -328,6 +330,8 @@ async function setCardsValue(entityName){
 				// Assegna il valore di riempimento alla progress bar relativa
 		    $(this).attr('style', prgbar_value)
 			})
+			setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+
 		})
 		.catch(error => console.error(error))
 }

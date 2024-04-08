@@ -12,8 +12,26 @@ import * as common from "./Global/Common/commonFunctions.js"
 let baseURL = window.location.protocol + "//" + window.location.host
 let pageURL = window.location.href
 */
+/*var loader = document.querySelector(".loader")
+
+window.addEventListener("load", vanish);
+
+function vanish() {
+  loader.classList.add("disppear");
+}
+*/
+$('#modal1').modal("show")
+
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
+
+/*$(document).ready(function() {
+    // Check if the modal element exists
+    var modal = document.getElementById('modal1');
+    if (modal) {
+        $('#modal1').modal("show");
+    }
+});*/
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
@@ -183,6 +201,7 @@ function setCellinfo(entityName){
 		$("#phase_time_recipe").text(dryer.tempo_ricetta_trascorso);
 		//$("#IDNumeroCarrelli").text(dryer.numero_carrelli);
 		setTimeout(function() {	$('.lds-dual-ring.info-cell').hide() }, 1000);
+
 	})
 }
 
@@ -244,7 +263,10 @@ $("#IDHistoryTableBody").empty()
 
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
-.then(dryers => {listHistoryProduction(dryers, timeStartHistory, timeEndHistory)})
+.then(dryers => {
+	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
+	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+})
 .catch(error => console.error(error))
 
 let direction = true

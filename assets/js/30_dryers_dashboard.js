@@ -4,6 +4,13 @@ import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 
 
+
+
+/*$(window).on('load', function(){
+	$("#modal1").fadeOut(500);
+})*/
+
+$('#modal1').modal("show")
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing
@@ -44,6 +51,7 @@ tw.getCustomerCells(selectedCustomer)
 	getCellInfo(cellsGroup, selectedCustomer)
 	// Esegue la funzione ogni 30 sec
 	setInterval(getCellInfo, 30000, cellsGroup, selectedCustomer);
+	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 
 })
 .catch(error => console.error(error))
