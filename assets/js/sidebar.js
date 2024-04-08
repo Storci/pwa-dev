@@ -49,6 +49,8 @@ let dashboard_href = '02_Dashboard.html?entityName=' + entityName
 $('#id-nav-dashboard').attr('href', dashboard_href)
 
 
+$('#modal1').modal("show")
+
 // Recupera i nomi delle macchine installate dal cliente.
 // vengono recuperate sia le celle che le linee.
 if(customer != "Storci"){
@@ -166,6 +168,8 @@ if(customer != "Storci"){
       }catch(e){ console.error(e) }
 
     $('body').removeClass('d-none')
+    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+
   })
     .catch(err => console.error(err))
 }else{
@@ -200,7 +204,6 @@ function refreshStatus(entityName){
   .catch(err => console.error(err))
 }
 
-
 // Funzione che recupera le macchine presenti nella linea
 // Effettua una chiamata a tw per il recupero del nome delle macchine,
 // poi inserisce le macchine all'interno di una lista.
@@ -221,6 +224,7 @@ function getListMachine(entityName, id){
         case "Nidi_Lasagna" 	   : $('#id-nav-nests_lasagna-line-' + id).removeClass('d-none'); break
   		}
   	})
+    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
   })
 	.catch(error => console.error(error))
 }
