@@ -13,7 +13,7 @@ async function signInWithEmailPassword(email, password) {
 }
 
 // Effettua la registrazione di un nuovo utente
-function signUpWithEmailPassword(email, password) {
+/*function signUpWithEmailPassword(email, password) {
 	// [START auth_signup_password]
 	firebase.auth().createUserWithEmailAndPassword(email, password)
 	.then((userCredential) =>{
@@ -23,18 +23,35 @@ function signUpWithEmailPassword(email, password) {
 		let errorCode = error.code
 		let errorMessage = error.message
 		let errorMail = error.code
-		let errorMailMessage = error.message
-
 		$('#IDErrorMessage').css("display", "block")
 		$('#IDErrorMessage').text('code: ' + errorCode + ' - ' + errorMessage)
-
 		// effettuare un controllo se la mail esiste gia in firebase
 		if(errorMail == "auth/email-already-in-use"){
 			$("#signUpfailed").fadeIn(1500);
 			console.log(errorMail)
 		}
 	})
-}
+}*/
+
+async function signUpWithEmailPassword(email, password) {
+	try {
+	  const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+	  const user = userCredential.user;
+	  // If you need to do something with the user object, you can do it here
+	} catch (error) {
+	  let errorCode = error.code;
+	  let errorMessage = error.message;
+	  let errorMail = error.code;
+	  $('#IDErrorMessage').css("display", "block");
+	  $('#IDErrorMessage').text('code: ' + errorCode + ' - ' + errorMessage);
+	  // effettuare un controllo se la mail esiste gia in firebase
+	  if (errorMail === "auth/email-already-in-use") {
+		$("#signUpfailed").fadeIn(1500);
+		console.log(errorMail);
+	  }
+	}
+  }
+  
 
 function sendEmailVerification() {
 	// [START auth_send_email_verification]
@@ -211,7 +228,7 @@ export {
 	onAuthStateChanged,
 	setPersistenceSession,
 	setPersistenceNone,
-	onAuthStateChanged_2,
+	onAuthStateChanged_2
 	//userUpdatePassword,
 	//changePassword
 	//getUserData

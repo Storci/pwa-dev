@@ -26,6 +26,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>         
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>         
+        <script defer src="./assets/js/signUp.js" type="module"></script>
         <script> 
         var firebaseConfig = {
             apiKey: "AIzaSyB6L_2pDhDz1RXHA5ZA8g9hsU9e4EOHGvU",
@@ -58,9 +59,9 @@
                                 <input type="text" class="form-control" id="IDLastName" placeholder=" Enter Last Name" required/> 
                             </div>                             
                             <div> 
-</div>                             
+                            </div>                             
                             <div> 
-</div>                             
+                            </div>                             
                         </div>                         
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
@@ -71,14 +72,10 @@
                                 <label for="exampleInputPassword1">Country / State</label>                                 
                                 <div class="mb-3"> 
                                     <select id="IDCountries" class="form-select" aria-label="Default select example" required> 
-</select>                                     
+                                    </select>                                     
                                 </div>                                 
                             </div>                             
-                            <div> 
-</div>                             
-                            <div> 
-</div>                             
-                        </div>                         
+                         </div>                         
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="exampleInputEmail1">E-mail</label>                                 
@@ -87,11 +84,7 @@
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Confirm E-mail</label>                                 
                                 <input type="email" class="form-control" id="IDEmail_repeat" placeholder="Confirm E-mail" required/> 
-                            </div>                             
-                            <div> 
-</div>                             
-                            <div> 
-</div>                             
+                            </div>                                                           
                         </div>                         
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
@@ -103,11 +96,7 @@
                                 <label for="exampleInputPassword1">Confirm Password</label>                                 
                                 <input type="password" class="form-control" id="IDPassword_repeat" placeholder=" Repeat Password" required/> 
                                 <div id="invalid-mess-12" class="invalid-feedback">Please confirm your new password.</div>                                 
-                            </div>                             
-                            <div> 
-</div>                             
-                            <div> 
-</div>                             
+                            </div>                                                                  
                         </div>                         
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
@@ -136,4 +125,5 @@
                 </div>                 
             </div>             
         </div>         
-        <script src="./assets/js/signUp.js" type="module"></script>
+    </body>
+</html>

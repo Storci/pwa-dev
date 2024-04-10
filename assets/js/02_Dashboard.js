@@ -16,6 +16,7 @@ window.addEventListener("load", vanish);
 function vanish() {
   loader.classList.add("disppear");
 }*/
+
 $('#modal1').modal("show")
 
 // Recupera dei dati dalle local storage
@@ -145,7 +146,7 @@ tw.service_01_getDryersGeneralInfo(entityName)
       setDryersTrend(chart, query)
     })
   }else{
-    $('#IDdivDryers').addClass('d-none')
+  //  $('#IDdivDryers').addClass('d-none')
   }
   setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 })
@@ -238,7 +239,7 @@ function setDryersTrend(chart, query){
     })
     // Aggiorna il grafico con i dati recuperati
     chart.data = data;
-    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+    //setTimeout(function() {	$('#modal1').modal("hide") }, 500);
   })
 }
 
