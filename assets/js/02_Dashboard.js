@@ -302,31 +302,7 @@ function createDivLine(IDdiv, entityName){
   //html += '<div style="padding-right: 20px;padding-left: 20px;margin-bottom: 80px;"><button id="IDLinkLine" entityname="' + entityName + '" class="btn btn-primary" type="button" style="min-width: 100%;">LINEA DASHBOARD</button></div>'
 
   $(IDdiv).append(html)
-
- // i18.translatePage()
-
-/*
-  let navitem = ''
-  navitem += '<li class="nav-item">'
-  navitem +=   '<a class="nav-link" href="#">'
-  navitem +=      '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">'
-  navitem +=          '<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>'
-  navitem +=          '<polyline points="13 2 13 9 20 9"></polyline>'
-  navitem +=      '</svg>'
-  navitem +=      '<span class="ms-1" ' + keyProperty + '="nome_linea">Linea</span>'
-  navitem +=   '</a>'
-  navitem += '</li>'
-
-  let idnav = '#IDNavPrimary'
-  $(idnav).append(navitem)
-
-  */
-/*
-  $('#IDLinkLine').click(function() {
-    localStorage.setItem('global_selected_line_entityName', $(this).attr('entityname'))
-    // Carica la pagina.
-    window.location.href = baseURL + "/Customers/CustomerInfo/Lines/LinesInfo.html"
-  })*/
+  //funzione che richiamo la traduzione della lingua
   lang.getLanguage()
 }
 
@@ -342,11 +318,6 @@ function createDivDryers(IDdiv, entityName){
   html +=       '<div class="btn-group me-2"></div>'
   html +=   '</div>'
   html += '</div>'
-  /*
-  html += '<div id="IDdivNameDryers" class="divClientiConnessi">'
-  html +=     '<h5 style="margin: 0;padding-right: 12px;padding-left: 12px;color: var(--bs-heading-medium-emphasis);font-size: 1.2rem;">CELLE</h5>'
-  html += '</div>'
-  */
   html += '<div id="IDDryersData" class="row g-0 row-cols-1 row-cols-lg-4 d-flex gy-3" style="min-height: 300px;">'
   html +=     '<div class="col col-customer col-sx-padding">'
   html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
@@ -400,31 +371,8 @@ function createDivDryers(IDdiv, entityName){
   html +=         '</div>'
   html +=     '</div>'
   html += '</div>'
-//  html += '<div style="padding-right: 20px;padding-left: 20px;margin-bottom: 80px;"><button id="IDLinkDryers" entityname="' + entityName + '" class="btn btn-primary" type="button" style="min-width: 100%;">CELLE DASHBOARD</button></div>'
-
+  // tramite la funzione append aggiungo html dinamico alla al div IDdiv
   $(IDdiv).append(html)
-
-/*
-  let navitem = ''
-  navitem += '<li class="nav-item">'
-  navitem +=   '<a class="nav-link" href="#">'
-  navitem +=      '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">'
-  navitem +=          '<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>'
-  navitem +=          '<polyline points="13 2 13 9 20 9"></polyline>'
-  navitem +=      '</svg>'
-  navitem +=      '<span class="ms-1">Celle</span>'
-  navitem +=   '</a>'
-  navitem += '</li>'
-
-  let idnav = '#IDNavPrimary'
-  $(idnav).append(navitem)
-  */
-/*
-  $('#IDLinkDryers').click(function() {
-    // Carica la pagina.
-    window.location.href = baseURL + "/Customers/CustomerInfo/Dryers/DryersInfo.html";
-  })
-  */
-  //i18.translatePage()
+// funzione per la traduzione che viene richiamato quando 
   lang.getLanguage()
 }

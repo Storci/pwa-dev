@@ -109,6 +109,8 @@ $("#IDPassword_repeat").keyup(function(){
     })
 		.catch(error => console.error(error))
 })*/
+
+
 $('#IDButtonSignUp').click(async function() {
   try {
       let email = $('#IDEmail').val();
@@ -140,6 +142,7 @@ $('#IDButtonSignUp').click(async function() {
               });
 
               $("#signUpSuccess").css("display", "block");
+              console.log("sign up succesful")
           } else {
               $('#IDErrorMessage').css("display", "block");
               $('#IDErrorMessage').text('Error, the two passwords do not match');
@@ -151,7 +154,6 @@ $('#IDButtonSignUp').click(async function() {
       $('#IDErrorMessage').text(error.message); // Display error message to user
   }
 });
-
 
 
 // una chiamata rest per recuperare tutta la lista delle nazione
@@ -176,3 +178,50 @@ let settings = {
 // Esegue la chiamata REST API.
 $.ajax(settings).then(response => console.log(response));
 
+
+
+/*$('#IDButtonSignUp').click(async function() {
+  try {
+      let email = $('#IDEmail').val();
+      let customerCode = $('#Unique').val();
+
+      let tableRow = await tw.getUser(email);
+
+      if (tableRow.rows.length > 0) {
+          $('#IDErrorMessageSignUp').css("display", "block");
+          $('#IDErrorMessageSignUp').text('Error, the email is already in use');
+      } else {
+          let pass1 = $('#IDPassword').val();
+          let pass2 = $('#IDPassword_repeat').val();
+
+          if (pass1 === pass2) {
+              await Promise.all([
+                  tw.service_97_addNewUser(email, customerCode),
+                  fb.signUpWithEmailPassword(email, pass1)
+              ]);
+
+              let db = firebase.firestore();
+              let data = db.collection('users').doc(email);
+
+              await data.set({
+                  firstName: $("#IDName").val(),
+                  lastName: $("#IDLastName").val(),
+                  email: $("#IDEmail").val(),
+                  company: $("#IDCompanyName").val(),
+                  state: $("#IDCountries").val(),
+                  mobile: $("#IDPhoneNumber").val(),
+              });
+
+              $("#signUpSuccess").css("display", "block");
+          } else {
+              $('#IDErrorMessage').css("display", "block");
+              $('#IDErrorMessage').text('Error, the two passwords do not match');
+          }
+      }
+  } catch (error) {
+      console.error(error);
+      $('#IDErrorMessage').css("display", "block");
+      $('#IDErrorMessage').text(error.message); // Display error message to user
+  }
+});
+*/

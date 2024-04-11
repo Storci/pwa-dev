@@ -115,6 +115,9 @@ if(customer != "Storci"){
             // imposta il link come attivo se la pagina in visualizzazione corrisponde ad una cella
             if(pageName == href){ $(nav_link).addClass('active') }
           }
+          setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+          console.log(res.dryers)
+
         }
       }catch(e){ console.error(e) }
 
