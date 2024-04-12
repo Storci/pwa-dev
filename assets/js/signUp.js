@@ -111,7 +111,9 @@ $("#IDPassword_repeat").keyup(function(){
 })*/
 
 
-$('#IDButtonSignUp').click(async function() {
+$('#IDButtonSignUp').click(async function(e) {
+  e.preventDefault(); // Prevent default form submission behavior
+
   try {
       let email = $('#IDEmail').val();
       let customerCode = $('#Unique').val();
