@@ -5,37 +5,66 @@ import * as lang from "./Global/Common/Translation.js"
 //import { Octokit, App } from "https://cdn.skypack.dev/octokit";
 
 
+
 $('#modal1').modal("show")
-/*var loader = document.querySelector(".loader")
 
-window.addEventListener("load", vanish);
+//inizializzazione del contatore
+let counterSpinner = 0;
 
-function vanish() {
-  loader.classList.add("disppear");
-}*/convertText
+//funzione per dimostrare se il contatore è maggiore di 0
+function updateModal(){
+ if(counterSpinner > 0){
+  $('#modal1').modal("show");
+ }
+ else{
+  $('#modal1').modal("hide");
+ }
+}
 
+// funzione che incrementa e mostra il caricamento dello spinner
+function startLoading(){
+  counterSpinner++;
+  updateModal();
+}
+
+// funzione che diminuisce e nasconde lo spinner quando il caricamento è stato eseguita
+function stopLoading(){
+  counterSpinner--;
+  updateModal();
+}
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 //funzione per la traduzione
 lang.getLanguage()
+
+startLoading()
 // Recupera la lista dei clienti presenti da tw
 tw.getCustomersList()
-.then(customerList => {
+  .then(customerList => {
     // Genera html della card del cliente
-    createCard(customerList)
-    // Esegue la funzione dopo la creazione delle card.
-    // La funzione recupera i valori da TW da visualizzare nelle card
-    getCustomerInfo(customerList)
-    // Esegue la funzione ogni 10 sec
-    setInterval(getCustomerInfo, 10000, customerList)
+    createCard(customerList);
 
-    localStorage.setItem('customerList', JSON.stringify(customerList))
-	//aspetto la risposta del server nel momento in cui la chiamata venga fatto completamente il spinner dovrebbe sparire
-	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
-})
-.catch(e => console.error(e))
+    // Recupera i valori da TW da visualizzare nelle card e ritorna una promise
+    return getCustomerInfo(customerList);
+  })
+  .then(() => {
+    // Nasconde lo spinner dopo che tutte le informazioni dei clienti sono state recuperate
+    //$('#modal1').modal("hide");
 
+    // Imposta l'aggiornamento periodico delle informazioni dei clienti ogni 10 secondi
+    setInterval(getCustomerInfo, 10000, JSON.stringify(customerList));
+    
+    // Salva la lista dei clienti nel localStorage
+    localStorage.setItem('customerList', JSON.stringify(customerList));
+  })
+  .catch(e => {
+    console.error(e);
+    // Nasconde lo spinner anche in caso di errore
+    //$('#modal1').modal("hide");
+	console.log("finished loading lines");
+	stopLoading();
+  });
 
 /* RECUPERA LE INFORMAZIONI DA GITHUB */
 let url = "https://api.github.com/repos/Storci/pwa/releases/latest"
@@ -47,7 +76,7 @@ tw.service_80_githubAPI(url)
   console.log(resp)
   if(release !== "true" || resp.name != release_name){
     let s = convertText(resp.body)
-    $('#modal1').modal("show")
+    //$('#modal1').modal("show")
     $("#modalTitle").html("NEW VERSION RELEASE - " + resp.name)
     $("#modalSpan").html(s)
     if(resp.prerelease){
@@ -64,6 +93,7 @@ tw.service_80_githubAPI(url)
     })
   }
 })
+
 
 
 // ******************** FUNCTION ********************
@@ -294,3 +324,5 @@ function convertText(text){
   }
   return s
 }
+
+//$('#modal1').modal("show")

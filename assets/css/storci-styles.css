@@ -393,6 +393,9 @@ thead {
     height: 500px;
     max-width: 700%;
     overflow: scroll;
+    position: relative;
+    opacity: 1;
+
 }
 
 /* regola per gestire lo scroll sulla tabella senza allargare l'altezza */
@@ -475,20 +478,12 @@ thead {
     margin: 10px;
 }
 
+.spinner-border {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+   /* transform: translate(-50%, -50%);
+    z-index: 100; /* Ensures the spinner is on top */
+   /*/ display: none; /* Hide spinner by default */
+}
 
-.preloader {
-    width: 100% !important;
-    position: fixed;
-    background-color: #d3d3d3 !important;
-    z-index: 9999;
-    min-height: 100vh ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .loader{
-    width: 100%;
-    max-width:500px ;
-  }
-  

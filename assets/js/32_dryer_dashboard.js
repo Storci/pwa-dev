@@ -343,6 +343,18 @@ function insertionSort(table, column, dir){
 	}
 }
 
+// funzione per mostrare uno spinner mentre la tabella si carica
+function showSpinner(){
+	$('.spinner-border').show(); // Show the spinner
+    $('.tableDiv').css('opacity', '0.5'); // 
+}
+// funzione per nascondere lo spinner dopo il caricamento della tabella
+function hideSpinner(){
+	$('.spinner-border').hide(); // Show the spinner
+    $('.tableDiv').css('opacity', '1'); // 
+}
+// eseguire la funzione 
+showSpinner()
 
 function listHistoryProduction(dryers, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
@@ -427,15 +439,8 @@ function listHistoryProduction(dryers, timeStart, timeEnd){
 					.catch(e => {console.log(e)})
 				})
 
-				// Recupera la prima riga della tabella
-				/*let elem = document.getElementById('firstColumn')
-		    // Definisce la variabile come click event
-				let clickEvent = new Event('click');
-		    // Esegue l'evento dell'elemento, in questo modo simula il click
-		    // sulla prima riga della tabella, e viene caricato il grafico
-				elem.dispatchEvent(clickEvent)*/
-
 			})
+			hideSpinner()
 		})
 	})
 }

@@ -332,18 +332,17 @@
                         <div class="col-lg-5 pb-3"> 
                             <div class="card"> 
                                 <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="production_list">Lista Produzioni Storiche</h6> 
-                                    <!--<div class="pb-3 pt-3 text-muted" data-pg-name="date">
-                                        <input type="date" placeholder="gg/mm/aaaa" class="bg-gradient bg-transparent border-0 border-2 border-bottom text-muted w-100" id="IDTimeStart"/>
-                                    </div>
-                                    <div class="pb-3 pt-3" data-pg-name="date">
-                                        <input type="date" placeholder="gg/mm/aaaa" class="bg-transparent border-0 border-2 border-bottom text-muted w-100" id="IDTimeEnd"/>
-                                    </div>-->                                     
+                                    <h6 class="card-subtitle mb-2 text-muted" translate_id="production_list">Lista Produzioni Storiche</h6>                              
                                     <div class="input-group mb-3"> <span class="material-icons-outlined input-group-text"> 
                                         date_range </span> 
                                         <input type="text" id="dateTimePicker" class="form-control" placeholder="datePicker" aria-label="datePicker" aria-describedby="basic-addon1"/> 
                                     </div>                                     
                                     <div class="tableDiv"> 
+                                        <div class="text-center">
+                                            <div class="spinner-border" role="status">
+                                              <span class="sr-only"></span>
+                                            </div>
+                                        </div> 
                                         <table id="IDHistoryTable" class="table table-hover table-responsive"> 
                                             <thead> 
                                                 <tr> 

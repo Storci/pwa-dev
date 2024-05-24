@@ -6,10 +6,6 @@ import * as lang from "./Global/Common/Translation.js"
 
 
 
-/*$(window).on('load', function(){
-	$("#modal1").fadeOut(500);
-})*/
-
 $('#modal1').modal("show")
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
@@ -51,7 +47,8 @@ tw.getCustomerCells(selectedCustomer)
 	getCellInfo(cellsGroup, selectedCustomer)
 	// Esegue la funzione ogni 30 sec
 	setInterval(getCellInfo, 30000, cellsGroup, selectedCustomer);
-	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+	//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+	$('#modal1').modal("hide");
 
 })
 .catch(error => console.error(error))
@@ -167,15 +164,7 @@ function getCellInfo(cellsGroup, selectedCustomer){
 					$(ClassLabel).css("color","var(--bs-card-label-undefined)")
 					$(ClassValue).css("color","var(--bs-card-value-undefined)")
 				}
-				/*
-				if(i == 8){
-					// Rosso
-					$(ID).css("background-color","var(--bs-card-background-red)")
-					$(ClassTitle).css("color","var(--bs-card-title-red)")
-					$(ClassLabel).css("color","var(--bs-card-label-red)")
-					$(ClassValue).css("color","var(--bs-card-value-red)")
-				}
-				*/
+				$('#modal1').modal("hide");
 			})
 			.catch(error => console.error(error))
 	})

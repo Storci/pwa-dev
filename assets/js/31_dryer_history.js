@@ -219,7 +219,18 @@ function insertionSort(table, column, dir){
 	}
 }
 
+//$('.spinner-border').spinner('show')
+function showSpinner(){
+	$('.spinner-border').show(); // Show the spinner
+    $('.tableDiv').css('opacity', '0.5'); // 
+}
 
+function hideSpinner(){
+	$('.spinner-border').hide(); // Show the spinner
+    $('.tableDiv').css('opacity', '1'); // 
+}
+
+showSpinner()
 function listHistoryProduction(dryers, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
 	dryers.array.forEach((dryer, d) =>{
@@ -305,7 +316,9 @@ function listHistoryProduction(dryers, timeStart, timeEnd){
 				elem.dispatchEvent(clickEvent)
 
 			})
-			setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+			//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+			hideSpinner()
+
 		})
 	})
 }

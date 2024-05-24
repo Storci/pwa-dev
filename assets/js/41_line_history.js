@@ -211,8 +211,18 @@ function insertionSort(table, column, dir){
 		}
 	}
 }
-
-
+// funzione per mostrare uno spinner mentre la tabella si carica
+function showSpinner(){
+	$('.spinner-border').show(); // Show the spinner
+    $('.tableDiv').css('opacity', '0.5'); // 
+}
+// funzione per nascondere lo spinner dopo il caricamento della tabella
+function hideSpinner(){
+	$('.spinner-border').hide(); // Show the spinner
+    $('.tableDiv').css('opacity', '1'); // 
+}
+// eseguire la funzione 
+showSpinner()
 function listHistoryProduction(entityName, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
 	let line_name = entityName.toString().split(".")
@@ -296,7 +306,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 			elem.dispatchEvent(clickEvent)
 
 		})
-		setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+		hideSpinner()
 	})
 }
 

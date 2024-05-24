@@ -264,8 +264,13 @@
                                         <div class="input-group mb-5 mt-3"> <span class="input-group-text material-icons-outlined">search</span> 
                                             <input type="text" class="form-control" placeholder="filter" aria-label="date_range" aria-describedby="basic-addon1" id="filter"/> 
                                         </div>                                         
-                                    </div>                                     
+                                    </div>                                          
                                     <div class="tableDiv"> 
+                                        <div class="text-center">
+                                            <div class="spinner-border" role="status">
+                                              <span class="sr-only"></span>
+                                            </div>
+                                        </div> 
                                         <table id="IDHistoryTable" class="table table-hover table-responsive"> 
                                             <thead> 
                                                 <tr> 
@@ -293,8 +298,9 @@
                                             </thead>                                             
                                             <tbody class="h-50 pg-empty-placeholder card-result" id="IDHistoryTableBody"></tbody>                                             
                                         </table>                                         
-                                    </div>                                     
-                                </div>                                 
+                                    </div>                               
+                                </div>  
+                           
                             </div>                             
                         </div>                         
                         <div class="h-100 mb-3 mt-3"> 
@@ -306,13 +312,12 @@
                                 </div>                                 <span type="button" class="bg-white btn btn-light d-inline text-end text-primary" id="fullscreenHistory">Fullscreen</span> 
                             </div>                             
                         </div>                         
-                    </div>
-                    <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
-                        <div class="align-items-center d-flex justify-content-center modal-dialog modal-dialog-centered modal-sm"> 
-                            <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_bU3Dr6.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>                             
-                        </div>         
-                    </div>
-                </main>                 
+                </main>    
+                <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
+                    <div class="align-items-center d-flex justify-content-center modal-dialog modal-dialog-centered modal-sm"> 
+                        <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_bU3Dr6.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>                             
+                    </div>         
+                </div>             
             </div>             
         </div>         
     </body>     
