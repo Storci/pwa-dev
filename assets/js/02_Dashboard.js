@@ -57,6 +57,69 @@ fb.onAuthStateChanged_2()
 
 $('#id-nav-dashboard').addClass('active')
 
+
+// richiamo della funzione 
+startLoading()
+// Recupera i dati generali delle celle installate dal cliente
+tw.service_01_getDryersGeneralInfo(entityName)
+.then(res => {
+  console.log(res)
+  if(JSON.stringify(res) !== '{}'){
+    // Crea i div per visualizzare le celle
+    createDivDryers('#IDdivDryers', entityName)
+    setDryersCardsValue(entityName)
+    setInterval(setDryersCardsValue, 10000, entityName)
+
+    let arrayUM = ['Consumo Giornaliero (kcal)', 'Celle Attive']
+    let id = 'ID' + res.entityName.replace(/\./g, '')
+    let idLegend = id + 'Legend'
+    let idTrend = id + 'Trend'
+
+    let chart = am.createXYChart(idTrend, idLegend, 1, 2, arrayUM)
+
+    am.createColumnSeries(chart, "Active Dryers", "time", "dryers_actived", '', 1)
+    am.createLineSeries(chart, "Daily Consumption", "time", "kcal", "kcal", 0, true, false, false, 0.77)
+
+    setInterval(am.refreshLegendSize, 1000, chart, idLegend)
+
+    let dryersEntityName = '/' + entityName + '.*.Cella.*/'
+    // Definisce la query da inviare a influxdb
+    // I parametri da sostituire sono indicati da {1}, {2}, ecc...
+    // Invece l'entityName è sempre comune per tutte le query
+    let query = 'SELECT '
+    query += 'mean("Dati_Aggiuntivi_Kcal_H") as "kcal" '
+    query += 'FROM ' + dryersEntityName + ' '
+    query += 'WHERE time >= now() - 5d and time <= now() '
+    query += 'GROUP BY time(24h) fill(0)'
+
+    setDryersTrend(chart, query)
+
+    $('[chart="chartDryers"]').click(function() {
+      let days = $(this).attr('value')
+
+      $(this).addClass('active').siblings().removeClass('active')
+
+      let query = 'SELECT '
+      query += 'mean("Dati_Aggiuntivi_Kcal_H") as "kcal" '
+      query += 'FROM ' + dryersEntityName + ' '
+      query += 'WHERE time >= now() - ' + days + 'd and time <= now() '
+      query += 'GROUP BY time(24h) fill(0)'
+
+      setDryersTrend(chart, query)
+    })
+  }else{
+    $('#IDdivDryers').addClass('d-none')
+  }
+  //setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+  //$('#modal1').modal("hide");
+})
+.catch(e => {
+  // $('#IDdivDryers').addClass('d-none')
+  // $('#modal1').modal("hide");
+  console.log("finished loading dryers");
+  stopLoading();
+})
+
 startLoading()
 // Recupera i dati generali delle linee installate dal cliente
 tw.service_02_getLinesGeneralInfo(entityName)
@@ -116,93 +179,13 @@ tw.service_02_getLinesGeneralInfo(entityName)
   //$('#modal1').modal("hide");
 
 })
-// richiamo della funzione 
-startLoading()
-// Recupera i dati generali delle celle installate dal cliente
-tw.service_01_getDryersGeneralInfo(entityName)
-.then(res => {
-  console.log(res)
-  if(JSON.stringify(res) !== '{}'){
-    // Crea i div per visualizzare le celle
-    createDivDryers('#IDdivDryers', entityName)
-    setDryersCardsValue(entityName)
-    setInterval(setDryersCardsValue, 10000, entityName)
-
-    let arrayUM = ['Consumo Giornaliero (kcal)', 'Celle Attive']
-    let id = 'ID' + res.entityName.replace(/\./g, '')
-    let idLegend = id + 'Legend'
-    let idTrend = id + 'Trend'
-
-    let chart = am.createXYChart(idTrend, idLegend, 1, 2, arrayUM)
-
-    am.createColumnSeries(chart, "Active Dryers", "time", "dryers_actived", '', 1)
-    am.createLineSeries(chart, "Daily Consumption", "time", "kcal", "kcal", 0, true, false, false, 0.77)
-
-    setInterval(am.refreshLegendSize, 1000, chart, idLegend)
-
-    let dryersEntityName = '/' + entityName + '.*.Cella.*/'
-    // Definisce la query da inviare a influxdb
-    // I parametri da sostituire sono indicati da {1}, {2}, ecc...
-    // Invece l'entityName è sempre comune per tutte le query
-    let query = 'SELECT '
-    query += 'mean("Dati_Aggiuntivi_Kcal_H") as "kcal" '
-    query += 'FROM ' + dryersEntityName + ' '
-    query += 'WHERE time >= now() - 5d and time <= now() '
-    query += 'GROUP BY time(24h) fill(0)'
-
-    setDryersTrend(chart, query)
-
-    $('[chart="chartDryers"]').click(function() {
-      let days = $(this).attr('value')
-
-      $(this).addClass('active').siblings().removeClass('active')
-
-      let query = 'SELECT '
-      query += 'mean("Dati_Aggiuntivi_Kcal_H") as "kcal" '
-      query += 'FROM ' + dryersEntityName + ' '
-      query += 'WHERE time >= now() - ' + days + 'd and time <= now() '
-      query += 'GROUP BY time(24h) fill(0)'
-
-      setDryersTrend(chart, query)
-    })
-  }else{
-    $('#IDdivDryers').addClass('d-none')
-  }
-  //setTimeout(function() {	$('#modal1').modal("hide") }, 500);
-  //$('#modal1').modal("hide");
-  console.log("finished loading dryers");
-        stopLoading();
-
-})
-.catch(e => {
-  // $('#IDdivDryers').addClass('d-none')
-  // $('#modal1').modal("hide");
-  console.log("finished loading dryers");
-  stopLoading();
-})
-
 // ******************** FUNCTION ********************
 // Funzione che recupera i dati da thingworx e li visualizza nelle card della pagina.
 // Prerequisiti: le label che si vogliono popolare con i valori da thingworx devono avere
 // la seguente classe '.thingworx-property-value'.
 // Inoltre ogni label deve avere una key chiamata 'propertyname', il valore della key deve essere
 // uguale al nome della property di thingworx che ritorna il servizio.
-function setLineCardsValue(entityName){
-	// Richiama il servizio di thingworx.
-	tw.service_02_getLinesGeneralInfo(entityName)
-		.then(result => {
-      // Assegna alle varie label il valore corretto recuperato da thingworx
-      result.array.forEach((item, i) => {
-        let keyProperty = item.entityName.replace(/\./g, '')
-        keyProperty = keyProperty.toLowerCase()
-        let key = '[' + keyProperty + ']'
-        $(key).each(function(){
-          $(this).text(item[$(this).attr(keyProperty)])
-        })
-      })
-    })
-		.catch(error => console.error(error))
-}
+
 
 function setDryersCardsValue(entityName) {
   tw.service_01_getDryersGeneralInfo(entityName)
@@ -220,6 +203,23 @@ function setDryersCardsValue(entityName) {
 
     })
     .catch(error => console.error(error));
+}
+
+function setLineCardsValue(entityName){
+	// Richiama il servizio di thingworx.
+	tw.service_02_getLinesGeneralInfo(entityName)
+		.then(result => {
+      // Assegna alle varie label il valore corretto recuperato da thingworx
+      result.array.forEach((item, i) => {
+        let keyProperty = item.entityName.replace(/\./g, '')
+        keyProperty = keyProperty.toLowerCase()
+        let key = '[' + keyProperty + ']'
+        $(key).each(function(){
+          $(this).text(item[$(this).attr(keyProperty)])
+        })
+      })
+    })
+		.catch(error => console.error(error))
 }
 
 function setDryersTrend(chart, query){
@@ -255,67 +255,6 @@ function setDryersTrend(chart, query){
     chart.data = data;
   })
 }
-
-function createDivLine(IDdiv, entityName){
-  let keyProperty = entityName.replace(/\./g, '')
-  let id = 'ID' + entityName.replace(/\./g, '')
-  let html = ''
-
-  html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
-  html += '<h1 class="h2 card-result" translate_id ="line">Line</h1>'
-  html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
-  html +=       '<div class="btn-group me-2"></div>'
-  html +=   '</div>'
-  html += '</div>'
-  html += '<div id="IDdivLineData" class="row g-0 row-cols-1 row-cols-lg-3 gy-3" style="min-height: 300px;">'
-  html +=     '<div class="col col-customer col-sx-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="machine_status">Machine Status</h6>'
-  html +=                 '<h4 class="card-title" ' + keyProperty + '="stato_linea" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col col-customer col-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="Recipe_set">Recipe Set</h6>'
-  html +=                 '<h4 class="card-title" ' + keyProperty + '="nome_ricetta" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col col-customer col-dx-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number Of Alarms Present</h6>'
-  html +=                 '<h4 class="card-title" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;" ' + keyProperty + '="numero_allarmi">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-customer" style="padding: 0px;">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 0px;padding-top: 16px;">'
-  html +=                 '<div style="padding-right: 16px;padding-left: 16px;">'
-  html +=                     '<h6 class="text-muted mb-2" style="color: var(--bs-heading-medium-emphasis);margin: 0px;font-size: 1rem;" translate_id="daily_production">Produzione Giornaliera</h6>'
-  html +=                 '</div>'
-  html +=                 '<div id="' + id + 'Legend"></div>'
-  html +=                 '<div id="' + id + 'Trend" style="min-height: 300px;max-height: 100%;"></div>'
-  html +=                 '<div class="d-flex justify-content-center" style="width: 100%;">'
-  html +=                   '<button id="' + id + '5d" class="btn btn-outline-primary active" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="5" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                   '<button id="' + id + '10d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="10" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                   '<button id="' + id + '30d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="30" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                 '</div>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html += '</div>'
-  $(IDdiv).append(html)
-  lang.getLanguage()
-}
-
 
 function createDivDryers(IDdiv, entityName){
   let keyProperty = entityName.replace(/\./g, '')
@@ -384,6 +323,66 @@ function createDivDryers(IDdiv, entityName){
 
   $(IDdiv).append(html)
 
+  lang.getLanguage()
+}
+
+function createDivLine(IDdiv, entityName){
+  let keyProperty = entityName.replace(/\./g, '')
+  let id = 'ID' + entityName.replace(/\./g, '')
+  let html = ''
+
+  html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
+  html += '<h1 class="h2 card-result" translate_id ="line">Line</h1>'
+  html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
+  html +=       '<div class="btn-group me-2"></div>'
+  html +=   '</div>'
+  html += '</div>'
+  html += '<div id="IDdivLineData" class="row g-0 row-cols-1 row-cols-lg-3 gy-3" style="min-height: 300px;">'
+  html +=     '<div class="col col-customer col-sx-padding">'
+  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
+  html +=             '<div class="card-body" style="padding: 1.5rem;">'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="machine_status">Machine Status</h6>'
+  html +=                 '<h4 class="card-title" ' + keyProperty + '="stato_linea" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
+  html +=             '</div>'
+  html +=         '</div>'
+  html +=     '</div>'
+  html +=     '<div class="col col-customer col-padding">'
+  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
+  html +=             '<div class="card-body" style="padding: 1.5rem;">'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="Recipe_set">Recipe Set</h6>'
+  html +=                 '<h4 class="card-title" ' + keyProperty + '="nome_ricetta" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
+  html +=             '</div>'
+  html +=         '</div>'
+  html +=     '</div>'
+  html +=     '<div class="col col-customer col-dx-padding">'
+  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
+  html +=             '<div class="card-body" style="padding: 1.5rem;">'
+  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number Of Alarms Present</h6>'
+  html +=                 '<h4 class="card-title" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;" ' + keyProperty + '="numero_allarmi">Title</h4>'
+  html +=             '</div>'
+  html +=         '</div>'
+  html +=     '</div>'
+  html +=     '<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-customer" style="padding: 0px;">'
+  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
+  html +=             '<div class="card-body" style="padding: 0px;padding-top: 16px;">'
+  html +=                 '<div style="padding-right: 16px;padding-left: 16px;">'
+  html +=                     '<h6 class="text-muted mb-2" style="color: var(--bs-heading-medium-emphasis);margin: 0px;font-size: 1rem;" translate_id="daily_production">Produzione Giornaliera</h6>'
+  html +=                 '</div>'
+  html +=                 '<div id="' + id + 'Legend"></div>'
+  html +=                 '<div id="' + id + 'Trend" style="min-height: 300px;max-height: 100%;"></div>'
+  html +=                 '<div class="d-flex justify-content-center" style="width: 100%;">'
+  html +=                   '<button id="' + id + '5d" class="btn btn-outline-primary active" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html +=                   'value="5" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                   '<button id="' + id + '10d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html +=                   'value="10" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                   '<button id="' + id + '30d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html +=                   'value="30" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html +=                 '</div>'
+  html +=             '</div>'
+  html +=         '</div>'
+  html +=     '</div>'
+  html += '</div>'
+  $(IDdiv).append(html)
   lang.getLanguage()
 }
 

@@ -8,18 +8,7 @@ import * as common from "./Global/Common/commonFunctions.js"
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-*/
-/*var loader = document.querySelector(".loader")
 
-window.addEventListener("load", vanish);
-
-function vanish() {
-  loader.classList.add("disppear");
-}
-*/
 $('#modal1').modal("show")
 
 const queryString = window.location.search

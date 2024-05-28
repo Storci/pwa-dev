@@ -3,10 +3,31 @@ import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 
-
-
+$(document).ready(()=>{
+	
 
 $('#modal1').modal("show")
+
+let counterSpinner = 0;
+// funzione 
+function updateModal(){
+	if(counterSpinner > 0){
+		$('#modal1').modal("show")
+	}
+	else{
+		$('#modal').modal("hide")
+	}
+}
+
+function startLoading(){
+	counterSpinner++;
+	updateModal()
+}
+
+function stopLoading(){
+	counterSpinner--;
+	updateModal()
+}
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing
@@ -14,29 +35,15 @@ let entityName = urlParams.get('entityName')
 console.log(entityName)
 let selectedCustomer = localStorage.getItem("global_selected_customer")
 
-// definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
-// il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
-// baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-*/
-// Recupera il nome dell'utente da firebase, controlla che sia loggato.
-// Nel caso non fosse loggato richiama la pagina di login
-//fb.onAuthStateChanged_2(baseURL, pageURL)
-// Recupera dei dati dalle local storage
-
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
-// Imposta il nome del cliente nella breadcrumb
-// Vengono sostituiti tutti gli underscore presenti nel nome
-//$("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
-// Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
-// ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
+// funzione di traduzione sia per i testi statici e testi dinamiche
 // i testi caricati dalle funzioni.
 lang.getLanguage()
 
+
+startLoading()
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
 .then(cellsGroup => {
@@ -47,9 +54,8 @@ tw.getCustomerCells(selectedCustomer)
 	getCellInfo(cellsGroup, selectedCustomer)
 	// Esegue la funzione ogni 30 sec
 	setInterval(getCellInfo, 30000, cellsGroup, selectedCustomer);
-	//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
-	$('#modal1').modal("hide");
-
+	//$('#modal1').modal("hide");
+	stopLoading()
 })
 .catch(error => console.error(error))
 
@@ -128,6 +134,7 @@ function getCellInfo(cellsGroup, selectedCustomer){
 		let IDtempoPianificato   = "#IDCardCellGroup" + i + "Tempo_Pianificato"
 		let IDtempoInLavorazione = "#IDCardCellGroup" + i + "Tempo_in_Lavorazione"
 
+		
 		tw.getCustomerCells(selectedCustomer)
 			.then(cellInfo => {
 				$(ID_Numero_Carrelli).text(cellInfo.array[i].numero_carrelli)
@@ -164,8 +171,11 @@ function getCellInfo(cellsGroup, selectedCustomer){
 					$(ClassLabel).css("color","var(--bs-card-label-undefined)")
 					$(ClassValue).css("color","var(--bs-card-value-undefined)")
 				}
-				$('#modal1').modal("hide");
+				//$('#modal1').modal("hide");
+			
 			})
 			.catch(error => console.error(error))
 	})
 }
+
+})

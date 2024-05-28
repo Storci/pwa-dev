@@ -21,7 +21,12 @@ let settings = {
 	"data": ''
 };
 
-
+// fetch method
+let headers = {
+    "appKey": appKey,
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+};
 /**
  * It takes an entity name as input, calls the REST API, and returns a promise that resolves to the
  * response
@@ -29,12 +34,28 @@ let settings = {
  * @param entityName - l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa).
  * @returns A promise.
  */
-function service_01_getDryersGeneralInfo(entityName){
+/*function service_01_getDryersGeneralInfo(entityName){
 	// Definisce l'url da richiamare per la REST API
 	settings.url  = baseUrl + bootstrapThing + 'service_01_getDryersGeneralInfo'
 	settings.data = JSON.stringify({"entityName":entityName})
 	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
 	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+}*/
+function service_01_getDryersGeneralInfo(entityName) {
+    let url = baseUrl + bootstrapThing + 'service_01_getDryersGeneralInfo';
+    let data = JSON.stringify({ "entityName": entityName });
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 /**
