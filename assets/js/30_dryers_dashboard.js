@@ -6,28 +6,29 @@ import * as lang from "./Global/Common/Translation.js"
 $(document).ready(()=>{
 	
 
-$('#modal1').modal("show")
+// $('#modal1').modal("show")
 
-let counterSpinner = 0;
-// funzione 
-function updateModal(){
-	if(counterSpinner > 0){
-		$('#modal1').modal("show")
-	}
-	else{
-		$('#modal').modal("hide")
-	}
+// let counterSpinner = 0;
+// // funzione 
+// function updateModal(){
+// 	if(counterSpinner > 0){
+// 		$('#modal1').modal("show")
+// 	}
+// 	else{
+// 		$('#modal').modal("hide")
+// 	}
+// }
+
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
 }
 
-function startLoading(){
-	counterSpinner++;
-	updateModal()
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
 }
 
-function stopLoading(){
-	counterSpinner--;
-	updateModal()
-}
+
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing
@@ -42,8 +43,6 @@ fb.onAuthStateChanged_2()
 // i testi caricati dalle funzioni.
 lang.getLanguage()
 
-
-startLoading()
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
 .then(cellsGroup => {
@@ -55,7 +54,7 @@ tw.getCustomerCells(selectedCustomer)
 	// Esegue la funzione ogni 30 sec
 	setInterval(getCellInfo, 30000, cellsGroup, selectedCustomer);
 	//$('#modal1').modal("hide");
-	stopLoading()
+	hideSpinner()
 })
 .catch(error => console.error(error))
 

@@ -484,3 +484,50 @@ thead {
     left: 50% !important;
 }
 
+/* HTML: <div class="loader"></div> */
+.loader {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #f7f9fb;
+   transition: opacity 0.75s visibilty 0.75s;
+  }
+
+  .loader-hidden{
+    opacity: 0;
+    visibility: hidden;
+
+  }
+  
+  .loader::after {
+     content: "";
+     width:75px;
+     height: 75px;
+     border: 15px solid #dddddd;
+     border-top-color: #ffa516 ;
+     border-bottom-color:#7449f5;
+     border-right-color:#3289be ;
+     border-left-color:#769e79 ;
+     border-radius: 50%;
+     animation: loading 0.75s ease infinite;
+
+
+  }
+  .loader::after {
+     opacity: 0.83;
+     transform: rotate(60deg);
+  }
+  @keyframes loading {
+    from{
+        transform: rotate(0turn);
+    }
+    to{
+        transform: rotate(1turn);
+    }
+  }
+

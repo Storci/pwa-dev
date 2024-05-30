@@ -6,39 +6,48 @@ import * as lang from "./Global/Common/Translation.js"
 
 
 
-$('#modal1').modal("show")
 
-//inizializzazione del contatore
-let counterSpinner = 0;
-
-//funzione per dimostrare se il contatore è maggiore di 0
-function updateModal(){
- if(counterSpinner > 0){
-  $('#modal1').modal("show");
- }
- else{
-  $('#modal1').modal("hide");
- }
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
 }
 
-// funzione che incrementa e mostra il caricamento dello spinner
-function startLoading(){
-  counterSpinner++;
-  updateModal();
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
 }
+// $('#modal1').modal("show")
 
-// funzione che diminuisce e nasconde lo spinner quando il caricamento è stato eseguita
-function stopLoading(){
-  counterSpinner--;
-  updateModal();
-}
+// //inizializzazione del contatore
+// let counterSpinner = 0;
+
+// //funzione per dimostrare se il contatore è maggiore di 0
+// function updateModal(){
+//  if(counterSpinner > 0){
+//   $('#modal1').modal("show");
+//  }
+//  else{
+//   $('#modal1').modal("hide");
+//  }
+// }
+
+// // funzione che incrementa e mostra il caricamento dello spinner
+// function startLoading(){
+//   counterSpinner++;
+//   updateModal();
+// }
+
+// // funzione che diminuisce e nasconde lo spinner quando il caricamento è stato eseguita
+// function stopLoading(){
+//   counterSpinner--;
+//   updateModal();
+// }
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 //funzione per la traduzione
 lang.getLanguage()
 
-startLoading()
+//startLoading()
 // Recupera la lista dei clienti presenti da tw
 tw.getCustomersList()
   .then(customerList => {
@@ -51,7 +60,7 @@ tw.getCustomersList()
   .then(() => {
     // Nasconde lo spinner dopo che tutte le informazioni dei clienti sono state recuperate
     //$('#modal1').modal("hide");
-
+	showSpinner()
     // Imposta l'aggiornamento periodico delle informazioni dei clienti ogni 10 secondi
     setInterval(getCustomerInfo, 10000, JSON.stringify(customerList));
     
@@ -63,7 +72,7 @@ tw.getCustomersList()
     // Nasconde lo spinner anche in caso di errore
     //$('#modal1').modal("hide");
 	console.log("finished loading lines");
-	stopLoading();
+	hideSpinner()
   });
 
 /* RECUPERA LE INFORMAZIONI DA GITHUB */
