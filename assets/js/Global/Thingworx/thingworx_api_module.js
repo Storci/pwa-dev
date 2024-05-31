@@ -443,7 +443,7 @@ function getUser(username) {
 
 // Recupera i dati della cella
 function getCellInfo(entityName) {
-    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/entityName";
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCellInfo";
     let data = JSON.stringify({"entityName":entityName});
     // Fetch API
     return fetch(url, {

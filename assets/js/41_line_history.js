@@ -33,7 +33,16 @@ lang.getLanguage()
     loader.className += " hidden"; // class "loader hidden"
 });
 */
-$('#modal1').modal("show")
+//$('#modal1').modal("show")
+
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
+}
+
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
 
 
 // Definisce le variabili come date
@@ -212,22 +221,22 @@ function insertionSort(table, column, dir){
 	}
 }
 // funzione per mostrare uno spinner mentre la tabella si carica
-function showSpinner(){
+function showSpinnerTable(){
 	$('.spinner-border').show(); // Show the spinner
     $('.tableDiv').css('opacity', '0.5'); // 
 }
 // funzione per nascondere lo spinner dopo il caricamento della tabella
-function hideSpinner(){
+function hideSpinnerTable(){
 	$('.spinner-border').hide(); // Show the spinner
     $('.tableDiv').css('opacity', '1'); // 
 }
 // eseguire la funzione 
-showSpinner()
+showSpinnerTable()
 function listHistoryProduction(entityName, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
 	let line_name = entityName.toString().split(".")
 	line_name = line_name[4] + " " + line_name[5]
-	// Recupera lo storico delle lavorazioni effettuate dalla cella
+	// Recupera lo storico delle lavorazioni effettuate dalla linea
 	tw.service_04_getLineHistoryProductions(entityName, timeStart, timeEnd)
 	.then(productions => {
 		// Per ogni ricetta trovata genera una nuova riga nella tabella
@@ -306,6 +315,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 			elem.dispatchEvent(clickEvent)
 
 		})
+		hideSpinnerTable()
 		hideSpinner()
 	})
 }

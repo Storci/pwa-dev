@@ -17,8 +17,16 @@ let pageURL = window.location.href
     const loader = document.querySelector(".loader");
     loader.className += " hidden"; // class "loader hidden"
 });*/
-$('#modal1').modal("show")
+//$('#modal1').modal("show")
 
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
+}
+
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
@@ -135,7 +143,8 @@ $("#IDHistoryTableBody").empty()
 tw.getCustomerCells(selectedCustomer)
 .then(dryers =>{
 	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
-	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+	//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+	hideSpinner()
 })
 .catch(error => console.error(error))
 

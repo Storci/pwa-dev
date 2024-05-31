@@ -210,6 +210,7 @@ a {
 
 
 
+
 .card-hover {
     cursor: pointer;
 }
@@ -395,7 +396,6 @@ thead {
     overflow: scroll;
     position: relative;
     opacity: 1;
-
 }
 
 /* regola per gestire lo scroll sulla tabella senza allargare l'altezza */
@@ -464,7 +464,7 @@ thead {
     -ms-overflow-style: none;
 }
 
-.glass{
+.glass {
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 11px );
@@ -472,6 +472,7 @@ thead {
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+
 .thumb {
     height: 100px;
     border: 1px solid black;
@@ -485,7 +486,7 @@ thead {
 }
 
 /* HTML: <div class="loader"></div> */
-.loader {
+ .loader {
    position: fixed;
    top: 0;
    left: 0;
@@ -496,38 +497,36 @@ thead {
    align-items: center;
    background-color: #f7f9fb;
    transition: opacity 0.75s visibilty 0.75s;
-  }
-
-  .loader-hidden{
+  } 
+.loader-hidden {
     opacity: 0;
     visibility: hidden;
+}
 
-  }
-  
-  .loader::after {
-     content: "";
-     width:75px;
-     height: 75px;
-     border: 15px solid #dddddd;
-     border-top-color: #ffa516 ;
-     border-bottom-color:#7449f5;
-     border-right-color:#3289be ;
-     border-left-color:#769e79 ;
-     border-radius: 50%;
-     animation: loading 0.75s ease infinite;
+.loader::after {
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #ffa516 ;
+    border-bottom-color: #7449f5;
+    border-right-color: #3289be ;
+    border-left-color: #769e79 ;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
 
-
-  }
-  .loader::after {
-     opacity: 0.83;
-     transform: rotate(60deg);
-  }
-  @keyframes loading {
-    from{
+/* .loader::after {
+    opacity: 0.83;
+    transform: rotate(60deg);
+} */
+@keyframes loading {
+    from {
         transform: rotate(0turn);
     }
-    to{
+
+    to {
         transform: rotate(1turn);
     }
-  }
+}
 

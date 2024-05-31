@@ -15,13 +15,15 @@ let entityName = urlParams.get('entityName')
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 
-var loader = document.querySelector(".loader")
-
-window.addEventListener("load", vanish);
-
-function vanish() {
-  loader.classList.add("disppear");
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
 }
+
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
+
 // Definisce le variabili come date
 let timeStartHistory = new Date()
 let timeEndHistory   = new Date()
@@ -329,7 +331,8 @@ async function setCardsValue(entityName){
 				// Assegna il valore di riempimento alla progress bar relativa
 		    $(this).attr('style', prgbar_value)
 			})
-			setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+			//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+			hideSpinner()
 		})
 		.catch(error => console.error(error))
 }

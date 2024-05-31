@@ -14,13 +14,14 @@ $('#modal1').modal("show")
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
-/*$(document).ready(function() {
-    // Check if the modal element exists
-    var modal = document.getElementById('modal1');
-    if (modal) {
-        $('#modal1').modal("show");
-    }
-});*/
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
+}
+
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
@@ -254,7 +255,7 @@ $("#IDHistoryTableBody").empty()
 tw.getCustomerCells(selectedCustomer)
 .then(dryers => {
 	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
-	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+	hideSpinner()
 })
 .catch(error => console.error(error))
 
@@ -333,17 +334,17 @@ function insertionSort(table, column, dir){
 }
 
 // funzione per mostrare uno spinner mentre la tabella si carica
-function showSpinner(){
+function showSpinnerTable(){
 	$('.spinner-border').show(); // Show the spinner
     $('.tableDiv').css('opacity', '0.5'); // 
 }
 // funzione per nascondere lo spinner dopo il caricamento della tabella
-function hideSpinner(){
+function hideSpinnerTable(){
 	$('.spinner-border').hide(); // Show the spinner
     $('.tableDiv').css('opacity', '1'); // 
 }
 // eseguire la funzione 
-showSpinner()
+showSpinnerTable()
 
 function listHistoryProduction(dryers, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
@@ -429,7 +430,7 @@ function listHistoryProduction(dryers, timeStart, timeEnd){
 				})
 
 			})
-			hideSpinner()
+			hideSpinnerTable()
 		})
 	})
 }

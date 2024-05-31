@@ -6,25 +6,21 @@ import * as lang from "./Global/Common/Translation.js"
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
-// definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
-// il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
-// baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host;
-*/
-/*
-$('#IDDiv1').css("display", "none")
-$('#IDRow1').css("display", "none")
-$('#IDRow2').css("display", "none")
-$('#IDRow3').css("display", "none")
-$('#IDNavbar').css("display", "none")
-$("#IDDivSpinning").css("display", "block")
-*/
+
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 
-$('#modal1').modal("show")
+//$('#modal1').modal("show")
+
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
+}
+
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
 
 
 // Esegue il codice principale al caricamento della pagina
@@ -157,7 +153,7 @@ async function setCardsValue(entityName){
 	await tw.getLineInfo(entityName)
 		.then(result =>{ 
 			info = result
-			setTimeout(function() {	$('#modal1').modal("hide") }, 500)
+			hideSpinner()
 		})
 		.catch(error => console.error(error))
 	// Assegna alle varie label il valore corretto recuperato da thingworx
