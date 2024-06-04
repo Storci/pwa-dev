@@ -10,8 +10,6 @@ const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing
 let entityName = urlParams.get('entityName')
 
-//$('#modal1').modal("show")
-
 showSpinner()
 function showSpinner(){
 	$('.loader').show(); // Show the spinner
@@ -373,7 +371,7 @@ function setCardsValue(entityName, chart){
 		    { value: info.Impasto_SP_Dosatore_Polvere_1, 	 category: 'Additivo', 			   unit: 'kg/h', color: am4core.color('#198754') },
 		  ]
 		  chart.data = data
-		  setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+		  //setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 
 		})
 		.catch(error => console.error(error))

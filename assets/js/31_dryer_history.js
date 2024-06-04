@@ -19,7 +19,7 @@ let pageURL = window.location.href
 });*/
 //$('#modal1').modal("show")
 
-showSpinner()
+
 function showSpinner(){
 	$('.loader').show(); // Show the spinner
 }
@@ -138,10 +138,12 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(10s) fill(previous)'
 
 // Cancella tutte le righe della tabella
 $("#IDHistoryTableBody").empty()
-
+//richiamo della funzione spinner
+showSpinner()
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
 .then(dryers =>{
+	console.log(dryers)
 	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
 	//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 	hideSpinner()

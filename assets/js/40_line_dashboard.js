@@ -119,15 +119,6 @@ $("body").ready(async function(){
 
 	// Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
 	lang.getLanguage()
-
-/*
-	$('#IDDiv1').fadeIn();
-	$('#IDRow1').fadeIn();
-	$('#IDRow2').fadeIn();
-	$('#IDRow3').fadeIn();
-	$('#IDNavbar').fadeIn();
-	$("#IDDivSpinning").css("display", "none")
-*/
 	// Pulsanti per l'esportazione del grafico in png
 	$('#IDButtonExportTrendActualProduction').click(el => { am.getExport(chartProduction) })
 
@@ -138,9 +129,10 @@ $("body").ready(async function(){
 		let url ='./machineGraph/79_dashboard_actual_zoom.html?'+'entityName='+ entityName 
 		window.open(url, '_blank')
 	})
+	hideSpinner()
 })
 
-
+showSpinner()
 // Funzione che recupera i dati da thingworx e li visualizza nelle card della pagina.
 // Prerequisiti: le label che si vogliono popolare con i valori da thingworx devono avere
 // la seguente classe '.thingworx-property-value'.

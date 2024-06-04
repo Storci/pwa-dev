@@ -139,7 +139,13 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(10s) fill(previous)'
 // Cancella tutte le righe della tabella
 $("#IDHistoryTableBody").empty()
 
-// Recupera tutte le celle installate dal cliente
+// Recupera tutte le linea installate dal cliente
+/*tw.getLineInfo(selectedCustomer)
+	.then(lines=>{
+		console.log(lines)
+		listHistoryProduction(lines, timeStartHistory, timeEndHistory)
+	})
+	.catch(error => console.error(error))*/
 listHistoryProduction(entityName, timeStartHistory, timeEndHistory)
 
 
@@ -221,17 +227,17 @@ function insertionSort(table, column, dir){
 	}
 }
 // funzione per mostrare uno spinner mentre la tabella si carica
-function showSpinnerTable(){
-	$('.spinner-border').show(); // Show the spinner
-    $('.tableDiv').css('opacity', '0.5'); // 
-}
+// function showSpinnerTable(){
+// 	$('.spinner-border').show(); // Show the spinner
+//     $('.tableDiv').css('opacity', '0.5'); // 
+// }
 // funzione per nascondere lo spinner dopo il caricamento della tabella
-function hideSpinnerTable(){
-	$('.spinner-border').hide(); // Show the spinner
-    $('.tableDiv').css('opacity', '1'); // 
-}
+// function hideSpinnerTable(){
+// 	$('.spinner-border').hide(); // Show the spinner
+//     $('.tableDiv').css('opacity', '1'); // 
+// }
 // eseguire la funzione 
-showSpinnerTable()
+//showSpinnerTable()
 function listHistoryProduction(entityName, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
 	let line_name = entityName.toString().split(".")
@@ -301,6 +307,8 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 						range2.label.inside = true;
 						range2.label.text = "Fine Carico";
 					}
+					//hideSpinnerTable()
+
 				})
 				.catch(e => {console.log(e)})
         
@@ -315,7 +323,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 			elem.dispatchEvent(clickEvent)
 
 		})
-		hideSpinnerTable()
+		//hideSpinnerTable()
 		hideSpinner()
 	})
 }
