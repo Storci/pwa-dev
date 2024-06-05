@@ -1,4 +1,4 @@
-/* LIGH MODE */
+/* LIGHT MODE */
 :root {
     color-scheme: light dark;
     --bs-blue: #0d6efd;
@@ -480,7 +480,7 @@ thead {
     left: 50% !important;
 }
 
-/* HTML: <div class="loader"></div> */
+
  .loader {
    position: fixed;
    top: 0;
@@ -503,10 +503,10 @@ thead {
     width: 75px;
     height: 75px;
     border: 15px solid #dddddd;
-    border-top-color: #ffa516 ;
-    border-bottom-color: #7449f5;
+    border-top-color: #fd7e14 ;
+    /* border-bottom-color: #7449f5;
     border-right-color: #3289be ;
-    border-left-color: #769e79 ;
+    border-left-color: #769e79 ; */
     border-radius: 50%;
     animation: loading 0.75s ease infinite;
 }

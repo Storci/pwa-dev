@@ -230,26 +230,26 @@ function getListMachine(entityName, id){
 }
 
 
-// codice per issue collector
-// Requires jQuery!
-// jQuery.ajax({
-//   url: "https://thingworx-storci.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/7/b0105d975e9e59f24a3230a22972a71a/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=7ab5f8ea",
-//   type: "get",
-//   cache: true,
-//   dataType: "script"
-// });
+//codice per issue collector
+//Requires jQuery!
+jQuery.ajax({
+  url: "https://thingworx-storci.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/7/b0105d975e9e59f24a3230a22972a71a/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=7ab5f8ea",
+  type: "get",
+  cache: true,
+  dataType: "script"
+});
 
-// window.ATL_JQ_PAGE_PROPS =  {
-// "triggerFunction": function(showCollectorDialog) {
-//   //Requires that jQuery is available!
-//   jQuery("#triggerIssue").click(function(e) {
-//     e.preventDefault();
-//     showCollectorDialog();
-//   });
-// }};
+window.ATL_JQ_PAGE_PROPS =  {
+"triggerFunction": function(showCollectorDialog) {
+  //Requires that jQuery is available!
+  jQuery("#triggerIssue").click(function(e) {
+    e.preventDefault();
+    showCollectorDialog();
+  });
+}};
 
 // Fetch the script
-fetch("https://thingworx-storci.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/7/b0105d975e9e59f24a3230a22972a71a/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=7ab5f8ea", {
+/*fetch("https://thingworx-storci.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/7/b0105d975e9e59f24a3230a22972a71a/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=7ab5f8ea", {
     cache: "default"
 })
 .then(response => {
@@ -277,5 +277,5 @@ window.ATL_JQ_PAGE_PROPS = {
             showCollectorDialog();
         });
     }
-};
+};*/
 
