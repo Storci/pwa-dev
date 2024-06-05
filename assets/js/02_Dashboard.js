@@ -253,6 +253,7 @@ function createDivDryers(IDdiv, entityName) {
   html += '</div>'
 
   $(IDdiv).append(html);
+  lang.getLanguage()
 }
 
 // funzione che genera il div per la linea 
@@ -314,6 +315,7 @@ function createDivLine(IDdiv, entityName) {
   html += '</div>'
 
   $(IDdiv).append(html);
+  lang.getLanguage()
 }
 
 // // Carica le funzioni globali
