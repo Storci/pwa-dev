@@ -158,27 +158,43 @@ $('#IDButtonSignUp').click(async function(e) {
 });
 
 
-// una chiamata rest per recuperare tutta la lista delle nazione
-var url = "https://restcountries.com/v2/all"
-// Imposta i settings da utilizzare nelle REST API.
-// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-let settings = {
-    "url"     : url,
-    "method"  : "GET",
-    "timeout" : 0,
-    "headers" : {},
-    "data": "",
-    "success": function(country){
-        let results = '<option value="-1">Please Select a Country or State</option>'
-        for(let i = 0; i < country.length; i++){
-            results += '<option>'+ country[i].name +'</option>'
+// URL per chiamata REST API per ottenere la lista dei paesi
+const url = "https://restcountries.com/v2/all";
+
+// la funzione che ottiene la lista dei paesi and aggiornare il dropdown
+async function fetchCountries() {
+    try {
+        // fare una richiesta get utilizzando la parola API FETCH
+        const response = await fetch(url);
+        
+        // Check if the response is OK (status code 200-299) controllare se la risposta ricevuta è OK 200
+        if (!response.ok) {
+            throw new Error('risposto è andata a buon fine ' + response.statusText);
         }
-        $("#IDCountries").html(results)
+        
+        // fare un parse alla risposta ricevuto in un JSON
+        const countries = await response.json();
+
+        // attraverso il for genero l'elemento option in base alla lunghezza
+        let results = '<option value="-1">Please Select a Country or State</option>';
+        for (let i = 0; i < countries.length; i++) {
+            results += `<option>${countries[i].name}</option>`;
+        }
+
+        // Update the select element with the new options aggiorna l'elemento selezionato con  le nuove opzioni 
+        document.getElementById("IDCountries").innerHTML = results;
+        
+        // un console log per visualizzare i paesi
+        console.log(countries);
+    } catch (error) {
+        // un exception in caso di un errore
+        console.error('operazione in errore:', error);
     }
 }
-// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-// Esegue la chiamata REST API.
-$.ajax(settings).then(response => console.log(response));
+
+// Call the function to fetch and display the countries
+fetchCountries();
+
 
 
 
