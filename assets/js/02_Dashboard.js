@@ -79,7 +79,7 @@ promises.push(
   })
 );
 
-// recupera i dati generici della cella 
+// recupera i dati generici della cella
 promises.push(
   tw.service_01_getDryersGeneralInfo(entityName).then(res => {
     console.log(res);
@@ -186,7 +186,7 @@ function setDryersTrend(chart, query) {
     .catch(error => console.error(error));
 }
 
-// funzione che crea il div per le celle 
+// funzione che crea il div per le celle
 function createDivDryers(IDdiv, entityName) {
   let keyProperty = entityName.replace(/\./g, '');
   let id = 'ID' + entityName.replace(/\./g, '');
@@ -256,7 +256,7 @@ function createDivDryers(IDdiv, entityName) {
   lang.getLanguage()
 }
 
-// funzione che genera il div per la linea 
+// funzione che genera il div per la linea
 function createDivLine(IDdiv, entityName) {
   let keyProperty = entityName.replace(/\./g, '');
   let id = 'ID' + entityName.replace(/\./g, '');
@@ -378,7 +378,7 @@ function createDivLine(IDdiv, entityName) {
 // $('#id-nav-dashboard').addClass('active')
 
 
-// // richiamo della funzione 
+// // richiamo della funzione
 // //startLoading()
 // // Recupera i dati generali delle celle installate dal cliente
 // tw.service_01_getDryersGeneralInfo(entityName)
@@ -438,7 +438,7 @@ function createDivLine(IDdiv, entityName) {
 // .catch(e => {
 //   // $('#IDdivDryers').addClass('d-none')
 //   // $('#modal1').modal("hide");
-  
+
 // })
 
 // //startLoading()
@@ -706,5 +706,3 @@ function createDivLine(IDdiv, entityName) {
 //   $(IDdiv).append(html)
 //   lang.getLanguage()
 // }
-
-
