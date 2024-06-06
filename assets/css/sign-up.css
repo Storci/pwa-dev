@@ -54,4 +54,11 @@ body {
 }
 /*#signUpSuccess{
     display: block;
-}*/
+}*/#IDButtonSignUp{
+    color: #000;
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+}
+.text-signIn{
+    color: #fd7e14;
+}

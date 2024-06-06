@@ -12,10 +12,15 @@ $(document).ready(function() {
   lang.getLanguage();
 });
 
-$("#modal1").css("display", "none");
+//$("#modal1").css("display", "none");
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
+}
 
-
-
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
 
 // *************************************
 // ********** CAMBIO PASSWORD **********
@@ -214,7 +219,8 @@ firebase.auth().onAuthStateChanged(user => {
     }else{
       $("#notification-toggle").prop('checked', false)
     }
-    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+   // setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+   hideSpinner()
   })
 })
 

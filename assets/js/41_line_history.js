@@ -33,7 +33,16 @@ lang.getLanguage()
     loader.className += " hidden"; // class "loader hidden"
 });
 */
-$('#modal1').modal("show")
+//$('#modal1').modal("show")
+
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
+}
+
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
 
 
 // Definisce le variabili come date
@@ -130,7 +139,13 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(10s) fill(previous)'
 // Cancella tutte le righe della tabella
 $("#IDHistoryTableBody").empty()
 
-// Recupera tutte le celle installate dal cliente
+// Recupera tutte le linea installate dal cliente
+/*tw.getLineInfo(selectedCustomer)
+	.then(lines=>{
+		console.log(lines)
+		listHistoryProduction(lines, timeStartHistory, timeEndHistory)
+	})
+	.catch(error => console.error(error))*/
 listHistoryProduction(entityName, timeStartHistory, timeEndHistory)
 
 
@@ -211,13 +226,23 @@ function insertionSort(table, column, dir){
 		}
 	}
 }
-
-
+// funzione per mostrare uno spinner mentre la tabella si carica
+// function showSpinnerTable(){
+// 	$('.spinner-border').show(); // Show the spinner
+//     $('.tableDiv').css('opacity', '0.5'); // 
+// }
+// funzione per nascondere lo spinner dopo il caricamento della tabella
+// function hideSpinnerTable(){
+// 	$('.spinner-border').hide(); // Show the spinner
+//     $('.tableDiv').css('opacity', '1'); // 
+// }
+// eseguire la funzione 
+//showSpinnerTable()
 function listHistoryProduction(entityName, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
 	let line_name = entityName.toString().split(".")
 	line_name = line_name[4] + " " + line_name[5]
-	// Recupera lo storico delle lavorazioni effettuate dalla cella
+	// Recupera lo storico delle lavorazioni effettuate dalla linea
 	tw.service_04_getLineHistoryProductions(entityName, timeStart, timeEnd)
 	.then(productions => {
 		// Per ogni ricetta trovata genera una nuova riga nella tabella
@@ -282,6 +307,8 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 						range2.label.inside = true;
 						range2.label.text = "Fine Carico";
 					}
+					//hideSpinnerTable()
+
 				})
 				.catch(e => {console.log(e)})
         
@@ -296,7 +323,8 @@ function listHistoryProduction(entityName, timeStart, timeEnd){
 			elem.dispatchEvent(clickEvent)
 
 		})
-		setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+		//hideSpinnerTable()
+		hideSpinner()
 	})
 }
 

@@ -8,19 +8,12 @@ let appKey 				 = 'cdd83674-f63f-4535-9aa2-33ac5b70b52c'
 // *** Impostazioni generiche ***
 // Imposta il percorso della things di bootstrap
 let bootstrapThing = 'Things/Storci.Thing.Manage.Bootstrap/Services/'
-// Imposta i settings da utilizzare nelle REST API.
-let settings = {
-	"url"     : '',
-	"method"  : "POST",
-	"timeout" : 0,
-	"headers" : {
-		"appKey"	  : appKey,
-		"Accept"	  : "application/json",
-		"Content-Type": "application/json"
-	},
-	"data": ''
+// fetch method Imposta gli header da utilizzare nelle Fetch API
+let headers = {
+    "appKey": appKey,
+    "Accept": "application/json",
+    "Content-Type": "application/json"
 };
-
 
 /**
  * It takes an entity name as input, calls the REST API, and returns a promise that resolves to the
@@ -29,26 +22,44 @@ let settings = {
  * @param entityName - l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa).
  * @returns A promise.
  */
-function service_01_getDryersGeneralInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_01_getDryersGeneralInfo'
-	settings.data = JSON.stringify({"entityName":entityName})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_01_getDryersGeneralInfo(entityName) {
+    let url = baseUrl + bootstrapThing + 'service_01_getDryersGeneralInfo';
+    let data = JSON.stringify({ "entityName": entityName });
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-
 /**
- * It takes an entity name as input, calls a REST API, and returns a promise
+ * It takes an entity name as input, calls the REST API, and returns a promise that resolves to the
+ * response
  * recupera i dati generali di tutte le celle installate dal cliente.
- * @param entityName - l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa)
+ * @param entityName - l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa).
  * @returns A promise.
  */
-function service_02_getLinesGeneralInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_02_getLinesGeneralInfo'
-	settings.data = JSON.stringify({"entityName":entityName})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_02_getLinesGeneralInfo(entityName) {
+    let url = baseUrl + bootstrapThing + 'service_02_getLinesGeneralInfo';
+    let data = JSON.stringify({ "entityName": entityName });
+    /***utilizzo del API fetch */
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 /**
@@ -59,12 +70,21 @@ function service_02_getLinesGeneralInfo(entityName){
  * @param endTime - "2019-11-01T00:00:00.000Z"
  * @returns A promise.
  */
-function service_03_getDryerHistoryProductions(entityName, startTime, endTime){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_03_getDryerHistoryProductions'
-	settings.data = JSON.stringify({"entityName":entityName, "startTime":startTime, "endTime":endTime})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_03_getDryerHistoryProductions(entityName, startTime, endTime) {
+    let url = baseUrl + bootstrapThing + 'service_03_getDryerHistoryProductions';
+    let data = JSON.stringify({ "entityName": entityName ,"startTime":startTime, "endTime":endTime});
+    /**fetch api */
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 /**
@@ -75,12 +95,21 @@ function service_03_getDryerHistoryProductions(entityName, startTime, endTime){
  * @param endTime - "2019-11-01T00:00:00.000Z"
  * @returns A promise.
  */
-function service_04_getLineHistoryProductions(entityName, startTime, endTime){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_04_getLineHistoryProductions'
-	settings.data = JSON.stringify({"entityName":entityName, "startTime":startTime, "endTime":endTime})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_04_getLineHistoryProductions(entityName, startTime, endTime) {
+    let url = baseUrl + bootstrapThing + 'service_04_getLineHistoryProductions';
+    let data = JSON.stringify({ "entityName": entityName, "startTime":startTime, "endTime":endTime});
+    /**fectch API */
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 /**
@@ -94,12 +123,21 @@ function service_04_getLineHistoryProductions(entityName, startTime, endTime){
  * @param customerName - The name of the customer
  * @returns A promise.
  */
-function service_05_getDryerStartEnd(entityName, startTime, endTime){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_05_getDryerStartEnd'
-	settings.data = JSON.stringify({"entityName":entityName, "startTime":startTime, "endTime":endTime})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_05_getDryerStartEnd(entityName, startTime, endTime) {
+    let url = baseUrl + bootstrapThing + 'service_05_getDryerStartEnd';
+    let data = JSON.stringify({ "entityName": entityName, "startTime":startTime, "endTime":endTime});
+    // fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 /**
@@ -113,28 +151,44 @@ function service_05_getDryerStartEnd(entityName, startTime, endTime){
  * @param customerName - The name of the customer you want to get alerts for.
  * @returns A promise.
  */
-function service_10_getAlerts(startDate, endDate, filter,getHistory,customerName){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_10_getAlerts'
-	settings.data = JSON.stringify({"startDate":startDate, "endDate":endDate, "filter":filter, "getHistory":getHistory, "customerName":customerName})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_10_getAlerts(startDate, endDate, filter,getHistory,customerName) {
+    let url = baseUrl + bootstrapThing + 'service_10_getAlerts';
+    let data = JSON.stringify({"startDate":startDate, "endDate":endDate, "filter":filter, "getHistory":getHistory, "customerName":customerName});
+    //fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-
 /**
  * It takes a query as input, calls the REST API, and returns the response
  * Recupera gli allarmi attivi della linea
  * @param query - The query to send to the REST API.
  * @returns A promise.
  */
-function service_11_AlertsReport(query){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_11_AlertsReport'
-	settings.data = JSON.stringify({"query":query})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_11_AlertsReport(query) {
+    let url = baseUrl + bootstrapThing + 'service_11_AlertsReport';
+    let data = JSON.stringify({"query":query});
+    // fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-
 /**
  * It takes a URL as an argument, and returns a promise that resolves to the response from the GitHub
  * API.
@@ -144,12 +198,21 @@ function service_11_AlertsReport(query){
  * @param url - The URL of the GitHub API to call.
  * @returns A promise.
  */
-function service_80_githubAPI(url){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_80_githubAPI'
-	settings.data = JSON.stringify({"url":url})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_80_githubAPI(urlGit) {
+    let url = baseUrl + bootstrapThing + 'service_80_githubAPI';
+    let data = JSON.stringify({"url":urlGit});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 /**
@@ -157,14 +220,22 @@ function service_80_githubAPI(url){
  * @param entityName - l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa).
  * @returns A promise.
  */
-function service_90_sidebar(entityName){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_90_sidebar'
-	settings.data = JSON.stringify({"entityName":entityName})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_90_sidebar(entityName) {
+    let url = baseUrl + bootstrapThing + 'service_90_sidebar';
+    let data = JSON.stringify({"entityName":entityName});
+    // fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-
 /**
  * It takes two parameters, username and customerCode, and returns a promise that resolves to the
  * response from the REST API.
@@ -172,14 +243,22 @@ function service_90_sidebar(entityName){
  * @param customerCode - This is the customer code that you want to add the user to.
  * @returns A promise.
  */
-function service_97_addNewUser(username, customerCode){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_97_addNewUser'
-	settings.data = JSON.stringify({username:username, customerCode:customerCode})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_97_addNewUser(username,customerCode) {
+    let url = baseUrl + bootstrapThing + 'service_97_addNewUser';
+    let data = JSON.stringify({"username":username,"customerCode":customerCode});
+    // fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-
 /**
  * It takes a username and a firebase token, and sends it to the server
  * Associa il token di firebase all'username su tw.
@@ -187,12 +266,21 @@ function service_97_addNewUser(username, customerCode){
  * @param token - the token that you get from the Firebase API
  * @returns A promise.
  */
-function service_98_setFirebaseToken(username, token, deviceId){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_98_setFirebaseToken'
-	settings.data = JSON.stringify({username:username, firebaseToken:token, deviceId:deviceId})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_98_setFirebaseToken(username,token,deviceId) {
+    let url = baseUrl + bootstrapThing + 'service_98_setFirebaseToken';
+    let data = JSON.stringify({username:username, firebaseToken:token, deviceId:deviceId});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 /**
@@ -202,586 +290,455 @@ function service_98_setFirebaseToken(username, token, deviceId){
  * @param notificationPermission - true/false
  * @returns A promise.
  */
-function service_99_setNotificationPermission(username, notificationPermission){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_99_setNotificationPermission'
-	settings.data = JSON.stringify({username:username, notificationPermission:notificationPermission})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+// Fetch API
+function service_99_setNotificationPermission(username,notificationPermission) {
+    let url = baseUrl + bootstrapThing + 'notificationPermission';
+    let data = JSON.stringify({"username":username,"notificationPermission":notificationPermission});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-
 /**
  * It takes a username as an argument, and returns a promise that resolves to the response from the
  * REST API.
  * @param username - The username of the user you want to get the information of.
  * @returns A promise.
  */
-function service_100_getUser(username){
-	// Definisce l'url da richiamare per la REST API
-	settings.url  = baseUrl + bootstrapThing + 'service_100_getUser'
-	settings.data = JSON.stringify({username:username})
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+function service_100_getUser(username) {
+    let url = baseUrl + bootstrapThing + 'service_100_getUser';
+    let data = JSON.stringify({"username":username,});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-
-
-
-// ** FUNZIONI DA SISTEMARE COME SOPRA, SIA SU TW CHE QUI**
-
-
-
 // Recupera il valore di una property di una thing
-function getPropertyName(entityName, propertyName){
-	// Definisce l'url da richiamare per la REST API
-	var url = baseUrl + "Things/" + entityName + "/Properties/" + propertyName;
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "GET",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": ""
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+function getPropertyName(entityName, propertyName) {
+    let url =baseUrl + "Things/" + entityName + "/Properties/" + propertyName;
+    let data = JSON.stringify({"username":username,});
+    //Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 
 /* THING : Storci.Thing.Manage.Bootstrap */
 // Recupera l'elenco dei clienti presenti
-function getCustomersList(){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomersList";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": ""
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function getCustomersList() {
+    let url =  baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomersList";
+	// Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+      //  body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
 // Esegue una query verso influx e ritorna il risultato
-function influxQuery(query){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/influxQuery";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"query" : query})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function influxQuery(query) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/influxQuery";
+    let data = JSON.stringify({"query":query,});
+    //Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
 // Recupera l'elenco dei gruppi macchina di un cliente
-function getCustomerGroupMachine(customer, typeGroup){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerGroupMachine";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"Customer":customer, "TypeGroup":typeGroup})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function getCustomerGroupMachine(customer,typeGroup) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerGroupMachine";
+    let data = JSON.stringify({"Customer":customer, "TypeGroup":typeGroup});
+    //Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
+
+
 // Recupera l'elenco delle celle di un cliente
-function getCustomerCells(customer){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerCells";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"Customer":customer})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function getCustomerCells(customer) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerCells";
+    let data = JSON.stringify({"Customer":customer});
+    //fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
+
 // Recupera il record dell'utente inserito nella DataTable Storci.DataTables.Customer_Users.
-function getUser(username){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getUser";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"username":username})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function getUser(username) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getUser";
+    let data = JSON.stringify({"username":username});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
 // Recupera i dati della cella
-function getCellInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCellInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function getCellInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCellInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
+
 // Recupera i dati storici della cella
-function getCellHistoryProductions(entityName, timeStart, timeEnd, filter){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCellHistoryProductions";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName, "timeStart":timeStart, "timeEnd":timeEnd, "filter":filter})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function getCellHistoryProductions(entityName, timeStart, timeEnd, filter) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCellHistoryProductions";
+    let data = JSON.stringify({"entityName":entityName, "timeStart":timeStart, "timeEnd":timeEnd, "filter":filter});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
 // Recupera la ricetta storica della cella
-function getCellHistoryRecipe(entityName, timeStart, timeEnd){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCellHistoryRecipe";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName, "timeStart":timeStart, "timeEnd":timeEnd})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function getCellHistoryRecipe(entityName, timeStart, timeEnd) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCellHistoryRecipe";
+    let data = JSON.stringify({"entityName":entityName, "timeStart":timeStart, "timeEnd":timeEnd});
+    //Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
+
 // Recupera i dati dell'impasto della linea
-function getLineDoughInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineDoughInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => {resolve(response)});
-	});
+function getLineDoughInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineDoughInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    //Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
+
 // Recupera le informazioni sullo stato delle macchine del cliente
-function getCustomersInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomersInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+function getCustomersInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomersInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    //fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-// Recupera le informazione sulle machine del cliente
-function  getCustomerLineMachine(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerLineMachine";
 
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
 
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+//Recupera le informazione sulle machine del cliente
+function getCustomerLineMachine(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerLineMachine";
+    let data = JSON.stringify({"entityName":entityName});
+    // fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-//Recupera le informazione sulla Pressa
-function  getLinePressInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLinePressInfo";
 
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+// Recupera le informazione sulla Pressa
+function getLinePressInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLinePressInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    //Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
 // Recupera informazione sulla PastaInstant
-function  getLinePastaInstantInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLinePastaInstantInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+function getLinePastaInstantInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLinePastaInstantInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
 // Recupera informazione sul Avanzamento Telaio
-function  getLineAvanzamentoTelaiInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineAvanzamentoTelaiInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+function getLineAvanzamentoTelaiInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineAvanzamentoTelaiInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
 // Recupera informazione sul Omnidryer
-function  getLineOmnidryerInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineOmnidryerInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+function getLineOmnidryerInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineOmnidryerInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    // Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
+// Fetch API
 // Recupera informazione sul Stenditrice
-function  getLineStenditriceInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineStenditriceInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
-}
-// Recupera informazione sul Trabatto
-function  getLineTrabattoInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineTrabattoInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
-}
-// Recupera le informazioni della linea
-function getLineInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+function getLineStenditriceInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineStenditriceInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
-// Recupera le informazioni della linea
-function getLineNidiLasagnaInfo(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineNidiLasagnaInfo";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+// Fetch API
+// Recupera informazione del trabatoo
+function getLineTrabattoInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineTrabattoInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
-// La funzione restituisce la lista dello storico produzioni dell'impasto
-function getLineDoughHistoryProduction(filter, entityName, startTime, endTime){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineDoughHistoryProduction";
 
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({'filter':filter, 'entityName':entityName, 'startTime':startTime, 'endTime':endTime})
-	};
-
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+// Fetch API
+//Questa funzione recupera  informazione generica della linea
+function getLineInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
+
+// Fetch API
+// la Funzione recupera informazione sulla macchina NidiLasagni
+function getLineNidiLasagnaInfo(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineNidiLasagnaInfo";
+    let data = JSON.stringify({"entityName":entityName});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
+
+// Fetch API
+// Recupera la produzione storica dell'impasto
+function getLineDoughHistoryProduction(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineDoughHistoryProduction";
+    let data = JSON.stringify({"entityName":entityName});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
+
+//Fectch API
 // Recupera gli allarmi attivi della linea
-function getLineAlertsActive(entityName){
-	// Definisce l'url da richiamare per la REST API
-	let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineAlertsActive";
-
-	// Imposta i settings da utilizzare nelle REST API.
-	// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-	let settings = {
-		"url"     : url,
-		"method"  : "POST",
-		"timeout" : 0,
-		"headers" : {
-			"appKey"	  : appKey,
-			"Accept"	  : "application/json",
-			"Content-Type": "application/json"
-		},
-		"data": JSON.stringify({"entityName":entityName})
-	};
-	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
-	return new Promise(function(resolve){
-		// Esegue la chiamata REST API.
-		$.ajax(settings).done(response => resolve(response));
-	})
+function getLineAlertsActive(entityName) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineAlertsActive";
+    let data = JSON.stringify({"entityName":entityName});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
 }
 
 // COMMON FUNCTIONS

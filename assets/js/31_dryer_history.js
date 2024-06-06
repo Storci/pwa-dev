@@ -17,8 +17,16 @@ let pageURL = window.location.href
     const loader = document.querySelector(".loader");
     loader.className += " hidden"; // class "loader hidden"
 });*/
-$('#modal1').modal("show")
+//$('#modal1').modal("show")
 
+
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
+}
+
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
@@ -130,12 +138,15 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(10s) fill(previous)'
 
 // Cancella tutte le righe della tabella
 $("#IDHistoryTableBody").empty()
-
+//richiamo della funzione spinner
+showSpinner()
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
 .then(dryers =>{
+	console.log(dryers)
 	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
-	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+	//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+	hideSpinner()
 })
 .catch(error => console.error(error))
 
@@ -219,7 +230,18 @@ function insertionSort(table, column, dir){
 	}
 }
 
+//$('.spinner-border').spinner('show')
+function showSpinnerTable(){
+	$('.spinner-border').show(); // Show the spinner
+    $('.tableDiv').css('opacity', '0.5'); // 
+}
 
+function hideSpinnerTable(){
+	$('.spinner-border').hide(); // Show the spinner
+    $('.tableDiv').css('opacity', '1'); // 
+}
+
+showSpinnerTable()
 function listHistoryProduction(dryers, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
 	dryers.array.forEach((dryer, d) =>{
@@ -305,7 +327,9 @@ function listHistoryProduction(dryers, timeStart, timeEnd){
 				elem.dispatchEvent(clickEvent)
 
 			})
-			setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+			//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+			hideSpinnerTable()
+
 		})
 	})
 }

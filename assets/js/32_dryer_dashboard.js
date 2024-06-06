@@ -8,30 +8,20 @@ import * as common from "./Global/Common/commonFunctions.js"
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-*/
-/*var loader = document.querySelector(".loader")
 
-window.addEventListener("load", vanish);
-
-function vanish() {
-  loader.classList.add("disppear");
-}
-*/
 $('#modal1').modal("show")
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
-/*$(document).ready(function() {
-    // Check if the modal element exists
-    var modal = document.getElementById('modal1');
-    if (modal) {
-        $('#modal1').modal("show");
-    }
-});*/
+showSpinner()
+function showSpinner(){
+	$('.loader').show(); // Show the spinner
+}
+
+function hideSpinner(){
+	$('.loader').hide(); // Show the spinner
+}
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
@@ -265,7 +255,7 @@ $("#IDHistoryTableBody").empty()
 tw.getCustomerCells(selectedCustomer)
 .then(dryers => {
 	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
-	setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+	hideSpinner()
 })
 .catch(error => console.error(error))
 
@@ -343,6 +333,18 @@ function insertionSort(table, column, dir){
 	}
 }
 
+// funzione per mostrare uno spinner mentre la tabella si carica
+function showSpinnerTable(){
+	$('.spinner-border').show(); // Show the spinner
+    $('.tableDiv').css('opacity', '0.5'); // 
+}
+// funzione per nascondere lo spinner dopo il caricamento della tabella
+function hideSpinnerTable(){
+	$('.spinner-border').hide(); // Show the spinner
+    $('.tableDiv').css('opacity', '1'); // 
+}
+// eseguire la funzione 
+showSpinnerTable()
 
 function listHistoryProduction(dryers, timeStart, timeEnd){
 	$("#IDHistoryTableBody").empty()
@@ -427,15 +429,8 @@ function listHistoryProduction(dryers, timeStart, timeEnd){
 					.catch(e => {console.log(e)})
 				})
 
-				// Recupera la prima riga della tabella
-				/*let elem = document.getElementById('firstColumn')
-		    // Definisce la variabile come click event
-				let clickEvent = new Event('click');
-		    // Esegue l'evento dell'elemento, in questo modo simula il click
-		    // sulla prima riga della tabella, e viene caricato il grafico
-				elem.dispatchEvent(clickEvent)*/
-
 			})
+			hideSpinnerTable()
 		})
 	})
 }
