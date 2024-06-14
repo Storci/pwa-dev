@@ -1,5 +1,4 @@
 //import * as am from "../amchart/amchart_functions.js"
-
 let baseUrl   		 = 'https://storciiot.storci.com:8445/Thingworx/'
 let appKey 				 = 'cdd83674-f63f-4535-9aa2-33ac5b70b52c'
 

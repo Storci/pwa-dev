@@ -12,6 +12,15 @@ fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
 
+showSpinner()
+
+function showSpinner(){
+	$('.loader').show(); // mostrare lo spinner
+}
+function hideSpinner(){
+	$('.loader').hide(); // nascondere lo spinner
+}
+
 
 let customerName = localStorage.getItem('global_customer')
 
@@ -40,7 +49,6 @@ $("th").click(function() {
 })
 
 
-$('#modal1').modal("show")
 // richiamo della funzione
 getAlarmsNotifications("*", false,customerName);
 
@@ -135,9 +143,7 @@ function insertionSort(table, column, dir){
 		}
 	}
 }
-/*document.addEventListener('DOMContentLoaded', function() {
-    $('#modal1').modal("hide");
-});*/
+
 // Funzione per recuperare i dati da tw per mettere nella tabella
 function getAlarmsNotifications(filter, getHistory,customerName){
 	tw.service_10_getAlerts("","",filter, getHistory,customerName)
@@ -155,7 +161,8 @@ function getAlarmsNotifications(filter, getHistory,customerName){
 			// Aggiunge la riga alla tabella
 			$('#IDAlertActualBody').append(row);
 		}
-		setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+		//richiamo la funzione che fa sparire lo spinner 
+		hideSpinner()
 
 		list.rows.forEach(el =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();

@@ -2,6 +2,7 @@ import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import * as theme from "./Global/Common/Theme.js"
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
@@ -21,7 +22,7 @@ function showSpinner(){
 function hideSpinner(){
 	$('.loader').hide(); // Show the spinner
 }
-
+theme.changeColorTheme()
 
 // Esegue il codice principale al caricamento della pagina
 $("body").ready(async function(){

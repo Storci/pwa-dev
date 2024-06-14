@@ -2,12 +2,13 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import * as theme from "./Global/Common/Theme.js"
 
 // recupera il nome dell'entity (selezionata, se utente storci)
 // il nome dell'entity permette di recuperare le macchine presenti
 // per un determinato cliente e visualizzarle nella sidebar.
 
-
+theme.changeColorTheme()
 
 let entityName = localStorage.getItem('global_entityName')
 let customer = localStorage.getItem('global_selected_customer')

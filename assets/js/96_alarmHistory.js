@@ -10,7 +10,15 @@ import * as common from "./Global/Common/commonFunctions.js"
 fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
+// funzione che  mostra lo spinner durante il caricamento della pagina
+showSpinner()
 
+function showSpinner(){
+	$('.loader').show(); // mostrare lo spinner
+}
+function hideSpinner(){
+	$('.loader').hide(); // nascondere lo spinner
+}
 // recupero il nome del cliente utilizzando il local storage
 let customerName = localStorage.getItem('global_customer')
 
@@ -67,7 +75,7 @@ $('#dateFilter').daterangepicker({
   getAlarmsNotifications('#IDAlertHistoryBody',start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD'),"*",true, customerName)
 })
 
-$('#modal1').modal("show")
+//$('#modal1').modal("show")
 getAlarmsNotifications('#IDAlertHistoryBody',timeStartHistory,timeEndHistory,"*",true, customerName)
 
 // Riordina l'ordine della colonna al click
@@ -188,7 +196,7 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 	customerName = customerName.replace(/_/g, ' ')
 	tw.service_10_getAlerts(startDate, endDate, filter, getHistory,customerName)
 	.then((list)=>{
-    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+    //setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 		//$(idTable).empty()
 		list.rows.forEach((el,i) =>{
 			let timeStart = new Date(el.TimeStart).toLocaleString();
@@ -236,7 +244,8 @@ function getAlarmsNotifications(idTable, startDate, endDate, filter, getHistory,
 			lista +='</li> '
 			$('#alert_container').append(lista);
 	})
-		$('#modal1').modal("hide")
+		//$('#modal1').modal("hide")
+		hideSpinner()
 	})
 	.catch((err)=>{
 		console.log('promise rejected', err)

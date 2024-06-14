@@ -2,8 +2,7 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
-//import { Octokit, App } from "https://cdn.skypack.dev/octokit";
-
+import * as theme from "./Global/Common/Theme.js"
 
 
 
@@ -15,37 +14,13 @@ function showSpinner(){
 function hideSpinner(){
 	$('.loader').hide(); // Show the spinner
 }
-// $('#modal1').modal("show")
 
-// //inizializzazione del contatore
-// let counterSpinner = 0;
-
-// //funzione per dimostrare se il contatore è maggiore di 0
-// function updateModal(){
-//  if(counterSpinner > 0){
-//   $('#modal1').modal("show");
-//  }
-//  else{
-//   $('#modal1').modal("hide");
-//  }
-// }
-
-// // funzione che incrementa e mostra il caricamento dello spinner
-// function startLoading(){
-//   counterSpinner++;
-//   updateModal();
-// }
-
-// // funzione che diminuisce e nasconde lo spinner quando il caricamento è stato eseguita
-// function stopLoading(){
-//   counterSpinner--;
-//   updateModal();
-// }
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
 //funzione per la traduzione
 lang.getLanguage()
+theme.changeColorTheme()
 
 //startLoading()
 // Recupera la lista dei clienti presenti da tw

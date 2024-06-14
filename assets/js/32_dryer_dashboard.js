@@ -4,6 +4,7 @@ import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
+import * as theme from "./Global/Common/Theme.js"
 
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
@@ -44,6 +45,8 @@ fb.onAuthStateChanged_2()
 // i testi caricati dalle funzioni.
 // funzione per la traduzione
 lang.getLanguage()
+
+theme.changeColorTheme()
 
 // Definisce le variabili come date
 let timeStartHistory = new Date()

@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html lang="en" class="bg-white" data-pgc-master="00_master.html"> 
+<html lang="en" data-pgc-master="00_master.html"> 
     <head data-pgc-field="head"> 
         <meta charset="utf-8"/> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
@@ -42,15 +42,15 @@
         <script defer src="./assets/js/95_actualAlarm.js" type="module"></script>         
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     </head>     
-    <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);"> 
-        <script> //$('body').addClass('d-none')</script>         
+    <!-- <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg);">  -->     
+    <body class="sidebar-scroll-hidden"> 
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"> <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><span id="id-customer-name">Storci</span></a> 
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> 
             </button>             
         </header>         
         <div class="container-fluid"> 
             <div class="row"> 
-                <nav id="sidebarMenu" class="bg-light col-lg-2 col-md-3 collapse d-md-block sidebar sidebar-scroll sidebar-scroll-hidden"> 
+                <nav id="sidebarMenu" class="col-lg-2 col-md-3 collapse d-md-block sidebar sidebar-scroll sidebar-scroll-hidden"> 
                     <div class="align-content-start d-flex flex-column keep-scroll overflow-auto pt-3" style="height: 80%;"> 
                         <ul class="nav flex-column" id="IDNavPrimary"> 
                             <li class="d-none nav-item" id="id-nav-customers-list"> <a class="align-items-center d-flex nav-link" aria-current="page" href="01_Customers.html" id="id-nav-customers-list"> <span class="material-icons-outlined">group</span><span class="ms-3" translate_id="clients_list">List of Clients</span> </a> 
@@ -274,11 +274,7 @@
                             </li>                             
                         </ul>                         
                     </div>                     
-                    <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false"> 
-                        <div class="align-items-center d-flex justify-content-center modal-dialog modal-dialog-centered modal-sm"> 
-                            <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_bU3Dr6.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>                             
-                        </div>                         
-                    </div>
+                    <div class="loader"></div>
                 </main>                 
             </div>             
         </div>         

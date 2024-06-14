@@ -1,15 +1,19 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import * as theme from "./Global/Common/Theme.js"
+
 
 
 fb.onAuthStateChanged_2()
 lang.getLanguage()
+theme.changeColorTheme()
 
 // Document ready function to ensure translation happens after all elements are loaded
 $(document).ready(function() {
   // Translate the page content
   lang.getLanguage();
+  theme.changeColorTheme()
 });
 
 //$("#modal1").css("display", "none");

@@ -2,6 +2,9 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import * as theme from "./Global/Common/Theme.js"
+
+theme.changeColorTheme()
 
 $(document).ready(()=>{
 	
@@ -42,6 +45,8 @@ fb.onAuthStateChanged_2()
 // funzione di traduzione sia per i testi statici e testi dinamiche
 // i testi caricati dalle funzioni.
 lang.getLanguage()
+
+
 
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
