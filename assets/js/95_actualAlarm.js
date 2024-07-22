@@ -145,6 +145,9 @@ function insertionSort(table, column, dir) {
 		}
 	}
 }
+/*document.addEventListener('DOMContentLoaded', function() {
+    $('#modal1').modal("hide");
+});*/
 // Funzione per recuperare i dati da tw per mettere nella tabella
 function getAlarmsNotifications(filter, getHistory, customerName) {
 	tw.service_10_getAlerts("", "", filter, getHistory, customerName)
