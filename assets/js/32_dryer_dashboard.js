@@ -9,45 +9,36 @@ import * as common from "./Global/Common/commonFunctions.js"
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
 
-$('#modal1').modal("show")
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
 showSpinner()
-function showSpinner(){
+function showSpinner() {
 	$('.loader').show(); // Show the spinner
 }
 
-function hideSpinner(){
+function hideSpinner() {
 	$('.loader').hide(); // Show the spinner
 }
 
-// Recupera il nome dell'utente da firebase, controlla che sia loggato.
-// Nel caso non fosse loggato richiama la pagina di login
-//fb.onAuthStateChanged_2(baseURL, pageURL)
 // Recupera dei dati dalle local storage
 let selectedCustomer = localStorage.getItem("global_selected_customer")
-let selectedLine 		 = localStorage.getItem("global_selected_cell")
+let selectedLine = localStorage.getItem("global_selected_cell")
 //let entityName			 = localStorage.getItem('global_selected_cell_entityName')
 // Recupera l'entity name della thing
 let entityName = urlParams.get('entityName')
-// Imposta il nome del cliente nella breadcrumb
-// Vengono sostituiti tutti gli underscore presenti nel nome
-//$("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
+console.log(entityName)
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
-// Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
-// ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
-// i testi caricati dalle funzioni.
 // funzione per la traduzione
 lang.getLanguage()
 
 // Definisce le variabili come date
 let timeStartHistory = new Date()
-let timeEndHistory   = new Date()
+let timeEndHistory = new Date()
 let timeStartZoom = new Date()
 let timeEndZoom = new Date()
 
@@ -60,47 +51,47 @@ let disp_timeStart = common.getDate(timeStartHistory)
 let disp_timeEnd = common.getDate(timeEndHistory)
 
 $('#dateTimePicker').daterangepicker({
-    "locale": {
-        "format": "YYYY/MM/DD",
-        "separator": " - ",
-        "applyLabel": "Apply",
-        "cancelLabel": "Cancel",
-        "fromLabel": "From",
-        "toLabel": "To",
-        "customRangeLabel": "Custom",
-        "weekLabel": "W",
-        "daysOfWeek": [
-            "Su",
-            "Mo",
-            "Tu",
-            "We",
-            "Th",
-            "Fr",
-            "Sa"
-        ],
-        "monthNames": [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ],
-        "firstDay": 1
-    },
-    "startDate": disp_timeStart,
-    "endDate": disp_timeEnd
-}, function(start, end, label) {
+	"locale": {
+		"format": "YYYY/MM/DD",
+		"separator": " - ",
+		"applyLabel": "Apply",
+		"cancelLabel": "Cancel",
+		"fromLabel": "From",
+		"toLabel": "To",
+		"customRangeLabel": "Custom",
+		"weekLabel": "W",
+		"daysOfWeek": [
+			"Su",
+			"Mo",
+			"Tu",
+			"We",
+			"Th",
+			"Fr",
+			"Sa"
+		],
+		"monthNames": [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December"
+		],
+		"firstDay": 1
+	},
+	"startDate": disp_timeStart,
+	"endDate": disp_timeEnd
+}, function (start, end, label) {
 	// Recupera tutte le celle installate dal cliente
 	tw.getCustomerCells(selectedCustomer)
-	.then(dryers => {listHistoryProduction(dryers, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))})
-	.catch(error => console.error(error))
+		.then(dryers => { listHistoryProduction(dryers, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD')) })
+		.catch(error => console.error(error))
 	timeStartZoom = timeStartHistory
 	timeEndZoom = timeEndHistory
 });
@@ -142,7 +133,7 @@ setInterval(am.refreshLegendSize, 1000, chartHistoryProduction, 'IDLegendHistory
 // Definisce la query da inviare a influxdb
 // I parametri da sostituire sono indicati da {1}, {2}, ecc...
 // Invece l'entityName è sempre comune per tutte le query
-let query  = 'SELECT '
+let query = 'SELECT '
 query += 'mean("Dati_Aggiuntivi_Temperatura_Ambiente") as "PV_Temperatura_Ambiente", '
 query += 'mean("Dati_Ciclo_Temperatura_PV") as "PV_Temperatura_Cella", '
 query += 'mean("Dati_Ciclo_Temperatura_SP") as "SP_Temperatura_Cella", '
@@ -169,18 +160,18 @@ setInterval(setHistoryInfo, 1000, chartHistoryProduction)
 $('#IDButtonExportTrendActualProduction').click(el => { am.getExport(chartActualProduction) })
 $('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHistoryProduction) })
 
-$('#fullscreen').click(function(){
+$('#fullscreen').click(function () {
 	//let url ='61_actualCellGraph.html?'+'entityName='+ entityName
-  let url ='./61_dryers_actual_zoom.html?'+'entityName='+ entityName
+	let url = './61_dryers_actual_zoom.html?' + 'entityName=' + entityName
 	window.open(url, '_blank')
 })
 
 // ******************** FUNCTION ********************
 // Funzione che imposta i dati della cella nei rispettivi campi
-function setCellinfo(entityName){
+function setCellinfo(entityName) {
 	$('.lds-dual-ring.info-cell').show()
 	// Recupera le informazioni della cella
-  tw.getCellInfo(entityName).then(dryer => {
+	tw.getCellInfo(entityName).then(dryer => {
 		// Imposta i valori dei vari tile con i dati recuperati da thingworx
 		$("#cell_number").text("Dryer " + dryer.numero_cella);
 		$("#number_trolleys").text(dryer.numero_carrelli);
@@ -190,7 +181,7 @@ function setCellinfo(entityName){
 		$("#total_time_recipe").text(dryer.tempo_ricetta_programmato);
 		$("#phase_time_recipe").text(dryer.tempo_ricetta_trascorso);
 		//$("#IDNumeroCarrelli").text(dryer.numero_carrelli);
-		setTimeout(function() {	$('.lds-dual-ring.info-cell').hide() }, 1000);
+		setTimeout(function () { $('.lds-dual-ring.info-cell').hide() }, 1000);
 
 	})
 }
@@ -198,8 +189,8 @@ function setCellinfo(entityName){
 // Funzione che recupera i dati di ricetta dell'essicazione selezionata
 // Viene calcolata la temperatura media, min e max
 // Viene calcolata l'umidità media, min e max
-function setHistoryInfo(chart){
-	try{
+function setHistoryInfo(chart) {
+	try {
 		// Dichiara le variabili
 		let temp = [];
 		let umid = [];
@@ -207,13 +198,13 @@ function setHistoryInfo(chart){
 		chart.data.forEach(el => {
 			// Aggiungi i dati della temperatura al grafico, ignora i valori uguali a NaN
 			el.PV_Temperatura_Ambiente = parseFloat(el.PV_Temperatura_Ambiente)
-			if(!Number.isNaN(el.PV_Temperatura_Ambiente)){ temp.push(el.PV_Temperatura_Ambiente) }
+			if (!Number.isNaN(el.PV_Temperatura_Ambiente)) { temp.push(el.PV_Temperatura_Ambiente) }
 			// Aggiungi i dati dell'umidità al grafico, ignora i valori uguali a NaN
 			el.PV_Umidita_Ambiente = parseFloat(el.PV_Umidita_Ambiente)
-			if(!Number.isNaN(el.PV_Umidita_Ambiente)){ umid.push(el.PV_Umidita_Ambiente) }
+			if (!Number.isNaN(el.PV_Umidita_Ambiente)) { umid.push(el.PV_Umidita_Ambiente) }
 		})
 		// Dichiara la funzione della media matematica e la associa alla variabile arrAvg
-		let arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
+		let arrAvg = arr => arr.reduce((a, b) => a + b, 0) / arr.length
 		// Effettua la media sul valore di temperatura ambientale, recupera anche il valore minimo ed il valore massimo
 		$("#IDTemperaturaMedia").text(arrAvg(temp).toFixed(2) + " °C")
 		$("#IDTemperaturaMediaMax").text("Max: " + Math.max(...temp) + " °C")
@@ -223,29 +214,29 @@ function setHistoryInfo(chart){
 		$("#IDUmiditaMediaMax").text("Max: " + Math.max(...umid) + " %H")
 		$("#IDUmiditaMediaMin").text("Min: " + Math.min(...umid) + " %H")
 		// Recupera le kcal consumate per il ciclo di essiccazione selezionato dalla lista dello storico
-		try{ $("#IDCalorieTotali").text(chart.data[chart.data.length-1].PV_Consumo_Ciclo + " kcal") }catch(e){}
+		try { $("#IDCalorieTotali").text(chart.data[chart.data.length - 1].PV_Consumo_Ciclo + " kcal") } catch (e) { }
 		// Recupera i dati di ricetta
-		tw.getCellHistoryRecipe(entityName, chart.data[0].time, chart.data[chart.data.length-1].time).then(recipe => {
+		tw.getCellHistoryRecipe(entityName, chart.data[0].time, chart.data[chart.data.length - 1].time).then(recipe => {
 			// Svuota la tabella della ricetta
 			$('#IDHistoryTableRecipeBody').empty();
 			// Per ogni dato recuperato viene generata una riga nella tabella
 			recipe.rows.forEach(el => {
 				// Definisce l'html della riga da aggiungere
 				let row = '<tr class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.Fase  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_fase    + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.delta_T + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.temperatura  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.umidita  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.hz_inverter  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_ventilazione  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_pausa  + '</td>'
-				row    += '</tr>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.Fase + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_fase + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.delta_T + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.temperatura + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.umidita + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.hz_inverter + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_ventilazione + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.tempo_pausa + '</td>'
+				row += '</tr>'
 				// Aggiunge la riga alla tabella
 				$('#IDHistoryTableRecipeBody').append(row);
 			})
 		})
-	}catch(e){}
+	} catch (e) { }
 }
 
 // Cancella tutte le righe della tabella
@@ -253,21 +244,21 @@ $("#IDHistoryTableBody").empty()
 
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
-.then(dryers => {
-	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
-	hideSpinner()
-})
-.catch(error => console.error(error))
+	.then(dryers => {
+		listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
+		hideSpinner()
+	})
+	.catch(error => console.error(error))
 
 let direction = true
-$("th").click(function() {
+$("th").click(function () {
 	let icon = "#" + $(this)[0].children[0].children[1].id
 	$(".icon-table").addClass("d-none")
-  $(icon).removeClass("d-none")
+	$(icon).removeClass("d-none")
 
-	if(direction){
+	if (direction) {
 		$(icon).text("expand_more")
-	}else{
+	} else {
 		$(icon).text("expand_less")
 	}
 
@@ -284,15 +275,15 @@ $("th").click(function() {
 })
 
 // Funzione di ricerca nella tabella
-$("#filter").on("keyup", function(){
-  let value = $(this).val()
-  $("#IDHistoryTableBody tr").filter(function(){
-    $(this).toggle($(this).text().indexOf(value) > -1)
-  })
+$("#filter").on("keyup", function () {
+	let value = $(this).val()
+	$("#IDHistoryTableBody tr").filter(function () {
+		$(this).toggle($(this).text().indexOf(value) > -1)
+	})
 })
 
- /***funzione per grafico storico */
- function convertDate(s){
+/***funzione per grafico storico */
+function convertDate(s) {
 	let sdate = s
 	sdate = sdate.split(", ")
 	let date = sdate[0]
@@ -306,27 +297,27 @@ $("#filter").on("keyup", function(){
 	return Date.parse(year + "/" + month + "/" + day + " " + time)
 }
 
-function insertionSort(table, column, dir){
-	let rows = 	table.children
+function insertionSort(table, column, dir) {
+	let rows = table.children
 	let parent = table
 
-	for(let i=1; i<rows.length; i++){
-		for(let j=i-1; j>-1; j--){
+	for (let i = 1; i < rows.length; i++) {
+		for (let j = i - 1; j > -1; j--) {
 			let value1 = rows[j].getElementsByTagName("TD")[column].innerHTML
-			let value2 = rows[j+1].getElementsByTagName("TD")[column].innerHTML
+			let value2 = rows[j + 1].getElementsByTagName("TD")[column].innerHTML
 
-			if(column == 0 || column == 1){
+			if (column == 0 || column == 1) {
 				value1 = convertDate(value1)
 				value2 = convertDate(value2)
 			}
 
-			if(dir){
-				if(value2 < value1){
-					parent.insertBefore(rows[j+1], rows[j])
+			if (dir) {
+				if (value2 < value1) {
+					parent.insertBefore(rows[j + 1], rows[j])
 				}
-			}else{
-				if(value2 > value1){
-					parent.insertBefore(rows[j+1], rows[j])
+			} else {
+				if (value2 > value1) {
+					parent.insertBefore(rows[j + 1], rows[j])
 				}
 			}
 		}
@@ -334,103 +325,103 @@ function insertionSort(table, column, dir){
 }
 
 // funzione per mostrare uno spinner mentre la tabella si carica
-function showSpinnerTable(){
+function showSpinnerTable() {
 	$('.spinner-border').show(); // Show the spinner
-    $('.tableDiv').css('opacity', '0.5'); // 
+	$('.tableDiv').css('opacity', '0.5'); // 
 }
 // funzione per nascondere lo spinner dopo il caricamento della tabella
-function hideSpinnerTable(){
+function hideSpinnerTable() {
 	$('.spinner-border').hide(); // Show the spinner
-    $('.tableDiv').css('opacity', '1'); // 
+	$('.tableDiv').css('opacity', '1'); // 
 }
 // eseguire la funzione 
 showSpinnerTable()
 
-function listHistoryProduction(dryers, timeStart, timeEnd){
+function listHistoryProduction(dryers, timeStart, timeEnd) {
 	$("#IDHistoryTableBody").empty()
-	dryers.array.forEach((dryer, d) =>{
+	dryers.array.forEach((dryer, d) => {
 		console.log(dryer)
 		let dryer_name = dryer.entityName.split(".")
 		dryer_name = dryer_name[4] + " " + dryer_name[5]
 		console.log(dryer_name)
 		// Recupera lo storico delle lavorazioni effettuate dalla cella
 		tw.service_03_getDryerHistoryProductions(dryer.entityName, timeStart, timeEnd)
-		.then(productions => {
-			// Per ogni ricetta trovata genera una nuova riga nella tabella
-			productions.rows.forEach((el, i) => {
-				// Converte il timestamp in Date
-				let start = new Date(el.timeStart).toLocaleString();
-				let end = new Date(el.timeEnd).toLocaleString();
-				// Definisce l'id della riga della tabella
-				let id = "IDHistoryTableRow" + i + d;
-				// Definisce l'html della riga da aggiungere
-				let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + start  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + end    + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.ricetta + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.durata  + '</td>'
-				//row    += '    <td style="font-size: 12px;border-style: none;">' + dryer_name  + '</td>'
-				row    += '</tr>'
-				// Aggiunge la riga alla tabella
-				$("#IDHistoryTableBody").append(row)
-				// Imposta i timestamp di inizio e fine essiccazione (il range temporale è allargato 30 min prima dell'inizio e 30 min dopo la fine)
-				let timestampStart = el.timeStart - 1800000
-				let timestampEnd   = el.timeEnd + 1800000
-				// Controlla se la data è invalida, nel caso l'essiccazione è in corso e carica la data attuale
-				if(timestampEnd == undefined || timestampEnd == null || timestampEnd == '' || Number.isNaN(timestampEnd)){
-					timestampEnd = Date.now() + 1800000
-				}
+			.then(productions => {
+				// Per ogni ricetta trovata genera una nuova riga nella tabella
+				productions.rows.forEach((el, i) => {
+					// Converte il timestamp in Date
+					let start = new Date(el.timeStart).toLocaleString();
+					let end = new Date(el.timeEnd).toLocaleString();
+					// Definisce l'id della riga della tabella
+					let id = "IDHistoryTableRow" + i + d;
+					// Definisce l'html della riga da aggiungere
+					let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
+					row += '    <td style="font-size: 12px;border-style: none;">' + start + '</td>'
+					row += '    <td style="font-size: 12px;border-style: none;">' + end + '</td>'
+					row += '    <td style="font-size: 12px;border-style: none;">' + el.ricetta + '</td>'
+					row += '    <td style="font-size: 12px;border-style: none;">' + el.durata + '</td>'
+					//row    += '    <td style="font-size: 12px;border-style: none;">' + dryer_name  + '</td>'
+					row += '</tr>'
+					// Aggiunge la riga alla tabella
+					$("#IDHistoryTableBody").append(row)
+					// Imposta i timestamp di inizio e fine essiccazione (il range temporale è allargato 30 min prima dell'inizio e 30 min dopo la fine)
+					let timestampStart = el.timeStart - 1800000
+					let timestampEnd = el.timeEnd + 1800000
+					// Controlla se la data è invalida, nel caso l'essiccazione è in corso e carica la data attuale
+					if (timestampEnd == undefined || timestampEnd == null || timestampEnd == '' || Number.isNaN(timestampEnd)) {
+						timestampEnd = Date.now() + 1800000
+					}
 
-				id = "#" + id
-				$(id).click(function(){
-					// Aggiunge la classe table-primary alla riga seleziona e la rimuove dalle altre righe
-					$(this).addClass('table-primary').siblings().removeClass('table-primary')
-					// Definisce la query da inviare a influxdb
-					let subquery = query.replaceAll('{1}', timestampStart).replaceAll('{2}', timestampEnd).replaceAll('{3}', dryer.entityName)
-					// Recupera i dati da influxdb e li visualizza sul grafico
-					am.setChartData(chartHistoryProduction, subquery, '')
-					timeStartZoom = timestampStart
-					timeEndZoom = timestampEnd
-					// pulsante per aprire il grafico storico delle celle in un'altro tab
-					$('#fullscreenHistory').click(function(){
-						//let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
-						let url ='60_dryers_history_zoom.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
-						window.open(url, '_blank')
+					id = "#" + id
+					$(id).click(function () {
+						// Aggiunge la classe table-primary alla riga seleziona e la rimuove dalle altre righe
+						$(this).addClass('table-primary').siblings().removeClass('table-primary')
+						// Definisce la query da inviare a influxdb
+						let subquery = query.replaceAll('{1}', timestampStart).replaceAll('{2}', timestampEnd).replaceAll('{3}', dryer.entityName)
+						// Recupera i dati da influxdb e li visualizza sul grafico
+						am.setChartData(chartHistoryProduction, subquery, '')
+						timeStartZoom = timestampStart
+						timeEndZoom = timestampEnd
+						// pulsante per aprire il grafico storico delle celle in un'altro tab
+						$('#fullscreenHistory').click(function () {
+							//let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+							let url = '60_dryers_history_zoom.html?' + 'entityName=' + entityName + '&timeStart=' + timeStartZoom + '&timeEnd=' + timeEndZoom
+							window.open(url, '_blank')
+						})
+						tw.service_05_getDryerStartEnd(dryer.entityName, timestampStart, timestampEnd)
+							.then(result => {
+								//console.log(result)
+								let range = chartHistoryProduction.xAxes.values[0].axisRanges.values[0]
+								range.date = new Date(result.array[0].start)
+								range.grid.stroke = am4core.color("#396478");
+								range.grid.strokeWidth = 2;
+								range.grid.strokeOpacity = 0.6;
+								range.label.inside = true;
+								range.label.text = "Inizio Essicazione";
+
+								let range1 = chartHistoryProduction.xAxes.values[0].axisRanges.values[1]
+								range1.date = new Date(result.array[0].stop)
+								range1.grid.stroke = am4core.color("#396478");
+								range1.grid.strokeWidth = 2;
+								range1.grid.strokeOpacity = 0.6;
+								range1.label.inside = true;
+								range1.label.text = "Fine Essicazione";
+
+								if (result.array[0].endLoad) {
+									let range2 = chartHistoryProduction.xAxes.values[0].axisRanges.values[2]
+									range2.date = new Date(result.array[0].endLoad)
+									range2.grid.stroke = am4core.color("#396478");
+									range2.grid.strokeWidth = 2;
+									range2.grid.strokeOpacity = 0.6;
+									range2.label.inside = true;
+									range2.label.text = "Fine Carico";
+								}
+							})
+							.catch(e => { console.log(e) })
 					})
-					tw.service_05_getDryerStartEnd(dryer.entityName, timestampStart, timestampEnd)
-					.then(result => {
-						//console.log(result)
-						let range = chartHistoryProduction.xAxes.values[0].axisRanges.values[0]
-						range.date = new Date(result.array[0].start)
-						range.grid.stroke = am4core.color("#396478");
-						range.grid.strokeWidth = 2;
-						range.grid.strokeOpacity = 0.6;
-						range.label.inside = true;
-						range.label.text = "Inizio Essicazione";
 
-						let range1 = chartHistoryProduction.xAxes.values[0].axisRanges.values[1]
-						range1.date = new Date(result.array[0].stop)
-						range1.grid.stroke = am4core.color("#396478");
-						range1.grid.strokeWidth = 2;
-						range1.grid.strokeOpacity = 0.6;
-						range1.label.inside = true;
-						range1.label.text = "Fine Essicazione";
-
-						if(result.array[0].endLoad){
-							let range2 = chartHistoryProduction.xAxes.values[0].axisRanges.values[2]
-							range2.date = new Date(result.array[0].endLoad)
-							range2.grid.stroke = am4core.color("#396478");
-							range2.grid.strokeWidth = 2;
-							range2.grid.strokeOpacity = 0.6;
-							range2.label.inside = true;
-							range2.label.text = "Fine Carico";
-						}
-					})
-					.catch(e => {console.log(e)})
 				})
-
+				hideSpinnerTable()
 			})
-			hideSpinnerTable()
-		})
 	})
 }
