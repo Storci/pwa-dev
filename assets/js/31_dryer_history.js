@@ -5,48 +5,39 @@ import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
 
-// definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
-// il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
-// baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-*/
-
-/*window.addEventListener("load", function () {
-    const loader = document.querySelector(".loader");
-    loader.className += " hidden"; // class "loader hidden"
-});*/
-//$('#modal1').modal("show")
-
-
-function showSpinner(){
-	$('.loader').show(); // Show the spinner
-}
-
-function hideSpinner(){
-	$('.loader').hide(); // Show the spinner
-}
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
+
 // Recupera dei dati dalle local storage
 let selectedCustomer = localStorage.getItem("global_selected_customer")
+
+// recupero dell'entityname della macchina
+let entityName = urlParams.get('entityName')
+console.log(entityName)
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
-// Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
-// ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
-// i testi caricati dalle funzioni.
 // funzione per la traduzione
 lang.getLanguage()
 
 
+// funzione che carica lo spinner
+function showSpinner() {
+	$('.loader').show(); // Show the spinner
+}
+
+function hideSpinner() {
+	$('.loader').hide(); // Show the spinner
+}
+
 // Definisce le variabili come date
 let timeStartHistory = new Date()
-let timeEndHistory   = new Date()
+let timeEndHistory = new Date()
+let timeStartZoom = new Date()
+let timeEndZoom = new Date()
 // Imposta X giorni prima della data odierna
 timeStartHistory.setDate(timeStartHistory.getDate() - 14)
 // Imposta i 2 data picker con le date calcolate prima
@@ -56,47 +47,47 @@ let disp_timeStart = common.getDate(timeStartHistory)
 let disp_timeEnd = common.getDate(timeEndHistory)
 
 $('#dateTimePicker').daterangepicker({
-    "locale": {
-        "format": "YYYY/MM/DD",
-        "separator": " - ",
-        "applyLabel": "Apply",
-        "cancelLabel": "Cancel",
-        "fromLabel": "From",
-        "toLabel": "To",
-        "customRangeLabel": "Custom",
-        "weekLabel": "W",
-        "daysOfWeek": [
-            "Su",
-            "Mo",
-            "Tu",
-            "We",
-            "Th",
-            "Fr",
-            "Sa"
-        ],
-        "monthNames": [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ],
-        "firstDay": 1
-    },
-    "startDate": disp_timeStart,
-    "endDate": disp_timeEnd
-}, function(start, end, label) {
+	"locale": {
+		"format": "YYYY/MM/DD",
+		"separator": " - ",
+		"applyLabel": "Apply",
+		"cancelLabel": "Cancel",
+		"fromLabel": "From",
+		"toLabel": "To",
+		"customRangeLabel": "Custom",
+		"weekLabel": "W",
+		"daysOfWeek": [
+			"Su",
+			"Mo",
+			"Tu",
+			"We",
+			"Th",
+			"Fr",
+			"Sa"
+		],
+		"monthNames": [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December"
+		],
+		"firstDay": 1
+	},
+	"startDate": disp_timeStart,
+	"endDate": disp_timeEnd
+}, function (start, end, label) {
 	// Recupera tutte le celle installate dal cliente
 	tw.getCustomerCells(selectedCustomer)
-	.then(dryers => {listHistoryProduction(dryers, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))})
-	.catch(error => console.error(error))
+		.then(dryers => { listHistoryProduction(dryers, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD')) })
+		.catch(error => console.error(error))
 });
 
 // Istanzia i grafici dell'attuale e dello storico
@@ -124,7 +115,7 @@ setInterval(am.refreshLegendSize, 1000, chartHistoryProduction, 'IDLegendHistory
 // Definisce la query da inviare a influxdb
 // I parametri da sostituire sono indicati da {1}, {2}, ecc...
 // Invece l'entityName è sempre comune per tutte le query
-let query  = 'SELECT '
+let query = 'SELECT '
 query += 'mean("Dati_Aggiuntivi_Temperatura_Ambiente") as "PV_Temperatura_Ambiente", '
 query += 'mean("Dati_Ciclo_Temperatura_PV") as "PV_Temperatura_Cella", '
 query += 'mean("Dati_Ciclo_Temperatura_SP") as "SP_Temperatura_Cella", '
@@ -142,23 +133,23 @@ $("#IDHistoryTableBody").empty()
 showSpinner()
 // Recupera tutte le celle installate dal cliente
 tw.getCustomerCells(selectedCustomer)
-.then(dryers =>{
-	console.log(dryers)
-	listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
-	//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
-	hideSpinner()
-})
-.catch(error => console.error(error))
+	.then(dryers => {
+		console.log(dryers)
+		listHistoryProduction(dryers, timeStartHistory, timeEndHistory)
+		//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+		hideSpinner()
+	})
+	.catch(error => console.error(error))
 
 let direction = true
-$("th").click(function() {
+$("th").click(function () {
 	let icon = "#" + $(this)[0].children[0].children[1].id
 	$(".icon-table").addClass("d-none")
-  $(icon).removeClass("d-none")
+	$(icon).removeClass("d-none")
 
-	if(direction){
+	if (direction) {
 		$(icon).text("expand_more")
-	}else{
+	} else {
 		$(icon).text("expand_less")
 	}
 
@@ -175,11 +166,11 @@ $("th").click(function() {
 })
 
 // Funzione di ricerca nella tabella
-$("#filter").on("keyup", function(){
-  let value = $(this).val()
-  $("#IDHistoryTableBody tr").filter(function(){
-    $(this).toggle($(this).text().indexOf(value) > -1)
-  })
+$("#filter").on("keyup", function () {
+	let value = $(this).val()
+	$("#IDHistoryTableBody tr").filter(function () {
+		$(this).toggle($(this).text().indexOf(value) > -1)
+	})
 })
 
 
@@ -189,7 +180,7 @@ $("#filter").on("keyup", function(){
 // ************ FUNCTIONS *************
 // ************************************
 
-function convertDate(s){
+function convertDate(s) {
 	let sdate = s
 	sdate = sdate.split(", ")
 	let date = sdate[0]
@@ -203,27 +194,27 @@ function convertDate(s){
 	return Date.parse(year + "/" + month + "/" + day + " " + time)
 }
 
-function insertionSort(table, column, dir){
-	let rows = 	table.children
+function insertionSort(table, column, dir) {
+	let rows = table.children
 	let parent = table
 
-	for(let i=1; i<rows.length; i++){
-		for(let j=i-1; j>-1; j--){
+	for (let i = 1; i < rows.length; i++) {
+		for (let j = i - 1; j > -1; j--) {
 			let value1 = rows[j].getElementsByTagName("TD")[column].innerHTML
-			let value2 = rows[j+1].getElementsByTagName("TD")[column].innerHTML
+			let value2 = rows[j + 1].getElementsByTagName("TD")[column].innerHTML
 
-			if(column == 0 || column == 1){
+			if (column == 0 || column == 1) {
 				value1 = convertDate(value1)
 				value2 = convertDate(value2)
 			}
 
-			if(dir){
-				if(value2 < value1){
-					parent.insertBefore(rows[j+1], rows[j])
+			if (dir) {
+				if (value2 < value1) {
+					parent.insertBefore(rows[j + 1], rows[j])
 				}
-			}else{
-				if(value2 > value1){
-					parent.insertBefore(rows[j+1], rows[j])
+			} else {
+				if (value2 > value1) {
+					parent.insertBefore(rows[j + 1], rows[j])
 				}
 			}
 		}
@@ -231,105 +222,113 @@ function insertionSort(table, column, dir){
 }
 
 //$('.spinner-border').spinner('show')
-function showSpinnerTable(){
+function showSpinnerTable() {
 	$('.spinner-border').show(); // Show the spinner
-    $('.tableDiv').css('opacity', '0.5'); // 
+	$('.tableDiv').css('opacity', '0.5'); // 
 }
 
-function hideSpinnerTable(){
+function hideSpinnerTable() {
 	$('.spinner-border').hide(); // Show the spinner
-    $('.tableDiv').css('opacity', '1'); // 
+	$('.tableDiv').css('opacity', '1'); // 
 }
 
 showSpinnerTable()
-function listHistoryProduction(dryers, timeStart, timeEnd){
+function listHistoryProduction(dryers, timeStart, timeEnd) {
 	$("#IDHistoryTableBody").empty()
-	dryers.array.forEach((dryer, d) =>{
+	dryers.array.forEach((dryer, d) => {
 		console.log(dryer)
 		let dryer_name = dryer.entityName.split(".")
 		dryer_name = dryer_name[4] + " " + dryer_name[5]
 		console.log(dryer_name)
 		// Recupera lo storico delle lavorazioni effettuate dalla cella
 		tw.service_03_getDryerHistoryProductions(dryer.entityName, timeStart, timeEnd)
-		.then(productions => {
-			// Per ogni ricetta trovata genera una nuova riga nella tabella
-			productions.rows.forEach((el, i) => {
-				// Converte il timestamp in Date
-				let start = new Date(el.timeStart).toLocaleString();
-				let end = new Date(el.timeEnd).toLocaleString();
-				// Definisce l'id della riga della tabella
-				let id = "IDHistoryTableRow" + i + d;
-				// Definisce l'html della riga da aggiungere
-				let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + start  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + end    + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.ricetta + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + el.durata  + '</td>'
-				row    += '    <td style="font-size: 12px;border-style: none;">' + dryer_name  + '</td>'
-				row    += '</tr>'
-				// Aggiunge la riga alla tabella
-				$("#IDHistoryTableBody").append(row)
-				// Imposta i timestamp di inizio e fine essiccazione (il range temporale è allargato 30 min prima dell'inizio e 30 min dopo la fine)
-				let timestampStart = el.timeStart - 1800000
-				let timestampEnd   = el.timeEnd + 1800000
-				// Controlla se la data è invalida, nel caso l'essiccazione è in corso e carica la data attuale
-				if(timestampEnd == undefined || timestampEnd == null || timestampEnd == '' || Number.isNaN(timestampEnd)){
-					timestampEnd = Date.now() + 1800000
-				}
+			.then(productions => {
+				// Per ogni ricetta trovata genera una nuova riga nella tabella
+				productions.rows.forEach((el, i) => {
+					// Converte il timestamp in Date
+					let start = new Date(el.timeStart).toLocaleString();
+					let end = new Date(el.timeEnd).toLocaleString();
+					// Definisce l'id della riga della tabella
+					let id = "IDHistoryTableRow" + i + d;
+					// Definisce l'html della riga da aggiungere
+					let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
+					row += '    <td style="font-size: 12px;border-style: none;">' + start + '</td>'
+					row += '    <td style="font-size: 12px;border-style: none;">' + end + '</td>'
+					row += '    <td style="font-size: 12px;border-style: none;">' + el.ricetta + '</td>'
+					row += '    <td style="font-size: 12px;border-style: none;">' + el.durata + '</td>'
+					row += '    <td style="font-size: 12px;border-style: none;">' + dryer_name + '</td>'
+					row += '</tr>'
+					// Aggiunge la riga alla tabella
+					$("#IDHistoryTableBody").append(row)
+					// Imposta i timestamp di inizio e fine essiccazione (il range temporale è allargato 30 min prima dell'inizio e 30 min dopo la fine)
+					let timestampStart = el.timeStart - 1800000
+					let timestampEnd = el.timeEnd + 1800000
+					// Controlla se la data è invalida, nel caso l'essiccazione è in corso e carica la data attuale
+					if (timestampEnd == undefined || timestampEnd == null || timestampEnd == '' || Number.isNaN(timestampEnd)) {
+						timestampEnd = Date.now() + 1800000
+					}
 
-				id = "#" + id
-				$(id).click(function(){
-					// Aggiunge la classe table-primary alla riga seleziona e la rimuove dalle altre righe
-					$(this).addClass('table-primary').siblings().removeClass('table-primary')
-					// Definisce la query da inviare a influxdb
-					let subquery = query.replaceAll('{1}', timestampStart).replaceAll('{2}', timestampEnd).replaceAll('{3}', dryer.entityName)
-					// Recupera i dati da influxdb e li visualizza sul grafico
-					am.setChartData(chartHistoryProduction, subquery, '')
+					id = "#" + id
+					$(id).click(function () {
+						// Aggiunge la classe table-primary alla riga seleziona e la rimuove dalle altre righe
+						$(this).addClass('table-primary').siblings().removeClass('table-primary')
+						// Definisce la query da inviare a influxdb
+						let subquery = query.replaceAll('{1}', timestampStart).replaceAll('{2}', timestampEnd).replaceAll('{3}', dryer.entityName)
+						// Recupera i dati da influxdb e li visualizza sul grafico
+						am.setChartData(chartHistoryProduction, subquery, '')
+						timeStartZoom = timestampStart
+						timeEndZoom = timestampEnd
 
-					tw.service_05_getDryerStartEnd(dryer.entityName, timestampStart, timestampEnd)
-					.then(result => {
-						//console.log(result)
-						let range = chartHistoryProduction.xAxes.values[0].axisRanges.values[0]
-						range.date = new Date(result.array[0].start)
-						range.grid.stroke = am4core.color("#396478");
-						range.grid.strokeWidth = 2;
-						range.grid.strokeOpacity = 0.6;
-						range.label.inside = true;
-						range.label.text = "Inizio Essicazione";
+						$('#fullscreenHistoryCell').click(function () {
+							let url = '60_dryers_history_zoom.html?' + 'entityName=' + entityName + '&timeStart=' + timeStartZoom + '&timeEnd=' + timeEndZoom
+							window.open(url, '_blank')
+							console.log(e)
+						})
 
-						let range1 = chartHistoryProduction.xAxes.values[0].axisRanges.values[1]
-						range1.date = new Date(result.array[0].stop)
-						range1.grid.stroke = am4core.color("#396478");
-						range1.grid.strokeWidth = 2;
-						range1.grid.strokeOpacity = 0.6;
-						range1.label.inside = true;
-						range1.label.text = "Fine Essicazione";
+						tw.service_05_getDryerStartEnd(dryer.entityName, timestampStart, timestampEnd)
+							.then(result => {
+								//console.log(result)
+								let range = chartHistoryProduction.xAxes.values[0].axisRanges.values[0]
+								range.date = new Date(result.array[0].start)
+								range.grid.stroke = am4core.color("#396478");
+								range.grid.strokeWidth = 2;
+								range.grid.strokeOpacity = 0.6;
+								range.label.inside = true;
+								range.label.text = "Inizio Essicazione";
 
-						if(result.array[0].endLoad){
-							let range2 = chartHistoryProduction.xAxes.values[0].axisRanges.values[2]
-							range2.date = new Date(result.array[0].endLoad)
-							range2.grid.stroke = am4core.color("#396478");
-							range2.grid.strokeWidth = 2;
-							range2.grid.strokeOpacity = 0.6;
-							range2.label.inside = true;
-							range2.label.text = "Fine Carico";
-						}
+								let range1 = chartHistoryProduction.xAxes.values[0].axisRanges.values[1]
+								range1.date = new Date(result.array[0].stop)
+								range1.grid.stroke = am4core.color("#396478");
+								range1.grid.strokeWidth = 2;
+								range1.grid.strokeOpacity = 0.6;
+								range1.label.inside = true;
+								range1.label.text = "Fine Essicazione";
+
+								if (result.array[0].endLoad) {
+									let range2 = chartHistoryProduction.xAxes.values[0].axisRanges.values[2]
+									range2.date = new Date(result.array[0].endLoad)
+									range2.grid.stroke = am4core.color("#396478");
+									range2.grid.strokeWidth = 2;
+									range2.grid.strokeOpacity = 0.6;
+									range2.label.inside = true;
+									range2.label.text = "Fine Carico";
+								}
+							})
+							.catch(e => { console.log(e) })
 					})
-					.catch(e => {console.log(e)})
-				})
 
-				// Recupera la prima riga della tabella
-				let elem = document.getElementById('firstColumn')
-		    // Definisce la variabile come click event
-				let clickEvent = new Event('click');
-		    // Esegue l'evento dell'elemento, in questo modo simula il click
-		    // sulla prima riga della tabella, e viene caricato il grafico
-				elem.dispatchEvent(clickEvent)
+					// Recupera la prima riga della tabella
+					let elem = document.getElementById('firstColumn')
+					// Definisce la variabile come click event
+					let clickEvent = new Event('click');
+					// Esegue l'evento dell'elemento, in questo modo simula il click
+					// sulla prima riga della tabella, e viene caricato il grafico
+					elem.dispatchEvent(clickEvent)
+
+				})
+				//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+				hideSpinnerTable()
 
 			})
-			//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
-			hideSpinnerTable()
-
-		})
 	})
 }

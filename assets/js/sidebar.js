@@ -11,24 +11,24 @@ import * as lang from "./Global/Common/Translation.js"
 
 let entityName = localStorage.getItem('global_entityName')
 let customer = localStorage.getItem('global_selected_customer')
-try{
+try {
   customer = customer.replace(/_/g, ' ')
   $('#id-customer-name').text(customer)
-}catch(e){}
-if(localStorage.getItem('global_customer').includes("Storci")){
+} catch (e) { }
+if (localStorage.getItem('global_customer').includes("Storci")) {
   $('#id-nav-customers-list').removeClass('d-none')
 }
 
 let url = "https://api.github.com/repos/Storci/pwa/releases/latest"
 tw.service_80_githubAPI(url)
-.then((resp) => {$("#github-version").text(resp.name)})
+  .then((resp) => { $("#github-version").text(resp.name) })
 
 // Recupera l'url della pagina visualizzata
 // Effettua uno split dell'url recuperato dividendo la stringa tramite lo /
 // recupera il nome della pagina
 let pageURL = window.location.href
-    pageURL = pageURL.split('\/')
-let pageName = pageURL[pageURL.length-1]
+pageURL = pageURL.split('\/')
+let pageName = pageURL[pageURL.length - 1]
 // funzione per la traduzione
 lang.getLanguage()
 // recupera il nome dell'utente loggato.
@@ -38,9 +38,9 @@ fb.onAuthStateChanged()
   .then(user => {
     $('#id-username').text(user.email)
     $('#id-user-login').addClass('d-none')
-   // $('#id-user-profile').show()
+    // $('#id-user-profile').show()
   })
-  .catch(error => {})
+  .catch(error => { })
 // controlla quando viene premuto il tasto di logout
 // alla pressione del tasto, l'utente viene reindirizzato alla pagina di login
 $('#id-user-logout').click(() => { fb.signOut() })
@@ -53,27 +53,27 @@ $('#modal1').modal("show")
 
 // Recupera i nomi delle macchine installate dal cliente.
 // vengono recuperate sia le celle che le linee.
-if(customer != "Storci"){
+if (customer != "Storci") {
   tw.service_90_sidebar(entityName)
     .then(res => {
       // ****************************
       // ********** DRYERS **********
       // ****************************
-      try{
+      try {
         // Controlla se sono presenti delle celle
-        if(JSON.stringify(res.dryers) !== '[]'){
+        if (JSON.stringify(res.dryers) !== '[]') {
           // pagine
-          let href_dashboard         = '30_dryers_general_dashboard.html'
-          let href_history           = '31_dryers_history.html'
-          let href_customer_list     = '01_Customers.html'
+          let href_dashboard = '30_dryers_general_dashboard.html'
+          let href_history = '31_dryers_history.html'
+          let href_customer_list = '01_Customers.html'
           // id
-          let idAccordion            = '#id-accordion-dryers'
-          let idBtnAccordion         = '#id-btn-accordion-dryers'
-          let idCollapsePanel        = '#id-collapse-panel-dryers'
+          let idAccordion = '#id-accordion-dryers'
+          let idBtnAccordion = '#id-btn-accordion-dryers'
+          let idCollapsePanel = '#id-collapse-panel-dryers'
           // link
-          let nav_dashboard_link     = '#id-nav-dashboard-dryer a'
-          let nav_history_link       = '#id-nav-history-dryer a'
-          let nav_customer_link      = '#id-nav-customers-list a'
+          let nav_dashboard_link = '#id-nav-dashboard-dryer a'
+          let nav_history_link = '#id-nav-history-dryer a'
+          let nav_customer_link = '#id-nav-customers-list a'
 
 
           // Visualizza il menu delle celle
@@ -81,7 +81,7 @@ if(customer != "Storci"){
           // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
           // se la pagina corrisponde, allora viene aperto il menù delle celle.
 
-          if(pageName.includes('_dryer')){
+          if (pageName.includes('_dryer')) {
             $(idBtnAccordion).attr('aria-expanded', 'true')
             $(idBtnAccordion).removeClass('collapsed')
             $(idCollapsePanel).addClass('show')
@@ -89,9 +89,9 @@ if(customer != "Storci"){
 
           // Controlla nello specifico quale pagina è in visualizzazione
           // se la pagina della dashboard o dello storico
-          if(pageName == href_dashboard){ $(nav_dashboard_link).addClass('active') }
-          if(pageName == href_history)  { $(nav_history_link).addClass('active') }
-          if(pageName == href_customer_list) { $(nav_customer_link).addClass('active')}
+          if (pageName == href_dashboard) { $(nav_dashboard_link).addClass('active') }
+          if (pageName == href_history) { $(nav_history_link).addClass('active') }
+          if (pageName == href_customer_list) { $(nav_customer_link).addClass('active') }
 
 
           // Visualizza le celle presenti dal cliente.
@@ -99,57 +99,57 @@ if(customer != "Storci"){
           // Modifica l'href da richiamare quando si preme il pulsante del menu
           // ref deve passare alla pagina 30_Dryer_Dashboard.html l'entityName della cella
           // In questo modo la pagina riesce a recuperare i dati dalla cella corretta
-          for(let i=1; i<=res.dryers.length; i++){
+          for (let i = 1; i <= res.dryers.length; i++) {
             // genera il percorso da aprire quando viene premuto il pulsante relativo ad una cella
             // il percorso punta alla pagina 32_dryer_dashboard.html, con l'aggiunta del parametro entityName
-            let href         = '32_dryer_dashboard.html?entityName=' + res.dryers[i-1].entityName
+            let href = '32_dryer_dashboard.html?entityName=' + res.dryers[i - 1].entityName
             let id_nav_dryer = '#id-nav-dryer-' + i
-            let nav_link     = id_nav_dryer + ' a'
-            let span_status  = id_nav_dryer + ' div a :last-child'
+            let nav_link = id_nav_dryer + ' a'
+            let span_status = id_nav_dryer + ' div a :last-child'
 
             // effettua modifiche agli elementi sottostanti
-            $(span_status).text(res.dryers[i-1].status)
+            $(span_status).text(res.dryers[i - 1].status)
             $(id_nav_dryer).removeClass('d-none')
             $(nav_link).attr('href', href)
 
             // imposta il link come attivo se la pagina in visualizzazione corrisponde ad una cella
-            if(pageName == href){ $(nav_link).addClass('active') }
+            if (pageName == href) { $(nav_link).addClass('active') }
           }
-          setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+          setTimeout(function () { $('#modal1').modal("hide") }, 500);
           console.log(res.dryers)
 
         }
-      }catch(e){ console.error(e) }
+      } catch (e) { console.error(e) }
 
       // ***************************
       // ********** LINES **********
       // ***************************
-      try{
+      try {
         // Controlla se sono presenti delle celle
-        if(JSON.stringify(res.lines) !== '[]'){
+        if (JSON.stringify(res.lines) !== '[]') {
           // Visualizza le celle presenti dal cliente.
           // Nella sidebar sono presenti 16 celle, nascoste tramite la classe d-nome
           // Modifica l'href da richiamare quando si preme il pulsante del menu
           // ref deve passare alla pagina 30_Dryer_Dashboard.html l'entityName della cella
           // In questo modo la pagina riesce a recuperare i dati dalla cella corretta
-          for(let i=1; i<=res.lines.length; i++){
+          for (let i = 1; i <= res.lines.length; i++) {
             // definisce gli id dell'accordion della linea
             // il ciclo for permette di selezionare il menù corretto in base alla linea in scansione
             // All'interno del div idCollapsePanel sono contenuti tutti i link alle pagine delle linea
-            let idAccordion           = '#id-accordion-line-' + i
-            let idBtnAccordion        = '#id-btn-accordion-line-' + i
-            let idCollapsePanel       = '#id-collapse-panel-line-' + i
+            let idAccordion = '#id-accordion-line-' + i
+            let idBtnAccordion = '#id-btn-accordion-line-' + i
+            let idCollapsePanel = '#id-collapse-panel-line-' + i
 
             // Effettua un ciclo per ogni elemento 'li' contenuto nel div idCollapsePanel
             $(idCollapsePanel).children('li').each((j, elem) => {
               // Recupera href impostato nell'elemento a
               let href = $(elem).children('a').attr('href')
               // Aggiunge il parametro da passare alla pagina
-              href += '?entityName=' + res.lines[i-1].entityName
+              href += '?entityName=' + res.lines[i - 1].entityName
               // Imposta l'elememento con il nuovo href
               $(elem).children('a').attr('href', href)
               // Aggiunge la classe active se ci troviamo in una pagina della linea
-              if(pageName == href){
+              if (pageName == href) {
                 $(elem).children('a').addClass('active')
                 $(idBtnAccordion).attr('aria-expanded', 'true')
                 $(idBtnAccordion).removeClass('collapsed')
@@ -159,23 +159,23 @@ if(customer != "Storci"){
 
             // id link
             let id_nav_dashboard_line = '#id-nav-dashboard-line-' + i
-            let span_status           = id_nav_dashboard_line + 'div a :last-child'
-            $(span_status).text(res.lines[i-1].status)
+            let span_status = id_nav_dashboard_line + 'div a :last-child'
+            $(span_status).text(res.lines[i - 1].status)
 
-            getListMachine(res.lines[i-1].entityName, i)
+            getListMachine(res.lines[i - 1].entityName, i)
 
             // Visualizza il menu delle celle
             $(idAccordion).removeClass('d-none')
           }
         }
-      }catch(e){ console.error(e) }
+      } catch (e) { console.error(e) }
 
-    $('body').removeClass('d-none')
-    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
+      $('body').removeClass('d-none')
+      setTimeout(function () { $('#modal1').modal("hide") }, 500);
 
-  })
+    })
     .catch(err => console.error(err))
-}else{
+} else {
   $('body').removeClass('d-none')
 }
 
@@ -185,51 +185,51 @@ refreshStatus(entityName)
 setInterval(refreshStatus, 10000, entityName)
 // il servizio recupera gli stati delle macchine installate.
 // gli stati sono visualizzati nella sidebar a fianco di ogni nome.
-function refreshStatus(entityName){
+function refreshStatus(entityName) {
   // Recupera i dati generali delle celle installate dal cliente
   tw.service_90_sidebar(entityName)
-  .then(res => {
-    // Controlla se sono presenti delle celle
-    if(JSON.stringify(res.dryers) !== '[]'){
-      for(let i=1; i<=res.dryers.length; i++){
-        let span_status = '#id-nav-dryer-' + i + ' a > span:last-child'
-        $(span_status).text(res.dryers[i-1].status)
+    .then(res => {
+      // Controlla se sono presenti delle celle
+      if (JSON.stringify(res.dryers) !== '[]') {
+        for (let i = 1; i <= res.dryers.length; i++) {
+          let span_status = '#id-nav-dryer-' + i + ' a > span:last-child'
+          $(span_status).text(res.dryers[i - 1].status)
+        }
       }
-    }
 
-    if(JSON.stringify(res.lines) !== '[]'){
-      for(let i=1; i<=res.lines.length; i++){
-        let span_status = '#id-nav-dashboard-line-' + i + ' a > span:last-child'
-        $(span_status).text(res.lines[i-1].status)
+      if (JSON.stringify(res.lines) !== '[]') {
+        for (let i = 1; i <= res.lines.length; i++) {
+          let span_status = '#id-nav-dashboard-line-' + i + ' a > span:last-child'
+          $(span_status).text(res.lines[i - 1].status)
+        }
       }
-    }
-  })
-  .catch(err => console.error(err))
+    })
+    .catch(err => console.error(err))
 }
 
 // Funzione che recupera le macchine presenti nella linea
 // Effettua una chiamata a tw per il recupero del nome delle macchine,
 // poi inserisce le macchine all'interno di una lista.
-function getListMachine(entityName, id){
-	tw.getCustomerLineMachine(entityName)
-	.then(list => {
-    list.rows.forEach((item, i) => {
-  		switch(item.name){
-  			case 'Impasto'					 : $('#id-nav-dough-line-' + id).removeClass('d-none'); break
-  			case "Stenditrice"			 : $('#id-nav-spreader-line-' + id).removeClass('d-none'); break
-  			case "Pasta Instant"		 : $('#id-nav-pasta-instant-line-' + id).removeClass('d-none'); break
-  			case "Avanzamento Telai" : $('#id-nav-tray-feeder-line-' + id).removeClass('d-none'); break
-  			case "Robot Deimpilatore": $('#id-nav-destacker-line-' + id).removeClass('d-none'); break
-  			case "Omnidryer"				 : $('#id-nav-omnidryer-line-' + id).removeClass('d-none'); break
-  			case "Pressa"						 : $('#id-nav-extruder-line-' + id).removeClass('d-none'); break
-  			case "Impilatore"			   : $('#id-nav-stacker-line-' + id).removeClass('d-none'); break
-  			case "Trabatto"				   : $('#id-nav-predryer-line-' + id).removeClass('d-none'); break
-        case "Nidi_Lasagna" 	   : $('#id-nav-nests_lasagna-line-' + id).removeClass('d-none'); break
-  		}
-  	})
-    setTimeout(function() {	$('#modal1').modal("hide") }, 500);
-  })
-	.catch(error => console.error(error))
+function getListMachine(entityName, id) {
+  tw.getCustomerLineMachine(entityName)
+    .then(list => {
+      list.rows.forEach((item, i) => {
+        switch (item.name) {
+          case 'Impasto': $('#id-nav-dough-line-' + id).removeClass('d-none'); break
+          case "Stenditrice": $('#id-nav-spreader-line-' + id).removeClass('d-none'); break
+          case "Pasta Instant": $('#id-nav-pasta-instant-line-' + id).removeClass('d-none'); break
+          case "Avanzamento Telai": $('#id-nav-tray-feeder-line-' + id).removeClass('d-none'); break
+          case "Robot Deimpilatore": $('#id-nav-destacker-line-' + id).removeClass('d-none'); break
+          case "Omnidryer": $('#id-nav-omnidryer-line-' + id).removeClass('d-none'); break
+          case "Pressa": $('#id-nav-extruder-line-' + id).removeClass('d-none'); break
+          case "Impilatore": $('#id-nav-stacker-line-' + id).removeClass('d-none'); break
+          case "Trabatto": $('#id-nav-predryer-line-' + id).removeClass('d-none'); break
+          case "Nidi_Lasagna": $('#id-nav-nests_lasagna-line-' + id).removeClass('d-none'); break
+        }
+      })
+      setTimeout(function () { $('#modal1').modal("hide") }, 500);
+    })
+    .catch(error => console.error(error))
 }
 
 
@@ -242,14 +242,15 @@ jQuery.ajax({
   dataType: "script"
 });
 
-window.ATL_JQ_PAGE_PROPS =  {
-"triggerFunction": function(showCollectorDialog) {
-  //Requires that jQuery is available!
-  jQuery("#triggerIssue").click(function(e) {
-    e.preventDefault();
-    showCollectorDialog();
-  });
-}};
+window.ATL_JQ_PAGE_PROPS = {
+  "triggerFunction": function (showCollectorDialog) {
+    //Requires that jQuery is available!
+    jQuery("#triggerIssue").click(function (e) {
+      e.preventDefault();
+      showCollectorDialog();
+    });
+  }
+};
 
 // Fetch the script
 /*fetch("https://thingworx-storci.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/7/b0105d975e9e59f24a3230a22972a71a/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=7ab5f8ea", {
