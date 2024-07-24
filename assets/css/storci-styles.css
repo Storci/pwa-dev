@@ -533,6 +533,7 @@ thead {
   }
 }
 
+/*  */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -549,23 +550,6 @@ thead {
 }
 
 @media (max-width: 767px) {
-  /* .navbar {
-    position: relative; 
-  }
-  .navbar-toggler {
-    position: absolute;
-    top: 15px;
-    left: 1rem;
-    z-index: 1;
-  }
-  
-  .navbar-brand {
-    position: absolute;
-    top: 15px;
-    right: 1rem; 
-    z-index: 1;
-    background-color: #000000;
-  } */
   .navbar {
     flex-direction: row-reverse;
   }
@@ -574,8 +558,6 @@ thead {
   .navbar-toggler {
     order: 1;
     margin-left: auto;
-    /*top: 0.25rem;*/
-    /* left: 1rem; */
   }
 
   .navbar-brand {
@@ -584,6 +566,19 @@ thead {
 
   .navbar-collapse {
     padding-top: 15px; /* Adjust the value based on your design */
+  }
+
+  .sidebar {
+    width: 70%;
+  }
+  .navbar-dark,
+  .navbar[data-bs-theme="dark"] {
+    --bs-navbar-toggle-border-color: none !important;
+  }
+  .navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0;
   }
 }
 
