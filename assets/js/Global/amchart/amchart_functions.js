@@ -22,10 +22,10 @@ let colorChart = [
 		am4core.color("#e06b59"),// color light red for temperature PV
 		am4core.color("#f70202"),// color red for temperature Sp
 		am4core.color("#0056ed"),// color blue for room humidity
-	  	am4core.color("#5e73e0"),// color light blue for humidity PV
+		am4core.color("#5e73e0"),// color light blue for humidity PV
 		am4core.color("#1031ed"),// color blue for humidity set point
 		am4core.color("#EEA700"),// colore per la calorie arancione
-	// 	am4core.color("#2e7d32")
+		// 	am4core.color("#2e7d32")
 	],
 	//colori per Dashbord cliente e dashboard linea
 	[
@@ -106,7 +106,6 @@ let colorChart = [
 		am4core.color("#9B3802"),//  viola chiaro per pressione
 		am4core.color("#8105E1"),//  viola chiaro per pressione
 		am4core.color("#8105E1"),//  viola chiaro per pressione
-
 	]
 
 
@@ -118,7 +117,7 @@ let colorChart = [
 // typeColor   = indice per la scelta della colorazione del grafico [colorChart]
 // numYAxis 	 = numero di assi Y
 // YAxisUnits  = array con le unità di misura da visualizzare nei tooltip
-function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisUnits=[], axisRange=false){
+function createXYChart(IDdivChart, IDdivLegend = '', typeColor, numYAxis = 1, YAxisUnits = [], axisRange = false) {
 
 	// Instanzia il grafico di am4core
 	let chart = am4core.create(IDdivChart, am4charts.XYChart);
@@ -136,7 +135,7 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	//Questa funzione abilita l'export o il download del grafico in tutti formati
 	chart.exporting.menu = new am4core.ExportMenu();
 
-	if(IDdivLegend !== ''){
+	if (IDdivLegend !== '') {
 		let legendContainer = am4core.create(IDdivLegend, am4core.Container);
 		legendContainer.width = am4core.percent(100);
 		legendContainer.height = am4core.percent(100);
@@ -152,7 +151,7 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	var marker = chart.legend.markers.template.children.getIndex(0);
 	marker.width = 8;
 	marker.height = 8;
-	marker.cornerRadius(50,50,50,50);
+	marker.cornerRadius(50, 50, 50, 50);
 	marker.verticalCenter = "center";
 	marker.horizontalCenter = "center";
 	// ***** Settaggio impostazioni ASSE X
@@ -177,13 +176,13 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	let event2 = dateAxis.axisRanges.create();
 
 	// Crea tanti assi quanti ne sono stati impostati, di default 1
-	for(let i=0; i<numYAxis; i++){
+	for (let i = 0; i < numYAxis; i++) {
 		// ***** Settaggio impostazioni ASSE Y
 		let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-		try{ valueAxis.title.text = YAxisUnits[i]; }catch(e){}
+		try { valueAxis.title.text = YAxisUnits[i]; } catch (e) { }
 		valueAxis.title.fontSize = 12
 		valueAxis.title.fill = am4core.color("#698ca7BF");
-		if(i>0){valueAxis.renderer.opposite = true;}
+		if (i > 0) { valueAxis.renderer.opposite = true; }
 		valueAxis.renderer.labels.template.fill = am4core.color("#698ca7BF");
 		valueAxis.renderer.labels.template.fontSize = 12;
 		// ***** Settaggio impostazioni ASSE Y
@@ -205,7 +204,7 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	return chart
 }
 
-function createPieChart(IDdivChart){
+function createPieChart(IDdivChart) {
 	// Themes begin
 	//am4core.useTheme(am4themes_animated)
 	// Themes end
@@ -220,12 +219,12 @@ function createPieChart(IDdivChart){
 	return chart
 }
 
-function refreshLegendSize(chart, IDdivLegend){
+function refreshLegendSize(chart, IDdivLegend) {
 	let id = '#' + IDdivLegend
 	$(id).height(chart.legend.contentHeight)
 }
 
-function createXYChartNoLegend(IDdivChart, typeColor){
+function createXYChartNoLegend(IDdivChart, typeColor) {
 	// AMCHART - Create chart instance
 	let chart = am4core.create(IDdivChart, am4charts.XYChart);
 
@@ -242,7 +241,7 @@ function createXYChartNoLegend(IDdivChart, typeColor){
 	// AMCHART - Legend
 	chart.legend = new am4charts.Legend();
 	chart.legend.disable = true;
-	chart.legend.maxHeight  = 0;
+	chart.legend.maxHeight = 0;
 	chart.legend.labels.template.fontSize = 0;
 	chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm:ss Z";
 
@@ -282,7 +281,7 @@ function createXYChartNoLegend(IDdivChart, typeColor){
 	return chart;
 }
 
-function createColumnSeries(chart, seriesName, labelX, labelY, UM, yAxis=0){
+function createColumnSeries(chart, seriesName, labelX, labelY, UM, yAxis = 0) {
 	let series = chart.series.push(new am4charts.ColumnSeries())
 	series.dataFields.valueY = labelY
 	series.dataFields.dateX = labelX
@@ -304,7 +303,7 @@ function createColumnSeries(chart, seriesName, labelX, labelY, UM, yAxis=0){
 	series.columns.template.column.cornerRadiusTopRight = 10
 }
 
-function createLineSeries(chart, seriesName, labelX, labelY, UM, yAxis=0, EnableBullet=false, hidden=false, EnableScrollbar=false, tension=1){
+function createLineSeries(chart, seriesName, labelX, labelY, UM, yAxis = 0, EnableBullet = false, hidden = false, EnableScrollbar = false, tension = 1) {
 	let series = chart.series.push(new am4charts.LineSeries());
 	series.dataFields.valueY = labelY;
 	series.dataFields.dateX = labelX;
@@ -317,13 +316,13 @@ function createLineSeries(chart, seriesName, labelX, labelY, UM, yAxis=0, Enable
 	series.yAxis = chart.yAxes.values[yAxis];
 	series.hidden = hidden;
 
-	if(EnableBullet){
+	if (EnableBullet) {
 		var bullet = series.bullets.push(new am4charts.CircleBullet());
 		bullet.circle.stroke = am4core.color("#fff");
 		bullet.circle.strokeWidth = 2;
 	}
 
-	if(EnableScrollbar){
+	if (EnableScrollbar) {
 		var scrollbarX = new am4charts.XYChartScrollbar()
 		scrollbarX.series.push(series)
 		chart.scrollbarX = scrollbarX
@@ -332,7 +331,7 @@ function createLineSeries(chart, seriesName, labelX, labelY, UM, yAxis=0, Enable
 	return series;
 }
 
-function createPieSeries(chart, seriesName, categoryName, unitName, totalUnit){
+function createPieSeries(chart, seriesName, categoryName, unitName, totalUnit) {
 	// Add and configure Series
 	var pieSeries = chart.series.push(new am4charts.PieSeries());
 	pieSeries.dataFields.value = seriesName;
@@ -354,11 +353,11 @@ function createPieSeries(chart, seriesName, categoryName, unitName, totalUnit){
 	label.horizontalCenter = "middle";
 	label.verticalCenter = "middle";
 
-	label.adapter.add("text", function(text, target){
+	label.adapter.add("text", function (text, target) {
 		let value = pieSeries.dataItem.values.value.sum
-		try{
+		try {
 			value = pieSeries.dataItem.values.value.sum.toFixed(2)
-		}catch(e){}
+		} catch (e) { }
 		return "[font-size:18px]total[/]:\n[bold font-size:30px]" + value + " " + totalUnit + "[/]";
 	})
 }
@@ -372,42 +371,42 @@ function setChartData(chart, query, ringclass) {
 	// recupera i dati da influxdb
 
 	tw.influxQuery(query)
-	.then(response => {
-		console.log(response.results[0].series[0].values)
-		// Aggiunge una riga all'array data
-		response.results[0].series[0].values.forEach(el => {
-			// Definisce la variabile come json object
-			let obj  = {}
-			// Aggiunge le chiavi-valore all'oggetto json obj
-			// Le chiavi sono le colonne della query di influxdb
-			response.results[0].series[0].columns.forEach((key, id) => {
-				// controllo che il valore ritornato sia un numero
-				if(typeof(el[id]) == "number"){
-					// Riduco la precisione a 2 valori decimali
-					el[id] = el[id].toFixed(2)
-				}
-				// Converte la stringa in timestamp
-				if(id == 0){
-					// Riduco la precisione a 2 valori decimali
-					el[id] = Date.parse(el[id])
-				}
-				//Aggiungo il valore all'oggetto obj
-				obj[key] = el[id]
+		.then(response => {
+			console.log(response.results[0].series[0].values)
+			// Aggiunge una riga all'array data
+			response.results[0].series[0].values.forEach(el => {
+				// Definisce la variabile come json object
+				let obj = {}
+				// Aggiunge le chiavi-valore all'oggetto json obj
+				// Le chiavi sono le colonne della query di influxdb
+				response.results[0].series[0].columns.forEach((key, id) => {
+					// controllo che il valore ritornato sia un numero
+					if (typeof (el[id]) == "number") {
+						// Riduco la precisione a 2 valori decimali
+						el[id] = el[id].toFixed(2)
+					}
+					// Converte la stringa in timestamp
+					if (id == 0) {
+						// Riduco la precisione a 2 valori decimali
+						el[id] = Date.parse(el[id])
+					}
+					//Aggiungo il valore all'oggetto obj
+					obj[key] = el[id]
+				});
+				// Aggiungi il json all'array
+				data.push(obj)
 			});
-			// Aggiungi il json all'array
-			data.push(obj)
-		});
-		// Nasconde l'icona del caricamento alla fine delle funzione + 1s dopo
-		setTimeout(function() {	$(ringclass).hide() }, 1000)
-		// Ritorna l'array dei dati
-		chart.data = data
-	})
+			// Nasconde l'icona del caricamento alla fine delle funzione + 1s dopo
+			setTimeout(function () { $(ringclass).hide() }, 1000)
+			// Ritorna l'array dei dati
+			chart.data = data
+		})
 }
 
 // La funzione permette di esportare il grafico selezionato
-function getExport(chart){
+function getExport(chart) {
 	chart.exporting.export("png")
 }
 
 
-export {createXYChart, createPieChart, refreshLegendSize, createXYChartNoLegend, createColumnSeries, createLineSeries, createPieSeries, setChartData, getExport}
+export { createXYChart, createPieChart, refreshLegendSize, createXYChartNoLegend, createColumnSeries, createLineSeries, createPieSeries, setChartData, getExport }
