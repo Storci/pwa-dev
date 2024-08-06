@@ -17,11 +17,18 @@ let customerName = localStorage.getItem('global_customer')
 
 showSpinner()
 
+
 function showSpinner() {
-	$('.loader').show(); // mostrare lo spinner
+	$('.loader').show(); // Show the spinner
+
+	// Add click event listener to hide the spinner
+	document.body.addEventListener('click', hideSpinner);
 }
+
 function hideSpinner() {
-	$('.loader').hide(); // nascondere lo spinner
+	$('.loader').hide(); // Show the spinner
+	// Remove click event listener to avoid multiple bindings
+	document.body.removeEventListener('click', hideSpinner);
 }
 
 
@@ -146,7 +153,7 @@ function insertionSort(table, column, dir) {
 	}
 }
 /*document.addEventListener('DOMContentLoaded', function() {
-    $('#modal1').modal("hide");
+	$('#modal1').modal("hide");
 });*/
 // Funzione per recuperare i dati da tw per mettere nella tabella
 function getAlarmsNotifications(filter, getHistory, customerName) {

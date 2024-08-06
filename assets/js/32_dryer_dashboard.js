@@ -14,12 +14,18 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
 showSpinner()
+
 function showSpinner() {
 	$('.loader').show(); // Show the spinner
+
+	// Add click event listener to hide the spinner
+	document.body.addEventListener('click', hideSpinner);
 }
 
 function hideSpinner() {
 	$('.loader').hide(); // Show the spinner
+	// Remove click event listener to avoid multiple bindings
+	document.body.removeEventListener('click', hideSpinner);
 }
 
 // Recupera dei dati dalle local storage

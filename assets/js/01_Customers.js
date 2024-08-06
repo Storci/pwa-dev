@@ -10,10 +10,15 @@ import * as lang from "./Global/Common/Translation.js"
 showSpinner()
 function showSpinner() {
 	$('.loader').show(); // Show the spinner
+
+	// Add click event listener to hide the spinner
+	document.body.addEventListener('click', hideSpinner);
 }
 
 function hideSpinner() {
 	$('.loader').hide(); // Show the spinner
+	// Remove click event listener to avoid multiple bindings
+	document.body.removeEventListener('click', hideSpinner);
 }
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
