@@ -10,14 +10,21 @@ const urlParams = new URLSearchParams(queryString);
 // richiamo funzione dello spinner
 showSpinner()
 
-function showSpinner(){
-	$('.loader').show(); // mostrare lo spinner
-}
-function hideSpinner(){
-	$('.loader').hide(); // nascondere lo spinner
+
+function showSpinner() {
+  $('.loader').show(); // Show the spinner
+
+  // Add click event listener to hide the spinner
+  document.body.addEventListener('click', hideSpinner);
 }
 
-  //$('#modal1').modal("show");
+function hideSpinner() {
+  $('.loader').hide(); // Show the spinner
+  // Remove click event listener to avoid multiple bindings
+  document.body.removeEventListener('click', hideSpinner);
+}
+
+//$('#modal1').modal("show");
 
 // Recuperare i dati dalla memoria locale
 let selectedCustomer = localStorage.getItem("global_selected_customer");
@@ -120,12 +127,12 @@ promises.push(
 
 // attende che tutti promise siano risolte
 Promise.all(promises).then(() => {
- // $('#modal1').modal("hide");
- hideSpinner()
+  // $('#modal1').modal("hide");
+  hideSpinner()
   console.log("All data loaded");
 }).catch(error => {
   console.error("Error loading data", error);
-//$('#modal1').modal("hide");
+  //$('#modal1').modal("hide");
   hideSpinner()
 });
 
@@ -194,62 +201,62 @@ function createDivDryers(IDdiv, entityName) {
 
   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
   html += '<h1 class="h2 card-result" translate_id ="dryer">Dryer</h1>'
-  html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
-  html +=       '<div class="btn-group me-2"></div>'
-  html +=   '</div>'
+  html += '<div class="btn-toolbar mb-2 mb-md-0">'
+  html += '<div class="btn-group me-2"></div>'
+  html += '</div>'
   html += '</div>'
   html += '<div id="IDDryersData" class="row g-0 row-cols-1 row-cols-lg-4 d-flex gy-3" style="min-height: 300px;">'
-  html +=     '<div class="col col-customer col-sx-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Active Dryers</h6>'
-  html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="celle_attive" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col col-customer col-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="room_temperature">Room Temperature</h6>'
-  html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="temperatura_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col col-customer col-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Room Humidity</h6>'
-  html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="umidita_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col col-customer col-dx-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number of Alarms Present</h6>'
-  html +=                 '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="allarmi_attivi" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-customer" style="padding: 0px;">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 0px;padding-top: 16px;">'
-  html +=                 '<div style="padding-right: 16px;padding-left: 16px;">'
-  html +=                     '<h6 class="text-muted mb-2" style="color: var(--bs-heading-medium-emphasis);margin: 0px;font-size: 1rem;" translate_id="daily_production">Consumo Giornaliero</h6>'
-  html +=                 '</div>'
-  html +=                 '<div id="' + id + 'Legend"></div>'
-  html +=                 '<div id="' + id + 'Trend" style="min-height: 300px;max-height: 100%;"></div>'
-  html +=                 '<div class="d-flex justify-content-center" style="width: 100%;">'
-  html +=                    '<button id="' + id + '5d" class="btn btn-outline-primary active" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="5" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                   '<button id="' + id + '10d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="10" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                   '<button id="' + id + '30d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="30" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                 '</div>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
+  html += '<div class="col col-customer col-sx-padding">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 1.5rem;">'
+  html += '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Active Dryers</h6>'
+  html += '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="celle_attive" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div class="col col-customer col-padding">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 1.5rem;">'
+  html += '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="room_temperature">Room Temperature</h6>'
+  html += '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="temperatura_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div class="col col-customer col-padding">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 1.5rem;">'
+  html += '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="actual_alarms">Room Humidity</h6>'
+  html += '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="umidita_ambiente" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div class="col col-customer col-dx-padding">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 1.5rem;">'
+  html += '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number of Alarms Present</h6>'
+  html += '<h4 class="card-title thingworx-property-value" ' + keyProperty + '="allarmi_attivi" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-customer" style="padding: 0px;">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 0px;padding-top: 16px;">'
+  html += '<div style="padding-right: 16px;padding-left: 16px;">'
+  html += '<h6 class="text-muted mb-2" style="color: var(--bs-heading-medium-emphasis);margin: 0px;font-size: 1rem;" translate_id="daily_production">Consumo Giornaliero</h6>'
+  html += '</div>'
+  html += '<div id="' + id + 'Legend"></div>'
+  html += '<div id="' + id + 'Trend" style="min-height: 300px;max-height: 100%;"></div>'
+  html += '<div class="d-flex justify-content-center" style="width: 100%;">'
+  html += '<button id="' + id + '5d" class="btn btn-outline-primary active" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html += 'value="5" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html += '<button id="' + id + '10d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html += 'value="10" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html += '<button id="' + id + '30d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html += 'value="30" chart="chartDryers"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
   html += '</div>'
 
   $(IDdiv).append(html);
@@ -262,56 +269,56 @@ function createDivLine(IDdiv, entityName) {
   let id = 'ID' + entityName.replace(/\./g, '');
   let html = '';
 
-   html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
+  html += '<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" data-pg-collapsed>'
   html += '<h1 class="h2 card-result" translate_id ="line">Line</h1>'
-  html +=   '<div class="btn-toolbar mb-2 mb-md-0">'
-  html +=       '<div class="btn-group me-2"></div>'
-  html +=   '</div>'
+  html += '<div class="btn-toolbar mb-2 mb-md-0">'
+  html += '<div class="btn-group me-2"></div>'
+  html += '</div>'
   html += '</div>'
   html += '<div id="IDdivLineData" class="row g-0 row-cols-1 row-cols-lg-3 gy-3" style="min-height: 300px;">'
-  html +=     '<div class="col col-customer col-sx-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="machine_status">Machine Status</h6>'
-  html +=                 '<h4 class="card-title" ' + keyProperty + '="stato_linea" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col col-customer col-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="Recipe_set">Recipe Set</h6>'
-  html +=                 '<h4 class="card-title" ' + keyProperty + '="nome_ricetta" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col col-customer col-dx-padding">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 1.5rem;">'
-  html +=                 '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number Of Alarms Present</h6>'
-  html +=                 '<h4 class="card-title" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;" ' + keyProperty + '="numero_allarmi">Title</h4>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
-  html +=     '<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-customer" style="padding: 0px;">'
-  html +=         '<div class="card card-h-100" style="border-radius: 0px;">'
-  html +=             '<div class="card-body" style="padding: 0px;padding-top: 16px;">'
-  html +=                 '<div style="padding-right: 16px;padding-left: 16px;">'
-  html +=                     '<h6 class="text-muted mb-2" style="color: var(--bs-heading-medium-emphasis);margin: 0px;font-size: 1rem;" translate_id="daily_production">Produzione Giornaliera</h6>'
-  html +=                 '</div>'
-  html +=                 '<div id="' + id + 'Legend"></div>'
-  html +=                 '<div id="' + id + 'Trend" style="min-height: 300px;max-height: 100%;"></div>'
-  html +=                 '<div class="d-flex justify-content-center" style="width: 100%;">'
-  html +=                   '<button id="' + id + '5d" class="btn btn-outline-primary active" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="5" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                   '<button id="' + id + '10d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="10" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                   '<button id="' + id + '30d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
-  html +=                   'value="30" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
-  html +=                 '</div>'
-  html +=             '</div>'
-  html +=         '</div>'
-  html +=     '</div>'
+  html += '<div class="col col-customer col-sx-padding">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 1.5rem;">'
+  html += '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="machine_status">Machine Status</h6>'
+  html += '<h4 class="card-title" ' + keyProperty + '="stato_linea" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div class="col col-customer col-padding">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 1.5rem;">'
+  html += '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="Recipe_set">Recipe Set</h6>'
+  html += '<h4 class="card-title" ' + keyProperty + '="nome_ricetta" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;">Title</h4>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div class="col col-customer col-dx-padding">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 1.5rem;">'
+  html += '<h6 class="text-muted card-subtitle mb-2" style="color: var(--bs-heading-medium-emphasis);font-size: 1rem;" translate_id="number_of_alarms">Number Of Alarms Present</h6>'
+  html += '<h4 class="card-title" style="color: var(--bs-heading-high-emphasis);font-size: 1.2rem;" ' + keyProperty + '="numero_allarmi">Title</h4>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-customer" style="padding: 0px;">'
+  html += '<div class="card card-h-100" style="border-radius: 0px;">'
+  html += '<div class="card-body" style="padding: 0px;padding-top: 16px;">'
+  html += '<div style="padding-right: 16px;padding-left: 16px;">'
+  html += '<h6 class="text-muted mb-2" style="color: var(--bs-heading-medium-emphasis);margin: 0px;font-size: 1rem;" translate_id="daily_production">Produzione Giornaliera</h6>'
+  html += '</div>'
+  html += '<div id="' + id + 'Legend"></div>'
+  html += '<div id="' + id + 'Trend" style="min-height: 300px;max-height: 100%;"></div>'
+  html += '<div class="d-flex justify-content-center" style="width: 100%;">'
+  html += '<button id="' + id + '5d" class="btn btn-outline-primary active" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html += 'value="5" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">5</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html += '<button id="' + id + '10d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html += 'value="10" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">10</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html += '<button id="' + id + '30d" class="btn btn-outline-primary" type="button" style="margin: 5px; font-size: 12px;color: var(--bs-heading-medium-emphasis);" '
+  html += 'value="30" chart="chartLine"><span style="margin-right: 5px;font-size: 0.6rem;">30</span><span translate_id="days" style="font-size: 0.6rem;">Days</span></button>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
+  html += '</div>'
   html += '</div>'
 
   $(IDdiv).append(html);

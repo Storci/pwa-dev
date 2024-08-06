@@ -14,17 +14,23 @@ fb.onAuthStateChanged_2()
 //$('#modal1').modal("show")
 
 showSpinner()
-function showSpinner(){
+
+function showSpinner() {
 	$('.loader').show(); // Show the spinner
+
+	// Add click event listener to hide the spinner
+	document.body.addEventListener('click', hideSpinner);
 }
 
-function hideSpinner(){
+function hideSpinner() {
 	$('.loader').hide(); // Show the spinner
+	// Remove click event listener to avoid multiple bindings
+	document.body.removeEventListener('click', hideSpinner);
 }
 
 
 // Esegue il codice principale al caricamento della pagina
-$("body").ready(async function(){
+$("body").ready(async function () {
 	// Definisce la variabile
 	let user;
 	console.log(user)
@@ -39,10 +45,10 @@ $("body").ready(async function(){
 	let selectedCustomer = localStorage.getItem("global_selected_customer")
 
 	// Imposta il nome del cliente e il nome della linea nel breadcrumb
-  let lineName = ''
-	try{
+	let lineName = ''
+	try {
 		lineName = entityName.replace(".", " ")
-	}catch(e){}
+	} catch (e) { }
 	$("#IDLineName").text(lineName);
 	$("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, " "));
 
@@ -52,12 +58,12 @@ $("body").ready(async function(){
 
 	// Definisce le variabili come date
 	let timeStart = new Date()
-	let timeEnd   = new Date()
+	let timeEnd = new Date()
 	// Imposta l'ora a mezzanotte del giorno attuale
-	timeStart.setHours(7,0,0,0)
+	timeStart.setHours(7, 0, 0, 0)
 	// Imposta i timestamp un'ora prima e un'ora dopo
 	timeStart = Number(timeStart.getTime()) - 3600000
-	timeEnd   = Number(timeEnd.getTime()) + 3600000
+	timeEnd = Number(timeEnd.getTime()) + 3600000
 	// Definisce la variabile
 	let query;
 
@@ -70,7 +76,7 @@ $("body").ready(async function(){
 	am.createLineSeries(chartProduction, "SP - Impasto", "time", "SP_Impasto", "kg/h", 0, false, false, false, 0.77)
 	am.createLineSeries(chartProduction, "PV - Pressione", "time", "PV_Pressione", "Bar", 1, false, false, false, 0.77)
 	// Definisce la query da inviare a influxdb
-	query  = 'SELECT '
+	query = 'SELECT '
 	query += 'mean("Impasto_PV_Impasto_Totale") as "PV_Impasto", '
 	query += 'mean("Impasto_SP_Impasto_Totale") as "SP_Impasto", '
 	query += 'mean("Pressa_Motori_Estrusore_PV_Pressione") as "PV_Pressione" '
@@ -87,7 +93,7 @@ $("body").ready(async function(){
 	// ***** GRAFICO QUANTITA PRODUZIONE GIORNALIERA *****
 	timeStart = new Date()
 	// Imposta l'ora a mezzanotte del giorno attuale
-	timeStart.setHours(0,0,0,0)
+	timeStart.setHours(0, 0, 0, 0)
 	// Imposta l'ora a mezzanotte del giorno attuale
 	timeStart.setDate(-30)
 	// Imposta i timestamp un'ora prima e un'ora dopo
@@ -97,7 +103,7 @@ $("body").ready(async function(){
 	// Crea le series da visualizzare nel grafico
 	am.createColumnSeries(chart, "Quantità Impasto", "time", "productQuantity", "kg")
 	// Definisce la query da inviare a influxdb
-	query  = 'SELECT '
+	query = 'SELECT '
 	query += 'SUM("Impasto") as "productQuantity" '
 	query += 'FROM ( SELECT mean("Impasto_PV_Impasto_Totale") / 60 as "Impasto" '
 	query += 'FROM "' + entityName + '" '
@@ -112,10 +118,10 @@ $("body").ready(async function(){
 
 
 	// ***** LISTA ALLARMI ATTIVI *****
-  getAlertsActive('#IDListAlertsActive', entityName)
+	getAlertsActive('#IDListAlertsActive', entityName)
 
 	// ***** LISTA ALLARMI ATTIVI *****
-  //getListMachine('#IDListMachines', entityName)
+	//getListMachine('#IDListMachines', entityName)
 
 	// Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
 	lang.getLanguage()
@@ -124,9 +130,9 @@ $("body").ready(async function(){
 
 
 	// pulsante per aprire il grafico attuale in un'altra tab
-	$('#fullscreen').click(function(){
+	$('#fullscreen').click(function () {
 		//let url ='./machineGraph/dashboard_actualGraph.html?'+'entityName='+ entityName
-		let url ='./machineGraph/79_dashboard_actual_zoom.html?'+'entityName='+ entityName 
+		let url = './machineGraph/79_dashboard_actual_zoom.html?' + 'entityName=' + entityName
 		window.open(url, '_blank')
 	})
 	hideSpinner()
@@ -138,18 +144,18 @@ showSpinner()
 // la seguente classe '.thingworx-property-value'.
 // Inoltre ogni label deve avere una key chiamata 'propertyname', il valore della key deve essere
 // uguale al nome della property di thingworx che ritorna il servizio.
-async function setCardsValue(entityName){
+async function setCardsValue(entityName) {
 	// Dichiara la variabile
 	let info
 	// Richiama il servizio di thingworx.
 	await tw.getLineInfo(entityName)
-		.then(result =>{ 
+		.then(result => {
 			info = result
 			hideSpinner()
 		})
 		.catch(error => console.error(error))
 	// Assegna alle varie label il valore corretto recuperato da thingworx
-	$('[propertyname]').each(function(){
+	$('[propertyname]').each(function () {
 		$(this).text(info[$(this).attr('propertyname')])
 	})
 }
@@ -164,12 +170,12 @@ async function setChartData(chart, query) {
 	// Aggiunge una riga all'array data
 	response.results[0].series[0].values.forEach(el => {
 		// Definisce la variabile come json object
-		let obj  = {};
+		let obj = {};
 		// Aggiunge le chiavi-valore all'oggetto json obj
 		// Le chiavi sono le colonne della query di influxdb
 		response.results[0].series[0].columns.forEach((key, id) => {
 			// controllo che il valore ritornato sia un numero
-			if(typeof(el[id]) == "number"){
+			if (typeof (el[id]) == "number") {
 				// Riduco la precisione a 2 valori decimali
 				el[id] = el[id].toFixed(2);
 			}
@@ -186,7 +192,7 @@ async function setChartData(chart, query) {
 // Funzione che recupera tutti gli allarmi attivi della linea.
 // Effettua una chiamata a tw per il recupero degli allarmi,
 // poi inserisce gli allarmi all'interno di una lista.
-async function getAlertsActive(idList, entityName){
+async function getAlertsActive(idList, entityName) {
 	let list
 	await tw.getLineAlertsActive(entityName)
 		.then(result => list = result)
@@ -197,15 +203,15 @@ async function getAlertsActive(idList, entityName){
 		let msg = item.Message
 		let color = 'rgba(255,255,255,0)'
 
-		if(item.Type == 'MSG') { color = '#fdd83566'	}
-		else if(item.Type == 'WRN') { color = '#fb8c0066'	}
-		else if(item.Type == 'ALM') { color = '#e5393566'	}
+		if (item.Type == 'MSG') { color = '#fdd83566' }
+		else if (item.Type == 'WRN') { color = '#fb8c0066' }
+		else if (item.Type == 'ALM') { color = '#e5393566' }
 
-		let row  = '<li class="list-group-item d-flex flex-column" '
-		    row += 'style="background: ' + color + '; border-width: 0px;border-color: rgba(33,37,41,0);'
-				row += 'border-bottom-width: 0px;border-bottom-color: var(--bs-heading-medium-emphasis);border-radius: 4px;margin-top: 8px;margin-bottom: 8px;">'
-				row += '<span style="color: var(--bs-heading-medium-emphasis); font-size:12px;">' + date + '</span>'
-				row += '<span style="color: var(--bs-heading-medium-emphasis); font-size:14px;">' + msg + '</span></li>'
+		let row = '<li class="list-group-item d-flex flex-column" '
+		row += 'style="background: ' + color + '; border-width: 0px;border-color: rgba(33,37,41,0);'
+		row += 'border-bottom-width: 0px;border-bottom-color: var(--bs-heading-medium-emphasis);border-radius: 4px;margin-top: 8px;margin-bottom: 8px;">'
+		row += '<span style="color: var(--bs-heading-medium-emphasis); font-size:12px;">' + date + '</span>'
+		row += '<span style="color: var(--bs-heading-medium-emphasis); font-size:14px;">' + msg + '</span></li>'
 
 		$(idList).append(row)
 	});

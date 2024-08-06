@@ -270,6 +270,7 @@ function listHistoryProduction(dryers, timeStart, timeEnd) {
 
 					id = "#" + id
 					$(id).click(function () {
+						entityName = dryer.entityName
 						// Aggiunge la classe table-primary alla riga seleziona e la rimuove dalle altre righe
 						$(this).addClass('table-primary').siblings().removeClass('table-primary')
 						// Definisce la query da inviare a influxdb
