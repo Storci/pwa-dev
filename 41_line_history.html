@@ -262,8 +262,7 @@
                             <div class="card"> 
                                 <div class="card-body"> 
                                     <h6 class="card-subtitle mb-2 text-muted" translate_id="production_list"> 
-                    Lista Produzioni Storiche
- </h6> 
+                    Lista Produzioni Storiche </h6> 
                                     <div style="height: 50px"> 
                                         <div class="input-group mb-5 mt-3"> <span class="input-group-text material-icons-outlined">date_range</span> 
                                             <input type="text" class="form-control" placeholder="date picker" aria-label="date_range" aria-describedby="basic-addon1" id="dateTimePicker"/> 
@@ -314,21 +313,20 @@
                             <div class="card"> 
                                 <div class="card-body"> 
                                     <h6 class="card-subtitle mb-2 text-muted card_heading_label" translate_id="history_chart"> 
-                    Grafico Storico
- </h6> 
+                    Grafico Storico </h6> 
                                     <div class="pg-empty-placeholder" id="IDLegendHistoryProduction"></div>                                     
                                     <div class="pg-empty-placeholder" id="IDTrendHistoryProduction" style="height: 50vh"></div>                                     
                                 </div>                                 <span type="button" class="bg-white btn btn-light d-inline text-end text-primary" id="fullscreenHistoryLine">Fullscreen</span> 
                             </div>                             
                         </div>
                         <div class="mb-3 row row-cols-1 row-cols-lg-1 row-cols-md-1 row-cols-sm-1 row-cols-xl-1 row-cols-xxl-1"> 
-                            <div class="col-md"> 
-                                <div class="row row-cols-2 row-cols-lg-2 row-cols-sm-2"> 
+                            <div class="col-md hiddenConsumptionCard"> 
+                                <div class="row row-cols-2 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-xl-3"> 
                                     <div class="col-md-4 mt-3 div_minimum"> 
                                         <div class="card"> 
                                             <div class="card-body"> 
                                                 <h6 class="card-title text-muted" translate_id="recipe">  Impasto Consumo</h6> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="Impasto_Ricetta_Nome_Ricetta"> Card subtitle</h4> 
+                                                <h4 class="card-subtitle mb-2 card-result" id="Impasto_consumi"> Card subtitle</h4> 
                                             </div>                                             
                                         </div>                                         
                                     </div>                                     
@@ -336,7 +334,7 @@
                                         <div class="card"> 
                                             <div class="card-body"> 
                                                 <h6 class="card-title text-muted" translate_id="actual_production">Consumo Acqua</h6> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="Impasto_PV_Impasto_Totale">Card subtitle</h4> 
+                                                <h4 class="card-subtitle mb-2 card-result" id="consumi_Acqua">Card subtitle</h4> 
                                             </div>                                             
                                         </div>                                         
                                     </div>                                     
@@ -344,15 +342,15 @@
                                         <div class="card"> 
                                             <div class="card-body"> 
                                                 <h6 class="card-title text-muted" translate_id="SP_production">Consumi Sfarinati 1</h6> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="Impasto_SP_Impasto_Totale">Card subtitle</h4> 
+                                                <h4 class="card-subtitle mb-2 card-result" id="consumi_Sfarinato_1">Card subtitle</h4> 
                                             </div>                                             
                                         </div>                                         
                                     </div>                                     
-                                    <div class="col-md-4 mt-3 div_minimum"> 
+                                    <!-- <div class="col-md-4 mt-3 div_minimum"> 
                                         <div class="card"> 
                                             <div class="card-body"> 
                                                 <h6 class="card-title text-muted" translate_id="average_production">Consumi Sfarinati 2</h6> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="Impasto_PV_Impasto_Totale_Medio">Card subtitle</h4> 
+                                                <h4 class="card-subtitle mb-2 card-result" id="consumi_Sfarinato_2">Card subtitle</h4> 
                                             </div>                                             
                                         </div>                                         
                                     </div>                                     
@@ -360,7 +358,7 @@
                                         <div class="card"> 
                                             <div class="card-body"> 
                                                 <h6 class="card-title text-muted" translate_id="quantity_of_flour">Consumi Polvere 1</h6> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="SP_Portata_Sfarinati">Card subtitle</h4> 
+                                                <h4 class="card-subtitle mb-2 card-result" id="consumi_Polvere_1">Card subtitle</h4> 
                                             </div>                                             
                                         </div>                                         
                                     </div>                                     
@@ -368,8 +366,7 @@
                                         <div class="card"> 
                                             <div class="card-body"> 
                                                 <h6 class="card-title text-muted" translate_id="liquid_quantity">Consumi Polvere 2</h6> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="SP_Litri_Liquidi" style="display: inline; float: left">Card subtitle</h4> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="SP_Percentuale_Liquidi" style="display: inline; float: right">Card subtitle</h4> 
+                                                <h4 class="card-subtitle mb-2 card-result" id="consumi_Polvere_2">Card subtitle</h4> 
                                             </div>                                             
                                         </div>                                         
                                     </div>                                     
@@ -377,7 +374,7 @@
                                         <div class="card"> 
                                             <div class="card-body"> 
                                                 <h6 class="card-title text-muted" translate_id="actual_pressure">Consumi Liquidi 1</h6> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="Pressa_Motori_Estrusore_PV_Pressione">Card subtitle</h4> 
+                                                <h4 class="card-subtitle mb-2 card-result" id="consumi_Liquido_1">Card subtitle</h4> 
                                             </div>                                             
                                         </div>                                         
                                     </div>                                     
@@ -385,12 +382,12 @@
                                         <div class="card"> 
                                             <div class="card-body"> 
                                                 <h6 class="card-title text-muted" translate_id="quantity_produced">Consumi Liquidi 2</h6> 
-                                                <h4 class="card-subtitle mb-2 card-result" propertyname="Produzione_Completata">Card subtitle</h4> 
+                                                <h4 class="card-subtitle mb-2 card-result" id="consumi_Liquido_2">Card subtitle</h4> 
                                             </div>                                             
                                         </div>                                         
-                                    </div>                                     
+                                    </div>                                      -->
                                 </div>                                 
-                            </div>                                                          
+                            </div>                             
                         </div>                         
                     </div>                     
                     <!-- <div class="modal fade pg-show-modal" id="modal1" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false">

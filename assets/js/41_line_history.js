@@ -243,7 +243,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 	let line_name = entityName.toString().split(".")
 	line_name = line_name[4] + " " + line_name[5]
 	// Recupera lo storico delle lavorazioni effettuate dalla linea
-	tw.service_04_getLineHistoryProductions(entityName, timeStart, timeEnd)
+	tw.service_04_getLineHistoryProductionsCopy(entityName, timeStart, timeEnd)
 		.then(productions => {
 			// Per ogni ricetta trovata genera una nuova riga nella tabella
 			productions.rows.forEach((el, i) => {
@@ -279,6 +279,10 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 					// Recupera i dati da influxdb e li visualizza sul grafico
 					am.setChartData(chartHistoryProduction, subquery, '')
 
+					if (!$('.hiddenConsumptionCard').is(':visible')) {
+						$('.hiddenConsumptionCard').show();
+					}
+					
 					timeStartZoom = timestampStart
 					timeEndZoom = timestampEnd
 
@@ -320,6 +324,26 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 						})
 						.catch(e => { console.log(e) })
 
+						function showConsumption(entityName, startDate,endDate){
+							tw.calculateConsumoImpasto(entityName, startDate,endDate).then(consumo => {
+								if (consumo) {
+									console.log(consumo.Impasto_consumi_Acqua, "Consumo Acqua dei dati recuperati:");
+									console.log(consumo.Impasto_consumi_Impasto, "Consumo impasto dei dati recuperati:");
+									console.log(consumo.Impasto_consumi_Sfarinato_1, "Consumo sfarinato dei dati recuperati:");
+									$("#Impasto_consumi").text(consumo.Impasto_consumi_Impasto).value.toFixed(2) + " kg";
+									$("#consumi_Acqua").text(consumo.Impasto_consumi_Acqua).value.toFixed(2) + " L";
+									$("#consumi_Sfarinato_1").text(consumo.Impasto_consumi_Sfarinato_1).value.toFixed(2) + " kg";
+								} else {
+									console.log("Nessun dato di consumo trovato per il periodo specificato.");
+								}
+							})
+							.catch(error => {
+								console.error('Errore durante il recupero del consumo:', error);
+							});
+						}
+
+					showConsumption(entityName, timestampStart, timestampEnd)
+
 				})
 
 				// Recupera la prima riga della tabella
@@ -341,3 +365,8 @@ $('#fullscreenHistory').click(function () {
 	let url = '../62_lines_history_zoom.html?' + 'entityName=' + entityName
 	window.open(url, '_blank')
 })
+//showConsumption(entityName, "2024-10-09T00:00:00Z", "2024-10-09T11:00:00Z")
+
+
+
+  

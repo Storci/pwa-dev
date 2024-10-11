@@ -558,6 +558,7 @@ thead {
   order: 1;
 }
 
+/* questo coddice cambia or invertisce la scritta storci e il menu hamburger posizione*/
 @media (max-width: 767px) {
   .navbar {
     flex-direction: row-reverse;
@@ -574,7 +575,7 @@ thead {
   }
 
   .navbar-collapse {
-    padding-top: 15px; /* Adjust the value based on your design */
+    padding-top: 15px; 
   }
 
   .sidebar {
@@ -594,9 +595,14 @@ thead {
     background-color: rgb(223 239 255) !important;
   }
 }
-
+/* toglie i bordi intorno al menu hambugert*/
 .navbar .navbar-toggler {
   top: 0.25rem;
   left: 1rem;
   text-align: left;
+}
+
+/*Nasconde inizialmente la card che visualizza i consumi*/
+.hiddenConsumptionCard{
+  display: none;
 }
