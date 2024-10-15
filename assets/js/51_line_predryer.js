@@ -219,33 +219,67 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 	$("#IDHistoryTableBody").empty()
 	let line_name = entityName.toString().split(".")
 	line_name = line_name[4] + " " + line_name[5]
-	// Recupera lo storico delle lavorazioni effettuate dalla cella
-	tw.service_04_getLineHistoryProductions(entityName, timeStart, timeEnd)
+		tw.service_04_getLineHistoryProductions(entityName, timeStart, timeEnd)
 		.then(productions => {
 			// Per ogni ricetta trovata genera una nuova riga nella tabella
 			productions.rows.forEach((el, i) => {
 				// Converte il timestamp in Date
-				let start = new Date(el.timeStart).toLocaleString();
-				let end = new Date(el.timeEnd).toLocaleString();
-				// Definisce l'id della riga della tabella
+				let ProductionStartTime = new Date(el.ProductionStartTime);
+				let ProductionEndTime = new Date(el.ProductionEndTime);
+
+			// funzione per convertire ore e minuti
+			function formatDuration(duration) {
+				if (typeof duration === 'undefined' || duration === null) {
+					return ''; // se il valore restituito è undefined allora il campo viene rimpiazzato con un spazio vuoto
+				}
+				
+				// Converte i millisecondi in ore e minuti 
+				// operazione per la conversione
+				let totalMinutes = Math.floor(duration / 60000); // Convert milliseconds to minutes
+				let hours = Math.floor(totalMinutes / 60);
+				let minutes = totalMinutes % 60;
+				
+				return `${hours} ore ${minutes} minuti`;
+			}
+
+
+			// Formattare la   data come  DD/MM/YYYY HH:MM:SS
+			let formattedStartTime = `${String(ProductionStartTime.getDate()).padStart(2, '0')}/` +
+			`${String(ProductionStartTime.getMonth() + 1).padStart(2, '0')}/` +
+			`${ProductionStartTime.getFullYear()}, ` +
+			`${String(ProductionStartTime.getHours()).padStart(2, '0')}:` +
+			`${String(ProductionStartTime.getMinutes()).padStart(2, '0')}:` +
+			`${String(ProductionStartTime.getSeconds()).padStart(2, '0')}`;
+
+			let formattedEndTime = `${String(ProductionEndTime.getDate()).padStart(2, '0')}/` +
+			`${String(ProductionEndTime.getMonth() + 1).padStart(2, '0')}/` +
+			`${ProductionEndTime.getFullYear()}, ` +
+			`${String(ProductionEndTime.getHours()).padStart(2, '0')}:` +
+			`${String(ProductionEndTime.getMinutes()).padStart(2, '0')}:` +
+			`${String(ProductionEndTime.getSeconds()).padStart(2, '0')}`;
+
+			//richiamre la funzione che converte i timestamp della durata in ore e minuti
+			let formattedDuration = formatDuration(el.ProductionDuration);
+			
 				let id = "IDHistoryTableRow" + i;
 				// Definisce l'html della riga da aggiungere
 				let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
-				row += '    <td style="font-size: 12px;border-style: none;">' + start + '</td>'
-				row += '    <td style="font-size: 12px;border-style: none;">' + end + '</td>'
-				row += '    <td style="font-size: 12px;border-style: none;">' + el.ricetta + '</td>'
-				row += '    <td style="font-size: 12px;border-style: none;">' + el.durata + '</td>'
-				//row    += '    <td style="font-size: 12px;border-style: none;">' + line_name  + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + formattedStartTime + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + formattedEndTime + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.ProductionRecipe + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + formattedDuration + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.MachineName + '</td>'
 				row += '</tr>'
 				// Aggiunge la riga alla tabella
 				$("#IDHistoryTableBody").append(row)
 				// Imposta i timestamp di inizio e fine essiccazione (il range temporale è allargato 30 min prima dell'inizio e 30 min dopo la fine)
-				let timestampStart = el.timeStart - 1800000
-				let timestampEnd = el.timeEnd + 1800000
+				let timestampStart = el.ProductionStartTime - 1800000
+				let timestampEnd = el.ProductionEndTime + 1800000
 				// Controlla se la data è invalida, nel caso l'essiccazione è in corso e carica la data attuale
 				if (timestampEnd == undefined || timestampEnd == null || timestampEnd == '' || Number.isNaN(timestampEnd)) {
 					timestampEnd = Date.now() + 1800000
 				}
+
 
 				id = "#" + id
 				$(id).click(function () {
