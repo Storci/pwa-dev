@@ -58,7 +58,7 @@ let timeEndHistory = new Date()
 let timeStartZoom = new Date()
 let timeEndZoom = new Date()
 // Imposta X giorni prima della data odierna
-timeStartHistory.setDate(timeStartHistory.getDate() - 14)
+timeStartHistory.setDate(timeStartHistory.getDate() - 15)
 // Imposta i 2 data picker con le date calcolate prima
 // La funzione getDate ritorna solamente l'anno, il mese e il giorno
 // yyyy-MM-dd
@@ -147,16 +147,6 @@ query += 'mean("Pressa_Motori_Estrusore_PV_Calorie") as "PV_Consumi" '
 query += 'FROM "' + entityName + '" '
 query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(10s) fill(previous)'
 
-// Cancella tutte le righe della tabella
-//$("#IDHistoryTableBody").empty()
-
-// Recupera tutte le linea installate dal cliente
-/*tw.getLineInfo(selectedCustomer)
-	.then(result => {
-		console.log(result)
-		listHistoryProduction(lines, timeStartHistory, timeEndHistory)
-	})
-	.catch(error => console.error(error))*/
 listHistoryProduction(entityName, timeStartHistory, timeEndHistory)
 
 
@@ -248,23 +238,57 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 			// Per ogni ricetta trovata genera una nuova riga nella tabella
 			productions.rows.forEach((el, i) => {
 				// Converte il timestamp in Date
-				let start = new Date(el.timeStart).toLocaleString();
-				let end = new Date(el.timeEnd).toLocaleString();
-				// Definisce l'id della riga della tabella
+				let ProductionStartTime = new Date(el.ProductionStartTime);
+				let ProductionEndTime = new Date(el.ProductionEndTime);
+
+			// funzione per convertire ore e minuti
+			function formatDuration(duration) {
+				if (typeof duration === 'undefined' || duration === null) {
+					return ''; // se il valore restituito è undefined allora il campo viene rimpiazzato con un spazio vuoto
+				}
+				
+				// Converte i millisecondi in ore e minuti 
+				// operazione per la conversione
+				let totalMinutes = Math.floor(duration / 60000); // Convert milliseconds to minutes
+				let hours = Math.floor(totalMinutes / 60);
+				let minutes = totalMinutes % 60;
+				
+				return `${hours} ore ${minutes} minuti`;
+			}
+
+
+			// Formattare la   data come  DD/MM/YYYY HH:MM:SS
+			let formattedStartTime = `${String(ProductionStartTime.getDate()).padStart(2, '0')}/` +
+			`${String(ProductionStartTime.getMonth() + 1).padStart(2, '0')}/` +
+			`${ProductionStartTime.getFullYear()}, ` +
+			`${String(ProductionStartTime.getHours()).padStart(2, '0')}:` +
+			`${String(ProductionStartTime.getMinutes()).padStart(2, '0')}:` +
+			`${String(ProductionStartTime.getSeconds()).padStart(2, '0')}`;
+
+			let formattedEndTime = `${String(ProductionEndTime.getDate()).padStart(2, '0')}/` +
+			`${String(ProductionEndTime.getMonth() + 1).padStart(2, '0')}/` +
+			`${ProductionEndTime.getFullYear()}, ` +
+			`${String(ProductionEndTime.getHours()).padStart(2, '0')}:` +
+			`${String(ProductionEndTime.getMinutes()).padStart(2, '0')}:` +
+			`${String(ProductionEndTime.getSeconds()).padStart(2, '0')}`;
+
+			//richiamre la funzione che converte i timestamp della durata in ore e minuti
+			let formattedDuration = formatDuration(el.ProductionDuration);
+			
 				let id = "IDHistoryTableRow" + i;
 				// Definisce l'html della riga da aggiungere
 				let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
-				row += '    <td style="font-size: 12px;border-style: none;">' + start + '</td>'
-				row += '    <td style="font-size: 12px;border-style: none;">' + end + '</td>'
-				row += '    <td style="font-size: 12px;border-style: none;">' + el.ricetta + '</td>'
-				row += '    <td style="font-size: 12px;border-style: none;">' + el.durata + '</td>'
-				row += '    <td style="font-size: 12px;border-style: none;">' + line_name + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + formattedStartTime + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + formattedEndTime + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.ProductionRecipe + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + formattedDuration + '</td>'
+				row += '    <td style="font-size: 12px;border-style: none;">' + el.MachineName + '</td>'
 				row += '</tr>'
 				// Aggiunge la riga alla tabella
 				$("#IDHistoryTableBody").append(row)
 				// Imposta i timestamp di inizio e fine essiccazione (il range temporale è allargato 30 min prima dell'inizio e 30 min dopo la fine)
-				let timestampStart = el.timeStart - 1800000
-				let timestampEnd = el.timeEnd + 1800000
+				let timestampStart = el.ProductionStartTime - 1800000
+				let timestampEnd = el.ProductionEndTime + 1800000
 				// Controlla se la data è invalida, nel caso l'essiccazione è in corso e carica la data attuale
 				if (timestampEnd == undefined || timestampEnd == null || timestampEnd == '' || Number.isNaN(timestampEnd)) {
 					timestampEnd = Date.now() + 1800000
@@ -279,6 +303,10 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 					// Recupera i dati da influxdb e li visualizza sul grafico
 					am.setChartData(chartHistoryProduction, subquery, '')
 
+					if (!$('.hiddenConsumptionCard').is(':visible')) {
+						$('.hiddenConsumptionCard').show();
+					}
+					
 					timeStartZoom = timestampStart
 					timeEndZoom = timestampEnd
 
@@ -287,38 +315,30 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 						window.open(url, '_blank')
 						console.log(e)
 					})
+						function showConsumption(entityName, startDate,endDate){
+							tw.calculateConsumoImpasto(entityName, startDate,endDate).then(consumo => {
+								if (consumo) {
+									console.log(consumo.Impasto_Consumi_Acqua, "Consumo Acqua dei dati recuperati:");
+									console.log(consumo.Impasto_Consumi_Impasto, "Consumo impasto dei dati recuperati:");
+									console.log(consumo.Impasto_Consumi_Sfarinato_1, "Consumo sfarinato dei dati recuperati:");
+									$("#consumi_Acqua").text(consumo.Impasto_Consumi_Acqua.toFixed(2) + " L") ;
+									$("#Impasto_consumi").text(consumo.Impasto_Consumi_Impasto.toFixed(2) +" kg") ;
+									$("#consumi_Sfarinato_1").text(consumo.Impasto_Consumi_Sfarinato_1.toFixed(2) + " kg") ;
 
-					tw.service_05_getDryerStartEnd(entityName, timestampStart, timestampEnd)
-						.then(result => {
-							//console.log(result)
-							let range = chartHistoryProduction.xAxes.values[0].axisRanges.values[0]
-							range.date = new Date(result.array[0].start)
-							range.grid.stroke = am4core.color("#396478");
-							range.grid.strokeWidth = 2;
-							range.grid.strokeOpacity = 0.6;
-							range.label.inside = true;
-							range.label.text = "Inizio Essicazione";
+								} else {
+									console.log("Nessun dato di consumo trovato per il periodo specificato.");
+								}
+							})
+							.catch(error => {
+								console.error('Errore durante il recupero del consumo:', error);
+									$("#consumi_Acqua").text("Nessuno Valore") ;
+									$("#Impasto_consumi").text("Nessuno Valore") ;
+									$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
 
-							let range1 = chartHistoryProduction.xAxes.values[0].axisRanges.values[1]
-							range1.date = new Date(result.array[0].stop)
-							range1.grid.stroke = am4core.color("#396478");
-							range1.grid.strokeWidth = 2;
-							range1.grid.strokeOpacity = 0.6;
-							range1.label.inside = true;
-							range1.label.text = "Fine Essicazione";
+							});
+						}
 
-							if (result.array[0].endLoad) {
-								let range2 = chartHistoryProduction.xAxes.values[0].axisRanges.values[2]
-								range2.date = new Date(result.array[0].endLoad)
-								range2.grid.stroke = am4core.color("#396478");
-								range2.grid.strokeWidth = 2;
-								range2.grid.strokeOpacity = 0.6;
-								range2.label.inside = true;
-								range2.label.text = "Fine Carico";
-							}
-
-						})
-						.catch(e => { console.log(e) })
+					showConsumption(entityName, timestampStart, timestampEnd)
 
 				})
 
@@ -341,3 +361,7 @@ $('#fullscreenHistory').click(function () {
 	let url = '../62_lines_history_zoom.html?' + 'entityName=' + entityName
 	window.open(url, '_blank')
 })
+
+
+
+  

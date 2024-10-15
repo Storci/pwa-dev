@@ -112,6 +112,10 @@ function service_04_getLineHistoryProductions(entityName, startTime, endTime) {
     });
 }
 
+
+
+
+
 /**
  * It takes in a start date, end date, filter, getHistory, and customerName, and returns a promise that
  * resolves to a response from the REST API.
@@ -721,6 +725,42 @@ function getLineDoughHistoryProduction(entityName) {
     });
 }
 
+// Fetch API
+// Recupera il conusmo  storica dell'impasto,sfarinato, liquidi, acqua ed ecc
+function calculateConsumo(entityName, startDate, endDate) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/calculateConsumo";
+    let data = JSON.stringify({"entityName":entityName, "startDate":startDate, "endDate":endDate});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+// Fetch API
+// Recupera il conusmo  storica dell'impasto,sfarinato, liquidi, acqua ed ecc
+function calculateConsumoImpasto(entityName, startDate, endDate) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/calculateConsumoImpasto";
+    let data = JSON.stringify({"entityName":entityName, "startDate":startDate, "endDate":endDate});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
 
 //Fectch API
 // Recupera gli allarmi attivi della linea
@@ -859,5 +899,7 @@ export{
 	getLineDoughHistoryProduction,
 	getLineAlertsActive,
 	getDryerTimeRange,
-	getLineTimeRange
+	getLineTimeRange,
+    calculateConsumo,
+    calculateConsumoImpasto
 }

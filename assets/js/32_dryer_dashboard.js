@@ -194,7 +194,7 @@ function setCellinfo(entityName) {
 
 // Funzione che recupera i dati di ricetta dell'essicazione selezionata
 // Viene calcolata la temperatura media, min e max
-// Viene calcolata l'umidità media, min e max
+// Viene calcolata l'umidità media, min e maxc
 function setHistoryInfo(chart) {
 	try {
 		// Dichiara le variabili
