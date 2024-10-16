@@ -293,14 +293,8 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 						console.log('me')
 					})
 				})
-				/*let elem = document.getElementById('firstColumn')
-				// Definisce la variabile come click event
-					let clickEvent = new Event('click');
-				// Esegue l'evento dell'elemento, in questo modo simula il click
-				// sulla prima riga della tabella, e viene caricato il grafico
-					elem.dispatchEvent(clickEvent)*/
-
 			})
+			hideSpinner()
 		})
 }
 

@@ -3,6 +3,8 @@ import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import * as common from "./Global/Common/commonFunctions.js"
+
 
 
 const queryString = window.location.search
@@ -13,9 +15,7 @@ let entityName = urlParams.get('entityName')
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
-fb.onAuthStateChanged_2()
 
-//$('#modal1').modal("show")
 
 showSpinner()
 
@@ -32,6 +32,7 @@ function hideSpinner() {
 	document.body.removeEventListener('click', hideSpinner);
 }
 
+lang.getLanguage()
 // Definisce le variabili come date
 let timeStartHistory = new Date()
 let timeEndHistory = new Date()
@@ -44,49 +45,53 @@ timeStartHistory.setDate(timeStartHistory.getDate() - 14)
 // yyyy-MM-dd
 let disp_timeStart = common.getDate(timeStartHistory)
 let disp_timeEnd = common.getDate(timeEndHistory)
+$(document).ready(function(){
+	$('#dateTimePicker').daterangepicker({
+		"locale": {
+			"format": "YYYY/MM/DD",
+			"separator": " - ",
+			"applyLabel": "Apply",
+			"cancelLabel": "Cancel",
+			"fromLabel": "From",
+			"toLabel": "To",
+			"customRangeLabel": "Custom",
+			"weekLabel": "W",
+			"daysOfWeek": [
+				"Su",
+				"Mo",
+				"Tu",
+				"We",
+				"Th",
+				"Fr",
+				"Sa"
+			],
+			"monthNames": [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December"
+			],
+			"firstDay": 1
+		},
+		"startDate": disp_timeStart,
+		"endDate": disp_timeEnd
+	}, function (start, end, label) {
+		listHistoryProduction(entityName, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
+		timeStartZoom = timeStartHistory
+		timeEndZoom = timeEndHistory
+	});
 
-$('#dateTimePicker').daterangepicker({
-	"locale": {
-		"format": "YYYY/MM/DD",
-		"separator": " - ",
-		"applyLabel": "Apply",
-		"cancelLabel": "Cancel",
-		"fromLabel": "From",
-		"toLabel": "To",
-		"customRangeLabel": "Custom",
-		"weekLabel": "W",
-		"daysOfWeek": [
-			"Su",
-			"Mo",
-			"Tu",
-			"We",
-			"Th",
-			"Fr",
-			"Sa"
-		],
-		"monthNames": [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December"
-		],
-		"firstDay": 1
-	},
-	"startDate": disp_timeStart,
-	"endDate": disp_timeEnd
-}, function (start, end, label) {
-	listHistoryProduction(entityName, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
-	timeStartZoom = timeStartHistory
-	timeEndZoom = timeEndHistory
-});
+	fb.onAuthStateChanged_2()
+})
+
 
 
 // Istanzia i grafici dell'attuale e dello storico
@@ -305,14 +310,8 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 						console.log('me')
 					})
 				})
-				/*let elem = document.getElementById('firstColumn')
-				// Definisce la variabile come click event
-					let clickEvent = new Event('click');
-				// Esegue l'evento dell'elemento, in questo modo simula il click\
-				// sulla prima riga della tabella, e viene caricato il grafico
-					elem.dispatchEvent(clickEvent)*/
-
 			})
+			hideSpinner()
 		})
 }
 

@@ -298,7 +298,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 				row += '    <td style="font-size: 12px;border-style: none;">' + formattedEndTime + '</td>'
 				row += '    <td style="font-size: 12px;border-style: none;">' + el.ProductionRecipe + '</td>'
 				row += '    <td style="font-size: 12px;border-style: none;">' + formattedDuration + '</td>'
-				row += '    <td style="font-size: 12px;border-style: none;">' + el.MachineName + '</td>'
+				// row += '    <td style="font-size: 12px;border-style: none;">' + el.MachineName + '</td>'
 				row += '</tr>'
 				// Aggiunge la riga alla tabella
 				$("#IDHistoryTableBody").append(row)
@@ -327,14 +327,8 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 						window.open(url, '_blank')
 					})
 				})
-				/*let elem = document.getElementById('firstColumn')
-				// Definisce la variabile come click event
-					let clickEvent = new Event('click');
-				// Esegue l'evento dell'elemento, in questo modo simula il click
-				// sulla prima riga della tabella, e viene caricato il grafico
-					elem.dispatchEvent(clickEvent)*/
-
 			})
+			hideSpinner()
 		})
 }
 
