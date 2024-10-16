@@ -262,13 +262,13 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 				if (typeof duration === 'undefined' || duration === null) {
 					return ''; // se il valore restituito è undefined allora il campo viene rimpiazzato con un spazio vuoto
 				}
-				
-				// Converte i millisecondi in ore e minuti 
+
+				// Converte i millisecondi in ore e minuti
 				// operazione per la conversione
 				let totalMinutes = Math.floor(duration / 60000); // Convert milliseconds to minutes
 				let hours = Math.floor(totalMinutes / 60);
 				let minutes = totalMinutes % 60;
-				
+
 				return `${hours} ore ${minutes} minuti`;
 			}
 
@@ -290,7 +290,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 
 			//richiamre la funzione che converte i timestamp della durata in ore e minuti
 			let formattedDuration = formatDuration(el.ProductionDuration);
-			
+
 				let id = "IDHistoryTableRow" + i;
 				// Definisce l'html della riga da aggiungere
 				let row = '<tr id=' + id + ' class="hover_tr" style="border-style: none;background: var(--bs-table-bg);">'
