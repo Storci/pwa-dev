@@ -705,6 +705,44 @@ function getLineNidiLasagnaInfo(entityName) {
     });
 }
 
+// Fetch API 
+//la funzione recupera informazione dall'Impilatore
+function getLineImpilatoreInfo(entityName){
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineImpilatoreInfo";
+    let data = JSON.stringify({"entityName":entityName})
+
+    return fetch(url, {
+        method: 'POST', 
+        headers : headers,
+        body :data
+    })
+    .then(response=>{
+        if (!response.ok){
+            throw new Error("Network response was not ok" + response.statusText)
+        }
+        return response.json()
+    })
+}
+
+// Fetch API 
+//la funzione recupera informazione dal robot deimpilatore
+function getLineDeimpilatoreInfo(entityName){
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineDeimpilatoreInfo";
+    let data = JSON.stringify({"entityName":entityName})
+
+    return fetch(url, {
+        method: 'POST', 
+        headers : headers,
+        body :data
+    })
+    .then(response=>{
+        if (!response.ok){
+            throw new Error("Network response was not ok" + response.statusText)
+        }
+        return response.json()
+    })
+}
+
 
 // Fetch API
 // Recupera la produzione storica dell'impasto
@@ -901,5 +939,7 @@ export{
 	getDryerTimeRange,
 	getLineTimeRange,
     calculateConsumo,
+    getLineImpilatoreInfo,
+    getLineDeimpilatoreInfo,
     calculateConsumoImpasto
 }
