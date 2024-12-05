@@ -315,61 +315,30 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 						window.open(url, '_blank')
 						console.log(e)
 					})
-						function getConsumption(entityName, startDate,endDate){
-								tw.service_04_getLineHistoryProductions(entityName,startDate,endDate).then(productions=>{
-									console.log(productions)
-									productions.rows.forEach((el)=>{
-										if(productions){
-											$("#Impasto_consumi").text(el.ProductionDoughConsumption);
-											$("#consumi_Acqua").text(el.ProductionWaterQuantity);
-											$("#consumi_Sfarinato_1").text(el.ProductionQuantityFlour1);
-											$("#consumi_Liquidi_1").text(el.ProductionQuantityLiquid1);
-										}
-										else{
-											console.log("Nessun dato di consumo trovato per il periodo specificato.");
-											$("#consumi_Acqua").text("Nessuno Valore") ;
-							 				$("#Impasto_consumi").text("Nessuno Valore") ;
-							 				$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
-							 				$("#consumi_Liquidi_1").text("Nessuno Valore") ;
-										}
-									})
-								})
-								.catch(error =>{
-									console.error('Errore durante il recupero del consumo:', error);
+						function showConsumption(entityName, startDate,endDate){
+							tw.calculateConsumoImpasto(entityName, startDate,endDate).then(consumo => {
+								if (consumo) {
+									console.log(consumo.Impasto_Consumi_Acqua, "Consumo Acqua dei dati recuperati:");
+									console.log(consumo.Impasto_Consumi_Impasto, "Consumo impasto dei dati recuperati:");
+									console.log(consumo.Impasto_Consumi_Sfarinato_1, "Consumo sfarinato dei dati recuperati:");
+									$("#consumi_Acqua").text(consumo.Impasto_Consumi_Acqua.toFixed(2) + " L") ;
+									$("#Impasto_consumi").text(consumo.Impasto_Consumi_Impasto.toFixed(2) +" kg") ;
+									$("#consumi_Sfarinato_1").text(consumo.Impasto_Consumi_Sfarinato_1.toFixed(2) + " kg") ;
+
+								} else {
 									console.log("Nessun dato di consumo trovato per il periodo specificato.");
-											$("#consumi_Acqua").text("Nessuno Valore") ;
-							 				$("#Impasto_consumi").text("Nessuno Valore") ;
-							 				$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
-							 				$("#consumi_Liquidi_1").text("Nessuno Valore") ;
-									
-								})
-							
+								}
+							})
+							.catch(error => {
+								console.error('Errore durante il recupero del consumo:', error);
+									$("#consumi_Acqua").text("Nessuno Valore") ;
+									$("#Impasto_consumi").text("Nessuno Valore") ;
+									$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
 
-							// tw.calculateConsumoImpasto(entityName, startDate,endDate).then(consumo => {
-							// 	if (consumo) {
-							// 		console.log(consumo.Impasto_Consumi_Acqua, "Consumo Acqua dei dati recuperati:");
-							// 		console.log(consumo.Impasto_Consumi_Impasto, "Consumo impasto dei dati recuperati:");
-							// 		console.log(consumo.Impasto_Consumi_Sfarinato_1, "Consumo sfarinato dei dati recuperati:");
-							// 		console.log(consumo.Impasto_Consumi_Liquido_1, "Consumo Liquidi dei dati recuperati:");
-							// 		$("#consumi_Acqua").text(consumo.Impasto_Consumi_Acqua.toFixed(2) + " L") ;
-							// 		$("#Impasto_consumi").text(consumo.Impasto_Consumi_Impasto.toFixed(2) +" kg") ;
-							// 		$("#consumi_Sfarinato_1").text(consumo.Impasto_Consumi_Sfarinato_1.toFixed(2) + " kg") ;
-							// 		$("#consumi_Liquidi_1").text(consumo.Impasto_Consumi_Liquido_1) ;
-
-							// 	} else {
-							// 		console.log("Nessun dato di consumo trovato per il periodo specificato.");
-							// 	}
-							// })
-							// .catch(error => {
-							// 	console.error('Errore durante il recupero del consumo:', error);
-							// 		$("#consumi_Acqua").text("Nessuno Valore") ;
-							// 		$("#Impasto_consumi").text("Nessuno Valore") ;
-							// 		$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
-							// 		$("#consumi_Liquidi_1").text("Nessuno Valore") ;
-							// });
+							});
 						}
 
-						getConsumption(entityName, timestampStart, timestampEnd)
+					showConsumption(entityName, timestampStart, timestampEnd)
 
 				})
 
@@ -395,6 +364,4 @@ $('#fullscreenHistory').click(function () {
 
 
 
-
-
-//getConsumption(entityName,"2024-10-29T00:00:00","2024-10-29T23:59:59")
+  

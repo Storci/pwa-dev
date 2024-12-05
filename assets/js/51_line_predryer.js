@@ -371,6 +371,7 @@ async function setCardsValue(entityName) {
 				// Assegna il valore di riempimento alla progress bar relativa
 				$(this).attr('style', prgbar_value)
 			})
+			//setTimeout(function() {	$('#modal1').modal("hide") }, 500);
 			hideSpinner()
 		})
 		.catch(error => console.error(error))
