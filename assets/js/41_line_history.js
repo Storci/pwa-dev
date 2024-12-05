@@ -324,7 +324,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 									$("#consumi_Acqua").text(consumo.Impasto_Consumi_Acqua.toFixed(2) + " L") ;
 									$("#Impasto_consumi").text(consumo.Impasto_Consumi_Impasto.toFixed(2) +" kg") ;
 									$("#consumi_Sfarinato_1").text(consumo.Impasto_Consumi_Sfarinato_1.toFixed(2) + " kg") ;
-
+									$("#consumi_Liquido_1").text(consumo.Impasto_Consumi_Liquido_1.toFixed(2) + " L")
 								} else {
 									console.log("Nessun dato di consumo trovato per il periodo specificato.");
 								}
@@ -334,6 +334,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 									$("#consumi_Acqua").text("Nessuno Valore") ;
 									$("#Impasto_consumi").text("Nessuno Valore") ;
 									$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
+									$("#consumi_Liquido_1").text("Nessuno Valore") ;
 
 							});
 						}
