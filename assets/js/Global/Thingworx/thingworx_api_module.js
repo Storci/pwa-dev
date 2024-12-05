@@ -71,7 +71,7 @@ function service_02_getLinesGeneralInfo(entityName) {
  * @returns A promise.
  */
 function service_03_getDryerHistoryProductions(entityName, startTime, endTime) {
-    let url = baseUrl + bootstrapThing + 'service_03_getDryerHistoryProductions';
+    let url = baseUrl + bootstrapThing + 'service_03_getDryerHistoryProductions_V2';
     let data = JSON.stringify({ "entityName": entityName ,"startTime":startTime, "endTime":endTime});
     /**fetch api */
     return fetch(url, {
@@ -411,6 +411,24 @@ function getCustomerGroupMachine(customer,typeGroup) {
 // Recupera l'elenco delle celle di un cliente
 function getCustomerCells(customer) {
     let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerCells";
+    let data = JSON.stringify({"Customer":customer});
+    //fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
+// Recupera l'elenco delle celle di un cliente
+function getCustomerCells_V2(customer) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerCells_V2";
     let data = JSON.stringify({"Customer":customer});
     //fetch API
     return fetch(url, {
@@ -881,6 +899,7 @@ export{
 	influxQuery,
 	getCustomerGroupMachine,
 	getCustomerCells,
+    getCustomerCells_V2,
 	getUser,
 	getCellInfo,
 	getCellHistoryProductions,
