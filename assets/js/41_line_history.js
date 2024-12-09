@@ -322,7 +322,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 									console.log(consumo.Impasto_Consumi_Impasto, "Consumo impasto dei dati recuperati:");
 									console.log(consumo.Impasto_Consumi_Sfarinato_1, "Consumo sfarinato dei dati recuperati:");
 									$("#consumi_Acqua").text(consumo.Impasto_Consumi_Acqua.toFixed(2) + " L") ;
-									$("#Impasto_consumi").text(consumo.Impasto_Consumi_Impasto.toFixed(2) +" kg") ;
+									$("#consumi_Impasto").text(consumo.Impasto_Consumi_Impasto.toFixed(2) +" kg") ;
 									$("#consumi_Sfarinato_1").text(consumo.Impasto_Consumi_Sfarinato_1.toFixed(2) + " kg") ;
 									$("#consumi_Liquido_1").text(consumo.Impasto_Consumi_Liquido_1.toFixed(2) + " L")
 								} else {
@@ -332,7 +332,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 							.catch(error => {
 								console.error('Errore durante il recupero del consumo:', error);
 									$("#consumi_Acqua").text("Nessuno Valore") ;
-									$("#Impasto_consumi").text("Nessuno Valore") ;
+									$("#consumi_Impasto").text("Nessuno Valore") ;
 									$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
 									$("#consumi_Liquido_1").text("Nessuno Valore") ;
 
