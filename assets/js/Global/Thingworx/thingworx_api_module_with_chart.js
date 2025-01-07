@@ -119,5 +119,5 @@ function getDryerHistoryProduction(idTable, entityName, timeStart, timeEnd, char
 
 export {
 	getDryerHistoryProduction,
-	//getLineHistoryProduction
+	getLineHistoryProduction
 }
