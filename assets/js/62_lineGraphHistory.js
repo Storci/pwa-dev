@@ -52,8 +52,10 @@ query += 'mean("Impasto_SP_Temperatura_Acqua") as "SP_Temp_Acqua", '
 query += 'mean("Pressa_Motori_Estrusore_PV_Calorie") as "PV_Consumi" '
 query += 'FROM "' + entityName + '" '
 query += 'WHERE time >' + timeStartZoom + 'ms and time < ' + timeEndZoom + 'ms GROUP BY time(10s) fill(previous)'
+console.log(query)
 
-common.historyLineProduction(chartHistoryProduction, query, entityName)
+//common.historyLineProduction(chartHistoryProduction, query, entityName)
+common.actualLineProduction(chartHistoryProduction,query,entityName)
 
 $('#backToPrev').click(function () {
     //let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
