@@ -311,7 +311,7 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 					timeEndZoom = timestampEnd
 
 					$('#fullscreenHistoryLine').click(function () {
-						let url = '62_lines_History_zoom.html?' + 'entityName=' + entityName + '&timeStart=' + timeStartZoom + '&timeEnd=' + timeEndZoom
+						let url = '62_lines_history_zoom.html?' + 'entityName=' + entityName + '&timeStart=' + timeStartZoom + '&timeEnd=' + timeEndZoom
 						window.open(url, '_blank')
 						console.log(e)
 					})
@@ -356,12 +356,6 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 			hideSpinner()
 		})
 }
-
-$('#fullscreenHistory').click(function () {
-	//let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
-	let url = '../62_lines_history_zoom.html?' + 'entityName=' + entityName
-	window.open(url, '_blank')
-})
 
 
 
