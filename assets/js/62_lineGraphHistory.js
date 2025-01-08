@@ -19,11 +19,14 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
 // Recupera dei dati dalle local storage
-let selectedCustomer = localStorage.getItem("global_selected_customer")
 let entityName = urlParams.get('entityName')
+let timeStartZoom = urlParams.get('timeStart')
+console.log(timeStartZoom)
+let timeEndZoom = urlParams.get('timeEnd')
+console.log(timeEndZoom)
 
 let arrayUM = ['Produzione (kg/h)', 'Pressione Estrusore (Bar)']
-let chartHistoryProduction 		 = am.createXYChart("IDTrendHistoryProduction", 'IDLegendHistoryProduction', 2, 3, arrayUM)
+let chartHistoryProduction = am.createXYChart("IDTrendHistoryProduction", 'IDLegendHistoryProduction', 2, 3, arrayUM)
 
 // Crea le series da visualizzare sul grafico
 am.createLineSeries(chartHistoryProduction, "PV - Impasto", "time", "PV_Impasto", "kg/h", 2, false, false, true)
@@ -41,7 +44,7 @@ setInterval(am.refreshLegendSize, 1000, chartHistoryProduction, 'IDLegendHistory
 // Definisce la query da inviare a influxdb
 // I parametri da sostituire sono indicati da {1}, {2}, ecc...
 // Invece l'entityName è sempre comune per tutte le query
-let query  = 'SELECT '
+let query = 'SELECT '
 query += 'mean("Impasto_PV_Impasto_Totale") as "PV_Impasto", '
 query += 'mean("Impasto_SP_Impasto_Totale") as "SP_Impasto", '
 query += 'mean("Pressa_Motori_Estrusore_PV_Pressione") as "PV_Pressione", '
@@ -51,6 +54,14 @@ query += 'mean("Impasto_PV_Temperatura_Acqua") as "PV_Temp_Acqua", '
 query += 'mean("Impasto_SP_Temperatura_Acqua") as "SP_Temp_Acqua", '
 query += 'mean("Pressa_Motori_Estrusore_PV_Calorie") as "PV_Consumi" '
 query += 'FROM "' + entityName + '" '
-query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(10s) fill(previous)'
+query += 'WHERE time >' + timeStartZoom + 'ms and time < ' + timeEndZoom + 'ms GROUP BY time(10s) fill(previous)'
+console.log(query)
 
-common.historyLineProduction(chartHistoryProduction,query, entityName)
+//common.historyLineProduction(chartHistoryProduction, query, entityName)
+common.actualLineProduction(chartHistoryProduction,query,entityName)
+
+$('#backToPrev').click(function () {
+    //let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
+    let url = '41_line_history.html?' + 'entityName=' + entityName
+    window.open(url, '_blank')
+})

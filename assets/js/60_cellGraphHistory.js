@@ -9,28 +9,23 @@ import * as theme from "./Global/Common/Theme.js"
 theme.changeColorTheme()
 
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
-// il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
-// baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-*/
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
-// Recupera il nome dell'utente da firebase, controlla che sia loggato.
-// Nel caso non fosse loggato richiama la pagina di login
-//fb.onAuthStateChanged_2(baseURL, pageURL)
+
 // Recupera dei dati dalle local storage
 let selectedCustomer = localStorage.getItem("global_selected_customer")
-let selectedLine 		 = localStorage.getItem("global_selected_cell")
+let selectedLine = localStorage.getItem("global_selected_cell")
 //let entityName			 = localStorage.getItem('global_selected_cell_entityName')
 
 
 
 let entityName = urlParams.get('entityName')
+console.log(entityName)
 let timeStartZoom = urlParams.get('timeStart')
-let timeEndZoom = urlParams.get ('timeEnd')
+console.log(timeStartZoom)
+let timeEndZoom = urlParams.get('timeEnd')
+console.log(timeEndZoom)
 
 
 let arrayUM = ['Essicazione', 'Calorie']
@@ -50,7 +45,7 @@ setInterval(am.refreshLegendSize, 1000, chartHistoryProduction, 'IDLegendHistory
 // Definisce la query da inviare a influxdb
 // I parametri da sostituire sono indicati da {1}, {2}, ecc...
 // Invece l'entityName è sempre comune per tutte le query
-let query  = 'SELECT '
+let query = 'SELECT '
 query += 'mean("Dati_Aggiuntivi_Temperatura_Ambiente") as "PV_Temperatura_Ambiente", '
 query += 'mean("Dati_Ciclo_Temperatura_PV") as "PV_Temperatura_Cella", '
 query += 'mean("Dati_Ciclo_Temperatura_SP") as "SP_Temperatura_Cella", '
@@ -59,27 +54,14 @@ query += 'mean("Dati_Ciclo_Umidita_PV") as "PV_Umidita_Cella", '
 query += 'mean("Dati_Ciclo_Umidita_SP") as "SP_Umidita_Cella", '
 query += 'mean("Dati_Aggiuntivi_Kcal_Ciclo") as "PV_Consumo_Ciclo" '
 query += 'FROM "' + entityName + '" '
-query += 'WHERE time > '+ timeStartZoom + 'ms and time < '+ timeEndZoom + 'ms GROUP BY time(10s) fill(previous)'
+query += 'WHERE time > ' + timeStartZoom + 'ms and time < ' + timeEndZoom + 'ms GROUP BY time(10s) fill(previous)'
 console.log(query)
 
 // ******************** STORICO PRODUZIONI ********************
 common.actualDryerProduction(chartHistoryProduction, query, entityName)
 
-$('#backToPrev').click(function(){
+$('#backToPrev').click(function () {
     //let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
-    let url ='./32_dryer_dashboard.html?'+'entityName='+ entityName  
+    let url = './32_dryer_dashboard.html?' + 'entityName=' + entityName
     window.open(url, '_blank')
 })
-
-
-
-
-
-// Istanzia i grafici dell'attuale e dello storico
-// I grafici devono essere istanziati una volta solamente
-// La funzione am.createXYChart ha i seguenti parametri di ingresso
-// - ID del div che contiene il grafico
-// - ID del div che contiene la legenda
-// - ID per la colorazione delle series
-// - Numero di assi Y associate al GRAFICO
-// - Array con le unità di misura
