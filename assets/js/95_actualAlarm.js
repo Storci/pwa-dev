@@ -12,15 +12,6 @@ fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
 
-showSpinner()
-
-function showSpinner(){
-	$('.loader').show(); // mostrare lo spinner
-}
-function hideSpinner(){
-	$('.loader').hide(); // nascondere lo spinner
-}
-
 
 let customerName = localStorage.getItem('global_customer')
 
