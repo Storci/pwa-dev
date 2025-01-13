@@ -99,6 +99,12 @@
   --bs-trend-value-5: #004071;
   --bs-trend-value-6: #004071;
   --bs-trend-axis-label: #004071;
+  --side-menu-bg: #ffffff !important;
+  --side-menu-text: #000000 !important;
+  --sidebar-heading-text: #6c757d !important; /* Example for heading text color */
+  --bs-placeholder-input: #000000 !important;
+    /*--collapsible-menu-text: #000000 !important; /* Add variable for collapsible menu text */
+
 }
 
 /* DARK MODE */
@@ -202,6 +208,44 @@
   --bs-trend-value-5: #004071;
   --bs-trend-value-6: #004071;
   --bs-trend-axis-label: #004071;
+  --side-menu-bg: #121212 !important;
+  --side-menu-text: #ffffff !important;
+  --sidebar-heading-text: #b0b0b0 !important;
+  --collapsible-menu-text:  #000000!important; /* Add variable for collapsible menu text */
+  --bs-placeholder-input: #ffffff !important;
+
+}
+
+/* Apply the variables to the side menu */
+.sidebar {
+  background-color: var(--side-menu-bg) !important;
+  color: var(--side-menu-text) !important;
+}
+
+/* Ensure links and other elements inside the sidebar use the variables */
+.sidebar .nav-link {
+  color: var(--side-menu-text) !important;
+}
+
+/* Apply variables to specific sections and submenus */
+.sidebar-heading {
+  color: var(--sidebar-heading-text) !important;
+}
+
+.bg-light-customized {
+  background-color: var(--side-menu-bg) !important;
+  color: var(--side-menu-text) !important;
+}
+
+/* Apply the variables to the collapsible menu */
+.collapsible-menu {
+  background-color: var(--collapsible-menu-bg) !important;
+  color: var(--collapsible-menu-text) !important;
+}
+
+/* Ensure links and other elements inside the collapsible menu use the variables */
+.collapsible-menu .nav-link {
+  color: var(--collapsible-menu-text) !important;
 }
 
 .card {
@@ -595,4 +639,8 @@ thead {
 /*Nasconde inizialmente la card che visualizza i consumi*/
 .hiddenConsumptionCard{
   display: none;
+}
+
+.user-info{
+  color: var(--bs-placeholder-input);
 }

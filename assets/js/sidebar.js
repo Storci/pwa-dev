@@ -49,8 +49,9 @@ $('#id-user-logout').click(() => { fb.signOut() })
 let dashboard_href = '02_Dashboard.html?entityName=' + entityName
 $('#id-nav-dashboard').attr('href', dashboard_href)
 
-
-$('#modal1').modal("show")
+let setting_href = '94_accountSettings.html?entityName=' + entityName
+$('#id-account-settings').attr('href', setting_href)
+// $('#modal1').modal("show")
 
 // Recupera i nomi delle macchine installate dal cliente.
 // vengono recuperate sia le celle che le linee.
