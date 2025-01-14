@@ -10,15 +10,7 @@ import * as common from "./Global/Common/commonFunctions.js"
 fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
-// funzione che  mostra lo spinner durante il caricamento della pagina
-showSpinner()
 
-function showSpinner(){
-	$('.loader').show(); // mostrare lo spinner
-}
-function hideSpinner(){
-	$('.loader').hide(); // nascondere lo spinner
-}
 // recupero il nome del cliente utilizzando il local storage
 let customerName = localStorage.getItem('global_customer')
 
