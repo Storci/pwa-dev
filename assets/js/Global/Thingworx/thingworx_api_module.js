@@ -818,6 +818,26 @@ function calculateConsumoImpasto(entityName, startDate, endDate) {
     });
 }
 
+// Fetch API
+// Recupera il conusmo  storica dell'impasto,sfarinato, liquidi, acqua ed ecc
+function CalculateConsumoFromStreams(entityName, startDate, endDate) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/CalculateConsumoFromStreams";
+    let data = JSON.stringify({"entityName":entityName, "startDate":startDate, "endDate":endDate});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
+
 //Fectch API
 // Recupera gli allarmi attivi della linea
 function getLineAlertsActive(entityName) {
@@ -960,5 +980,6 @@ export{
 	getDryerTimeRange,
 	getLineTimeRange,
     calculateConsumo,
-    calculateConsumoImpasto
+    calculateConsumoImpasto,
+    CalculateConsumoFromStreams
 }
