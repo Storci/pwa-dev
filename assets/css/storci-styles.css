@@ -104,6 +104,7 @@
   --sidebar-heading-text: #6c757d !important; /* Example for heading text color */
   --bs-placeholder-input: #000000 !important;
     /*--collapsible-menu-text: #000000 !important; /* Add variable for collapsible menu text */
+    
 
 }
 
@@ -213,6 +214,7 @@
   --sidebar-heading-text: #b0b0b0 !important;
   --collapsible-menu-text:  #000000!important; /* Add variable for collapsible menu text */
   --bs-placeholder-input: #ffffff !important;
+  --dark-background: #333 !important;
 
 }
 
@@ -232,21 +234,7 @@
   color: var(--sidebar-heading-text) !important;
 }
 
-.bg-light-customized {
-  background-color: var(--side-menu-bg) !important;
-  color: var(--side-menu-text) !important;
-}
 
-/* Apply the variables to the collapsible menu */
-.collapsible-menu {
-  background-color: var(--collapsible-menu-bg) !important;
-  color: var(--collapsible-menu-text) !important;
-}
-
-/* Ensure links and other elements inside the collapsible menu use the variables */
-.collapsible-menu .nav-link {
-  color: var(--collapsible-menu-text) !important;
-}
 
 .card {
   background-color: #ffffff0d;
@@ -628,6 +616,10 @@ thead {
     --bs-bg-opacity: 1;
     background-color: rgb(223 239 255) !important;
   }
+  body.dark-theme nav#sidebarMenu {
+    background-color: var(--dark-background) !important;
+  }
+  
 }
 /* toglie i bordi intorno al menu hambugert*/
 .navbar .navbar-toggler {
@@ -642,5 +634,16 @@ thead {
 }
 
 .user-info{
+  color: var(--bs-placeholder-input)!important;
+}
+::-webkit-input-placeholder {
   color: var(--bs-placeholder-input);
+}
+
+:-ms-input-placeholder {
+  color: var(--bs-placeholder-input);
+}
+
+::placeholder {
+  color: var(--bs-placeholder-input)!important;
 }
