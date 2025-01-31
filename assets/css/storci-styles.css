@@ -1,6 +1,7 @@
 /* LIGHT MODE */
 :root {
   color-scheme: light dark;
+  --bg-html :var(--bs-white);
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -57,7 +58,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #ffffff;
+  --bs-body-bg: var(--bs-white);
   --bs-heading-high-emphasis: #000000de;
   --bs-heading-medium-emphasis: #00000099;
   --bs-heading-disable: #0000004d;
@@ -74,6 +75,8 @@
   --bs-table-alternate-row-text-color-hover: #000000de;
   --bs-table-row-active: var(--bs-primary);
   --bs-table-row-text-color-active: #ffffffde;
+  --bs-table-bg: var(--bs-white)!important;
+  --bs-table-td-color: #000000de;
   --bs-card-background-default: #ffffff0d;
   --bs-card-background-default-hover: #ffffff1f;
   --bs-card-background-green: #769e79;
@@ -99,18 +102,18 @@
   --bs-trend-value-5: #004071;
   --bs-trend-value-6: #004071;
   --bs-trend-axis-label: #004071;
-  --side-menu-bg: #ffffff !important;
-  --side-menu-text: #000000 !important;
+  --side-menu-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  --side-menu-text: rgba(0, 0, 0, 0.9);     /* Semi-transparent black */
   --sidebar-heading-text: #6c757d !important; /* Example for heading text color */
   --bs-placeholder-input: #000000 !important;
     /*--collapsible-menu-text: #000000 !important; /* Add variable for collapsible menu text */
-    
 
 }
 
 /* DARK MODE */
 :root.dark {
   color-scheme: light dark;
+  --bg-html :var(--bs-dark);
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -167,9 +170,9 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #121212;
+  --bs-body-bg: var(--bs-dark);
   --bs-heading-high-emphasis: #ffffffde;
-  --bs-heading-medium-emphasis: #ffffff99;
+  --bs-heading-medium-emphasis:rgba(222, 234, 246, 0.75) !important;
   --bs-heading-disable: #ffffff4d;
   --bs-heading-high-emphasis-alternate: #000000de;
   --bs-heading-medium-emphasis-alternate: #00000099;
@@ -184,6 +187,8 @@
   --bs-table-alternate-row-text-color-hover: #343a40;
   --bs-table-row-active: var(--bs-primary);
   --bs-table-row-text-color-active: #ffffff5a;
+  --bs-table-bg: var(--bs-dark)!important;
+  --bs-table-td-color: #ffffffde;
   --bs-card-background-default: #ffffff0d;
   --bs-card-background-default-hover: #ffffff1f;
   --bs-card-background-green: #43a047;
@@ -209,15 +214,23 @@
   --bs-trend-value-5: #004071;
   --bs-trend-value-6: #004071;
   --bs-trend-axis-label: #004071;
-  --side-menu-bg: #121212 !important;
-  --side-menu-text: #ffffff !important;
+   --side-menu-bg: rgba(0, 0, 0, 0.9);       /* Semi-transparent black */
+  --side-menu-text: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
   --sidebar-heading-text: #b0b0b0 !important;
   --collapsible-menu-text:  #000000!important; /* Add variable for collapsible menu text */
   --bs-placeholder-input: #ffffff !important;
-  --dark-background: #333 !important;
-
 }
 
+html {
+  background-color: var(--bg-html);
+}
+
+.card_heading_label{
+  color:var(--bs-heading-medium-emphasis)!important;
+}
+.text-muted{
+  color:var(--bs-heading-medium-emphasis)!important;
+}
 /* Apply the variables to the side menu */
 .sidebar {
   background-color: var(--side-menu-bg) !important;
@@ -234,7 +247,21 @@
   color: var(--sidebar-heading-text) !important;
 }
 
+.bg-light-customized {
+  background-color: var(--side-menu-bg) !important;
+  color: var(--side-menu-text) !important;
+}
 
+/* Apply the variables to the collapsible menu */
+.collapsible-menu {
+  background-color: var(--collapsible-menu-bg) !important;
+  color: var(--collapsible-menu-text) !important;
+}
+
+/* Ensure links and other elements inside the collapsible menu use the variables */
+.collapsible-menu .nav-link {
+  color: var(--collapsible-menu-text) !important;
+}
 
 .card {
   background-color: #ffffff0d;
@@ -409,11 +436,14 @@ a {
   color: var(--bs-heading-high-emphasis);
 }
 
-/*  */
+/* colore per i testi per i valori */
 thead {
   position: sticky;
   top: 0px;
-  background-color: floralwhite;
+  background-color: var(--bs-thead-bg)!important;
+}
+#IDHistoryTable {
+  color: var(--bs-body-color)!important;
 }
 
 .tableDiv {
@@ -422,6 +452,14 @@ thead {
   overflow: scroll;
   position: relative;
   opacity: 1;
+}
+/* regola per gestire il colore del testo delle celle della tabella */
+.table > :not(caption) > * > * { 
+  color:var(--bs-table-td-color)!important; ;
+  background-color: var(--bs-table-bg)!important;
+}
+[id^="IDHistoryTableRow"] {
+  background-color: var(--bs-table-)!important;
 }
 
 /* regola per gestire lo scroll sulla tabella senza allargare l'altezza */
@@ -524,17 +562,6 @@ thead {
   background-color: rgba(0, 0, 0, 0.7);
   transition: opacity 0.75s visibilty 0.75s;
 }
-/* storci-styles.css */
-/* .loader {
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  display: none;  Hidden by default
-} */
 
 .loader-hidden {
   opacity: 0;
@@ -613,13 +640,12 @@ thead {
     box-shadow: 0 0 0;
   }
   .bg-light-customized {
-    --bs-bg-opacity: 1;
-    background-color: rgb(223 239 255) !important;
+    background-color: rgb(223 239 255) !important; /* Light blue */
   }
-  body.dark-theme nav#sidebarMenu {
-    background-color: var(--dark-background) !important;
+  :root.dark .bg-light-customized {
+    background-color: var(--side-menu-bg) !important; /* Dark color */
   }
-  
+
 }
 /* toglie i bordi intorno al menu hambugert*/
 .navbar .navbar-toggler {
@@ -634,16 +660,5 @@ thead {
 }
 
 .user-info{
-  color: var(--bs-placeholder-input)!important;
-}
-::-webkit-input-placeholder {
   color: var(--bs-placeholder-input);
-}
-
-:-ms-input-placeholder {
-  color: var(--bs-placeholder-input);
-}
-
-::placeholder {
-  color: var(--bs-placeholder-input)!important;
 }

@@ -8,6 +8,19 @@ import * as theme from "./Global/Common/Theme.js"
 // il nome dell'entity permette di recuperare le macchine presenti
 // per un determinato cliente e visualizzarle nella sidebar.
 
+// questo funzione permette di chiudere la sidebar quando si clicca fuori da essa
+document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('click', function(event) {
+    if (window.innerWidth <= 768) { // Mobile screen resolution
+      const sidebar = document.querySelector('.sidebar'); // Adjust the selector as needed
+      const hamburgerMenu = document.querySelector('.navbar-dark-customized'); // Adjust the selector as needed
+      if (sidebar && !sidebar.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+        sidebar.classList.remove('show');
+      }
+    }
+  });
+});
+
 theme.changeColorTheme()
 
 let entityName = localStorage.getItem('global_entityName')
