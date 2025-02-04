@@ -4,14 +4,11 @@ import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
+import * as theme from "./Global/Common/Theme.js"
 
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-*/
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
@@ -29,12 +26,7 @@ fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
 
-/*window.addEventListener("load", function () {
-	const loader = document.querySelector(".loader");
-	loader.className += " hidden"; // class "loader hidden"
-});
-*/
-//$('#modal1').modal("show")
+theme.changeColorTheme()
 
 showSpinner()
 

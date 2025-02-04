@@ -3,11 +3,12 @@ import * as am from "./Global/amchart/amchart_functions.js";
 import * as fb from "./Global/Firebase/firebase_auth_module.js";
 import * as lang from "./Global/Common/Translation.js";
 import * as common from "./Global/Common/commonFunctions.js";
+import * as theme from "./Global/Common/Theme.js"
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-// richiamo funzione dello spinner
+// richiamo funzione dello  che mostra lo spinner
 showSpinner()
 
 
@@ -38,6 +39,7 @@ $("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
 
 // Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
 lang.getLanguage();
+theme.changeColorTheme()
 
 // Retrieve user name from firebase, check if logged in, if not, redirect to login page
 fb.onAuthStateChanged_2();

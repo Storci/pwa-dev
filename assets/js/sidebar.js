@@ -2,12 +2,26 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import * as theme from "./Global/Common/Theme.js"
 
 // recupera il nome dell'entity (selezionata, se utente storci)
 // il nome dell'entity permette di recuperare le macchine presenti
 // per un determinato cliente e visualizzarle nella sidebar.
 
+// questo funzione permette di chiudere la sidebar quando si clicca fuori da essa
+document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('click', function(event) {
+    if (window.innerWidth <= 768) { // Mobile screen resolution
+      const sidebar = document.querySelector('.sidebar'); // Adjust the selector as needed
+      const hamburgerMenu = document.querySelector('.navbar-dark-customized'); // Adjust the selector as needed
+      if (sidebar && !sidebar.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+        sidebar.classList.remove('show');
+      }
+    }
+  });
+});
 
+theme.changeColorTheme()
 
 let entityName = localStorage.getItem('global_entityName')
 let customer = localStorage.getItem('global_selected_customer')
@@ -48,8 +62,9 @@ $('#id-user-logout').click(() => { fb.signOut() })
 let dashboard_href = '02_Dashboard.html?entityName=' + entityName
 $('#id-nav-dashboard').attr('href', dashboard_href)
 
-
-$('#modal1').modal("show")
+let setting_href = '94_accountSettings.html?entityName=' + entityName
+$('#id-account-settings').attr('href', setting_href)
+// $('#modal1').modal("show")
 
 // Recupera i nomi delle macchine installate dal cliente.
 // vengono recuperate sia le celle che le linee.

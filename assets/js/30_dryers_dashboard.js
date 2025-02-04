@@ -2,6 +2,9 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import * as theme from "./Global/Common/Theme.js"
+
+theme.changeColorTheme()
 
 $(document).ready(() => {
 	showSpinner()
@@ -116,7 +119,7 @@ function getCellInfoNew(selectedCustomer) {
 }
 
 
-function updateCardInfo(dryer, i){			
+function updateCardInfo(dryer, i){
 	// Genera l'id che identifica i campi della singola card da valorizzare
 	let ID = "#IDCardCellGroup" + i;
 	let ClassTitle = ".IDCardCellGroup" + i + "Title"

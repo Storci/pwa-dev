@@ -4,6 +4,7 @@ import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
+import * as theme from "./Global/Common/Theme.js"
 
 
 const queryString = window.location.search
@@ -23,6 +24,7 @@ fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
 
+theme.changeColorTheme()
 
 // funzione che carica lo spinner
 showSpinner()
