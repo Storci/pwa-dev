@@ -170,6 +170,29 @@ function service_10_getAlerts(startDate, endDate, filter,getHistory,customerName
         return response.json();
     });
 }
+/** 
+* @param getHistory - true/false
+ * @param customerName - The name of the customer you want to get alerts for.
+ * @returns A promise.
+*/
+
+function service_12_getAlertsDatatable(customerName,filter) {
+    let url = baseUrl + bootstrapThing + 'GetAlarmsFromTable';
+    let data = JSON.stringify({"customerName":customerName, "filter":filter });
+    //fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
 /**
  * It takes a query as input, calls the REST API, and returns the response
  * Recupera gli allarmi attivi della linea
@@ -945,6 +968,7 @@ export{
 	service_05_getDryerStartEnd,
 	service_10_getAlerts,
 	service_11_AlertsReport,
+    service_12_getAlertsDatatable,
 	service_80_githubAPI,
 	service_90_sidebar,
 	service_97_addNewUser,
