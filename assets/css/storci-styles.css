@@ -214,7 +214,7 @@
   --bs-trend-value-5: #004071;
   --bs-trend-value-6: #004071;
   --bs-trend-axis-label: #004071;
-   --side-menu-bg: rgba(0, 0, 0, 0.9);       /* Semi-transparent black */
+   --side-menu-bg: rgba(0, 0, 0, 1);       /* Semi-transparent black */
   --side-menu-text: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
   --sidebar-heading-text: #b0b0b0 !important;
   --collapsible-menu-text:  #000000!important; /* Add variable for collapsible menu text */
