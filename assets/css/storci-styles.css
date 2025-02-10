@@ -107,7 +107,7 @@
   --sidebar-heading-text: #6c757d !important; /* Example for heading text color */
   --bs-placeholder-input: #000000 !important;
     /*--collapsible-menu-text: #000000 !important; /* Add variable for collapsible menu text */
-
+  --bs-form-control-bg: #090909 !important;
 }
 
 /* DARK MODE */
@@ -214,11 +214,12 @@
   --bs-trend-value-5: #004071;
   --bs-trend-value-6: #004071;
   --bs-trend-axis-label: #004071;
-   --side-menu-bg: rgba(0, 0, 0, 0.9);       /* Semi-transparent black */
+   --side-menu-bg: rgba(0, 0, 0, 1);       /* Semi-transparent black */
   --side-menu-text: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
   --sidebar-heading-text: #b0b0b0 !important;
   --collapsible-menu-text:  #000000!important; /* Add variable for collapsible menu text */
   --bs-placeholder-input: #ffffff !important;
+  --bs-form-control-bg: #faf5f5 !important;
 }
 
 html {
@@ -647,7 +648,7 @@ thead {
   }
 
 }
-/* toglie i bordi intorno al menu hambugert*/
+/* toglie i bordi intorno al menu hambuger*/
 .navbar .navbar-toggler {
   top: 0.25rem;
   left: 1rem;
@@ -661,4 +662,14 @@ thead {
 
 .user-info{
   color: var(--bs-placeholder-input);
+}
+.form-control{
+  color: var(--bs-placeholder-input);
+}
+
+/*.input-group-text-color:focus{
+  color: var(--bs-body-bg)!important;
+}*/
+.form-control:focus{
+  color: var( --bs-form-control-bg)!important;
 }
