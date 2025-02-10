@@ -107,7 +107,10 @@
   --sidebar-heading-text: #6c757d !important; /* Example for heading text color */
   --bs-placeholder-input: #000000 !important;
     /*--collapsible-menu-text: #000000 !important; /* Add variable for collapsible menu text */
-  --bs-form-control-bg: #090909 !important;
+  --bs-nav-link-translated-hover: #000000 !important;
+  --bs-nav-link-translated: #000000 !important;
+
+
 }
 
 /* DARK MODE */
@@ -169,7 +172,7 @@
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #212529;
+  --bs-body-color: #e7e9eb;
   --bs-body-bg: var(--bs-dark);
   --bs-heading-high-emphasis: #ffffffde;
   --bs-heading-medium-emphasis:rgba(222, 234, 246, 0.75) !important;
@@ -219,7 +222,8 @@
   --sidebar-heading-text: #b0b0b0 !important;
   --collapsible-menu-text:  #000000!important; /* Add variable for collapsible menu text */
   --bs-placeholder-input: #ffffff !important;
-  --bs-form-control-bg: #faf5f5 !important;
+  --bs-nav-link-translated-hover: #ffffff !important;
+  --bs-nav-link-translated: #918d8d !important;
 }
 
 html {
@@ -648,7 +652,7 @@ thead {
   }
 
 }
-/* toglie i bordi intorno al menu hambuger*/
+/* toglie i bordi intorno al menu hambugert*/
 .navbar .navbar-toggler {
   top: 0.25rem;
   left: 1rem;
@@ -663,13 +667,13 @@ thead {
 .user-info{
   color: var(--bs-placeholder-input);
 }
-.form-control{
-  color: var(--bs-placeholder-input);
+.translate{
+  color: var(--bs-nav-link-translated-hover)!important;
+  color: var(--bs-nav-link-translated)!important;
 }
-
-/*.input-group-text-color:focus{
-  color: var(--bs-body-bg)!important;
-}*/
-.form-control:focus{
-  color: var( --bs-form-control-bg)!important;
+.dropdown-item{
+  color: var(--bs-nav-link-translated)!important;
 }
+/* .form-text{
+  color: var(--bs-body-color)!important;
+} */
