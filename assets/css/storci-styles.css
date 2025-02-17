@@ -75,7 +75,8 @@
   --bs-table-alternate-row-text-color-hover: #000000de;
   --bs-table-row-active: var(--bs-primary);
   --bs-table-row-text-color-active: #ffffffde;
-  --bs-table-bg: var(--bs-white)!important;
+  --bs-table-bg: #cfe2ff  !important;
+  --bs-table-hover:#bfd1ec !important;
   --bs-table-td-color: #000000de;
   --bs-card-background-default: #ffffff0d;
   --bs-card-background-default-hover: #ffffff1f;
@@ -191,7 +192,8 @@
   --bs-table-alternate-row-text-color-hover: #343a40;
   --bs-table-row-active: var(--bs-primary);
   --bs-table-row-text-color-active: #ffffff5a;
-  --bs-table-bg: var(--bs-dark)!important;
+  --bs-table-bg: #2a456d!important;
+  --bs-table-hover:#414d60!important;
   --bs-table-td-color: #ffffffde;
   --bs-card-background-default: #ffffff0d;
   --bs-card-background-default-hover: #ffffff1f;
@@ -460,13 +462,9 @@ thead {
   position: relative;
   opacity: 1;
 }
-/* regola per gestire il colore del testo delle celle della tabella */
-.table > :not(caption) > * > * { 
-  color:var(--bs-table-td-color)!important; ;
-  background-color: var(--bs-table-bg)!important;
-}
+
 [id^="IDHistoryTableRow"] {
-  background-color: var(--bs-table-)!important;
+  /*background-color: var(--bs-table-bg)!important;*/
 }
 
 /* regola per gestire lo scroll sulla tabella senza allargare l'altezza */
@@ -650,7 +648,7 @@ thead {
     background-color: rgb(223 239 255) !important; /* Light blue */
   }
   :root.dark .bg-light-customized {
-    background-color: var(--side-menu-bg) !important; /* Dark color */
+    background-color: #171b1e !important; /* Dark color */
   }
 
 }
@@ -685,4 +683,20 @@ thead {
 }
 .input-group-text{
   color: var(--bs-icons-history)!important;
+}
+table.table-primary {
+  background-color: var(--bs-table-bg) !important;
+}
+
+/* Target the table itself */
+table.table-primary {
+  background-color: var(--bs-table-bg) !important;
+}
+
+/* Target all child elements (cells, rows) */
+table.table-primary > :not(caption) > * > * {
+  background-color: inherit !important; /* Inherit from table */
+}
+.form-text{
+  color: var(--bs-body-color)!important;
 }
