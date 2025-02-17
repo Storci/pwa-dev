@@ -462,13 +462,9 @@ thead {
   position: relative;
   opacity: 1;
 }
-/* regola per gestire il colore del testo delle celle della tabella */
-.table > :not(caption) > * > * { 
-  color:var(--bs-table-td-color)!important; ;
-  background-color: var(--bs-table-bg)!important;
-}
+
 [id^="IDHistoryTableRow"] {
-  background-color: var(--bs-table-)!important;
+  /*background-color: var(--bs-table-bg)!important;*/
 }
 
 /* regola per gestire lo scroll sulla tabella senza allargare l'altezza */
@@ -688,6 +684,16 @@ thead {
 .input-group-text{
   color: var(--bs-icons-history)!important;
 }
-.table-primary{
-  background-color: var(--bs-table-bg)!important;
+table.table-primary {
+  background-color: var(--bs-table-bg) !important;
+}
+
+/* Target the table itself */
+table.table-primary {
+  background-color: var(--bs-table-bg) !important;
+}
+
+/* Target all child elements (cells, rows) */
+table.table-primary > :not(caption) > * > * {
+  background-color: inherit !important; /* Inherit from table */
 }
