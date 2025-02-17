@@ -697,3 +697,6 @@ table.table-primary {
 table.table-primary > :not(caption) > * > * {
   background-color: inherit !important; /* Inherit from table */
 }
+.form-text{
+  color: var(--bs-body-color)!important;
+}
