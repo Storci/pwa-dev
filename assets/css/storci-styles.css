@@ -700,3 +700,15 @@ table.table-primary > :not(caption) > * > * {
 .form-text{
   color: var(--bs-body-color)!important;
 }
+.flag-icon {
+  width: 20px;
+  height: 14px;
+  display: inline-block;
+  background-size: cover;
+}
+.flag-icon-squared {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-size: cover;
+}

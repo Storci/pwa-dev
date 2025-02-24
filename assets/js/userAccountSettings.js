@@ -246,3 +246,23 @@ $("#notification-toggle").click(function(){
     })
   }, 2000)
 })
+
+
+const flagIconGbUrl = 'https://flagcdn.com/gb.svg';
+const parent = $0.parentElement;
+await setElementStyles($0, {
+  backgroundImage: `url(${flagIconGbUrl}) !important`,
+  backgroundSize: 'contain !important',
+  backgroundRepeat: 'no-repeat !important',
+  backgroundPosition: 'center !important'
+});
+parent.classList.add('flag-icon');
+const data = {
+  elementStyles: {
+    backgroundImage: window.getComputedStyle($0)['background-image'],
+    backgroundSize: window.getComputedStyle($0)['background-size'],
+    backgroundRepeat: window.getComputedStyle($0)['background-repeat'],
+    backgroundPosition: window.getComputedStyle($0)['background-position'],
+  },
+  parentHasFlagIconClass: parent.classList.contains('flag-icon')
+};
