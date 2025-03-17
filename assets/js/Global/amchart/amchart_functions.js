@@ -38,8 +38,8 @@ let colorChart = [
 		am4core.color("#fb8c00"),// verde chiaro PV Impasto
 		am4core.color("#fdd835"),// verde scuro SP Impasto
 		am4core.color("#8105E1"),//  viola chiaro per pressione
-		am4core.color("#d3f3fc"),// colore per portata acqua PV
-		am4core.color("#cde9f4"),// colore per portata acqua SP
+		am4core.color("#08245e"),// colore per portata acqua PV
+		am4core.color("#070ff5"),// colore per portata acqua SP
 		am4core.color("#e06b59"),// colore per temperatura acqua PV
 		am4core.color("#f70202"),// colore per temperatura acqua SP
 		am4core.color("#EEA700"),// colore per la calorie arancione
