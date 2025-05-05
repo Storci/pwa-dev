@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html lang="en" class="bg-white" data-pgc-master="00_master.html"> 
+<html lang="en" data-pgc-master="00_master.html"> 
     <head data-pgc-field="head"> 
         <meta charset="utf-8"/> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
@@ -19,6 +19,7 @@
         <!-- Custom styles for this template -->         
         <link href="./assets/css/dashboard.css" rel="stylesheet"/> 
         <link href="./assets/css/storci-styles.css" rel="stylesheet"/> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
         <!-- <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->         
         <!-- AM4CORE CHART -->         
         <script defer src="https://cdn.amcharts.com/lib/4/core.js"></script>         
@@ -37,8 +38,8 @@
         <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>         
         <script defer src="./assets/js/Global/Firebase/firebase_config.js" type="module"></script>         
         <script defer src="./assets/js/userAccountSettings.js" type="module"></script>         
-        <script src="./assets/js/Global/Common/Theme.js" type="module"></script>         
-    </head>     
+        <script src="./assets/js/Global/Common/Theme.js" type="module"></script>
+    </head>    
     <body class="sidebar-scroll-hidden" style="background-color: var(--bs-body-bg)"> 
         <script>
       //$('body').addClass('d-none')
@@ -61,11 +62,9 @@
                         <ul class="nav flex-column" id="IDNavSecondary"> 
                             <div class="accordion" id="panels1"> 
                                 <div class="accordion-item bg-light bg-light-customized border-bottom-0 border-top-0 d-none" id="id-accordion-dryers"> 
-                                    <h2 class="accordion-header bg-light bg-light-customized" id="id-header-accordion-dryers">  <button class="accordion-button bg-light bg-light-customized collapsed pb-2 pe-3 ps-3 pt-2 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#id-collapse-panel-dryers" aria-controls="id-collapse-panel-dryers" id="id-btn-accordion-dryers" aria-expanded="false" translate_id="dryers"> 
-                                            Dryer
-</button>  </h2> 
+                                    <h2 class="accordion-header bg-light bg-light-customized" id="id-header-accordion-dryers"> <button class="accordion-button bg-light bg-light-customized collapsed pb-2 pe-3 ps-3 pt-2 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#id-collapse-panel-dryers" aria-controls="id-collapse-panel-dryers" id="id-btn-accordion-dryers" aria-expanded="false" translate_id="dryers">  Dryer  </button>  </h2> 
                                     <div id="id-collapse-panel-dryers" class="accordion-collapse collapse ps-3" aria-labelledby="collapse2" data-bs-parent="#panels1"> 
-                                        <li class="nav-item" data-pg-name="dashboard" id="id-nav-dashboard-dryer"> <a class="align-items-center d-flex nav-link" aria-current="page" href="30_dryers_general_dashboard.html"><span class="material-icons-outlined">analytics</span><span class="ms-3">Dashboard</span>&nbsp;</a> 
+                                        <li class="nav-itemi data-pg-name=" ashboardi id="id-nav-dashboard-dryer"> <a class="align-items-center d-flex nav-link" aria-current="page" href="30_dryers_general_dashboard.html"><span class="material-icons-outlined">analytics</span><span class="ms-3">Dashboard</span>&nbsp;</a> 
                                         </li>                                         
                                         <li class="nav-item text-light" data-pg-name="history" id="id-nav-history-dryer"> <a class="align-items-center d-flex nav-link" aria-current="page" href="31_dryers_history.html"><span class="material-icons-outlined">history</span><span class="ms-3" translate_id="history">History</span>&nbsp;</a> 
                                         </li>                                         
@@ -105,7 +104,7 @@
                                         <li class="d-none nav-item text-light" data-pg-name="dryer-12" id="id-nav-dryer-12"> <a class="nav-link" aria-current="page" href="03_Dryers.html"><div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">crop_portrait</span> <span class="ms-3" translate_id="dryer_12">Dryer 12</span> 
                                                 </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item text-light" data-pg-name="dryer-13" id="id-nav-dryer-13"> <a class="nav-link" aria-current="page" href="03_Dryers.html"><div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">crop_portrait</span> <span class="ms-3" translate_id="dryer_13">Dryer 13</span> 
+                                        <li class="d-none nav-item text-light" data-pg-name="dryer-13" id="id-nav-dryer-13"> <a class="nav-link" aria-current="page" href="03_Dryers.html">  <div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">crop_portrait</span> <span class="ms-3" translate_id="dryer_13">Dryer 13</span> 
                                                 </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;</a> 
                                         </li>                                         
                                         <li class="d-none nav-item text-light" data-pg-name="dryer-14" id="id-nav-dryer-14"> <a class="nav-link" aria-current="page" href="03_Dryers.html"><div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">crop_portrait</span> <span class="ms-3" translate_id="dryer_14">Dryer 14</span> 
@@ -115,71 +114,89 @@
                                                 </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;</a> 
                                         </li>                                         
                                         <li class="d-none nav-item text-light" data-pg-name="dryer-16" id="id-nav-dryer-16"> <a class="nav-link" aria-current="page" href="03_Dryers.html"><div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">crop_portrait</span> <span class="ms-3" translate_id="dryer_16">Dryer 16</span> 
-                                                </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;</a> 
+                                                </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;
+ </a> 
                                         </li>                                         
                                     </div>                                     
                                 </div>                                 
                                 <div class="accordion-item bg-light bg-light-customized border-bottom-0 border-top-0 d-none" id="id-accordion-line-1"> 
-                                    <h2 class="accordion-header bg-light bg-light-customized" id="id-header-accordion-line-1">  <button class="accordion-button bg-light bg-light-customized collapsed pb-2 pe-3 ps-3 pt-2 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#id-collapse-panel-line-1" aria-expanded="false" aria-controls="id-collapse-panel-line-1" id="id-btn-accordion-line-1" translate_id="pasta_line"> 
+                                    <h2 class="accordion-header bg-light bg-light-customized2  id=" d-header-accordion-line-12>  <button class="accordion-button bg-light bg-light-customized collapsed pb-2 pe-3 ps-3 pt-2 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#id-collapse-panel-line-1" aria-expanded="false" aria-controls="id-collapse-panel-line-1" id="id-btn-accordion-line-1" translate_id="pasta_line"> 
                                             Pasta Line 01
 </button>  </h2> 
                                     <div id="id-collapse-panel-line-1" class="accordion-collapse collapse ps-3" aria-labelledby="collapse2" data-bs-parent="#panels1"> 
-                                        <li class="nav-item" data-pg-name="dashboard" id="id-nav-dashboard-line-1"> <a class="nav-link" aria-current="page" href="40_line_dashboard.html" id="nav-line01-dashboard"><div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">analytics</span> <span class="ms-3">Dashboard</span> 
-                                                </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;</a> 
+                                        <li class="nav-item" data-pg-name="dashboard" id="id-nav-dashboard-line-1"> <a class="nav-link" aria-current="page" href="40_line_dashboard.html" id="nav-line01-dashboard">  <div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">analytics</span> <span class="ms-3">Dashboard</span> 
+                                                </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="nav-item" data-pg-name="history" id="id-nav-history-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="41_line_history.html"><span class="material-icons-outlined">history</span><span class="ms-3" translate_id="history">History</span>&nbsp;</a> 
+                                        <li class="nav-item" data-pg-name="history" id="id-nav-history-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="41_line_history.html">  <span class="material-icons-outlined">history</span>  <span class="ms-3" translate_id="history">History</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="dough" id="id-nav-dough-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="45_line_dough.html"><span class="material-icons-outlined">grain</span><span class="ms-3" translate_id="dough">Dough</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="dough" id="id-nav-dough-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="45_line_dough.html">  <span class="material-icons-outlined">grain</span>  <span class="ms-3" translate_id="dough">Dough</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="extruder" id="id-nav-extruder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="extruder">Extruder</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="extruder" id="id-nav-extruder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="extruder">Extruder</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="tray-feeder">Tray Feeder</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="tray-feeder">Tray Feeder</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="destacker" id="id-nav-destacker-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="destacker-robot">Destacker Robot</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="destacker" id="id-nav-destacker-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="destacker-robot">Destacker Robot</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="spreader" id="id-nav-spreader-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="49_line_spreader.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="spreader">Spreader</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="spreader" id="id-nav-spreader-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="49_line_spreader.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="spreader">Spreader</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="lasagna_nest">Lasagne Nest</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="lasagna_nest">Lasagne Nest</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pasta_instant">Pasta Instant</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="pasta_instant">Pasta Instant</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="predryer" id="id-nav-predryer-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pre-dryer">Pre-Dryer</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="predryer" id="id-nav-predryer-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="pre-dryer">Pre-Dryer</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="omnidryer" id="id-nav-omnidryer-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="52_line_omnidryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="omnidryer">Omnidryer</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="omnidryer" id="id-nav-omnidryer-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="52_line_omnidryer.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="omnidryer">Omnidryer</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="stacker" id="id-nav-stacker-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="53_line_stacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="">Impilatore</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="stacker" id="id-nav-stacker-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="53_line_stacker.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="">Impilatore</span>&nbsp;
+ </a> 
                                         </li>                                         
                                     </div>                                     
                                 </div>                                 
                                 <div class="accordion-item bg-light bg-light-customized border-bottom-0 border-top-0 d-none" id="id-accordion-line-2"> 
-                                    <h2 class="accordion-header bg-light bg-light-customized" id="id-header-accordion-line-2">  <button class="accordion-button bg-light bg-light-customized collapsed pb-2 pe-3 ps-3 pt-2 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#id-collapse-panel-line-2" aria-expanded="false" aria-controls="id-collapse-panel-line-2" id="id-btn-accordion-line-2" translate_id="pasta_line"> 
-                                            Pasta Line 02
-</button>  </h2> 
+                                    <h2 class="accordion-header bg-light bg-light-customized" id="id-header-accordion-line-2">  <button class="accordion-button bg-light bg-light-customized collapsed pb-2 pe-3 ps-3 pt-2 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#id-collapse-panel-line-2" aria-expanded="false" aria-controls="id-collapse-panel-line-2" id="id-btn-accordion-line-2" translate_id="pasta_line">  Pasta Line 02 </button>  </h2> 
                                     <div id="id-collapse-panel-line-2" class="accordion-collapse collapse ps-3" aria-labelledby="collapse2" data-bs-parent="#panels1"> 
-                                        <li class="nav-item text-light" id="id-nav-dashboard-line-" data-pg-name="dashboard"> <a class="nav-link" aria-current="page" href="40_line_dashboard.html"><div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">analytics</span> <span class="ms-3">Dashboard</span> 
-                                                </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;</a> 
+                                        <li class="nav-item text-light" id="id-nav-dashboard-line-" data-pg-name="dashboard"> <a class="nav-link" aria-current="page" href="40_line_dashboard.html">  <div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">analytics</span> <span class="ms-3">Dashboard</span> 
+                                                </div> <span class="float-end ms-1 text-success">Running</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="nav-item text-light" data-pg-name="history" id="id-nav-history-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="41_line_history.html"><span class="material-icons-outlined">history</span><span class="ms-3" translate_id="history">History</span>&nbsp;</a> 
+                                        <li class="nav-item text-light" data-pg-name="history" id="id-nav-history-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="41_line_history.html">  <span class="material-icons-outlined">history</span>  <span class="ms-3" translate_id="history">History</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="dough" id="id-nav-dough-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="45_line_dough.html"><span class="material-icons-outlined">grain</span><span class="ms-3" translate_id="dough">Dough</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="dough" id="id-nav-dough-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="45_line_dough.html">  <span class="material-icons-outlined">grain</span>  <span class="ms-3" translate_id="dough">Dough</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="extruder" id="id-nav-extruder-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="extruder">Extruder</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="extruder" id="id-nav-extruder-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="extruder">Extruder</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="tray-feeder">Tray Feeder</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="tray-feeder">Tray Feeder</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="destacker" id="id-nav-destacker-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="destacker-robot">Destacker Robot</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="destacker" id="id-nav-destacker-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="destacker-robot">Destacker Robot</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="spreader" id="id-nav-spreader-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="49_line_spreader.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="spreader">Spreader</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="spreader" id="id-nav-spreader-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="49_line_spreader.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="spreader">Spreader</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="lasagna_nest">Lasagne Nest</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="lasagna_nest">Lasagne Nest</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pasta_instant">Pasta Instant</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="pasta_instant">Pasta Instant</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="predryer" id="id-nav-predryer-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pre-dryer">Pre-Dryer</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="predryer" id="id-nav-predryer-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="pre-dryer">Pre-Dryer</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="omnidryer" id="id-nav-omnidryer-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="52_line_omnidryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="omnidryer">Omnidryer</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="omnidryer" id="id-nav-omnidryer-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="52_line_omnidryer.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="omnidryer">Omnidryer</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="stacker" id="id-nav-stacker-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="53_line_stacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="">Impilatore</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="stacker" id="id-nav-stacker-line-2"> <a class="align-items-center d-flex nav-link" aria-current="page" href="53_line_stacker.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="">Impilatore</span>&nbsp;
+ </a> 
                                         </li>                                         
                                     </div>                                     
                                 </div>                                 
@@ -188,30 +205,40 @@
                                             Pasta Line 03
 </button>  </h2> 
                                     <div id="id-collapse-panel-line-3" class="accordion-collapse collapse ps-3" aria-labelledby="collapse3" data-bs-parent="#panels1"> 
-                                        <li class="nav-item text-light" id="id-nav-dashboard-line-" data-pg-name="dashboard"> <a class="nav-link" aria-current="page" href="40_line_dashboard.html"><div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">analytics</span> <span class="ms-3">Dashboard</span> 
-                                                </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;</a> 
+                                        <li class="nav-item text-light" id="id-nav-dashboard-line-" data-pg-name="dashboard"> <a class="nav-link" aria-current="page" href="40_line_dashboard.html">  <div class="align-items-center d-inline-flex"> <span class="material-icons-outlined">analytics</span> <span class="ms-3">Dashboard</span> 
+                                                </div>  <span class="float-end ms-1 text-success">Running</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="nav-item text-light" data-pg-name="history" id="id-nav-history-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="41_line_history.html"><span class="material-icons-outlined">history</span><span class="ms-3" translate_id="history">History</span>&nbsp;</a> 
+                                        <li class="nav-item text-light" data-pg-name="history" id="id-nav-history-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="41_line_history.html">  <span class="material-icons-outlined">history</span>  <span class="ms-3" translate_id="history">History</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="dough" id="id-nav-dough-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="45_line_dough.html"><span class="material-icons-outlined">grain</span><span class="ms-3" translate_id="dough">Dough</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="dough" id="id-nav-dough-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="45_line_dough.html">  <span class="material-icons-outlined">grain</span>  <span class="ms-3" translate_id="dough">Dough</span>&nbsp;
+ </a> 
                                         </li>                                         
                                         <li class="d-none nav-item" data-pg-name="extruder" id="id-nav-extruder-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="extruder">Extruder</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="tray-feeder">Tray Feeder</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="tray-feeder">Tray Feeder</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="destacker" id="id-nav-destacker-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="destacker-robot">Destacker Robot</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="destacker" id="id-nav-destacker-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="destacker-robot">Destacker Robot</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="spreader" id="id-nav-spreader-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="49_line_spreader.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="spreader">Spreader</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="spreader" id="id-nav-spreader-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="49_line_spreader.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="spreader">Spreader</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="lasagna_nest">Lasagne Nest</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="lasagna_nest">Lasagne Nest</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pasta_instant">Pasta Instant</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="pasta_instant" id="id-nav-pasta-instant-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="54_line_pasta_instant.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="pasta_instant">Pasta Instant</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="predryer" id="id-nav-predryer-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="pre-dryer">Pre-Dryer</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="predryer" id="id-nav-predryer-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="pre-dryer">Pre-Dryer</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="omnidryer" id="id-nav-omnidryer-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="52_line_omnidryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="omnidryer">Omnidryer</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="omnidryer" id="id-nav-omnidryer-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="52_line_omnidryer.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="omnidryer">Omnidryer</span>&nbsp;
+ </a> 
                                         </li>                                         
-                                        <li class="d-none nav-item" data-pg-name="stacker" id="id-nav-stacker-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="53_line_stacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3" translate_id="">Impilatore</span>&nbsp;</a> 
+                                        <li class="d-none nav-item" data-pg-name="stacker" id="id-nav-stacker-line-3"> <a class="align-items-center d-flex nav-link" aria-current="page" href="53_line_stacker.html">  <span class="material-icons-outlined">group_work</span>  <span class="ms-3" translate_id="">Impilatore</span>&nbsp;
+ </a> 
                                         </li>                                         
                                     </div>                                     
                                 </div>                                 
@@ -230,12 +257,11 @@
                         </ul>                         
                     </div>                     
                     <div class="align-content-end bg-light bg-light-customized d-flex fixed-bottom flex-column position-absolute"> 
-                        <h6 class="align-items-center d-flex justify-content-between mb-1 mt-4 px-3 sidebar-heading text-secondary">  <span id="id-username">Utente</span><span class="material-icons-outlined md-24">person</span>  </h6> 
+                        <h6 class="align-items-center d-flex justify-content-between mb-1 mt-4 px-3 sidebar-heading text-secondary"> <span id="id-username">Utente</span><span class="material-icons-outlined md-24">person</span>  </h6> 
                         <ul class="flex-column mb-2 nav"> 
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id="">  <span class="material-icons-outlined">settings</span>  <span class="ms-3" translate_id="profile_settings">Profile Settings</span>  </a> 
-                                <!-- <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_login.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a>--->                                 
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="94_accountSettings.html" id="id-account-settings">  <span class="material-icons-outlined">settings</span>  <span class="ms-3" translate_id="profile_settings">Profile Settings</span>  </a> 
                             </li>                             
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span>  </a> 
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout">  <span class="material-icons-outlined">logout</span>  <span class="ms-3">Logout</span>  </a> 
                             </li>                             
                         </ul>                         <span style="font-size: 10px" id="github-version" class="p-2">Version</span> 
                     </div>                     
@@ -266,7 +292,7 @@
                                             <input type="text" class="form-control user-info" placeholder="Company" aria-label="Username" aria-describedby="basic-addon1" name="company" invalid-messagge="" id="field-company"/> 
                                         </div>                                         
                                         <div class="input-group mb-3"> <span class="input-group-text align-items-center d-flex material-icons-outlined" style="position: relative;">flag</span> 
-                                            <select id="field-state" class="form-select" aria-label="Default select example"> 
+                                            <select id="field-state" class="form-select user-info" aria-label="Default select example"> 
                                                 <option selected>Open this select menu</option>                                                 
                                                 <option value="1">One</option>                                                 
                                                 <option value="2">Two</option>                                                 
@@ -309,7 +335,7 @@
                                             <div id="invalid-mess-12" class="invalid-feedback">Please confirm your new password.</div>                                             
                                         </div>                                         
                                         <div class="mb-3"> 
-                                            <div class="form-text">Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.</div>                                             
+                                            <div class="form-text ">Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.</div>                                             
                                         </div>                                         
                                         <button type="button" class="btn btn-outline-primary" id="passwordUpdate" disabled="disabled">Save</button>                                         
                                     </form>                                     
@@ -332,7 +358,7 @@
                                 <div class="align-items-center col-md-12 d-flex form-group justify-content-between mt-2" style="min-height: 30px;"> 
                                     <h6 translate_id="theme" class="card-result">Color theme</h6> 
                                     <div class="form-check form-switch"> 
-                                        <input type="checkbox" class="form-check-input" id="formInput8"/> 
+                                        <input type="checkbox" class="form-check-input" id="mycheck"/> 
                                     </div>                                     
                                 </div>                                 
                                 <div class="align-items-center col-md-12 d-flex form-group justify-content-between mt-2" style="min-height: 30px;"> 
@@ -340,27 +366,16 @@
                                     <div class="dropdown dropup"> 
                                         <button class="btn btn-outline-secondary btn-sm dropdown-toggle" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false" type="button">Select</button>                                         
                                         <ul class="dropdown-menu" aria-labelledby="dropdown1" id="dropdown-language"> 
-                                            <li id="en" value="English" class="translate"> <a class="dropdown-item" href="#">English</a> 
+                                            <li id="en" value="English" class="translate"> <a class="dropdown-item" href="#"> <span class="flag-icon flag-icon-gb"></span>English</a> 
                                             </li>                                             
-                                            <li id="it" value="Italiano" class="translate"> <a class="dropdown-item" href="#" data-pg-name="Italiano">Italiano</a> 
+                                            <li id="it" value="Italiano" class="translate"> <a class="dropdown-item" href="#" data-pg-name="Italiano"> <span class="flag-icon flag-icon-it"></span>Italiano</a> 
                                             </li>                                             
-                                            <li id="fr" value="Français" class="translate"> <a class="dropdown-item" href="#">Français</a> 
+                                            <li id="fr" value="Français" class="translate"> <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-fr"></span>Français</a> 
                                             </li>                                             
-                                            <li id="es" value="Español" class="translate"> <a class="dropdown-item" href="#">Español</a> 
+                                            <li id="es" value="Español" class="translate"> <a class="dropdown-item" href="#">  <span class="flag-icon flag-icon-es"></span>Español</a> 
                                             </li>                                             
                                         </ul>                                         
                                     </div>                                     
-                                    <!-- <div class="dropdown">
-                                        <button id="dropdown1" class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Select
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdown1" id="dropdown-language">
-                                          <li id="en" value="Italiano" class="translate"><button class="dropdown-item" type="button">English</button></li>
-                                          <li id="it" value="Italiano" class="translate"><button class="dropdown-item" type="button">Italiano</button></li>
-                                          <li id="fr" value="Italiano" class="translate"><button class="dropdown-item" type="button">Français</button></li>
-                                          <li id="es" value="Italiano" class="translate"><button class="dropdown-item" type="button">Español</button></li>
-                                        </ul>
-                                      </div> -->                                     
                                 </div>                                 
                             </div>                             
                         </div>                         
@@ -369,7 +384,5 @@
                 </main>                 
             </div>             
         </div>         
-        <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script> -->         
     </body>     
 </html>

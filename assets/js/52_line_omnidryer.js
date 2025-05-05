@@ -2,8 +2,14 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
-import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
+import * as lang from "./Global/Common/Translation.js"
+import * as theme from "./Global/Common/Theme.js"
+
+
+
+lang.getLanguage()
+theme.changeColorTheme()
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
@@ -352,12 +358,12 @@ common.cardLineTrend('IDDivChart8', entityName, 'Omnidryer_Tunnel_PV_Umidità_3'
 common.actualLineProduction(chartActualProduction, query, entityName)
 
 // ******************** STORICO PRODUZIONI ********************
-common.historyLineProduction(chartHistoryProduction, query, entityName)
+//common.historyLineProduction(chartHistoryProduction, query, entityName)
 
 // ******************** RECUPERO DATI TW ********************
 setCardsValue(entityName)
 // Funzioni cicliche
-setInterval(setCardsValue, 10000, entityName);	// ogni 10 sec
+setInterval(setCardsValue, 30000, entityName);	// ogni 30 sec
 
 
 // Funzione che recupera i dati da thingworx e li visualizza nelle card della pagina.
@@ -369,6 +375,7 @@ async function setCardsValue(entityName) {
 	// Richiama il servizio di thingworx.
 	tw.getLineOmnidryerInfo(entityName)
 		.then(info => {
+			console.log("dati:\n\n" + info)
 			// Assegna alle varie label il valore corretto recuperato da thingworx
 			$('[propertyname]').each(function () {
 				let value = 0

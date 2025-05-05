@@ -36,45 +36,35 @@ checkDefaultTheme();
 
 
 // Toggle button per il cambio del tema light/dark
-$('#mycheck').change(function() {
-	// Se il selettore è ON abilito il tema dark
-	if(this.checked){	
-				
-		// Salvo il tema dark nella variabile locale, questo permette di ricordarmi la scelta alla prossima riapertura della pagina
-		// le local storage non vengono cancellate (bisogna cancellare la cache)
-		localStorage.setItem('global_theme', "Dark");
-		
-		// Cambia le icone light/dark da black a white
-		$('#IDDarkModeIcon').css("background-image", "url("  + "/assets/img/Icone/Light/dark_mode_white_24dp.svg)");  
-		$('#IDLightModeIcon').css("background-image", "url("  + "/assets/img/Icone/Light/light_mode_white_24dp.svg)");  
+function changeColorTheme(){
+	$('#mycheck').change(function() {
+		// Se il selettore è ON abilito il tema dark
+		if(this.checked){	
+					
+			// Salvo il tema dark nella variabile locale, questo permette di ricordarmi la scelta alla prossima riapertura della pagina
+			// le local storage non vengono cancellate (bisogna cancellare la cache)
+			localStorage.setItem('global_theme', "Dark");
+			
+			// Cambia le icone light/dark da black a white
+			$('#IDDarkModeIcon').css("background-image", "url("  + "/assets/img/Icone/Light/dark_mode_white_24dp.svg)");  
+			$('#IDLightModeIcon').css("background-image", "url("  + "/assets/img/Icone/Light/light_mode_white_24dp.svg)");  
+	
+			$("html").addClass("dark")
+			
+		}else{
+			
+			// Salvo il tema dark nella variabile locale, questo permette di ricordarmi la scelta alla prossima riapertura della pagina
+			// le local storage non vengono cancellate (bisogna cancellare la cache)
+			localStorage.setItem('global_theme', "Light");
+			
+			// Cambia le icone light/dark da white a black
+			$('#IDDarkModeIcon').css("background-image", "url("  + "/assets/img/Icone/Dark/dark_mode_black_24dp.svg)");  
+			$('#IDLightModeIcon').css("background-image", "url("  + "/assets/img/Icone/Dark/light_mode_black_24dp.svg)");  
+			
+			$("html").removeClass("dark")
+		}
+	})
+	
+}
 
-		$("html").addClass("dark")
-		
-	}else{
-		
-		// Salvo il tema dark nella variabile locale, questo permette di ricordarmi la scelta alla prossima riapertura della pagina
-		// le local storage non vengono cancellate (bisogna cancellare la cache)
-		localStorage.setItem('global_theme', "Light");
-		
-		// Cambia le icone light/dark da white a black
-		$('#IDDarkModeIcon').css("background-image", "url("  + "/assets/img/Icone/Dark/dark_mode_black_24dp.svg)");  
-		$('#IDLightModeIcon').css("background-image", "url("  + "/assets/img/Icone/Dark/light_mode_black_24dp.svg)");  
-		
-		$("html").removeClass("dark")
-	}
-})
-
-function logoFunction(){
-        //let image= document.getElementById("storci_logo");
-        window.location.href = baseURL + "/index.html";
-        }
-
-
-/*
-document.getElementById(id).onclick = function(){
-		// Carica la pagina.
-		window.location.href = baseURL + "/Customer/customerLineDetails.html";
-	    };
-        
-        
-*/
+export{changeColorTheme}
