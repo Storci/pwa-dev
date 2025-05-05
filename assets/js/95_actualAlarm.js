@@ -59,7 +59,8 @@ $("th").click(function () {
 
 //$('#modal1').modal("show")
 // richiamo della funzione
-getAlarmsNotifications("*", false, customerName);
+
+getAlarmsNotifications("*", "*");
 
 // Funzione di ricerca nella tabella
 $("#filter").on("keyup", function () {
@@ -156,8 +157,8 @@ function insertionSort(table, column, dir) {
 	$('#modal1').modal("hide");
 });*/
 // Funzione per recuperare i dati da tw per mettere nella tabella
-function getAlarmsNotifications(filter, getHistory, customerName) {
-	tw.service_10_getAlerts("", "", filter, getHistory, customerName)
+function getAlarmsNotifications(customerName, filter) {
+	tw.service_12_getAlertsDatatable(customerName, filter)
 		.then((list) => {
 			console.log(list)
 			$("#IDAlertActualBody").empty()

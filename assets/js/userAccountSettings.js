@@ -1,15 +1,19 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
+import * as theme from "./Global/Common/Theme.js"
+
 
 
 fb.onAuthStateChanged_2()
 lang.getLanguage()
+theme.changeColorTheme()
 
 // Document ready function to ensure translation happens after all elements are loaded
 $(document).ready(function() {
   // Translate the page content
   lang.getLanguage();
+  theme.changeColorTheme()
 });
 
 //$("#modal1").css("display", "none");
@@ -242,3 +246,23 @@ $("#notification-toggle").click(function(){
     })
   }, 2000)
 })
+
+
+const flagIconGbUrl = 'https://flagcdn.com/gb.svg';
+const parent = $0.parentElement;
+await setElementStyles($0, {
+  backgroundImage: `url(${flagIconGbUrl}) !important`,
+  backgroundSize: 'contain !important',
+  backgroundRepeat: 'no-repeat !important',
+  backgroundPosition: 'center !important'
+});
+parent.classList.add('flag-icon');
+const data = {
+  elementStyles: {
+    backgroundImage: window.getComputedStyle($0)['background-image'],
+    backgroundSize: window.getComputedStyle($0)['background-size'],
+    backgroundRepeat: window.getComputedStyle($0)['background-repeat'],
+    backgroundPosition: window.getComputedStyle($0)['background-position'],
+  },
+  parentHasFlagIconClass: parent.classList.contains('flag-icon')
+};

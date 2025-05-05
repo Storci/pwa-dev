@@ -2,8 +2,7 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
-//import { Octokit, App } from "https://cdn.skypack.dev/octokit";
-
+import * as theme from "./Global/Common/Theme.js"
 
 
 
@@ -26,6 +25,7 @@ function hideSpinner() {
 fb.onAuthStateChanged_2()
 //funzione per la traduzione
 lang.getLanguage()
+theme.changeColorTheme()
 
 //startLoading()
 // Recupera la lista dei clienti presenti da tw

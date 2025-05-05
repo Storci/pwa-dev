@@ -4,14 +4,11 @@ import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
+import * as theme from "./Global/Common/Theme.js"
 
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
-/*
-let baseURL = window.location.protocol + "//" + window.location.host
-let pageURL = window.location.href
-*/
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
@@ -29,12 +26,7 @@ fb.onAuthStateChanged_2()
 // funzione per la traduzione
 lang.getLanguage()
 
-/*window.addEventListener("load", function () {
-	const loader = document.querySelector(".loader");
-	loader.className += " hidden"; // class "loader hidden"
-});
-*/
-//$('#modal1').modal("show")
+theme.changeColorTheme()
 
 showSpinner()
 
@@ -311,29 +303,35 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 					timeEndZoom = timestampEnd
 
 					$('#fullscreenHistoryLine').click(function () {
-						let url = '62_lines_History_zoom.html?' + 'entityName=' + entityName + '&timeStart=' + timeStartZoom + '&timeEnd=' + timeEndZoom
+						let url = '62_lines_history_zoom.html?' + 'entityName=' + entityName + '&timeStart=' + timeStartZoom + '&timeEnd=' + timeEndZoom
 						window.open(url, '_blank')
 						console.log(e)
 					})
 						function showConsumption(entityName, startDate,endDate){
-							tw.calculateConsumoImpasto(entityName, startDate,endDate).then(consumo => {
+							tw.CalculateConsumoFromStreams(entityName, startDate,endDate).then(consumo => {
+							
+								consumo.rows.forEach((el, i) => {
 								if (consumo) {
-									console.log(consumo.Impasto_Consumi_Acqua, "Consumo Acqua dei dati recuperati:");
-									console.log(consumo.Impasto_Consumi_Impasto, "Consumo impasto dei dati recuperati:");
-									console.log(consumo.Impasto_Consumi_Sfarinato_1, "Consumo sfarinato dei dati recuperati:");
-									$("#consumi_Acqua").text(consumo.Impasto_Consumi_Acqua.toFixed(2) + " L") ;
-									$("#Impasto_consumi").text(consumo.Impasto_Consumi_Impasto.toFixed(2) +" kg") ;
-									$("#consumi_Sfarinato_1").text(consumo.Impasto_Consumi_Sfarinato_1.toFixed(2) + " kg") ;
-
+									console.log(el.ProductionWaterQuantity, "Consumo Acqua dei dati recuperati:");
+									console.log(el.ProductionDoughConsumption, "Consumo impasto dei dati recuperati:");
+									console.log(el.ProductionQuantityFlour1, "Consumo sfarinato dei dati recuperati:");
+									console.log(el.ProductionQuantityLiquid1, "Consumo liquidi dei dati recuperati:");
+									$("#consumi_Acqua").text(el.ProductionWaterQuantity.toFixed(2) + " L") ;
+									$("#consumi_Impasto").text(el.ProductionDoughConsumption.toFixed(2) +" kg") ;
+									$("#consumi_Sfarinato_1").text(el.ProductionQuantityFlour1.toFixed(2) + " kg") ;
+									$("#consumi_Liquido_1").text(el.ProductionQuantityLiquid1.toFixed(2) + " L")
 								} else {
 									console.log("Nessun dato di consumo trovato per il periodo specificato.");
 								}
 							})
+							})
+						//	})
 							.catch(error => {
 								console.error('Errore durante il recupero del consumo:', error);
 									$("#consumi_Acqua").text("Nessuno Valore") ;
-									$("#Impasto_consumi").text("Nessuno Valore") ;
+									$("#consumi_Impasto").text("Nessuno Valore") ;
 									$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
+									$("#consumi_Liquido_1").text("Nessuno Valore") ;
 
 							});
 						}
@@ -355,12 +353,6 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 			hideSpinner()
 		})
 }
-
-$('#fullscreenHistory').click(function () {
-	//let url ='60_cellGrapHistory.html?'+'entityName='+ entityName  +'&timeStart=' + timeStartZoom  + '&timeEnd=' + timeEndZoom
-	let url = '../62_lines_history_zoom.html?' + 'entityName=' + entityName
-	window.open(url, '_blank')
-})
 
 
 

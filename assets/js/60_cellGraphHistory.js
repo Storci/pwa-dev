@@ -4,6 +4,9 @@ import * as am from "./Global/amchart/amchart_functions.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
+import * as theme from "./Global/Common/Theme.js"
+
+theme.changeColorTheme()
 
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 const queryString = window.location.search
@@ -62,16 +65,3 @@ $('#backToPrev').click(function () {
     let url = './32_dryer_dashboard.html?' + 'entityName=' + entityName
     window.open(url, '_blank')
 })
-
-
-
-
-
-// Istanzia i grafici dell'attuale e dello storico
-// I grafici devono essere istanziati una volta solamente
-// La funzione am.createXYChart ha i seguenti parametri di ingresso
-// - ID del div che contiene il grafico
-// - ID del div che contiene la legenda
-// - ID per la colorazione delle series
-// - Numero di assi Y associate al GRAFICO
-// - Array con le unità di misura

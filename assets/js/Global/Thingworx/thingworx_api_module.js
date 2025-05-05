@@ -1,5 +1,4 @@
 //import * as am from "../amchart/amchart_functions.js"
-
 let baseUrl   		 = 'https://storciiot.storci.com:8445/Thingworx/'
 let appKey 				 = 'cdd83674-f63f-4535-9aa2-33ac5b70b52c'
 
@@ -71,7 +70,7 @@ function service_02_getLinesGeneralInfo(entityName) {
  * @returns A promise.
  */
 function service_03_getDryerHistoryProductions(entityName, startTime, endTime) {
-    let url = baseUrl + bootstrapThing + 'service_03_getDryerHistoryProductions';
+    let url = baseUrl + bootstrapThing + 'service_03_getDryerHistoryProductions_V2';
     let data = JSON.stringify({ "entityName": entityName ,"startTime":startTime, "endTime":endTime});
     /**fetch api */
     return fetch(url, {
@@ -171,6 +170,29 @@ function service_10_getAlerts(startDate, endDate, filter,getHistory,customerName
         return response.json();
     });
 }
+/** 
+* @param getHistory - true/false
+ * @param customerName - The name of the customer you want to get alerts for.
+ * @returns A promise.
+*/
+
+function service_12_getAlertsDatatable(customerName,filter) {
+    let url = baseUrl + bootstrapThing + 'GetAlarmsFromTable';
+    let data = JSON.stringify({"customerName":customerName, "filter":filter });
+    //fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
 /**
  * It takes a query as input, calls the REST API, and returns the response
  * Recupera gli allarmi attivi della linea
@@ -426,6 +448,24 @@ function getCustomerCells(customer) {
     });
 }
 
+// Recupera l'elenco delle celle di un cliente
+function getCustomerCells_V2(customer) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCustomerCells_V2";
+    let data = JSON.stringify({"Customer":customer});
+    //fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
 
 // Recupera il record dell'utente inserito nella DataTable Storci.DataTables.Customer_Users.
 function getUser(username) {
@@ -649,7 +689,7 @@ function getLineStenditriceInfo(entityName) {
 }
 
 // Fetch API
-// Recupera informazione del trabatoo
+// Recupera informazione del trabatto
 function getLineTrabattoInfo(entityName) {
     let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineTrabattoInfo";
     let data = JSON.stringify({"entityName":entityName});
@@ -703,6 +743,44 @@ function getLineNidiLasagnaInfo(entityName) {
         }
         return response.json();
     });
+}
+
+// Fetch API
+// la funzione recupera informazione sulla macchine Impilatore
+function getLineImpilatoreInfo(entityName){
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineImpilatoreInfo";
+    let data = JSON.stringify({"entityName":entityName});
+
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response =>{
+        if(!response.ok){
+            throw new Error('Network response was not ok' + response.statusText);
+        }
+        return response.json()
+    })
+}
+
+// Fetch API
+// la funzione recupera informazione sulla macchine Impilatore
+function getLineDeimpilatoreInfo(entityName){
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getLineDeimpilatoreInfo";
+    let data = JSON.stringify({"entityName":entityName});
+
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response =>{
+        if(!response.ok){
+            throw new Error('Network response was not ok' + response.statusText);
+        }
+        return response.json()
+    })
 }
 
 
@@ -761,6 +839,26 @@ function calculateConsumoImpasto(entityName, startDate, endDate) {
         return response.json();
     });
 }
+
+// Fetch API
+// Recupera il conusmo  storica dell'impasto,sfarinato, liquidi, acqua ed ecc
+function CalculateConsumoFromStreams(entityName, startDate, endDate) {
+    let url = baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/CalculateConsumoFromStreams";
+    let data = JSON.stringify({"entityName":entityName, "startDate":startDate, "endDate":endDate});
+    
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
 
 //Fectch API
 // Recupera gli allarmi attivi della linea
@@ -870,6 +968,7 @@ export{
 	service_05_getDryerStartEnd,
 	service_10_getAlerts,
 	service_11_AlertsReport,
+    service_12_getAlertsDatatable,
 	service_80_githubAPI,
 	service_90_sidebar,
 	service_97_addNewUser,
@@ -881,6 +980,7 @@ export{
 	influxQuery,
 	getCustomerGroupMachine,
 	getCustomerCells,
+    getCustomerCells_V2,
 	getUser,
 	getCellInfo,
 	getCellHistoryProductions,
@@ -895,11 +995,14 @@ export{
 	getLineStenditriceInfo,
 	getLineTrabattoInfo,
 	getLineNidiLasagnaInfo,
+    getLineImpilatoreInfo,
+    getLineDeimpilatoreInfo,
 	getLineInfo,
 	getLineDoughHistoryProduction,
 	getLineAlertsActive,
 	getDryerTimeRange,
 	getLineTimeRange,
     calculateConsumo,
-    calculateConsumoImpasto
+    calculateConsumoImpasto,
+    CalculateConsumoFromStreams
 }
