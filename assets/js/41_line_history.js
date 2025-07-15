@@ -295,10 +295,12 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 					// Recupera i dati da influxdb e li visualizza sul grafico
 					am.setChartData(chartHistoryProduction, subquery, '')
 
+					/*
 					if (!$('.hiddenConsumptionCard').is(':visible')) {
 						$('.hiddenConsumptionCard').show();
 					}
-					
+					*/
+
 					timeStartZoom = timestampStart
 					timeEndZoom = timestampEnd
 
@@ -307,10 +309,10 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 						window.open(url, '_blank')
 						console.log(e)
 					})
-						function showConsumption(entityName, startDate,endDate){
-							tw.CalculateConsumoFromStreams(entityName, startDate,endDate).then(consumo => {
-							
-								consumo.rows.forEach((el, i) => {
+					
+					function showConsumption(entityName, startDate,endDate){
+						tw.CalculateConsumoFromStreams(entityName, startDate,endDate).then(consumo => {
+							consumo.rows.forEach((el, i) => {
 								if (consumo) {
 									console.log(el.ProductionWaterQuantity, "Consumo Acqua dei dati recuperati:");
 									console.log(el.ProductionDoughConsumption, "Consumo impasto dei dati recuperati:");
@@ -320,21 +322,21 @@ function listHistoryProduction(entityName, timeStart, timeEnd) {
 									$("#consumi_Impasto").text(el.ProductionDoughConsumption.toFixed(2) +" kg") ;
 									$("#consumi_Sfarinato_1").text(el.ProductionQuantityFlour1.toFixed(2) + " kg") ;
 									$("#consumi_Liquido_1").text(el.ProductionQuantityLiquid1.toFixed(2) + " L")
+									$('.hiddenConsumptionCard').show();
 								} else {
 									console.log("Nessun dato di consumo trovato per il periodo specificato.");
 								}
 							})
-							})
-						//	})
-							.catch(error => {
-								console.error('Errore durante il recupero del consumo:', error);
-									$("#consumi_Acqua").text("Nessuno Valore") ;
-									$("#consumi_Impasto").text("Nessuno Valore") ;
-									$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
-									$("#consumi_Liquido_1").text("Nessuno Valore") ;
-
-							});
-						}
+						})
+						.catch(error => {
+							console.error('Errore durante il recupero del consumo:', error);
+							$("#consumi_Acqua").text("Nessuno Valore") ;
+							$("#consumi_Impasto").text("Nessuno Valore") ;
+							$("#consumi_Sfarinato_1").text("Nessuno Valore") ;
+							$("#consumi_Liquido_1").text("Nessuno Valore") ;
+							$('.hiddenConsumptionCard').hide();
+						});
+					}
 
 					showConsumption(entityName, timestampStart, timestampEnd)
 
