@@ -6,6 +6,11 @@ import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
 
 
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
 fb.onAuthStateChanged_2()
@@ -13,7 +18,12 @@ fb.onAuthStateChanged_2()
 lang.getLanguage()
 
 
+let selectedCustomer = localStorage.getItem("global_selected_customer");
+let selectedLine = localStorage.getItem("global_selected_line");
+let entityName = urlParams.get('entityName');
+console.log(entityName);
 let customerName = localStorage.getItem('global_customer')
+console.log(customerName);
 
 showSpinner()
 
@@ -60,7 +70,7 @@ $("th").click(function () {
 //$('#modal1').modal("show")
 // richiamo della funzione
 
-getAlarmsNotifications("*", "*");
+getAlarmsNotifications(customerName, "*");
 
 // Funzione di ricerca nella tabella
 $("#filter").on("keyup", function () {
@@ -158,8 +168,9 @@ function insertionSort(table, column, dir) {
 });*/
 // Funzione per recuperare i dati da tw per mettere nella tabella
 function getAlarmsNotifications(customerName, filter) {
-	tw.service_12_getAlertsDatatable(customerName, filter)
-		.then((list) => {
+	tw.service_12_getAlertsDatatable(customerName, filter).then((list) => {
+		console.log(customerName)
+		console.log(filter)
 			console.log(list)
 			$("#IDAlertActualBody").empty()
 			if (list.rows.length == 0) {
