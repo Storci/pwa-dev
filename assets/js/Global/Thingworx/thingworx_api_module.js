@@ -193,6 +193,23 @@ function service_12_getAlertsDatatable(customerName,filter) {
     });
 }
 
+function service_12_getAlertsDatatableCopy(entityName,filter) {
+    let url = baseUrl + bootstrapThing + 'GetAlarmsFromTableCopy';
+    let data = JSON.stringify({"entityName":entityName, "filter":filter });
+    //fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
 /**
  * It takes a query as input, calls the REST API, and returns the response
  * Recupera gli allarmi attivi della linea
@@ -1004,5 +1021,6 @@ export{
 	getLineTimeRange,
     calculateConsumo,
     calculateConsumoImpasto,
-    CalculateConsumoFromStreams
+    CalculateConsumoFromStreams,
+    service_12_getAlertsDatatableCopy
 }
