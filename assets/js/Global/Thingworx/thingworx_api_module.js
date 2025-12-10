@@ -90,7 +90,7 @@ function service_03_getDryerHistoryProductions(entityName, startTime, endTime) {
 }
 
 function getDryerProductionHistory(entityName, timeStart, timeEnd,filter) {
-    let url = baseUrl + bootstrapThing + 'getProductionList_TEST';
+    let url = baseUrl + bootstrapThing + 'getProductionList_TESTCopy';
     let data = JSON.stringify({ "entityName":entityName ,"timeStart":timeStart, "timeEnd":timeEnd, "filter":filter});
     /**fetch api */
     return fetch(url, {
