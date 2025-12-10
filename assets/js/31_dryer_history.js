@@ -6,17 +6,51 @@ import * as lang from "./Global/Common/Translation.js"
 import * as common from "./Global/Common/commonFunctions.js"
 import * as theme from "./Global/Common/Theme.js"
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
 
-const queryString = window.location.search
-const urlParams = new URLSearchParams(queryString)
+// get customer currently selected
+let selectedCustomer = localStorage.getItem("global_selected_customer");
+console.log("Selected Customer:", selectedCustomer);
 
+// get entityName from page URL
+let entityName = urlParams.get("entityName");
+console.log("Entity Name:", entityName);
 
-// Recupera dei dati dalle local storage
-let selectedCustomer = localStorage.getItem("global_selected_customer")
+tw.getDryerTemplate()
+    .then(template => {
+        console.log("All templates:", template.rows);
 
-// recupero dell'entityname della macchina
-let entityName = urlParams.get('entityName')
-console.log(entityName)
+        //  Filter templates that match the customer
+        let filtered = template.rows.filter(row =>
+            row.name.includes(selectedCustomer)
+        );
+
+        //  If at least one template matches → pick it
+        let selectedTemplate =
+            filtered.length > 0 ? filtered[0].name : null;
+
+        if (selectedTemplate) {
+            localStorage.setItem(
+                "global_selected_dryer_template",
+                selectedTemplate
+            );
+            console.log(
+                "Selected Dryer Template (filtered):",
+                selectedTemplate
+            );
+        } else {
+            console.warn(
+                " No matching template found for customer:",
+                selectedCustomer
+            );
+        }
+    })
+    .catch(error => console.error(error));
+
+let selectedDyerTemplate = localStorage.getItem("global_selected_dryer_template");
+console.log("Selected Dryer Template from LS:", selectedDyerTemplate);
+
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
@@ -87,7 +121,7 @@ $('#dateTimePicker').daterangepicker({
 		.then(dryers => { listHistoryProduction(dryers, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD')) })
 		.catch(error => console.error(error))
 	*/
-	listHistoryProduction_new(selectedCustomer, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
+	listHistoryProduction_new(selectedDyerTemplate, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
 });
 
 // Istanzia i grafici dell'attuale e dello storico
@@ -129,7 +163,7 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(10s) fill(previous)'
 
 // Cancella tutte le righe della tabella
 $("#IDHistoryTableBody").empty()
-listHistoryProduction_new(selectedCustomer, timeStartHistory, timeEndHistory)
+listHistoryProduction_new(selectedDyerTemplate, timeStartHistory, timeEndHistory)
 
 let direction = true
 $("th").click(function () {
@@ -236,12 +270,13 @@ function hideSpinnerTable() {
 	$('.tableDiv').css('opacity', '1'); // 
 }
 
-function listHistoryProduction_new(customer, timeStart, timeEnd) {
+function listHistoryProduction_new(selectedDyerTemplate,timeStart,timeEnd,filter) {
 	showSpinnerTable()
 	$("#IDHistoryTableBody").empty()
 	// Recupera lo storico delle lavorazioni effettuate dalla cella
-	tw.service_03_getDryerHistoryProductions("%" + customer + "%", timeStart, timeEnd)
+	tw.getDryerProductionHistory(selectedDyerTemplate,timeStart,timeEnd,filter)
 		.then(productions => {
+			console.log(productions)
 			// Per ogni ricetta trovata genera una nuova riga nella tabella
 			productions.rows.forEach((el, i) => {
 				// Converte il timestamp in Date
