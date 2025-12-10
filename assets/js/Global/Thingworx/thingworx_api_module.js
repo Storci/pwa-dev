@@ -14,6 +14,9 @@ let headers = {
     "Content-Type": "application/json"
 };
 
+
+
+
 /**
  * It takes an entity name as input, calls the REST API, and returns a promise that resolves to the
  * response
@@ -71,7 +74,24 @@ function service_02_getLinesGeneralInfo(entityName) {
  */
 function service_03_getDryerHistoryProductions(entityName, startTime, endTime) {
     let url = baseUrl + bootstrapThing + 'service_03_getDryerHistoryProductions_V2';
-    let data = JSON.stringify({ "entityName": entityName ,"startTime":startTime, "endTime":endTime});
+    let data = JSON.stringify({ "entityName": entityName ,"startTime": startTime, "endTime": endTime});
+    /**fetch api */
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
+function getDryerProductionHistory(entityName, timeStart, timeEnd,filter) {
+    let url = baseUrl + bootstrapThing + 'getProductionList_TEST';
+    let data = JSON.stringify({ "entityName":entityName ,"timeStart":timeStart, "timeEnd":timeEnd, "filter":filter});
     /**fetch api */
     return fetch(url, {
         method: 'POST',
@@ -896,6 +916,24 @@ function getLineAlertsActive(entityName) {
     });
 }
 
+/* THING : Storci.Thing.Manage.Bootstrap */
+// Recupera l'elenco dei clienti presenti
+function getDryerTemplate() {
+    let url =  baseUrl + "Things/Storci.Thing.Manage.Bootstrap/Services/getCelleTemplate";
+	// Fetch API
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+      //  body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
 // COMMON FUNCTIONS
 
 // Viene effettuata una query verso thingworx per recuperare
@@ -1022,5 +1060,7 @@ export{
     calculateConsumo,
     calculateConsumoImpasto,
     CalculateConsumoFromStreams,
-    service_12_getAlertsDatatableCopy
+    service_12_getAlertsDatatableCopy,
+    getDryerProductionHistory,
+    getDryerTemplate
 }

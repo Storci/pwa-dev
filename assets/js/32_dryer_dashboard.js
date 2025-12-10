@@ -433,3 +433,39 @@ function listHistoryProduction_new(entityName, timeStart, timeEnd) {
 			hideSpinnerTable()
 		})
 }
+
+
+// ...existing code...
+
+// ...existing code...
+
+// function exampleHistoryFunction(entityName, timeStart, timeEnd, filter) {
+//     // First validate inputs
+//     if (!entityName || !timeStart || !timeEnd) {
+//         console.error("Missing required parameters");
+//         return;
+//     }
+
+//     tw.getDryerProductionHistory(entityName, timeStart, timeEnd, filter)
+//         .then((response) => {
+//             console.log('Full API response:', response); // Debug the full response
+            
+//             if (response && response.rows && response.rows.length > 0) {
+//                 console.log("Production history found:", response.rows);
+//                 // Handle the data here
+//             } else {
+//                 console.log("No production history found or invalid response format");
+//             }
+//         })
+//         .catch(error => {
+//             console.error("Error fetching production history:", error);
+//         });
+// }
+
+// // Example usage:
+// exampleHistoryFunction(
+//     "Storci.Thing.Canossa.D051.Cella.Master",
+//     new Date("2025-10-20"), 
+//     new Date("2025-10-23"),
+//     "*"
+// );
