@@ -5,7 +5,7 @@ import * as tw from "./thingworx_api_module.js"
 // In base al range time impostato.
 function getDryerHistoryProduction(idTable, entityName, timeStart, timeEnd, chart, query) {
 	// Recupera lo storico delle lavorazioni effettuate dalla cella
-	tw.getCellHistoryProductions(entityName, timeStart, timeEnd, '')
+	tw.getSingleDryerProductionHistory(entityName, timeStart, timeEnd, filter)
 		.then(recipe => {
 			// Cancella tutte le righe della tabella
 			$(idTable).empty()
