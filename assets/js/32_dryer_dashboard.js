@@ -86,8 +86,9 @@ $('#dateTimePicker').daterangepicker({
 }, function (start, end, label) {
 	// Recupera tutte le celle installate dal cliente
 	listHistoryProduction_new(entityName, start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
-	timeStartZoom = timeStartHistory
-	timeEndZoom = timeEndHistory
+	console.log(listHistoryProduction_new)
+	//timeStartZoom = timeStartHistory
+	//timeEndZoom = timeEndHistory
 });
 
 
@@ -142,6 +143,9 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(10s) fill(previous)'
 common.actualDryerProduction(chartActualProduction, query, entityName)
 
 // ******************** STORICO PRODUZIONI ********************
+//listHistoryProduction_new(entityName, timeStartHistory, timeEndHistory)
+
+$("#IDHistoryTableBody").empty()
 listHistoryProduction_new(entityName, timeStartHistory, timeEndHistory)
 
 // Imposta il valore dei campi di INFO CELLA
@@ -337,7 +341,7 @@ function hideSpinnerTable() {
 	$('.tableDiv').css('opacity', '1'); // 
 }
 
-function listHistoryProduction_new(entityName, timeStart, timeEnd) {
+function listHistoryProduction_new(entityName, timeStart, timeEnd, filter) {
 	// eseguire la funzione 
 	showSpinnerTable()
 	$("#IDHistoryTableBody").empty()
@@ -346,13 +350,20 @@ function listHistoryProduction_new(entityName, timeStart, timeEnd) {
 	dryer_name = dryer_name[4] + " " + dryer_name[5]
 	console.log(dryer_name)
 	// Recupera lo storico delle lavorazioni effettuate dalla cella
-	tw.service_03_getDryerHistoryProductions(entityName, timeStart, timeEnd)
+	tw.getSingleDryerProductionHistory(entityName, timeStart, timeEnd, filter)
 		.then(productions => {
+			console.log(productions)
 			// Per ogni ricetta trovata genera una nuova riga nella tabella
 			productions.rows.forEach((el, i) => {
+				console.log(productions.rows)
 				// Converte il timestamp in Date
 				let start = new Date(el.timeStart).toLocaleString();
 				let end = new Date(el.timeEnd).toLocaleString();
+
+				let dryer_name = el.entityName.split(".")
+				dryer_name = dryer_name[4] + " " + dryer_name[5]
+				console.log(dryer_name)
+
 				// Definisce l'id della riga della tabella
 				let id = "IDHistoryTableRow" + i;
 				// Definisce l'html della riga da aggiungere
@@ -433,39 +444,3 @@ function listHistoryProduction_new(entityName, timeStart, timeEnd) {
 			hideSpinnerTable()
 		})
 }
-
-
-// ...existing code...
-
-// ...existing code...
-
-// function exampleHistoryFunction(entityName, timeStart, timeEnd, filter) {
-//     // First validate inputs
-//     if (!entityName || !timeStart || !timeEnd) {
-//         console.error("Missing required parameters");
-//         return;
-//     }
-
-//     tw.getDryerProductionHistory(entityName, timeStart, timeEnd, filter)
-//         .then((response) => {
-//             console.log('Full API response:', response); // Debug the full response
-            
-//             if (response && response.rows && response.rows.length > 0) {
-//                 console.log("Production history found:", response.rows);
-//                 // Handle the data here
-//             } else {
-//                 console.log("No production history found or invalid response format");
-//             }
-//         })
-//         .catch(error => {
-//             console.error("Error fetching production history:", error);
-//         });
-// }
-
-// // Example usage:
-// exampleHistoryFunction(
-//     "Storci.Thing.Canossa.D051.Cella.Master",
-//     new Date("2025-10-20"), 
-//     new Date("2025-10-23"),
-//     "*"
-// );

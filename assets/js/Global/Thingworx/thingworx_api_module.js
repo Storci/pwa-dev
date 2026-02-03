@@ -106,6 +106,23 @@ function getDryerProductionHistory(entityName, timeStart, timeEnd,filter) {
     });
 }
 
+function getSingleDryerProductionHistory(entityName, timeStart, timeEnd, filter) {
+    let url = baseUrl + bootstrapThing + 'getSingleDryerHistory';
+    let data = JSON.stringify({ "entityName":entityName ,"timeStart":timeStart, "timeEnd":timeEnd, "filter":filter});
+    /**fetch api */
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    });
+}
+
 /**
  * It takes three parameters, it calls a REST API, and it returns a promise
  * recupera la lista di produzione di una linea.
@@ -1063,5 +1080,6 @@ export{
     CalculateConsumoFromStreams,
     service_12_getAlertsDatatableCopy,
     getDryerProductionHistory,
-    getDryerTemplate
+    getDryerTemplate,
+    getSingleDryerProductionHistory
 }
